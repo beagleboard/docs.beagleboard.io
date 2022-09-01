@@ -4,14 +4,13 @@ stages:
   - deploy
 
 cache:
-  key: $CI_COMMIT_REF_SLUG
   paths:
     - public
 
 pages:
   stage: deploy
   script:
-  - ./gitlab-build.sh
+    - ./gitlab-build.sh
   artifacts:
     paths:
-    - public
+      - public
