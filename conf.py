@@ -120,11 +120,7 @@ html_context = {
     "pages_slug": pages_slug,
     "docs_url": docs_url,
     "current_version": version,
-    "versions": (
-        ("latest", "/"),
-        ("0.0", "/0.0/"),
-        ("0.1", "/0.1/")
-    ),
+    "versions": ("latest", "0.0", "0.1")
 }
 
 # -- Options for LaTeX output ---------------------------------------------

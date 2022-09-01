@@ -8,8 +8,8 @@
     <div class="rst-other-versions">
       <dl>
         <dt>{{ _('Document Release Versions') }}</dt>
-        {% for version_slug, version_url in versions %}
-          <dd><a href="{{pages_url}}{{version_url}}">{{ version_slug }}</a></dd>
+        {% for version_slug in versions %}
+          <dd><a href="{{pages_url}}/{{version_slug}}">{{ version_slug }}</a></dd>
         {% endfor %}
       </dl>
       <dl>
