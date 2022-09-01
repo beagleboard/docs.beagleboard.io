@@ -3,6 +3,11 @@ image: beagle/sphinx-build-env:latest
 stages:
   - deploy
 
+cache:
+  key: $CI_COMMIT_REF_SLUG
+  paths:
+    - public
+
 pages:
   stage: deploy
   script:
