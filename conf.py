@@ -81,6 +81,10 @@ with open(BBDOCS_BASE  / "VERSION") as f:
 
 release = version
 
+pages_url = ""
+pages_slug = ""
+docs_url = ""
+
 # parse pages details from 'PAGES' file
 with open(BBDOCS_BASE  / "PAGES") as f:
     m = re.match(
@@ -94,10 +98,9 @@ with open(BBDOCS_BASE  / "PAGES") as f:
 
     if not m:
         sys.stderr.write("Warning: Could not extract pages information\n")
-        pages_url = "Unknown"
-        pages_slug = "Unknown"
     else:
         url, slug = m.groups(1)
+        slug = "latest" if slug == "main" else slug
         pages_url = url
         pages_slug = slug
         if slug == "main":
@@ -116,7 +119,12 @@ html_context = {
     "pages_url": pages_url,
     "pages_slug": pages_slug,
     "docs_url": docs_url,
-    "current_version": version
+    "current_version": version,
+    "versions": (
+        ("latest", "/"),
+        ("0.0", "/0.0/"),
+        ("0.1", "/0.1/")
+    ),
 }
 
 # -- Options for LaTeX output ---------------------------------------------

@@ -2,15 +2,15 @@
   <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       <span class="fa fa-book"> BeagleBoard Project</span>
-      v: latest
+      v: {{ pages_slug }}
       <span class="fa fa-caret-down"></span>
     </span>
     <div class="rst-other-versions">
       <dl>
         <dt>{{ _('Document Release Versions') }}</dt>
-          <dd><a href="{{pages_url}}">latest</a></dd>
-          <dd><a href="{{pages_url}}/0.0">0.0</a></dd>
-          <dd><a href="{{pages_url}}/0.1">0.1</a></dd>
+        {% for version_slug, version_url in versions %}
+          <dd><a href="{{pages_url}}{{version_url}}">{{ version_slug }}</a></dd>
+        {% endfor %}
       </dl>
       <dl>
         <dt>{{ _('Downloads') }}</dt>
