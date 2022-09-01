@@ -100,7 +100,10 @@ with open(BBDOCS_BASE  / "PAGES") as f:
         url, slug = m.groups(1)
         pages_url = url
         pages_slug = slug
-        docs_url = "/".join((url, slug))
+        if slug == "main":
+            docs_url = "/".join((url, "latest"))
+        else:
+            docs_url = "/".join((url, slug))
 
 html_context = {
     "display_gitlab": True,
