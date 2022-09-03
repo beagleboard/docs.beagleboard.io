@@ -120,7 +120,12 @@ html_context = {
     "pages_slug": pages_slug,
     "docs_url": docs_url,
     "current_version": version,
-    "versions": ("latest", "0.0", "0.1")
+    "versions": ("latest", "0.0", "0.1"),
+    "reference_links": {
+        "About": "https://beagleboard.org/about",
+        "Donate": "https://beagleboard.org/donate/",
+        "FAQ": "https://beagleboard.org/Support/FAQ"
+    }
 }
 
 # -- Options for LaTeX output ---------------------------------------------

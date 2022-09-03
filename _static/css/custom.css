@@ -18,9 +18,18 @@
 }
 
 .wy-nav-content {
-        max-width: 100%;
+    max-width: 100%;
 }
 
+.wy-side-scroll {
+    overflow-y: hidden;
+}
+
+.wy-menu.wy-menu-vertical {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: calc(100% - 247px);
+}
 
 .wy-side-nav-search {
     background-color: #25282b;
@@ -33,6 +42,7 @@
 }
 
 .wy-nav-side {
+    padding-bottom: 0px;
     background-color: #25282b;
     background-color: #25282b;
 }
