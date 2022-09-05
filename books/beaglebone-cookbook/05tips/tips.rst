@@ -4,53 +4,55 @@ Beyond the Basics
 ##################
 
 Introduction
----------------
+*************
 
-In :ref:`<basics>`, you learned how to set up BeagleBone Black, and 
-:ref:`<sensors>`, :ref:`<displays>`, and :ref:`<motors>` showed how to 
+In :ref:`beaglebone-cookbook-basics`, you learned how to set up BeagleBone Black, and 
+:ref:`beaglebone-cookbook-sensors`, :ref:`beaglebone-cookbook-displays`, 
+and :ref:`beaglebone-cookbook-motors` showed how to 
 interface to the physical world. The remainder of the book moves into some 
 more exciting advanced topics, and this chapter gets you ready for them.  
 
 The recipes in this chapter assume that you are running Linux on your host 
-computer (:ref:`<tips_pick_os>`) and are comfortable with using Linux. We 
-continue to assume that you are logged in as +debian+ on your Bone.
+computer (:ref:`tips_pick_os`) and are comfortable with using Linux. We 
+continue to assume that you are logged in as *debian* on your Bone.
 
 .. _tips_hdmi:
 
 Running Your Bone Standalone
------------------------------
+=============================
 
 Problem
-*********
+--------
 
 You want to use BeagleBone Black as a desktop computer with keyboard, mouse, and an HDMI display.
 
 Solution
-*************
+---------
 
 The Bone comes with USB and a microHDMI output. All you need to do is connect your keyboard, mouse, and HDMI display to it. 
 
 To make this recipe, you will need:
 
-* Standard HDMI cable and female HDMI-to-male microHDMI adapter (see :ref:`<app_misc>`), or
-* MicroHDMI-to-HDMI adapter cable (see :ref:`<app_misc>`)
-* HDMI monitor (see :ref:`<app_misc>`)
+* Standard HDMI cable and female HDMI-to-male microHDMI adapter, or
+* MicroHDMI-to-HDMI adapter cable
+* HDMI monitor
 * USB keyboard and mouse
-* Powered USB hub (see :ref:`<app_misc>`)
+* Powered USB hub
 
-.. note:: 
+.. note::
+
    The microHDMI adapter is nice because it allows you to use a regular HDMI cable 
    with the Bone. However, it will block other ports and can damage the Bone if you 
    aren't careful. The microHDMI-to-HDMI cable won't have these problems.  
 
 .. tip:: 
-   You can also use an HDMI-to-DVI cable (:ref:`<app_misc>`) 
+
+   You can also use an HDMI-to-DVI cable 
    and use your Bone with a DVI-D display.
 
-The adapter looks something like :ref:`<tips_HDMI_adaptor_fig>`.
+The adapter looks something like :ref:`tips_HDMI_adaptor_fig`.
 
 .. _tips_HDMI_adaptor_fig:
-
 
 .. figure:: figures/hdmiConverter.jpg
    :align: center
@@ -58,9 +60,11 @@ The adapter looks something like :ref:`<tips_HDMI_adaptor_fig>`.
 
    Female HDMI-to-male microHDMI adapter
 
-Plug the small end into the microHDMI input on the Bone and plug your HDMI cable into the other end of the adapter and your monitor. If nothing displays on your Bone, reboot.
+Plug the small end into the microHDMI input on the Bone and plug your HDMI cable into the other end of the 
+adapter and your monitor. If nothing displays on your Bone, reboot.
 
-If nothing appears after the reboot, edit the _/boot/uEnv.txt_ file. Search for the line containing +disable_uboot_overlay_video=1 and make sure it's commented out:
+If nothing appears after the reboot, edit the ``/boot/uEnv.txt`` file. Search for the line containing 
+``disable_uboot_overlay_video=1`` and make sure it's commented out:
 
 .. code-block:: bash
 
@@ -71,74 +75,79 @@ If nothing appears after the reboot, edit the _/boot/uEnv.txt_ file. Search for 
 
 Then reboot.
 
-.. PRODUCTION: in the following tip, we're trying to display the hash symbol (#), all by itself, in constant width. Using +#+ produces an empty space in the build, and I don't know how to escape special characters within what should be literal strings.
+.. PRODUCTION: in the following tip, we're trying to display the hash symbol (#), all by itself, in constant width. Using *#* produces an empty space in the build, and I don't know how to escape special characters within what should be literal strings.
 
 .. Adding to my confusion, the # signs are dropped in the first paragraph of the tip, but not in the second, which is formatted in the same exact way.
 
 .. Also, using ## in the code italicizes the second # and everything after it in the line, which should not happen.
 
 
-The _/boot/uEnv.txt_ file contains a number of configuration commands that are executed at boot time. The +#+ character is used to add comments; that is, everything to the right of a +# is ignored by the Bone and is assumed to be for humans to read. In the previous example, +###Disable auto loading+ is a comment that informs us the next line(s) are for disabling things. Two +disable_uboot_overlay+ commands follow. Both should be commented-out and won't be executed by the Bon
-Why not just remove the line?  Later, you might decide you need more general-purpose input/output (GPIO) pins and don't need the HDMI display. If so, just remove the +#+ from the +disable_uboot_overlay_video=1+ command. If you had completely removed the line earlier, you would have to look up the details somewhere to re-create it.  
+The ``/boot/uEnv.txt`` file contains a number of configuration commands that are executed at boot time. 
+The *#* character is used to add comments; that is, everything to the right of a +# is ignored by the 
+Bone and is assumed to be for humans to read. In the previous example, *###Disable auto loading* is 
+a comment that informs us the next line(s) are for disabling things. Two *disable_uboot_overlay* 
+commands follow. Both should be commented-out and won't be executed by the Bon
 
-When in doubt, comment-out; don't delete.
+Why not just remove the line?  Later, you might decide you need more general-purpose input/output 
+(GPIO) pins and don't need the HDMI display. If so, just remove the *#* from the ``disable_uboot_overlay_video=1`` 
+command. If you had completely removed the line earlier, you would have to look up the details somewhere to re-create it.  
+
+When in doubt, comment-out don't delete.
 
 .. note:: 
+
    If you want to re-enable the HDMI audio, just comment-out the line you added.
 
-The Bone has only one USB port, so you will need to get either a keyboard with a USB hub (see :ref:`<app_misc>`) or a USB hub. Plug the USB hub into the Bone and then plug your keyboard and mouse in to the hub. You now have a Beagle workstation; no host computer is needed.
+The Bone has only one USB port, so you will need to get either a keyboard with a USB hub or a USB hub. 
+Plug the USB hub into the Bone and then plug your keyboard and mouse in to the hub. 
+You now have a Beagle workstation no host computer is needed.
 
 .. tip:: 
-   A powered hub is recommended because USB can supply only 500 mA, and you'll want to plug many things into the Bone.
-
-Discussion
-*************
+   A powered hub is recommended because USB can supply only 
+   500 mA, and you'll want to plug many things into the Bone.
 
 This recipe disables the HDMI audio, which allows the Bone to try other resolutions. 
-If this fails, see http://bit.ly/1GEPcOH[BeagleBoneBlack HDMI] for how to force the 
+If this fails, see `BeagleBoneBlack HDMI <http://bit.ly/1GEPcOH>`_ for how to force the 
 Bone's resolution to match your monitor.
 
 .. _tips_pick_os:
 
 Selecting an OS for Your Development Host Computer
----------------------------------------------------
+===================================================
 
 Problem
-*************
+--------
 
 Your project needs a host computer, and you need to select an operating system (OS) for it.
 
 Solution
-*************
+--------
 
 For projects that require a host computer, we assume that you are running 
-http://bit.ly/1wXOwkw[Linux Ubuntu 20.04 LTS]. You can be running either a native installation, 
-through https://docs.microsoft.com/en-us/windows/wsl/[Windows Subsystem for Linux], via a virtual 
-machine such as https://www.virtualbox.org/[VirtualBox], or in the cloud (https://portal.azure.com/[Microsoft Azure] 
-or http://aws.amazon.com/ec2/[Amazon Elastic Compute Cloud] [EC2], for example).
+`Linux Ubuntu 20.04 LTS <http://bit.ly/1wXOwkw>`_. You can be running either a native installation, 
+through `Windows Subsystem for Linux <https://docs.microsoft.com/en-us/windows/wsl/>`_, via a virtual 
+machine such as `VirtualBox <https://www.virtualbox.org/>`_, or in the cloud (`Microsoft Azure <https://portal.azure.com/>`_ 
+or `Amazon Elastic Compute Cloud <http://aws.amazon.com/ec2/>`_, EC2, for example).
 
-Recently I've been prefering https://docs.microsoft.com/en-us/windows/wsl/[Windows Subsystem for Linux].
-
-Discussion
-*************
+Recently I've been prefering `Windows Subsystem for Linux <https://docs.microsoft.com/en-us/windows/wsl/>`_.
 
 .. _tips_shell:
 
 Getting to the Command Shell via SSH
-------------------------
+=====================================
 
 Problem
-*************
+--------
 
 You want to connect to the command shell of a remote Bone from your host pass:[<span class="keep-together">computer</span>].
 
 Solution
-*************
+---------
 
 
-:ref:`<basics_vsc_IDE>` shows how to run shell commands in the Visual Studio Code +bash+ tab. 
+:ref:`basics_vsc_IDE` shows how to run shell commands in the Visual Studio Code *bash* tab. 
 However, the Bone has Secure Shell (SSH) enabled right out of the box, so you can easily 
-connect by using the following command to log in as user +debian+, (note the +$+ at the end of the prompt):
+connect by using the following command to log in as user *debian*, (note the *$* at the end of the prompt):
 
 .. code-block:: bash
 
@@ -147,8 +156,10 @@ connect by using the following command to log in as user +debian+, (note the +$+
    Last login: Mon Dec 22 07:53:06 2014 from yoder-linux.local
    bone$ 
 
+.. _tips_passwords:
 
-+debian+ has the default password +tempped+ It's best to change the password:
+*debian* has the default password *tempped* It's best to change the password:
+==============================================================================
 
 .. code-block:: bash
 
@@ -160,23 +171,22 @@ connect by using the following command to log in as user +debian+, (note the +$+
    passwd: password updated successfully
 
 
-Discussion
-*************
-
 .. _tips_serial:
 
 Getting to the Command Shell via the Virtual Serial Port
-------------------------
+==========================================================
 
 Problem
-*************
+--------
 
 You want to connect to the command shell of a remote Bone from your host computer without using SSH.
 
 Solution
-*************
+---------
 
-Sometimes, you can't connect to the Bone via SSH, but you have a network working over USB to the Bone. There is a way to access the command line to fix things without requiring extra hardware. (:ref:`<tips_FTDI>` shows a way that works even if you don't have a network working over USB, but it requires a special serial-to-USB cable.)
+Sometimes, you can't connect to the Bone via SSH, but you have a network working over USB to the Bone. 
+There is a way to access the command line to fix things without requiring extra hardware. (:ref:`tips_FTDI` 
+shows a way that works even if you don't have a network working over USB, but it requires a special serial-to-USB cable.)
 
 First, check to ensure that the serial port is there. On the host computer, run the following command:
 
@@ -186,8 +196,9 @@ First, check to ensure that the serial port is there. On the host computer, run 
    0 crw-rw---- 1 root dialout 166, 0 Jun 19 11:47 /dev/ttyACM0
 
 
-_/dev/ttyACM0_ is a serial port on your host computer that the Bone creates when it boots up. 
-The letters +crw-rw----+ show that you can't access it as a normal user. However, you _can_ access it if you are part of +dialout+ group. See if you are in the +dialout+ group:
+``/dev/ttyACM0`` is a serial port on your host computer that the Bone creates when it boots up. 
+The letters *crw-rw----* show that you can't access it as a normal user. However, you ``can`` 
+access it if you are part of *dialout* group. See if you are in the *dialout* group:
 
 .. code-block:: bash
 
@@ -201,7 +212,8 @@ Looks like I'm already in the group, but if you aren't, just add yourself to the
    host$ sudo adduser $USER dialout
 
 
-You have to run +adduser+ only once. Your host computer will remember the next time you boot up. Now, install and run the +screen+ command:
+You have to run *adduser* only once. Your host computer will remember the next 
+time you boot up. Now, install and run the *screen* command:
 
 .. code-block:: bash
 
@@ -217,33 +229,31 @@ You have to run +adduser+ only once. Your host computer will remember the next t
    beaglebone login:
 
 
-The +/dev/ttyACM0+ parameter specifies which serial port to connect to, and +115200+ 
+The ``/dev/ttyACM0`` parameter specifies which serial port to connect to, and *115200* 
 tells the speed of the connection. In this case, it's 115,200 bits per second.
-
-Discussion
-*************
 
 .. _tips_FTDI:
 
 Viewing and Debugging the Kernel and u-boot Messages at Boot Time
-------------------------
+==================================================================
 
 Problem
-*************
+--------
 
 You want to see the messages that are logged by BeagleBone Black as it comes to life.
 
 Solution
-*************
+---------
 
-There is no network in place when the Bone first boots up, so :ref:`<tips_shell>` and :ref:`<tips_serial>` won't work. This recipe uses some extra hardware (FTDI cable) to attach to the Bone's console serial port.
+There is no network in place when the Bone first boots up, so :ref:`tips_shell` and :ref:`tips_serial` 
+won't work. This recipe uses some extra hardware (FTDI cable) to attach to the Bone's console serial port.
 
 To make this recipe, you will need:
 
-* 3.3 V FTDI cable (see :ref:`<app_misc>`)
+* 3.3 V FTDI cable
 
 .. warning:: 
-   Be sure to get a 3.3 V FTDI cable (shown in :ref:`<tips_FTDIcable_fig>`), 
+   Be sure to get a 3.3 V FTDI cable (shown in :ref:`tips_FTDIcable_fig`), 
    because the 5 V cables won't work.
 
 .. tip:: 
@@ -259,11 +269,10 @@ To make this recipe, you will need:
 
    FTDI cable
 
-Look for a small triangle at the end of the FTDI cable (:ref:`<tips_FTDIconnector_fig>`). 
+Look for a small triangle at the end of the FTDI cable (:ref:`tips_FTDIconnector_fig`). 
 It's often connected to the black wire. 
 
 .. _tips_FTDIconnector_fig:
-
 
 .. figure:: figures/FTDIconnector.jpg
    :align: center
@@ -271,12 +280,11 @@ It's often connected to the black wire.
 
    FTDI connector
 
-Next, look for the FTDI pins of the Bone (labeled +J1+ on the Bone), shown in 
-:ref:`<tips_black_hardware_details_fig>`. They are next to the P9 header 
+Next, look for the FTDI pins of the Bone (labeled *J1* on the Bone), shown in 
+:ref:`tips_black_hardware_details_fig`. They are next to the P9 header 
 and begin near pin 20. There is a white dot near P9_20. 
 
 .. _tips_black_hardware_details_fig:
-
 
 .. figure:: figures/FTDIPins.png
    :align: center
@@ -285,7 +293,7 @@ and begin near pin 20. There is a white dot near P9_20.
    FTDI pins for the FTDI connector 
 
 Plug the FTDI connector into the FTDI pins, being sure to connect 
-the _triangle_ pin on the connector to the _white dot_ pin of the +FTDI+ connector.
+the ``triangle`` pin on the connector to the ``white dot`` pin of the *FTDI* connector.
 
 Now, run the following commands on your host computer:
 
@@ -309,19 +317,16 @@ Now, run the following commands on your host computer:
    Your screen might initially be blank. Press Enter 
    a couple times to see the login prompt.
 
-Discussion
-*************
-
 Verifying You Have the Latest Version of the OS on Your Bone from the Shell
------------------------------------------------------------------------------
+============================================================================
 
 Problem
-*************
+--------
 
 You are logged in to your Bone with a command prompt and want to know what version of the OS you are running.
 
 Solution
-*************
+--------
 
 Log in to your Bone and enter the following command:
 
@@ -331,25 +336,20 @@ Log in to your Bone and enter the following command:
    BeagleBoard.org Debian Bullseye IoT Image 2022-07-01
 
 
-Discussion
-*************
-
-:ref:`<basics_latest_os>` shows how to open the _ID.txt_ file to see the OS version. 
-The _/etc/dogtag_ file has the same contents and is easier to find if you already 
-have a command prompt. See :ref:`<basics_install_os>` if you need to update your OS.
+:ref:`basics_latest_os` shows how to open the ``ID.txt`` file to see the OS version. 
+The ``/etc/dogtag`` file has the same contents and is easier to find if you already 
+have a command prompt. See :ref:`basics_install_os` if you need to update your OS.
 
 Controlling the Bone Remotely with a VNC
-------------------------
-
-// TODO  check this
+=========================================
 
 Problem
-*************
+--------
 
 You want to access the BeagleBone's graphical desktop from your host computer.
 
 Solution
-*************
+---------
 
 Run the installed Virtual Network Computing (VNC) server:
 
@@ -371,10 +371,10 @@ Run the installed Virtual Network Computing (VNC) server:
    Log file is /home/debian/.vnc/beagleboard:1.log
 
 
-To connect to the Bone, you will need to run a VNC client. There are many to choose from. Remmina Remote Desktop Client is already installed on Ubuntu. Start and select the new remote desktop file button (:ref:`<tips_vnc1_fig>`).
+To connect to the Bone, you will need to run a VNC client. There are many to choose from. Remmina Remote 
+Desktop Client is already installed on Ubuntu. Start and select the new remote desktop file button (:ref:`tips_vnc1_fig`).
 
 .. _tips_vnc1_fig:
-
 
 .. figure:: figures/vnc1.png
    :align: center
@@ -382,10 +382,10 @@ To connect to the Bone, you will need to run a VNC client. There are many to cho
 
    Creating a new remote desktop file in Remmina Remote Desktop Client
 
-Give your connection a name, being sure to select "Remmina VNC Plugin" Also, be sure to add +:1+ after the server address, as shown in :ref:`<tips_vnc2_fig>`. This should match the +:1+ that was displayed when you started +vncserver+.
+Give your connection a name, being sure to select "Remmina VNC Plugin" Also, be sure to add *:1* after the 
+server address, as shown in :ref:`tips_vnc2_fig`. This should match the *:1* that was displayed when you started *vncserver*.
 
 .. _tips_vnc2_fig:
-
 
 .. figure:: figures/vnc2.png
    :align: center
@@ -393,9 +393,7 @@ Give your connection a name, being sure to select "Remmina VNC Plugin" Also, be 
 
    Configuring the Remmina Remote Desktop Client
 
-Click Connect to start graphical access to your Bone, as shown in :ref:`<tips_vnc3_fig>`.
-
-// TODO update this
+Click Connect to start graphical access to your Bone, as shown in :ref:`tips_vnc3_fig`.
 
 .. _tips_vnc3_fig:
 
@@ -406,10 +404,12 @@ Click Connect to start graphical access to your Bone, as shown in :ref:`<tips_vn
    The Remmina Remote Desktop Client showing the BeagleBone desktop
 
 .. tip:: 
+
    You might need to resize the VNC screen on your 
    host to see the bottom menu bar on your Bone. 
 
 .. note:: 
+
    You need to have X Windows installed and running for the VNC to work. 
    Here's how to install it. This needs some 250M of disk space and 19 minutes to install.
 
@@ -422,27 +422,22 @@ Click Connect to start graphical access to your Bone, as shown in :ref:`<tips_vn
    /usr/bin/startxfce4: 122: exec: xinit: not found
 
 
-Discussion
-*************
-
 Learning Typical GNU/Linux Commands
-------------------------
+====================================
 
 Problem
-*************
+--------
 
 There are many powerful commands to use in Linux. How do you learn about them?
 
 Solution
-*************
+---------
 
-:ref:`<tips_linux_commands>` lists many common Linux commands.
+:ref:`tips_linux_commands` lists many common Linux commands.
 
 .. _tips_linux_commands:
 
-Common Linux commands
-
-.. table::
+.. table:: Common Linux commands
 
    +--------+--------------------------------+
    |Command |Action                          |
@@ -494,7 +489,7 @@ Common Linux commands
    |apropos |show list of man pages          |
    +--------+--------------------------------+
    |find    |search for files                |
-   +--------+--------------------------------+    
+   +--------+--------------------------------+
    |tar     |create/extract file archives    |
    +--------+--------------------------------+
    |gzip    |compress a file                 |
@@ -514,38 +509,32 @@ Common Linux commands
    |whereis |locates binary and source files |
    +--------+--------------------------------+
 
-Discussion
-*************
-
-
 .. _tips_editing_files:
 
 Editing a Text File from the GNU/Linux Command Shell
------------------------------------------------------
+=====================================================
 
 Problem
-*************
+--------
 
 You want to run an editor to change a file.
 
 Solution
-*************
+---------
 
-The Bone comes with a number of editors. The simplest to learn is +nano+. 
+The Bone comes with a number of editors. The simplest to learn is *nano*. 
 Just enter the following command:
 
 .. code-block:: bash
 
    bone$ nano file
 
-
-You are now in nano (:ref:`<tips_nano_fig>`). You can't move around the screen 
+You are now in nano (:ref:`tips_nano_fig`). You can't move around the screen 
 using the mouse, so use the arrow keys. The bottom two lines of the screen 
 list some useful commands. Pressing &#708;G (Ctrl-G) will display more useful 
 commands. &#708;X (Ctrl-X) exits nano and gives you the option of saving the file.
 
 .. _tips_nano_fig:
-
 
 .. figure:: figures/nano.png
    :align: center
@@ -555,34 +544,29 @@ commands. &#708;X (Ctrl-X) exits nano and gives you the option of saving the fil
 
 .. tip:: 
    By default, the file you create will be saved 
-   in the directory from which you opened +nano+.
-
-Discussion
-*************
+   in the directory from which you opened *nano*.
 
 
-Many other text editors will run on the Bone. +vi+, +vim+, +emacs+, and  even +eclipse+ are all supported. 
-See :ref:`<tips_apt>` to learn if your favorite is one of them.
-
+Many other text editors will run on the Bone. *vi*, *vim*, *emacs*, and  even *eclipse* are all supported. 
+See :ref:`tips_apt` to learn if your favorite is one of them.
 
 .. _networking_wired:
 
 Establishing an Ethernet-Based Internet Connection
-------------------------
+===================================================
 
 Problem
-*************
+--------
 
 You want to connect your Bone to the Internet using the wired network connection.
 
 Solution
-*************
+---------
 
-Plug one end of an Ethernet patch cable into the RJ45 connector on the Bone (see :ref:`<networking_rj45>`) 
+Plug one end of an Ethernet patch cable into the RJ45 connector on the Bone (see :ref:`networking_rj45`) 
 and the other end into your home hub/router. The yellow and green link lights on both ends should begin to flash.
 
 .. _networking_rj45:
-
 
 .. figure:: figures/internLED.png
    :align: center
@@ -593,9 +577,10 @@ and the other end into your home hub/router. The yellow and green link lights on
 If your router is already configured to run DHCP (Dynamical Host Configuration Protocol), 
 it will automatically assign an IP address to the Bone. 
 
-.. warning:: It might take a minute or two for your router to detect the Bone and assign the IP address.
+.. warning:: 
+   It might take a minute or two for your router to detect the Bone and assign the IP address.
 
-To find the IP address, open a terminal window and run the +ip+ command:
+To find the IP address, open a terminal window and run the *ip* command:
 
 .. code-block:: bash
 
@@ -630,45 +615,42 @@ To find the IP address, open a terminal window and run the +ip+ command:
       link/can
 
 
-My Bone is connected to the Internet in two ways: via the RJ45 connection (+eth0+) and via the USB cable (+usb0+). 
-The +inet+ field shows that my Internet address is +10.0.5.144+ for the RJ45 connector.
+My Bone is connected to the Internet in two ways: via the RJ45 connection (*eth0*) and via the USB cable (*usb0*). 
+The *inet* field shows that my Internet address is *10.0.5.144* for the RJ45 connector.
 
 On my university campus, you must register your MAC address before any device will work on the network. 
-The +HWaddr+ field gives the MAC address. For +eth0+, it's +c8:a0:30:a6:26:e8+.  
+The *HWaddr* field gives the MAC address. For *eth0*, it's *c8:a0:30:a6:26:e8*.  
 
 The IP address of your Bone can change. If it's been assigned by DHCP, it can change at any time. 
 The MAC address, however, never changes;  it is assigned to your ethernet device when it's manufactured.
 
 .. warning:: 
-   When a Bone is connected to some networks it becomes visible to the _world_. If you don't secure your Bone, 
-   the world will soon find it. See :ref:`<tips_passwords>` and :ref:`<tips_firewall
+
+   When a Bone is connected to some networks it becomes visible to the ``world``. If you don't secure your Bone, 
+   the world will soon find it. See :ref:`tips_passwords` and :ref:`tips_firewall`
 
 On many home networks, you will be behind a firewall and won't be as visible.
-
-Discussion
-*************
 
 .. _networking_wireless:
 
 Establishing a WiFi-Based Internet Connection
-------------------------
+==============================================
 
 Problem
-*************
+--------
 
 You want BeagleBone Black to talk to the Internet using a USB wireless adapter.
 
 Solution
-*************
+---------
 
-
-.. tip:: For the correct instructions for the image you are using, go to
-httporum.beagleboard.org/tag/latest-images[latest-images] and click on the image you are using.  
+.. tip:: 
+   For the correct instructions for the image you are using, go to
+   `latest-images <http://forum.beagleboard.org/tag/latest-images>`_ and click on the image you are using.  
 
 I'm running Debian 11.x (Bullseye), the middle one.
 
 .. _tips_latest-images_fig:
-
 
 .. figure:: figures/latest-images.png
    :align: center
@@ -680,28 +662,30 @@ Scroll to the top of the page and you'll see instructions on setting up Wifi. Th
 
 .. _tips_networkfig:
 
-
 .. figure:: figures/network.png
    :align: center
    :alt: Network Setup Instructions
 
    Instructions for setting up your network.
 
-// TODO is this up to date?
-Several WiFi adapters work with the Bone. Check http://bit.ly/1EbEwUo[WiFi Adapters] for the latest list.
+.. TODO 
+   is this up to date?
+
+Several WiFi adapters work with the Bone. Check `WiFi Adapters <http://bit.ly/1EbEwUo>`_ for the latest list.
 
 To make this recipe, you will need:
 
-* USB Wifi adapter (see :ref:`<app_misc>`)
-* 5 V external power supply (see :ref:`<app_misc>`)
+* USB Wifi adapter
+* 5 V external power supply
 
 .. warning:: 
+
    Most adapters need at least 1 A of current to run, and USB supplies only 0.5 A, so be sure to use an 
    external power supply. Otherwise, you will experience erratic behavior and random crashes.
 
 First, plug in the WiFi adapter and the 5 V external power supply and reboot.
 
-Then run +lsusb+ to ensure that your Bone found the adapter:
+Then run *lsusb* to ensure that your Bone found the adapter:
 
 .. code-block:: bash
 
@@ -712,12 +696,16 @@ Then run +lsusb+ to ensure that your Bone found the adapter:
    Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 
 
-.. note:: There is a well-known bug in the Bone's 3.8 kernel series that prevents USB devices from being discovered when hot-plugged, which is why you should reboot. Newer kernels should address this issue.
+.. note:: 
+   There is a well-known bug in the Bone's 3.8 kernel series that prevents USB devices from 
+   being discovered when hot-plugged, which is why you should reboot. Newer kernels should address this issue.
 
 
-// TODO  update
+.. TODO
+   update
 
-Next, run +networkctl+ to find your adapter's name.  Mine is called +wlan0+, but you might see other names, such as +ra0+.
+Next, run *networkctl* to find your adapter's name. Mine is 
+called *wlan0*, but you might see other names, such as *ra0*.
 
 .. code-block:: bash
 
@@ -735,7 +723,7 @@ Next, run +networkctl+ to find your adapter's name.  Mine is called +wlan0+, but
    8 links listed.
 
 
-If no name appears, try +ip a+:
+If no name appears, try *ip a*:
 
 .. code-block:: bash
 
@@ -758,7 +746,7 @@ If no name appears, try +ip a+:
          valid_lft forever preferred_lft forever
 
 
-   Next edit the configuration file +/etc/wpa_supplicant/wpa_supplicant-wlan0.conf+.
+   Next edit the configuration file */etc/wpa_supplicant/wpa_supplicant-wlan0.conf*.
 
 .. code-block:: bash
 
@@ -779,7 +767,7 @@ In the file you'll see:
    }
 
 
-Change the +ssid+ and +psk+ enteries for your network. Save your file, then run:
+Change the *ssid* and *psk* enteries for your network. Save your file, then run:
 
 .. code-block:: bash
 
@@ -795,50 +783,45 @@ Change the +ssid+ and +psk+ enteries for your network. Save your file, then run:
    rtt min/avg/max/mdev = 19.387/19.450/19.513/0.063 ms
 
 
-+wlan0+ should now have an ip address and you should be on the network. If not, try rebooting.
-
-Discussion
-*************
-
-
+*wlan0* should now have an ip address and you should be on the network. If not, try rebooting.
 
 .. _networking_usb:
 
 Sharing the Host's Internet Connection over USB
-------------------------
+=================================================
 
-// TODO  Test this
+.. TODO
+   Test this
 
 Problem
-*************
+-------
 
 Your host computer is connected to the Bone via the USB cable, and you want to run the network between the two.
 
 Solution
-*************
+---------
 
-:ref:`<networking_wired>` shows how to connect BeagleBone Black to the Internet via the RJ45 Ethernet connector. 
-This recipe shows a way to connect without using the RJ45 pass:[<span class="keep-together">connector</span>].
+:ref:`networking_wired` shows how to connect BeagleBone Black to the Internet via the RJ45 Ethernet connector. 
+This recipe shows a way to connect without using the RJ45 connector.
 
 A network is automatically running between the Bone and the host computer at boot time using the USB. The host's 
-IP address is +192.168.7.1+ and the Bone's is +192.168.7.2+.  Although your Bone is talking to your host, it can't 
+IP address is *192.168.7.1* and the Bone's is *192.168.7.2*.  Although your Bone is talking to your host, it can't 
 reach the Internet in general, nor can the Internet reach it. On one hand, this is good, because those who are up to 
 no good can't access your Bone. On the other hand, your Bone can't reach the rest of the world.
 
 Letting your bone see the world: setting up IP masquerading
 
 You need to set up IP masquerading on your host and configure your Bone to use it. Here is a solution that works 
-with a host computer running Linux. Add the code in :ref:`<tips_ipmasq_code>` to a 
-file called _ipMasquerade.sh_ on your host computer.
+with a host computer running Linux. Add the code in :ref:`tips_ipmasq_code` to a 
+file called ``ipMasquerade.sh`` on your host computer.
 
 .. _tips_ipmasq_code:
 
-Code for IP Masquerading (ipMasquerade.sh)
+.. literalinclude:: code/ipMasquerade.sh
+   :caption: Code for IP Masquerading (ipMasquerade.sh)
+   :linenos:
 
-.. code-block:: JavaScript
-
-   include::code/ipMasquerade.sh[IP masquerade]
-
+:download:`ipMasquerade.sh <code/ipMasquerade.sh>`
 
 Then, on your host, run the following commands:
 
@@ -848,20 +831,19 @@ Then, on your host, run the following commands:
    host$ ./ipMasquerade.sh eth0
 
 
-This will direct your host to take requests from the Bone and send them to +eth0+. 
-If your host is using a wireless connection, change +eth0+ to +wlan0+.
+This will direct your host to take requests from the Bone and send them to *eth0*. 
+If your host is using a wireless connection, change *eth0* to *wlan0*.
 
 Now let's set up your host to instruct the Bone what to do. Add the code 
-in :ref:`<tips_setDNS>` to _setDNS.sh_ on your host computer.
+in :ref:`tips_setDNS` to ``setDNS.sh`` on your host computer.
 
 .. _tips_setDNS:
 
-Code for setting the DNS on the Bone (setDNS.sh)
+.. literalinclude:: code/setDNS.sh
+   :caption: Code for setting the DNS on the Bone (setDNS.sh)
+   :linenos:
 
-.. code-block:: JavaScript
-
-   include::code/setDNS.sh[Set DNS]
-
+:download:`setDNS.sh <code/setDNS.sh>`
 
 Then, on your host, run the following commands:
 
@@ -881,15 +863,17 @@ Then, on your host, run the following commands:
 
 
 This will look up what Domain Name System (DNS) servers your host is using and copy 
-them to the right place on the Bone.  The +ping+ command is a quick way to verify your connection.
+them to the right place on the Bone.  The *ping* command is a quick way to verify your connection.
 
 Letting the world see your bone: setting up port forwarding
 
 Now your Bone can access the world via the USB port and your host computer, but
 what if you have a web server on your Bone that you want to access from the world?
-The solution is to use _port forwarding_ from your host. 
-Web servers typically listen to port +80+. First, look up the IP address of your host:
-// TODO  switch to ip address
+The solution is to use port forwarding from your host. 
+Web servers typically listen to port *80*. First, look up the IP address of your host:
+
+.. TODO
+   switch to ip address
 
 .. code-block:: bash
 
@@ -907,14 +891,16 @@ Web servers typically listen to port +80+. First, look up the IP address of your
    ...
 
 
-It's the number following +inet addr:+, which in my case is +137.112.41.35+. 
+It's the number following *inet addr:*, which in my case is *137.112.41.35*. 
 
-.. tip:: 
-   If you are on a wireless network, find the IP address associated with +wlan0+.
+.. tip::
+
+   If you are on a wireless network, find the IP address associated with *wlan0*.
 
 Then run the following, using your host's IP address:
 
-//  TODO check this iptables, convert to ufw
+.. TODO 
+   check this iptables, convert to ufw
 
 .. code-block:: bash
 
@@ -922,30 +908,26 @@ Then run the following, using your host's IP address:
         -d 137.112.41.35 --dport 1080 -j DNAT --to 192.168.7.2:80
 
 
-Now browse to your host computer at port +1080+. That is, if your host's IP address 
-is +123.456.789.0+, enter +123.456.789.0:1080+. The +:1080+ specifies what port number to 
-use. The request will be forwarded to the server on your Bone listening to port +80+. 
-(I used +1080+ here, in case your host is running a web server of its own on port +80+.)
-
-Discussion
-*************
-
+Now browse to your host computer at port *1080*. That is, if your host's IP address 
+is *123.456.789.0*, enter *123.456.789.0:1080*. The *:1080* specifies what port number to 
+use. The request will be forwarded to the server on your Bone listening to port *80*. 
+(I used *1080* here, in case your host is running a web server of its own on port *80*.)
 
 .. _tips_firewall:
 
 Setting Up a Firewall
-------------------------
+======================
 
 Problem
-*************
+--------
 
 You have put your Bone on the network and want to limit which IP addresses can access it.
 
 Solution
-*************
+---------
 
-https://www.howtogeek.com/[How-To Geek] has a great posting on how do use +ufw+, the "uncomplicated firewall". 
-Check out https://www.howtogeek.com/devops/how-to-secure-your-linux-server-with-a-ufw-firewall/[How to Secure Your Linux Server with a UFW Firewall]. 
+`How-To Geek <https://www.howtogeek.com/>`_ has a great posting on how do use *ufw*, the "uncomplicated firewall". 
+Check out `How to Secure Your Linux Server with a UFW Firewall <https://www.howtogeek.com/devops/how-to-secure-your-linux-server-with-a-ufw-firewall/>`_. 
 I'll summarize the initial setup here.
 
 First install and check the status:
@@ -957,7 +939,8 @@ First install and check the status:
    Status: inactive
 
 
-Now turn off everything coming in and leave on all outgoing.  Note, this won't take effect until +ufw+ is enabled.
+Now turn off everything coming in and leave on all outgoing. 
+Note, this won't take effect until *ufw* is enabled.
 
 .. code-block:: bash
 
@@ -965,14 +948,14 @@ Now turn off everything coming in and leave on all outgoing.  Note, this won't t
    bone$ sudo ufw default allow outgoing
 
 
-Don't enable yet, make sure +ssh+ still has access
+Don't enable yet, make sure *ssh* still has access
 
 .. code-block:: bash
 
    bone$ sudo ufw allow 22
 
 
-Just to be sure, you can install +nmap+ on your host computer to see what ports are currently open.
+Just to be sure, you can install *nmap* on your host computer to see what ports are currently open.
 
 .. code-block:: bash
 
@@ -990,7 +973,7 @@ Just to be sure, you can install +nmap+ on your host computer to see what ports 
 
 Nmap done: 1 IP address (1 host up) scanned in 0.19 seconds
 
-Currently there are three ports visible:  22, 80 and 3000(visual studio code) Now turn on the firewal and see what happends.
+Currently there are three ports visible:  22, 80 and 3000 (visual studio code) Now turn on the firewal and see what happends.
 
 .. code-block:: bash
 
@@ -1022,25 +1005,22 @@ The firewall will remain on, even after a reboot. Disable it now if you don't wa
 
 See the How-To Geek article for more examples.
 
-Discussion
-*************
-
 .. _tips_apt:
 
 Installing Additional Packages from the Debian Package Feed
--------------------------------------------------------------
+============================================================
 
 Problem
-*************
+--------
 
 You want to do more cool things with your BeagleBone by installing more programs.
 
 Solution
-*************
+----------
 
 .. warning:: 
-   Your Bone needs to be on the network for this to work. See :ref:`<networking_wired>`, 
-   :ref:`<networking_wireless>`, or :ref:`<networking_usb>`.
+   Your Bone needs to be on the network for this to work. See :ref:`networking_wired`, 
+   :ref:`networking_wireless`, or :ref:`networking_usb`.
 
 The easiest way to install more software is to use +apt+:
 
@@ -1050,7 +1030,7 @@ The easiest way to install more software is to use +apt+:
    bone$ sudo apt install "name of software"
 
 
-A +sudo+ is necessary since you aren't running as +root+. The first command downloads 
+A *sudo* is necessary since you aren't running as *root*. The first command downloads 
 package lists from various repositories and updates them to get information on the 
 newest versions of packages and their dependencies. (You need to run it only once a week or so.) 
 The second command fetches the software and installs it and all packages it depends on. 
@@ -1065,38 +1045,36 @@ How do you find out what software you can install?  Try running this:
    bone$ less /tmp/list
 
 
-The first command lists all the packages that +apt+ knows about and sorts them and stores 
-them in _/tmp/list_. The second command shows why you want to put the list in a file. 
-The +wc+ command counts the number of lines, words, and characters in a file. In our case, 
-there are over 67,000 packages from which we can choose! The +less+ command displays the sorted 
+The first command lists all the packages that *apt* knows about and sorts them and stores 
+them in ``/tmp/list``. The second command shows why you want to put the list in a file. 
+The *wc* command counts the number of lines, words, and characters in a file. In our case, 
+there are over 67,000 packages from which we can choose! The *less* command displays the sorted 
 list, one page at a time. Press the space bar to go to the next page. Press Q to quit.  
 
-Suppose that you would like to install an online dictionary (+dict+). Just run the following command:
+Suppose that you would like to install an online dictionary (*dict*). Just run the following command:
 
 .. code-block:: bash
 
    bone$ sudo apt install dict
 
 
-Now you can run +dict+. 
-
-Discussion
-*************
+Now you can run *dict*. 
 
 .. _tips_apt_remove:
 
 Removing Packages Installed with apt
--------------------------------------
+======================================
 
 Problem
-*************
+--------
 
-You've been playing around and installing all sorts of things with +apt+ and now you want to clean things up a bit.
+You've been playing around and installing all sorts of 
+things with *apt* and now you want to clean things up a bit.
 
 Solution
-*************
+--------
 
-+apt+ has a +remove+ option, so you can run the following command:
+*apt* has a *remove* option, so you can run the following command:
 
 .. code-block:: bash
 
@@ -1113,21 +1091,16 @@ Solution
    After this operation, 164 kB disk space will be freed.
    Do you want to continue [Y/n]? y
 
-
-Discussion
-*************
-
-
 Copying Files Between the Onboard Flash and the MicroSD Card
----------------------------------------------------------------
+=============================================================
 
 Problem
-*************
+--------
 
 You want to move files between the onboard flash and the microSD card.
 
 Solution
-*************
+---------
 
 If you booted from the microSD card, run the following command:
 
@@ -1148,16 +1121,17 @@ If you booted from the microSD card, run the following command:
    /dev/mmcblk0p1  /dev/mmcblk1    /dev/mmcblk1boot1
 
 
-The +df+ command shows what partitions are already mounted. 
-The line +/dev/mmcblk0p2  7.2G  2.0G  4.9G  29% /+ shows that +mmcblk0+ partition +p2+ 
-is mounted as +/+, the root file system. The general rule is that the media you're booted from 
-(either the onboard flash or the microSD card) will appear as +mmcblk0+. 
-The second partition (+p2+) is the root of the file system. 
+The *df* command shows what partitions are already mounted. 
+The line */dev/mmcblk0p2  7.2G  2.0G  4.9G  29% /* shows that *mmcblk0* partition *p2* 
+is mounted as */*, the root file system. The general rule is that the media you're booted from 
+(either the onboard flash or the microSD card) will appear as *mmcblk0*. 
+The second partition (*p2*) is the root of the file system. 
 
-The +ls+ command shows what devices are available to mount. Because +mmcblk0+ is already mounted, 
-+/dev/mmcblk1p1+ must be the other media that we need to mount. Run the following commands to mount it:
+The *ls* command shows what devices are available to mount. Because *mmcblk0* is already mounted, 
+*/dev/mmcblk1p1* must be the other media that we need to mount. Run the following commands to mount it:
 
-// TODO update
+.. TODO 
+   update
 
 .. code-block:: bash
 
@@ -1171,16 +1145,14 @@ The +ls+ command shows what devices are available to mount. Because +mmcblk0+ is
    dev   ID.txt  media       opt           run   srv      usr
 
 
-The +cd+ command takes us to a place in the file system where files are commonly mounted. 
-The +mkdir+ command creates a new directory (_onboard_) to be a mount point. The +ls+ 
-command shows there is nothing in _onboard_. The +mount+ command makes the contents of 
-the onboard flash accessible. The next +ls+ shows there now are files in _onboard_. 
+The *cd* command takes us to a place in the file system where files are commonly mounted. 
+The *mkdir* command creates a new directory (``onboard``) to be a mount point. The *ls* 
+command shows there is nothing in ``onboard``. The *mount* command makes the contents of 
+the onboard flash accessible. The next *ls* shows there now are files in ``onboard``. 
 These are the contents of the onboard flash, which can be copied to and from like any other file.
 
-Discussion
-*************
-
-This same process should also work if you have booted from the onboard flash. When you are done with the onboard flash, you can unmount it by using this command:
+This same process should also work if you have booted from the onboard flash. When you are done 
+with the onboard flash, you can unmount it by using this command:
 
 .. code-block:: bash
 
@@ -1188,27 +1160,28 @@ This same process should also work if you have booted from the onboard flash. Wh
 
 
 Freeing Space on the Onboard Flash or MicroSD Card
-----------------------------------------------------
+===================================================
 
 Problem
-*************
+--------
 
 You are starting to run out of room on your microSD card (or onboard flash) and 
-have removed several packages you had previously installed (:ref:`<tips_apt_remove>`), 
+have removed several packages you had previously installed (:ref:`tips_apt_remove`), 
 ut you still need to free up more space.
 
 Solution 
-*************
-
+--------
 
 To free up space, you can remove preinstalled packages or discover big files to remove.
 
 Removing preinstalled packages
 
 
-You might not need a few things that come preinstalled in the Debian image, including such things as OpenCV, the Chromium web browser, and some documentation. 
+You might not need a few things that come preinstalled in the Debian image, including such 
+things as OpenCV, the Chromium web browser, and some documentation. 
 
 .. note:: 
+
    The Chromium web browser is the open source version of Google's Chrome web browser. 
    Unless you are using the Bone as a desktop computer, you can probably remove it.
 
@@ -1226,7 +1199,7 @@ Here's how you can remove these:
 Discovering big files
 
 
-The +du+ (disk usage) command offers a quick way to discover big files:
+The *du* (disk usage) command offers a quick way to discover big files:
 
 .. code-block:: bash
 
@@ -1257,18 +1230,19 @@ The +du+ (disk usage) command offers a quick way to discover big files:
    1.9G	/var
 
 
-If you booted from the microSD card, +du+ lists the usage of the microSD. 
+If you booted from the microSD card, *du* lists the usage of the microSD. 
 If you booted from the onboard flash, it lists the onboard flash usage.
 
-The +-s+ option summarizes the results rather than displaying every file. +-h+ prints 
-it in _human_ form--that is, using +M+ and +K+ postfixes rather than showing lots of digits. 
-The +/*+ specifies to run it on everything in the top-level directory. It looks like a couple 
+The *-s* option summarizes the results rather than displaying every file. *-h* prints 
+it in _human_ form--that is, using *M* and *K* postfixes rather than showing lots of digits. 
+The */** specifies to run it on everything in the top-level directory. It looks like a couple 
 of things disappeared while the command was running and thus produced some error messages.
 
-.. tip:: For more help, try +du --help+.
+.. tip:: 
+   For more help, try *du --help*.
 
-The _/var_ directory appears to be the biggest user of space at 1.9 GB. You can then run the 
-following command to see what's taking up the space in _/var_:
+The ``/var`` directory appears to be the biggest user of space at 1.9 GB. You can then run the 
+following command to see what's taking up the space in ``/var``:
 
 .. code-block:: bash
 
@@ -1288,7 +1262,7 @@ following command to see what's taking up the space in _/var_:
    16K	/var/www
 
 
-A more interactive way to explore your disk usage is by installing +ncdu+ (ncurses disk usage):
+A more interactive way to explore your disk usage is by installing *ncdu* (ncurses disk usage):
 
 .. code-block:: bash
 
@@ -1325,40 +1299,38 @@ After a moment, you'll see the following:
 
    Total disk usage:   5.6 GiB  Apparent size:   5.5 GiB  Items: 206148
 
-+ncdu+ is a character-based graphics interface to +du+.  You can now use your arrow 
+*ncdu* is a character-based graphics interface to *du*.  You can now use your arrow 
 keys to navigate the file structure to discover where the big unused files are. Press ? for help.
 
-.. warning:: Be careful not to press the D key, because it's used to delete a file or directory.
-
-Discussion
-*************
+.. warning:: 
+   Be careful not to press the D key, because it's used to delete a file or directory.
 
 .. _misc_libsoc:
 
 Using C to Interact with the Physical World
---------------------------------------------
+=============================================
 
 Problem
-*************
+--------
 
 You want to use C on the Bone to talk to the world.
 
 Solution
-*************
+---------
 
 The C solution isn't as simple as the JavaScript or Python solution, but it does work 
-and is much faster.  The approach is the same, write to the +/sys/class/gpio+ files.
+and is much faster.  The approach is the same, write to the */sys/class/gpio* files.
 
 .. _misc_c_blink:
 
-Use C to blink an LED (blinkLED.c)
+.. literalinclude:: code/blinkLED.c
+   :caption: Use C to blink an LED (blinkLED.c)
+   :linenos:
 
-.. code-block:: bash
-
-   include::code/blinkLED.c[]
+:download:`blinkLED.c <code/blinkLED.c>`
 
 Here, as with JavaScript and Python, the gpio pins are refered to by the Linux gpio number. 
-:ref:`<tips_cape_headers_digital>` shows how the P8 and P9 Headers numbers map to the gpio number. 
+:ref:`tips_cape_headers_digital` shows how the P8 and P9 Headers numbers map to the gpio number. 
 For this example P9_14 is used, which the table shows in gpio 50.
 
 .. _tips_cape_headers_digital:
@@ -1379,7 +1351,3 @@ Compile and run the code:
 
 
 Hit ^C to stop the blinking.
-
-Discussion
-*************
-

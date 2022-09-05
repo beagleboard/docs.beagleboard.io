@@ -13,15 +13,15 @@ code (and the whole book) on the PRU Cookbook github site:
 https://github.com/MarkAYoder/PRUCookbook. 
 
 Selecting a Beagle
-====================
+********************
 
 Problem
-----------
+--------
 
 Which Beagle should you use?
 
 Solution
-----------
+---------
 
 http://beagleboard.org/boards lists the many Beagles from which to choose.  
 Here we'll give examples for the venerable `BeagleBone Black <http://beagleboard.org/black>`_, 
@@ -41,12 +41,11 @@ member of the open hardware Beagle family.
 
 .. _start_black:
 
-BeagleBone Black
-~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/product_detail_black_sm.jpg
     :align: center
     :alt: BeableBone Black
+
+    BeagleBone Black
 
 The Black has:
 
@@ -71,12 +70,11 @@ The `Blue <http://beagleboard.org/blue>`_ is a good choice if you are doing robo
 
 .. _start_blue:
 
-BeagleBone Blue
-~~~~~~~~~~~~~~~~
-
 .. figure:: figures/beagle-blue.png
     :align: center
     :alt: BeagleBone Blue
+
+    BeagleBone Blue
 
 The Blue has everything the Black has except it has no Ethernet or HDMI.  
 But it also has:
@@ -89,17 +87,16 @@ But it also has:
 * User interface: 11 user programmable LEDs, 2 user programmable buttons
 
 In addition you can mount the Blue on the 
-https://www.renaissancerobotics.com/eduMIP.html[EduMIP kit] as shown in
+`EduMIP kit <https://www.renaissancerobotics.com/eduMIP.html>`_ as shown in
 :ref:`start_edumip` to get a balancing robot.
 
 .. _start_edumip:
 
-BeagleBone Blue EduMIP Kit
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/edumip.png
     :align: center
     :alt: BeagleBone Blue EduMIP Kit
+
+    BeagleBone Blue EduMIP Kit
 
 https://www.hackster.io/53815/controlling-edumip-with-ni-labview-2005f8 
 shows how to assemble the robot and control it from 
@@ -114,12 +111,11 @@ compatible with the other Beagles.
 
 .. _start_pocket:
 
-PocketBeagle
-~~~~~~~~~~~~~
-
 .. figure:: figures/PocketBeagle-size-compare-small.jpg
     :align: center
     :alt: PocketBeagle
+
+    PocketBeagle
 
 The Pocket is based on the same processor as the Black and Blue and has:
 
@@ -130,18 +126,17 @@ The Pocket is based on the same processor as the Black and Blue and has:
 See http://beagleboard.org/pocket for more details.
 
 BeagleBone AI
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
 
 If you want to do deep learning, try the  `BeagleBone AI <http://beagleboard.org/ai>`_.
 
 .. _start_ai:
 
-BeagleBone AI
-~~~~~~~~~~~~~~
-
 .. figure:: figures/BB_AI_BeautyAngle_800px.jpg
     :align: center
     :alt: BeableBone AI
+
+    BeagleBone AI
 
 The AI has:
 
@@ -163,7 +158,7 @@ The AI has:
 
 
 Installing the Latest OS on Your Bone
-======================================
+****************************************
 
 Problem
 ---------
@@ -185,17 +180,16 @@ one for all the other Beagles (
 `AM3358 Debian 10.3 2020-04-06 4GB SD IoT <https://debian.beagleboard.org/images/bone-debian-10.3-iot-armhf-2020-04-06-4gb.img.xz>`_).
 Download the one for your Beagle.
 
-Latest Debian images
-~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/latest-images.png
     :align: center
     :alt: Latest Debian images
 
+    Latest Debian images
+
 It contains all the packages we'll need.
 
 Flashing a Micro SD Card
-=========================
+*************************
 
 Problem
 ---------
@@ -215,17 +209,16 @@ button and wait for it to finish.
 
 .. _start_etcher:
 
-Etcher
-~~~~~~~~
-
 .. figure:: figures/etcher.png
     :align: center
     :alt: Ether
 
+    Etcher
+
 Once the SD is flashed, insert it in the Beagle and power it up.
 
 Cloud9 IDE
-===========
+***********
 
 Problem
 ------------
@@ -241,12 +234,11 @@ a web-based intergrated development environment (IDE) as shown in
 
 .. _start_c9:
 
-Cloud9 IDE
-~~~~~~~~~~~~
-
 .. figure:: figures/c9.png
     :align: center
     :alt: The Cloud9 IDE
+
+    Cloud9 IDE
 
 Just point the browswer on your host computer to http://192.168.7.2 
 and start exploring.  If you want the files in your home directory to appear
@@ -255,12 +247,11 @@ as shown in :ref:`start_c9_show_home`.
 
 .. _start_c9_show_home:
 
-Cloud9 Showing Home files
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/c9ShowHome.png
     :align: center
     :alt: Cloud9 showing home files
+
+    Cloud9 Showing Home files
 
 
 If you want to edit files beyond your home directory you can link to the root file system by:
@@ -277,7 +268,7 @@ If you want to edit files beyond your home directory you can link to the root fi
 Now you can reach all the files from Cloud9.
 
 Getting Example Code
-====================
+**********************
 
 Problem
 ---------
@@ -302,7 +293,8 @@ it on your Beagle and then look in the *docs* directory.
     04debug/    08ai/      common/    index.adoc      notes.html  style.html
 
 
-Each chapter has its own directory and within that directory is a **code** directory that has all of the code.
+Each chapter has its own directory and within that directory 
+is a **code** directory that has all of the code.
 
 .. code-block::bash
 
@@ -313,7 +305,7 @@ Each chapter has its own directory and within that directory is a **code** direc
 Go and explore.
 
 Blinking an LED
-=================
+*****************
 
 Problem
 ---------
@@ -330,8 +322,9 @@ is some code that blinks the ``USR3`` LED ten times using the PRU.
 
 .. _start_hello:
 
-hello.pru0.c
-~~~~~~~~~~~~~
+.. literalinclude:: code/hello.pru0.c
+    :caption: hello.pru0.c
+    :linenos:
 
 :download:`hello.pru0.c <code/hello.pru0.c>`
 
@@ -346,7 +339,7 @@ to run it right now do the following.
 .. tip::
 
     If the following doesn't work see 
-    `Compiling with clpru and lnkpru <../03details/details.html#_compiling_with_clpru_and_lnkpru>`_
+    :ref:`compiling_with_clpru_and_lnkpru`
     for instillation instructions.
 
 .. _start_running_code:

@@ -4,27 +4,28 @@ Sensors
 ########
 
 Introduction
-=============
+*************
 
 In this chapter, you will learn how to sense the physical world with BeagleBone Black. 
 Various types of electronic sensors, such as cameras and microphones, can be connected 
 to the Bone using one or more interfaces provided by the standard USB 2.0 host port, 
-as shown in :ref:`sensor host port <sensors_host_port>`.
+as shown in :ref:`sensors_host_port`.
 
 .. note::
+  
    All the examples in the book assume you have cloned the Cookbook 
-   repository on www.github.com. Go here :ref:`basic repo <basics_repo>` for instructions.
+   repository on www.github.com. Go here :ref:`basics_repo` for instructions.
 
 .. _sensors_host_port:
-
-The USB 2.0 host port
 
 .. figure:: figures/black_hardware_details.png
    :align: center
    :alt: USB Host Port
 
-The two 46-pin cape headers (called +P8+ and +P9+) along the long edges of the 
-board (:ref:`sensors P8 & P9 <sensors_P8P9_fig>`) provide connections for 
+   The USB 2.0 host port
+
+The two 46-pin cape headers (called *P8* and *P9*) along the long 
+edges of the board (:ref:`sensors_P8P9_fig`) provide connections for 
 cape add-on boards, digital and analog sensors, and more.
 
 .. _sensors_P8P9_fig:
@@ -38,92 +39,89 @@ cape add-on boards, digital and analog sensors, and more.
 The simplest kind of sensor provides a single digital status, such as off or on, 
 and can be handled by an *input mode* of one of the Bone's 65 general-purpose input/output 
 (GPIO) pins. More complex sensors can be connected by using one of the Bone's seven 
-analog-to-digital converter (ADC) inputs or several I^2^C buses. 
+analog-to-digital converter (ADC) inputs or several |I2C| buses. 
 
-:ref:`display <displays>` discusses some of the *output mode* usages of the GPIO pins.
+:ref:`beaglebone-cookbook-displays` discusses some of the *output mode* usages of the GPIO pins.
 
-All these examples assume that you know how to edit a file (:ref:`basic vsc <basics_vsc>`) and run 
+All these examples assume that you know how to edit a file (:ref:`basics_vsc`) and run 
 it, either within the Visual Studio Code (VSC) integrated development environment (IDE) or from 
-the command line (:ref:`shell tips <tips_shell>`).
+the command line (:ref:`tips_shell`).
 
 Choosing a Method to Connect Your Sensor
-----------------------------------------
+=========================================
 
 Problem
-********
+-------
 
 You want to acquire and attach a sensor and need to understand your basic options.
 
 Solution
-*********
+--------
 
-:ref:`sensor cape headers<sensors_cape_headers>` 
-shows many of the possibilities for connecting a sensor.
+:ref:`sensors_cape_headers` shows many of the possibilities for connecting a sensor.
 
 .. _sensors_cape_headers:
 
 .. figure:: figures/cape-headers.png
    :align: center
-   :alt: Some of the many sensor connection options on the Bone
-
-   Sensor Connection Modes
+   :alt: Sensor Connection Modes
+   
+   Some of the many sensor connection options on the Bone
 
 Choosing the simplest solution available enables you to move on quickly to 
 addressing other system aspects. By exploring each connection type, you can 
 make more informed decisions as you seek to optimize and troubleshoot your design.
 
-Discussion
-***********
-
 .. _sensors_getting_started:
 
 Input and Run a Python or JavaScript Application for Talking to Sensors
-------------------------------------------------------------------------
+=========================================================================
 
 Problem
-*********
+--------
 
 You have your sensors all wired up and your Bone booted up, and you need to know how to enter and run your code.
 
 Solution
-*********
+--------
 
 You are just a few simple steps from running any of the recipes in this book.
 
-- Plug your Bone into a host computer via the USB cable (:ref:`basic out of the box<basics_out_of_the_box>`).
-- Start Visual Studio Code (:ref:`basic vsc <basics_vsc>`).
-- In the +bash+ tab (as shown in :ref:`sensors vsc bash <sensors_vsc_bash>`), run the following commands:
+- Plug your Bone into a host computer via the USB cable (:ref:`basics_out_of_the_box`).
+- Start Visual Studio Code (:ref:`basics_vsc`).
+- In the *bash* tab (as shown in :ref:`sensors_vsc_bash`), run the following commands:
 
 .. code-block:: bash
 
   bone$ cd
-
   bone$ cd BoneCookbook/docs/02sensors/code
 
 .. _sensors_vsc_bash:
 
 .. figure:: figures/vsc-bash-tab.png
    :align: center
-   :alt: Entering commands in the VSC bash tab
+   :alt: VSC bash tab
    
-   VSC bash tab
+   Entering commands in the VSC bash tab
 
-Here, we issued the *change directory* (+cd+) command without specifying a target directory. 
+Here, we issued the *change directory* (*cd*) command without specifying a target directory. 
 By default, it takes you to your home directory. Notice that the prompt has changed to reflect the change. 
 
 .. note:: 
-  If you log in as +debian+, your home is */home/debian*. If you were to create a new user 
+
+  If you log in as *debian*, your home is */home/debian*. If you were to create a new user 
   called *newuser*, that user's home would be */home/newuser*. By default, all non-root 
   (non-superuser) users have their home directories in */home*.
 
 .. note::
+
    All the examples in the book assume you have cloned the 
    Cookbook repository on www.github.com. Go here 
-   :ref:`basic repo <basics_repo>` for instructions.
+   :ref:`basics_repo` for instructions.
 
 - Double-click the *pushbutton.py* file to open it.
 - Press ^S (Ctrl-S) to save the file. (You can also go to the File menu in VSC and select Save to save the file, but Ctrl-S is easier.) Even easier, VSC can be configured to autosave every so many seconds.
-- In the +bash+ tab, enter the following commands:
+- In the *bash* tab, enter the following commands:
 
 .. code-block::
 
@@ -136,63 +134,58 @@ By default, it takes you to your home directory. Notice that the prompt has chan
 
 This process will work for any script in this book.
 
-Discussion
-***********
-
 .. _sensors_pushbutton:
 
 Reading the Status of a Pushbutton or Magnetic Switch (Passive On/Off Sensor)
-------------------------------------------------------------------------------
+==============================================================================
 
 Problem
-********
+--------
 
 You want to read a pushbutton, a magnetic switch, or other sensor that is electrically open or closed.
 
 Solution
-*********
+---------
 
 Connect the switch to a GPIO pin and read from the proper place in */sys/class/gpio*.
 
 To make this recipe, you will need:
 
-* Breadboard and jumper wires (see :ref:`app proto <app_proto>`)
-* Pushbutton switch (see :ref:`app misc <app_misc>`)
-* Magnetic reed switch (optional, see :ref:`<app misc app_misc>`)
+* Breadboard and jumper wires.
+* Pushbutton switch.
+* Magnetic reed switch.
 
 You can wire up either a pushbutton, a magnetic reed switch, 
-or both on the Bone, as shown in :ref:`figure below <js_pushbutton_fig>`.
+or both on the Bone, as shown in :ref:`js_pushbutton_fig`.
 
 .. _js_pushbutton_fig:
 
 .. figure:: figures/pushbutton_bb.png
    :align: center
-   :alt: Diagram for wiring a pushbutton and magnetic reed switch input
+   :alt: Bone with pushbutton
    
-   Bone with pushbutton
+   Diagram for wiring a pushbutton and magnetic reed switch input
 
-The code in :ref:`js pushbutton code<js_pushbutton_code>` 
+The code in :ref:`js_pushbutton_code` 
 reads GPIO port *P9_42*, which is attached to the pushbutton. 
 
 .. _py_pushbutton_code:
 
-Monitoring a pushbutton (pushbutton.py)
+.. literalinclude:: code/pushbutton.py
+   :caption: Monitoring a pushbutton (pushbutton.py)
+   :linenos:
 
-.. code-block:: python
-
-  include::code/pushbutton.py
-
+:download:`pushbutton.py <code/pushbutton.py>`
 
 .. _js_pushbutton_code:
 
-Monitoring a pushbutton (pushbutton.js)
+.. literalinclude:: code/pushbutton.js
+   :caption: Monitoring a pushbutton (pushbutton.js)
+   :linenos:
 
-.. code-block:: javascript
+:download:`pushbutton.js <code/pushbutton.js>`
 
-  include::code/pushbutton.js
-
-Put this code in a file called *pushbutton.js* following the steps in 
-:ref:`sensor getting started <sensors_getting_started>`. 
+Put this code in a file called *pushbutton.js* following the steps in :ref:`sensors_getting_started`. 
 In the VSC *bash* tab, run it by using the following commands:
 
 .. code-block:: bash
@@ -208,23 +201,21 @@ The command runs it. Try pushing the button. The code reads the pin and prints i
 
 You will have to press ^C (Ctrl-C) to stop the code.
 
-If you want to use the magnetic reed switch wired as shown in :ref:`javascript pushbutton <js_pushbutton_fig>`, change +P9_42+ to +P9_26+ which is gpio +14+. 
-
-Discussion
-***********
+If you want to use the magnetic reed switch wired as shown in 
+:ref:`js_pushbutton_fig`, change *P9_42* to *P9_26* which is gpio *14*. 
 
 Mapping Header Numbers to gpio Numbers
----------------------------------------
+=======================================
 
 Problem
-********
+--------
 
 You have a sensor attached to the P8 or P9 header and need to know which gpio pin it's using.
 
 Solution
-**********
+---------
 
-The +gpioinfo+ command displays information about all the P8 and P9 header pins.  To see the info for just one pin, use +grep+.
+The *gpioinfo* command displays information about all the P8 and P9 header pins. To see the info for just one pin, use *grep*.
 
 .. code-block:: bash
 
@@ -252,43 +243,43 @@ For P9_26 you get:
 0*32+14=14, so the P9_26 pin is gpio 14.
 
 Reading a Position, Light, or Force Sensor (Variable Resistance Sensor)
--------------------------------------------------------------------------
+========================================================================
 
 Problem
-*********
+--------
 
 You have a variable resistor, force-sensitive resistor, flex sensor, or any of a 
 number of other sensors that output their value as a variable resistance, 
 and you want to read their value with the Bone.
 
 Solution
-*********
+--------
 
 Use the Bone's analog-to-digital converters (ADCs) and a resistor 
 divider circuit to detect the resistance in the sensor.
 
 The Bone has seven built-in analog inputs that can easily read a 
-resistive value. :ref:`cape header analog sensors <sensors_cape_headers_analog>` shows them 
-on the lower part of the +P9+ header.
+resistive value. :ref:`sensors_cape_headers_analog` shows them 
+on the lower part of the *P9* header.
 
 .. _sensors_cape_headers_analog:
 
 .. figure:: figures/cape-headers-analog.png
    :align: center
-   :alt: Seven analog inputs on the +P9+ header
+   :alt: Seven analog inputs on the *P9* header
    
    Seven analog inputs on P9 header
 
 To make this recipe, you will need:
 
-- Breadboard and jumper wires (see :ref:`app proto <app_proto>`)
-- 10 k&#8486; trimpot (see :ref:`app resistor <app_resistor>`) or
-- Flex resistor (optional, see :ref:`app resistor <app_resistor>`)
-- 22 k&#8486; resistor (see :ref:`app resistor<app_resistor>`)
+- Breadboard and jumper wires.
+- 10k trimpot or
+- Flex resistor (optional)
+- 22k resistor
 
 A variable resistor with three terminals
 
-:ref:`sensor analogIn<sensors_analogIn_fig>` shows a simple variable resistor (trimpot) 
+:ref:`sensors_analogIn_fig` shows a simple variable resistor (trimpot) 
 wired to the Bone. One end terminal is wired to the ADC 1.8 V power supply on pin *P9_32*, 
 and the other end terminal is attached to the ADC ground (*P9_34*). The middle terminal 
 is wired to one of the seven analog-in ports (*P9_36*).
@@ -297,78 +288,75 @@ is wired to one of the seven analog-in ports (*P9_36*).
 
 .. figure:: figures/analogIn_bb.png
    :align: center
-   :alt: Wiring a 10k variable resistor (trimpot) to an ADC port
+   :alt: Analog
 
    Wiring a 10k variable resistor (trimpot) to an ADC port
 
-:ref:`sensor analogIn code <sensors_analogIn_code>` shows the BoneScript code used to read the variable resistor.  
+:ref:`sensors_analogIn_code` shows the BoneScript code used to read the variable resistor.  
 Add the code to a file called _analogIn.js_ and run it; then change the resistor and run it again. The voltage read will change.
 
 .. _py_analogIn_code:
 
-Reading an analog voltage (analogIn.py)
+.. literalinclude:: code/analogIn.py
+   :caption: Reading an analog voltage (analogIn.py)
+   :linenos:
 
-.. code-block:: python
-
-  include::code/analogIn.py
+:download:`analogIn.py <code/analogIn.py>`
 
 .. _sensors_analogIn_code:
 
-Reading an analog voltage (analogIn.js)
+.. literalinclude:: code/analogIn.js
+   :caption: Reading an analog voltage (analogIn.js)
+   :linenos:
 
-.. code-block:: javascript
-
-  include::code/analogIn.js[]
+:download:`analogIn.js <code/analogIn.js>`
 
 .. note::
-  The code in :ref:`sensor analogIn code<sensors_analogIn_code>` 
+
+  The code in :ref:`sensors_analogIn_code` 
   outputs a value between 0 and 4096.
 
 A variable resistor with two terminals
 
-Some resistive sensors have only two terminals, such as the flex sensor in 
-:ref:`sensor flex resistor<sensors_flexResistor_fig>`
+Some resistive sensors have only two terminals, such as the flex sensor in :ref:`sensors_flexResistor_fig`
 The resistance between its two terminals changes when it is flexed.
-In this case, we need to add a fixed resistor in series with the flex sensor. 
-:ref:`sensor flex resistor <sensors_flexResistor_fig>` 
-shows how to wire in a 22 k&#8486; resistor to give a voltage to measure
+In this case, we need to add a fixed resistor in series with the flex sensor. :ref:`sensors_flexResistor_fig` 
+shows how to wire in a 22k resistor to give a voltage to measure
 across the flex sensor.
 
 .. _sensors_flexResistor_fig:
 
 .. figure:: figures/flexResistor_bb.png
    :align: center
-   :alt: Reading a two-terminal flex resistor
+   :alt: Flex Resistor
    
-   Flex Resistor
+   Reading a two-terminal flex resistor
 
-The code in :ref:`py analogIn code <py_analogIn_code>` and 
-:ref:`sensors analogIn code <sensors_analogIn_code>` also works for this setup.
-
-Discussion
-************
+The code in :ref:`py_analogIn_code` and 
+:ref:`sensors_analogIn_code` also works for this setup.
 
 Reading a Distance Sensor (Analog or Variable Voltage Sensor)
---------------------------------------------------------------
+=============================================================
 
 Problem
-********
+--------
 
 You want to measure distance with a `LV-MaxSonar-EZ1 Sonar Range Finder <http://bit.ly/1Mt5Elr>`_, 
 which outputs a voltage in proportion to the distance.
 
 Solution
-*********
+--------
 
 To make this recipe, you will need:
 
-* Breadboard and jumper wires (see :ref:`app proto <app_proto>`)
-* LV-MaxSonar-EZ1 Sonar Range Finder (see :ref:`app musc <app_misc>`)
+* Breadboard and jumper wires.
+* LV-MaxSonar-EZ1 Sonar Range Finder
 
 All you have to do is wire the EZ1 to one of the Bone's *analog-in* pins, 
-as shown in `this figure<sensors_ultrasonic_fig>`. The device outputs ~6.4 mV/in when powered from 3.3 V.
+as shown in :ref:`sensors_ultrasonic_fig`. The device outputs ~6.4 mV/in when powered from 3.3 V.
 
-.. _WARNING: 
+.. WARNING::
+
    Make sure not to apply more than 1.8 V to the Bone's *analog-in* 
    pins, or you will likely damage them. In practice, this circuit should follow that rule.
 
@@ -376,47 +364,44 @@ as shown in `this figure<sensors_ultrasonic_fig>`. The device outputs ~6.4 mV/in
 
 .. figure:: figures/ultrasonicRange_bb.png
    :align: center
-   :alt: Wiring the LV-MaxSonar-EZ1 Sonar Range Finder to the *P9_33* analog-in port
+   :alt: Analog
 
    Wiring the LV-MaxSonar-EZ1 Sonar Range Finder to the *P9_33* analog-in port
 
-:ref:`Ultrasonic sensor range code <sensors_ultrasonicRange_code>` 
+:ref:`sensors_ultrasonicRange_code` 
 shows the code that reads the sensor at a fixed interval.
 
 .. _py_ultrasonicRange_code:
 
-Reading an analog voltage (ultrasonicRange.py)
+.. literalinclude:: code/ultrasonicRange.py
+   :caption: Reading an analog voltage (ultrasonicRange.py)
+   :linenos:
 
-.. code-block:: python
-
-   include::code/ultrasonicRange.py[]
+:download:`ultrasonicRange.py <code/ultrasonicRange.py>`
 
 .. _sensors_ultrasonicRange_code:
 
-Reading an analog voltage (ultrasonicRange.js)
 
-.. code-block:: javascript
+.. literalinclude:: code/ultrasonicRange.js
+   :caption: Reading an analog voltage (ultrasonicRange.js)
+   :linenos:
 
-   include::code/ultrasonicRange.js[]
-
-Discussion
-***********
+:download:`ultrasonicRange.js <code/ultrasonicRange.js>`
 
 .. _sensors_hc-sr04:
 
 Reading a Distance Sensor (Variable Pulse Width Sensor)
---------------------------------------------------------
-
-// TODO
+========================================================
 
 Problem
-**********
+--------
 
 You want to use a HC-SR04 Ultrasonic Range Sensor with BeagleBone Black.
 
 Solution
-**********
-The HC-SR04 Ultrasonic Range Sensor (shown in `hc sr04 sensor image <sensors_hc_sr04_image_fig>`) 
+---------
+
+The HC-SR04 Ultrasonic Range Sensor (shown in :ref:`sensors_hc_sr04_image_fig`) 
 works by sending a trigger pulse to the *Trigger* input and then measuring the 
 pulse width on the *Echo* output. The width of the pulse tells you the distance.
 
@@ -430,11 +415,11 @@ pulse width on the *Echo* output. The width of the pulse tells you the distance.
 
 To make this recipe, you will need:
 
-* Breadboard and jumper wires (see :ref:`app proto <app_proto>`)
-* 10 k&#8486; and 20 k&#8486; resistors (see :ref:`app resistor <app_resistor>`)
-* HC-SR04 Ultrsonic Range Sensor (see :ref:`app misc <app_misc>`)
+* Breadboard and jumper wires.
+* 10 k and 20 k resistors
+* HC-SR04 Ultrsonic Range Sensor.
 
-Wire the sensor as shown in :ref:`hc sr04 sensor<sensors_hc-sr04_fig>`. 
+Wire the sensor as shown in :ref:`sensors_hc-sr04_fig`. 
 Note that the HC-SR04 is a 5 V device, so the *banded* wire (running from 
 *P9_7* on the Bone to VCC on the range finder) attaches the 
 HC-SR04 to the Bone's 5 V power supply. 
@@ -447,37 +432,33 @@ HC-SR04 to the Bone's 5 V power supply.
 
    Wiring an HC-SR04 Ultrasonic Sensor
 
-:ref:`hc sr04 <sensors_hc-sr04_code>` shows 
-BoneScript code used to drive the HC-SR04.  
+:ref:`sensors_hc-sr04_code` shows BoneScript code used to drive the HC-SR04.  
 
 .. _sensors_hc-sr04_code:
 
-Driving a HC-SR04 ultrasound sensor (hc-sr04-ultraSonic.js)
+.. literalinclude:: code/hc-sr04-ultraSonic.js
+   :caption: Driving a HC-SR04 ultrasound sensor (hc-sr04-ultraSonic.js)
+   :linenos:
 
-.. code-block:: javascript
-
-   include::code/hc-sr04-ultraSonic.js[]
+:download:`hc-sr04-ultraSonic.js <code/hc-sr04-ultraSonic.js>`
 
 This code is more complex than others in this chapter, 
 because we have to tell the device when to start 
 measuring and time the return pulse.
 
-Discussion
-**********
-
 Accurately Reading the Position of a Motor or Dial
-----------------------------------------------------
+===================================================
 
 Problem
-**********
+--------
 
 You have a motor or dial and want to detect rotation using a rotary encoder.
 
 Solution
-**********
+---------
 
 Use a rotary encoder (also called a *quadrature encoder*) connected to one of 
-the Bone's eQEP ports, as shown in :ref:`digital rotary encoder figure<digital_rotaryEncoder_fig>`.
+the Bone's eQEP ports, as shown in :ref:`digital_rotaryEncoder_fig`.
 
 .. _digital_rotaryEncoder_fig:
 
@@ -487,9 +468,7 @@ the Bone's eQEP ports, as shown in :ref:`digital rotary encoder figure<digital_r
 
    Wiring a rotary encoder using eQEP2
 
-On the BeagleBone and PocketBeage the three encoders are:
-
-.. table::
+.. table:: On the BeagleBone and PocketBeage the three encoders are:
 
   +-------------+------------------------------------+
   | eQEP0       | P9.27 and P9.42 OR P1_33 and P2_34 |
@@ -499,9 +478,7 @@ On the BeagleBone and PocketBeage the three encoders are:
   |eQEP2        | P8.11 and P8.12 OR P2_24 and P2_33 |
   +-------------+------------------------------------+
 
-On the AI it's:
-
-.. table::
+.. table:: On the AI it's:
 
   +-------------+------------------------------------+
   |eQEP1        | P8.33 and P8.35                    |
@@ -513,8 +490,8 @@ On the AI it's:
 
 To make this recipe, you will need:
 
-* Breadboard and jumper wires (see :ref:`app proto <app_proto>`)
-* Rotary encoder (see :ref:`app misc <app_misc>`)
+* Breadboard and jumper wires.
+* Rotary encoder.
 
 We are using a quadrature rotary encoder, which has two switches inside 
 that open and close in such a manner that you can tell which way the shaft 
@@ -522,11 +499,10 @@ is turning. In this particular encoder, the two switches have a common lead,
 which is wired to ground. It also has a pushbutton switch wired to the other 
 side of the device, which we aren't using. 
 
-Wire the encoder to +P8_11+ and +P8_12+, as shown in 
-:ref:`digital rotary encoder <digital_rotaryEncoder_fig>`.
+Wire the encoder to *P8_11* and *P8_12*, as shown in :ref:`digital_rotaryEncoder_fig`.
 
 BeagleBone Black has built-in hardware for reading up to three encoders.  
-Here, we'll use the *eQEP2* encoder via the Linux +count+ subsystem.
+Here, we'll use the *eQEP2* encoder via the Linux *count* subsystem.
 
 
 Then run the following commands:
@@ -539,29 +515,30 @@ Then run the following commands:
    P8.12        12 fast rx  up  4 qep 2 in A    ocp/P8_12_pinmux (pinmux_P8_12_qep_pin)
    P8.11        13 fast rx  up  4 qep 2 in B    ocp/P8_11_pinmux (pinmux_P8_11_qep_pin)
 
-This will enable *eQEP2* on pins +P8_11+ and *P8_12*. 
-The *2* after the +qep+ returned by *show-pins* shows it's *eQEP2*.  
+This will enable *eQEP2* on pins *P8_11* and *P8_12*. 
+The *2* after the *qep* returned by *show-pins* shows it's *eQEP2*.  
 
-Finally, add the code in :ref:`digital rotary encoder<digital_rotaryEncoder_js>` 
+Finally, add the code in :ref:`digital_rotaryEncoder_js` 
 to a file named *rotaryEncoder.js* and run it.
 
 .. _digital_rotaryEncoder_py:
 
-Reading a rotary encoder (rotaryEncoder.py)
+.. literalinclude:: code/rotaryEncoder.py
+   :caption: Reading a rotary encoder (rotaryEncoder.py)
+   :linenos:
 
-.. code-block:: bash
-
-  include::code/rotaryEncoder.py
+:download:`rotaryEncoder.py <code/rotaryEncoder.py>`
 
 .. _digital_rotaryEncoder_js:
 
-Reading a rotary encoder (rotaryEncoder.js)
+.. literalinclude:: code/rotaryEncoder.js
+   :caption: Reading a rotary encoder (rotaryEncoder.js)
+   :linenos:
 
-.. code-block::javascript
+:download:`rotaryEncoder.js <code/rotaryEncoder.js>`
 
-   include::code/rotaryEncoder.js
-
-Try rotating the encoder clockwise and counter-clockwise. You'll see an output like this:
+Try rotating the encoder clockwise and counter-clockwise. 
+You'll see an output like this:
 
 .. code-block::bash
 
@@ -578,32 +555,28 @@ Try rotating the encoder clockwise and counter-clockwise. You'll see an output l
    ^C
 
 
-The values you get for +data+ will depend on which way you are 
+The values you get for *data* will depend on which way you are 
 turning the device and how quickly. You will need to press ^C (Ctrl-C) to end.
 
-Discussion
-**********
 
 See Also
-**********
+---------
 
-You can also measure rotation by using a variable resistor (see :ref:`sensors analogIn <sensors_analogIn_fig>`).
+You can also measure rotation by using a variable resistor (see :ref:`sensors_analogIn_fig`).
 
 .. _sensors_GPS:
 
 Acquiring Data by Using a Smart Sensor over a Serial Connection
------------------------------------------------------------------
-
-// TODO
+================================================================
 
 Problem
-**********
+--------
 
 You want to connect a smart sensor that uses a built-in microcontroller to stream data, 
 such as a global positioning system (GPS), to the Bone and read the data from it.
 
 Solution
-**********
+--------
 
 The Bone has several serial ports (UARTs) that you can use to read data from an external 
 microcontroller included in smart sensors, such as a GPS. Just wire one up, and you'll 
@@ -611,10 +584,10 @@ soon be gathering useful data, such as your own location.
 
 Here's what you'll need:
 
-* Breadboard and jumper wires (see :ref:`app proto <app_proto>`)
-* GPS receiver (see :ref:`app musc <app_misc>`)
+* Breadboard and jumper wires.
+* GPS receiver
 
-Wire your GPS, as shown in :ref:`digital GPS<digital_GPS_fig>`.
+Wire your GPS, as shown in :ref:`digital_GPS_fig`.
 
 .. _digital_GPS_fig:
 
@@ -633,30 +606,26 @@ human-readable form. For this GPS, run the following command to load a NMEA pars
 
    bone$ npm install -g nmea
 
-Running the code in :ref:`digital GPD code <digital_GPS_code>` 
+Running the code in :ref:`digital_GPS_code` 
 will print the current location every time the GPS outputs it.
 
 .. _digital_GPS_code:
 
-Talking to a GPS with UART 4 (GPS.js)
+.. literalinclude:: code/GPS.js
+   :caption: Talking to a GPS with UART 4 (GPS.js)
+   :linenos:
 
-.. code-block:: javascript
-
-   include::code/GPS.js[]
+:download:`GPS.js <code/GPS.js>`
 
 If you don't need the NMEA formatting, you can skip the *npm* part and remove the lines in the code that refer to it.
 
-.. note:: If you get an error like this
+.. note:: 
+  If you get an error like this
+  TypeError: Cannot call method 'readline' of undefined
 
-.. TypeError:: Cannot call method 'readline' of undefined+
-
-add this line to the end of file */usr/local/lib/node_modules/bonescript/serial.js*:
+add this line to the end of file ``/usr/local/lib/node_modules/bonescript/serial.js``:
 
 *exports.serialParsers = m.module.parsers;*
-
-Discussion
-**********
-
 
 .. _cape-headers-serial_fig:
 
@@ -669,60 +638,63 @@ Discussion
 .. _sensors_i2c_temp:
 
 Measuring a Temperature
----------------------------
+=======================
 
 Problem
-**********
+-------
 
 You want to measure a temperature using a digital temperature sensor.
 
 Solution
-**********
+---------
 
 The TMP101 sensor is a common digital temperature 
-sensor that uses a standard I^2^C-based serial protocol.
+sensor that uses a standard |I2C|-based serial protocol.
+
+.. |I2C| replace:: I\ :sub:`2`\ C
 
 To make this recipe, you will need:
 
-* Breadboard and jumper wires (see :ref:`app proto <app_proto>`)
-* Two 4.7 k&#8486; resistors (see :ref:`app resistor <app_resistor>`)
-* TMP101 temperature sensor (see :ref:`app ic<app_ic>`)
+* Breadboard and jumper wires.
+* Two 4.7 k resistors.
+* TMP101 temperature sensor.
 
-Wire the TMP101, as shown in :ref:`i2c temprature sensor<sensors_i2cTemp_fig>`.
+Wire the TMP101, as shown in :ref:`sensors_i2cTemp_fig`.
 
 .. _sensors_i2cTemp_fig:
 
 .. figure:: figures/i2cTemp_bb.png
    :align: center
-   :alt: Wiring an I^2^C TMP101 temperature sensor
+   :alt: |I2C| Temp
 
-   Wiring an I^2^C TMP101 temperature sensor
+   Wiring an |I2C| TMP101 temperature sensor
 
-There are two I^2^C buses brought out to the headers. 
-:ref:`sensor cap headers i2c <sensors_cape_headers_i2c>` 
-shows that you have wired your device to I^2^C bus +2+.
+There are two |I2C| buses brought out to the headers. 
+:ref:`sensors_cape_headers_i2c` 
+shows that you have wired your device to |I2C| bus *2*.
 
 .. _sensors_cape_headers_i2c:
 
 .. figure:: figures/cape-headers-i2c.png
    :align: center
-   :alt: Table of I^2^C outputs
+   :alt: Table of |I2C| outputs
 
-   Table of I^2^C outputs
+   Table of |I2C| outputs
 
 
-Once the I^2^C  device is wired up, you can use a couple handy I^2^C 
+Once the |I2C|  device is wired up, you can use a couple handy |I2C| 
 tools to test the device. Because these are Linux command-line tools, 
-you have to use +2+ as the bus number. +i2cdetect+, shown in `javascript I2C tools <js_i2cTools>`, 
-shows which I^2^C  devices are on the bus. The +-r+ flag indicates which bus to use. 
-Our TMP101 is appearing at address *0x498. You can use the +i2cget+ command to read 
+you have to use *2* as the bus number. *i2cdetect*, shown in :ref:`js_i2cTools`, 
+shows which |I2C|  devices are on the bus. The *-r* flag indicates which bus to use. 
+Our TMP101 is appearing at address *0x498*. You can use the *i2cget* command to read 
 the value. It returns the temperature in hexidecimal and degrees C. 
 In this example, 0x18 = 24{deg}C, which is 75.2{deg}F. (Hmmm, the office is a bit warm today.) 
 Try warming up the TMP101 with your finger and running *i2cget* again.
 
 .. _js_i2cTools:
 
-I^2^C tools
+|I2C| tools
+============
 
 .. code-block:: bash
 
@@ -742,7 +714,7 @@ I^2^C tools
 
 
 Reading the temperature via the kernel driver
-**********************************************
+==============================================
 
 The cleanest way to read the temperature from at TMP101 sensor is to use the kernel drive.
 
@@ -750,7 +722,7 @@ Assuming the TMP101 is on bus 2 (the last digit is the bus number)
 
 .. _js_i2cKernel:
 
-I^2^C TMP101 via Kernel
+|I2C| TMP101 via Kernel
 
 .. code-block:: bash
 
@@ -812,26 +784,24 @@ Other i2c devices are supported by the kernel.
 You can try the Linux Kernel Driver Database, 
 https://cateee.net/lkddb/ to see them.
 
-Once the driver is in place, you can read it via code.
-:ref:`i2c temprature python code <py_i2cTemp_code>` 
-shows how to read the TMP101 from BoneScript.
+Once the driver is in place, you can read it via code. 
+:ref:`py_i2cTemp_code` shows how to read the TMP101 from BoneScript.
 
 .. _py_i2cTemp_code:
 
-Reading an I^2^C  device (i2cTemp.py)
+.. literalinclude:: code/i2cTemp.py
+   :caption: Reading an |I2C|  device (i2cTemp.py)
+   :linenos:
 
-.. code-block:: python
-
-  include::code/i2cTemp.py[]
-
+:download:`i2cTemp.py <code/i2cTemp.py>`
 
 .. _js_i2cTemp_code:
 
-.Reading an I^2^C  device (i2cTemp.js)
+.. literalinclude:: code/i2cTemp.js
+   :caption: Reading an |I2C|  device (i2cTemp.js)
+   :linenos:
 
-.. code-block:: javascript
-
-   include::code/i2cTemp.js[]
+:download:`i2cTemp.js <code/i2cTemp.js>`
 
 Run the code by using the following command:
 
@@ -848,9 +818,10 @@ Run the code by using the following command:
 Notice using the  kernel interface gets you more digits of accuracy.
 
 Reading i2c device directly
-*******************************
+===========================
 
-The TMP102 sensor can be read directly with i2c commands rather than using the kernel driver.  First you need to install the i2c module.
+The TMP102 sensor can be read directly with i2c commands rather than 
+using the kernel driver.  First you need to install the i2c module.
 
 .. code-block:: bash
 
@@ -859,34 +830,32 @@ The TMP102 sensor can be read directly with i2c commands rather than using the k
 
 .. _js_i2ctmp101_code:
 
-Reading an I^2^C  device (i2cTemp.py)
-.. code-block:: python
+.. literalinclude:: code/i2ctmp101.py
+   :caption: Reading an |I2C|  device (i2cTemp.py)
+   :linenos:
 
-  include::code/i2ctmp101.py[]
+:download:`i2ctmp101.py <code/i2ctmp101.py>`
 
-This gets only 8 bits for the temperature.  See the TMP101 datasheet for details on how  to get up to 12 bits.
-
-Discussion
-**********
-
+This gets only 8 bits for the temperature. See the TMP101 datasheet 
+for details on how  to get up to 12 bits.
 
 Reading Temperature via a Dallas 1-Wire Device
-----------------------------------------------------
+===============================================
 
 Problem
-**********
+--------
 
 You want to measure a temperature using a Dallas Semiconductor DS18B20 temperature sensor.
 
 Solution
-**********
+---------
 
-I need to double-check how we provide attribution for recipes, but we'll need to have 
-something more than "From" followed by a link. For now, we should at least do 
-something like what I've changed it to. --BS
+.. I need to double-check how we provide attribution for recipes, but we'll need to have 
+.. something more than "From" followed by a link. For now, we should at least do 
+.. something like what I've changed it to. --BS
 
---may A bigger question is, when do we need attribution?  
-I pull bits and pieces from everywhere and try to keep good records of sources.
+.. --may A bigger question is, when do we need attribution?  
+.. I pull bits and pieces from everywhere and try to keep good records of sources.
 
 The DS18B20 is an interesting temperature sensor that uses Dallas 
 Semiconductor's 1-wire interface. The data communication requires only 
@@ -895,15 +864,13 @@ You can wire it to any GPIO port.
 
 To make this recipe, you will need:
 
-* Breadboard and jumper wires (see :ref:`app proto <app_proto>`)
-* 4.7 k&#8486; resistor (see :ref:`app resistor <app_resistor>`)
-* DS18B20 1-wire temperature sensor (see :ref:`app ic<app_ic>`)
+* Breadboard and jumper wires.
+* 4.7 k resistor
+* DS18B20 1-wire temperature sensor.
 
-Wire up as shown in :ref:`1 wire sensor <sensors_1-wire_fig>`.
+Wire up as shown in :ref:`sensors_1-wire_fig`.
 
 .. _sensors_1-wire_fig:
-
-.. note:: This solution, written by Elias Bakken (@AgentBrum), originally appeared on`Hipstercircuits http://bit.ly/1FaRbbK`_.
 
 .. figure:: figures/onewire_bb.png
    :align: center
@@ -911,7 +878,11 @@ Wire up as shown in :ref:`1 wire sensor <sensors_1-wire_fig>`.
 
    Wiring a Dallas 1-Wire temperature sensor 
 
-Edit the file +/boot/uEnt.txt+. 
+.. note:: 
+  This solution, written by Elias Bakken (@AgentBrum), 
+  originally appeared on`Hipstercircuits <http://bit.ly/1FaRbbK>`_.
+
+Edit the file */boot/uEnt.txt*. 
 Go to about line 19 and edit as shown:
 
 .. code-block:: bash
@@ -921,14 +892,13 @@ Go to about line 19 and edit as shown:
   19 uboot_overlay_addr4=BB-W1-P9.12-00A0.dtbo
   20 #uboot_overlay_addr5=<file5>.dtbo
 
-Be sure to remove the +#+ at the beginning of the line.
+Be sure to remove the *#* at the beginning of the line.
 
 Reboot the bone:
 
 .. code-block:: bash
 
   bone$ reboot
-
 
 Now run the following command to discover the serial number on your device:
 
@@ -941,27 +911,25 @@ Now run the following command to discover the serial number on your device:
 I have two devices wired in parallel on the same P9_12 input. 
 This shows the serial numbers for all the devices. 
 
-Finally, add the code in 
-:ref:`onewire sensor code <sensors_onewire__code>` in to a 
-file named *w1.py*, edit the path assigned to +w1+ so 
+Finally, add the code in :ref:`sensors_onewire__code` in to a 
+file named *w1.py*, edit the path assigned to *w1* so 
 that the path points to your device, and then run it.
 
 .. _py_onewire__code:
 
-Reading a temperature with a DS18B20 (w1.py)
+.. literalinclude:: code/w1.py
+   :caption: Reading a temperature with a DS18B20 (w1.py)
+   :linenos:
 
-.. code-block:: python
-
-  include::code/w1.py[]
+:download:`w1.py <code/w1.py>`
 
 .. _sensors_onewire__code:
 
-Reading a temperature with a DS18B20 (w1.js)
+.. literalinclude:: code/w1.js
+   :caption: Reading a temperature with a DS18B20 (w1.js)
+   :linenos:
 
-.. code-block:: javascript
-
-  include::code/w1.js[]
-
+:download:`w1.js <code/w1.js>`
 
 .. code-block:: bash
 
@@ -971,10 +939,6 @@ Reading a temperature with a DS18B20 (w1.js)
    temp (C) = 30.5
    temp (C) = 31.0
    ^C
-
-
-Discussion
-**********
 
 Each temperature sensor has a unique serial number, so you can have several all sharing the same data line.
 
@@ -998,8 +962,8 @@ Each temperature sensor has a unique serial number, so you can have several all 
 
 .. // To make this recipe, you will need:
 
-.. // * BLE USB dongle (see :ref:`app musc <app_misc>`)
-.. // * SensorTag (see :ref:`app musc <app_misc>`)
+.. // * BLE USB dongle
+.. // * SensorTag
 .. // * 5 V adapter for the Bone
 
 .. // Power up your Bone using the 5 V adapter. You need the adapter because the BLE dongle needs extra power for the radios it contains. After it is booted up, log in (:ref:`shell tips <tips_shell>`) and run the following commands:
@@ -1028,11 +992,11 @@ Each temperature sensor has a unique serial number, so you can have several all 
 .. // ====
 .. // <1> Read in the various packages that are needed.
 
-.. // <2> +SensorTag.discover+ checks what SensorTags are out there. When found, it calls the inline function that follows.
+.. // <2> *SensorTag.discover* checks what SensorTags are out there. When found, it calls the inline function that follows.
 
 .. // <3> pass:[<span id="callout_list_item_3">This</span>] function is called when the SensorTag is disconnected.
 
-.. // <4> Normally JavaScript does everything synchronously. Here, we want to do the following asynchronously--that is, step-by-step, one after the other. We are passing an array to +async.series()+, which contains the functions to run in the order in which they appear in the array.
+.. // <4> Normally JavaScript does everything synchronously. Here, we want to do the following asynchronously--that is, step-by-step, one after the other. We are passing an array to *async.series()*, which contains the functions to run in the order in which they appear in the array.
 
 .. // <5> Connect to the SensorTag.  
 
@@ -1042,17 +1006,17 @@ Each temperature sensor has a unique serial number, so you can have several all 
 
 .. // <8> Wait a bit for the first temperatures to be read.
 
-.. // <9> This specifies the function to call every time a temperature is ready. The callback is passed +objectTemperature+ (what's read by the touchless IR sensors) and +ambientTemperature+ (the temperature inside the SensorTag). Try putting your hand in front of the device; the +objectTemperature+ should go up.
+.. // <9> This specifies the function to call every time a temperature is ready. The callback is passed *objectTemperature* (what's read by the touchless IR sensors) and *ambientTemperature* (the temperature inside the SensorTag). Try putting your hand in front of the device; the *objectTemperature* should go up.
 
 .. // <10> Define the callback for when the temperature changes.
 
 .. // <11> This commented-out code is used when you want to turn off the temperature readings.
 
-.. // <12> Assign a callback to respond to the +left+ and +right+ button pushes. 
+.. // <12> Assign a callback to respond to the *left* and *right* button pushes. 
 
-.. // <13> If both buttons are pushed, pass the +callback+ function to +sensorTag.notifySimpleKey()+.
+.. // <13> If both buttons are pushed, pass the *callback* function to *sensorTag.notifySimpleKey()*.
 
-.. // <14> +sensorTag.notifySimpleKey()+ doesn't do anything in this case, but it does evaluate +callback+, allowing it to progress to the next and final state.
+.. // <14> *sensorTag.notifySimpleKey()* doesn't do anything in this case, but it does evaluate *callback*, allowing it to progress to the next and final state.
 
 .. // <15> When we get to here, we disconnect from the SensorTag, which causes the code to exit (see pass:[<a href="#callout_list_item_3"><img src="callouts/3.png" alt="3"/></a>]).
 
@@ -1099,38 +1063,40 @@ Each temperature sensor has a unique serial number, so you can have several all 
 .. _sensors_audio:
 
 Playing and Recording Audio
-------------------------------
+============================
 
-.. TODO:: Remove?
+.. TODO
+  Remove?
 
 Problem
-**********
+--------
 
 BeagleBone doesn't have audio built in, but you want to play and record files.
 
 Solution
-**********
+--------
 
-One approach is to buy an audio cape (:ref:`app capes <app_capes>`), but another, possibly cheaper approach is to buy a USB audio adapter, 
-such as the one shown in :ref:`usb audio dongle<usb_audio_dongle>`. Some adapters that I've tested are provided in :ref:`app musc <app_misc>`.
+One approach is to buy an audio cape, but another, possibly cheaper approach is to buy a USB audio adapter, 
+such as the one shown in :ref:`usb_audio_dongle`.
 
 .. _usb_audio_dongle:
-
-A USB audio dongle
 
 .. figure:: figures/audioDongle.jpg
   :align: center
   :alt: Audio Dongle
+  
+  A USB audio dongle
 
-Drivers for the `Advanced Linux Sound Architecture http://bit.ly/1MrAJUR`_ (ALSA) 
+Drivers for the `Advanced Linux Sound Architecture <http://bit.ly/1MrAJUR>`_ (ALSA) 
 are already installed on the Bone. You can list the recording and playing devices on 
-your Bone by using +aplay+ and +arecord+, as shown in :ref:`alsa sensors <sensors_alsa>`. BeagleBone Black 
+your Bone by using *aplay* and *arecord*, as shown in :ref:`sensors_alsa`. BeagleBone Black 
 has audio-out on the HDMI interface. It's listed as *card 0* in 
-:ref:`also sensor <sensors_alsa>`. *card 1* is my USB audio adapter's audio out.
+:ref:`sensors_alsa`. *card 1* is my USB audio adapter's audio out.
 
 .. _sensors_alsa:
 
 Listing the ALSA audio output and input devices on the Bone
+============================================================
 
 .. code-block:: bash
 
@@ -1150,28 +1116,27 @@ Listing the ALSA audio output and input devices on the Bone
     Subdevice #0: subdevice #0
 
 
-In the *aplay* output shown in :ref:`alsa sensor <sensors_alsa>`, you can see the 
+In the *aplay* output shown in :ref:`sensors_alsa`, you can see the 
 USB adapter's audio out. By default, the Bone will send audio to the HDMI. You 
 can change that default by creating a file in your home directory called 
-*~/.asoundrc* and adding the code in :ref:`asoundrc <sensors_asoundrc>` to it.
+*~/.asoundrc* and adding the code in :ref:`sensors_asoundrc` to it.
 
 .. _sensors_asoundrc:
 
-Change the default audio out by putting this in ~/.asoundrc (audio.asoundrc)
+.. literalinclude:: code/audio.asoundrc
+   :caption: Change the default audio out by putting this in ~/.asoundrc (audio.asoundrc)
+   :linenos:
 
-.. code-block:: javascript
+:download:`audio.asoundrc <code/audio.asoundrc>`
 
-  include::code/audio.asoundrc
-
-
-You can easily play _.wav_ files with +aplay+:
+You can easily play ``.wav`` files with *aplay*:
 
 .. code-block:: bash
 
   bone$ aplay test.wav
 
 
-You can play other files in other formats by installing +mplayer+:
+You can play other files in other formats by installing *mplayer*:
 
 .. code-block:: bash
 
@@ -1179,8 +1144,7 @@ You can play other files in other formats by installing +mplayer+:
   bone$ sudo apt install mplayer
   bone$ mplayer test.mp3
 
-
 Discussion
-**********
+-----------
 
 Adding the simple USB audio adapter opens up a world of audio I/O on the Bone.

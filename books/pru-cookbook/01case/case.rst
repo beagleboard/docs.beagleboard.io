@@ -19,8 +19,8 @@ operation.
 
 But what if you have a project that needs the flexibility of an OS and the timing 
 of a microcontroller?  This is where the BeagleBoard excels since it has both 
-an ARM procssor running Linux and two footnote:[Four if you are on the BeagleBone AI];
-**P**rogrammable **R**eal-Time **U**nits (PRUs).
+an ARM procssor running Linux and two [#]_
+**P**\ rogrammable **R**\ eal-Time **U**\ nits (PRUs).
 The PRUs have 32-bit cores which run
 independently of the ARM processor, therefore they can
 be programmed to respond quickly to inputs and produce very precisely timed 
@@ -39,23 +39,25 @@ Here we present:
 * `BeagleLogic <https://github.com/abhishek-kakkar/BeagleLogic/wiki>`_
 * `NeoPixels -- 5050 RGB LEDs with Integrated Drivers (Falcon Christmas) <http://falconchristmas.com>`_
 * `RGB LED Matrix (Falcon Christmas) <http://falconchristmas.com>`_
-* `simpPRU -- A python-like language for programming the PRUs`_ <https://github.com/VedantParanjape/simpPRU>
-.. * `MachineKit <http://www.machinekit.io/>`_
-.. * `ArduPilot <http://ardupilot.org/>, <http://ardupilot.org/dev/docs/beaglepilot.html>`_
-.. * `BeagleScope <https://github.com/ZeekHuge/BeagleScope>`_
+* `simpPRU -- A python-like language for programming the PRUs <https://github.com/VedantParanjape/simpPRU>`_ 
+* `MachineKit <http://www.machinekit.io/>`_
+* `BeaglePilot <http://ardupilot.org/dev/docs/beaglepilot.html>`_
+* `BeagleScope <https://github.com/ZeekHuge/BeagleScope>`_
 
 The following are resources used in this chapter.
 
 .. admonition:: Resources
 
-   * `Pocket Beagle System Reference Manual https://github.com/beagleboard/pocketbeagle/wiki/System-Reference-Manual#673_PRUICSS_Pin_Access`_
-   * `BeagleBone Black P8 Header Table https://github.com/derekmolloy/exploringBB/blob/master/chp06/docs/BeagleboneBlackP8HeaderTable.pdf`_
-   * `BeagleBone Black P9 Header Table https://github.com/derekmolloy/exploringBB/blob/master/chp06/docs/BeagleboneBlackP9HeaderTable.pdf`_
-   * `BeagleBone AI System Reference Manual https://github.com/beagleboard/beaglebone-ai/wiki/System-Reference-Manual`_
+   * `Pocket Beagle System Reference Manual <https://docs.beagleboard.io/latest/boards/pocketbeagle/original/index.html>`_
+   * `BeagleBone Black P8 Header Table <https://docs.beagleboard.io/latest/boards/beaglebone/black/ch07.html#id2>`_
+      * `P8 Header Table from exploringBB <https://github.com/derekmolloy/exploringBB/blob/master/chp06/docs/BeagleboneBlackP8HeaderTable.pdf>`_
+   * `BeagleBone Black P9 Header Table <https://docs.beagleboard.io/latest/boards/beaglebone/black/ch07.html#id3>`_
+      * `P9 Header Table from exploringBB <https://github.com/derekmolloy/exploringBB/blob/master/chp06/docs/BeagleboneBlackP9HeaderTable.pdf>`_
+   * `BeagleBone AI System Reference Manual <https://docs.beagleboard.io/latest/boards/beaglebone/ai/index.html>`_
 
 
 Robotics Control Library
--------------------------
+**************************
 
 Robotics is an embedded application that often requires both an SBC to control the 
 high-level tasks (such as path planning, line following, communicating with the user)
@@ -65,16 +67,15 @@ to turn, or how to balance in response to an IMU input).  The
 `robot <https://www.hackster.io/edumip/edumip-13a29c>`_ 
 demonstrates that by using the PRU, the Blue can handle both the high 
 and low -level tasks without an additional microcontroller. The EduMIP is shown 
-in :ref:`<case_blue>`.
+in :ref:`case_blue`.
 
 .. _case_blue:
-
-Blue balancing
-~~~~~~~~~~~~~~~
 
 .. figure:: figures/blue.png
    :align: center
    :alt: Blue balancing
+
+   Blue balancing
 
 The `Robotics Control Library <http://strawsondesign.com/docs/roboticscape/>`_ is a 
 package that is already installed on the Beagle 
@@ -88,14 +89,14 @@ Controlling Eight Servos
 *************************
 
 Problem
-~~~~~~~~
+--------
 
 You need to control eight servos, but the Bone doesn't have enough pulse width 
 modulation (PWM) channels
 and you don't want to add hardware.  
 
 Solution
-~~~~~~~~~
+---------
 
 The Robotics Control Library provides eight additional PWM channels 
 via the PRU that can be used out of the box. 
@@ -104,7 +105,7 @@ via the PRU that can be used out of the box.
    The I/O pins on the Beagles have a mutliplexer that lets you select what I/O 
    appears on a given pin.  The Blue has the mux already configured to to run these
    examples.  Follow the instructions in 
-   :ref:`../03details/details.html#details_configure_servos, Configuring Pins for Controlling Servos` 
+   :ref:`details_configure_servos` 
    to configure the pins for the Black and the Pocket.
 
 
@@ -138,7 +139,7 @@ The ``-f 10`` says to use a frequency of 10 Hz and the ``-p 1.5`` says to set th
       rc_test_servo -c 1 -p 0.0
 
 Discussion
-~~~~~~~~~~~
+------------
 
 The BeagleBone Blue sends these eight outputs to it's servo channels.  The others use the pins shown in the 
 :ref:`case__register_to_pin_table`.
@@ -146,7 +147,7 @@ The BeagleBone Blue sends these eight outputs to it's servo channels.  The other
 .. _case__register_to_pin_table:
 
 PRU register to pin table
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
 .. table::
 
@@ -172,13 +173,9 @@ PRU register to pin table
 
 
 You can find these details in the 
-`P8 Header Table <https://github.com/derekmolloy/exploringBB/blob/master/chp06/docs/BeagleboneBlackP8HeaderTable.pdf>`_, 
-`P9 Header Table <https://github.com/derekmolloy/exploringBB/blob/master/chp06/docs/BeagleboneBlackP9HeaderTable.pdf>`_, 
-`Pocket Beagle System Reference Manual <https://github.com/beagleboard/pocketbeagle/wiki/System-Reference-Manual#673_PRUICSS_Pin_Access>`_ 
-(Here is a more usable version of the `table <https://docs.google.com/spreadsheets/d/1FRGvYOyW1RiNSEVprvstfJAVeapnASgDXHtxeDOjgqw/edit?usp=sharing>`_.)
-and
-`BeagleBone AI System Reference Manual <https://github.com/beagleboard/beaglebone-ai/wiki/System-Reference-Manual>`_.
-(Here is a more usable version of the `table <https://docs.google.com/spreadsheets/d/1dFSBVem86vAUD7MLXvqdS-N0Efi8_g_O1iTqzql8DAo/edit#gid=0>`_.)
+
+* `Pocket Beagle pinout <https://docs.google.com/spreadsheets/d/1FRGvYOyW1RiNSEVprvstfJAVeapnASgDXHtxeDOjgqw/edit?usp=sharing>`_
+* `BeagleBone AI PRU pins <https://docs.google.com/spreadsheets/d/1dFSBVem86vAUD7MLXvqdS-N0Efi8_g_O1iTqzql8DAo/edit#gid=0>`_
 
 
 Be default the PRUs are already loaded with the code needed to run the
@@ -187,15 +184,15 @@ servos.  All you have to do is run the command.
 .. [/opt/source/Robotics_Cape_Installer/pru_firmware/src/pru1-servo.asm]
 
 Controlling Individual Servos
-******************************
+*******************************
 
 Problem
-~~~~~~~~~
+--------
 
 ``rc_test_servos`` is nice, but I need to control the servos individually.
 
 Solution
-~~~~~~~~~
+---------
 
 You can modify ``rc_test_servos.c``.  You'll find it on the bone online at
 https://github.com/beagleboard/librobotcontrol/blob/master/examples/src/rc_test_servos.c.
@@ -208,29 +205,29 @@ Controlling More Than Eight Channels
 *************************************
 
 Problem
-~~~~~~~~~~
+--------
 
 I need more than eight PWM channels, or I need less jitter on the off time.
 
 Solution
-~~~~~~~~~~
+---------
 
 This is a more advanced problem and required reprograming the PRUs.  See 
-:ref:`../05blocks/blocks.html#blocks_pwm, PWM Generator` for an example.
+:ref:`blocks_pwm` for an example.
 
 Reading Hardware Encoders
 **************************
 
 Problem
-~~~~~~~~~~
+--------
 
 I want to use four encoders to measure four motors, but I only see hardware for three.
 
 Solution
-~~~~~~~~~~
+---------
 
-The forth encoder can be implemented on the PRU. If you run ``rc_test_encoders_eqep`` on the Blue, you will see the output of 
-encoders E1-E3 which are connected to the eEQP hardware.
+The forth encoder can be implemented on the PRU. If you run ``rc_test_encoders_eqep`` 
+on the Blue, you will see the output of encoders E1-E3 which are connected to the eEQP hardware.
 
 .. code-block:: bash
 
@@ -246,7 +243,8 @@ pins shown in :ref:`case_pin_mapping`.
 .. _case_pin_mapping:
 
 eQEP to pin mapping
-~~~~~~~~~~~~~~~~~~~~
+--------------------
+
 .. table::
 
    +----+--------+-----------+-----------+--------+--------+------------+-------------+
@@ -272,22 +270,23 @@ eQEP to pin mapping
    The I/O pins on the Beagles have a mutliplexer that lets you select what I/O 
    appears on a given pin.  The Blue has the mux already configured to to run these
    examples.  Follow the instructions in 
-   :ref:`../03details/details.html#details_configure_encoders, Configuring Pins for Controlling Encoders` 
+   :ref:`details_configure_encoders` 
    to configure the pins for the Black and the Pocket.
 
 
 Reading PRU Encoder
-*********************
+=====================
 
 Problem
-~~~~~~~~
+--------
 
 I want to access the PRU encoder.
 
 Solution
-~~~~~~~~~
+---------
 
 The forth encoder is implemented on the PRU and accessed with `sudo rc_test_encoders_pru`  
+
 .. note::
    This command needs root permission, so the `sudo` is needed.  
 
@@ -309,17 +308,17 @@ Here's what you will see
 
 
 BeagleLogic -- a 14-channel Logic Analyzer
--------------------------------------------
+********************************************
 
 Problem
-********
+--------
 
 I need a 100Msps, 14-channel logic analyzer
 
 Solution
-*********
+---------
 
-`BeagleLogic <https://beaglelogic.readthedocs.io/en/latest/>`_ is a 100Msps, 
+`BeagleLogic documentation <https://beaglelogic.readthedocs.io/en/latest/>`_ is a 100Msps, 
 14-channel logic analyzer that runs on the Beagle. 
 
 .. admonition:: information
@@ -335,8 +334,8 @@ Solution
    https://github.com/abhishek-kakkar/BeagleLogic/wiki
 
 
-The quickest solution is to get the `no-setup-required image <https://github.com/abhishek-kakkar/BeagleLogic/wiki/BeagleLogic-%22no-setup-required%22-setup:-Introducing-System-Image!>`_.  It points to an older image
-(beaglelogic-stretch-2017-07-13-4gb.img.xz) but should still work.
+The quickest solution is to get the `no-setup-required image <https://github.com/abhishek-kakkar/BeagleLogic/wiki/BeagleLogic-%22no-setup-required%22-setup:-Introducing-System-Image!>`_. 
+It points to an older image (beaglelogic-stretch-2017-07-13-4gb.img.xz) but should still work.
 
 If you want to be running a newer image, there are instructions on the site for `installing BeagleLogic <https://beaglelogic.readthedocs.io/en/latest/install.html>`_, but I had to do the additional steps in :ref:`case_installing_beaglelogic`.
 
@@ -344,10 +343,8 @@ If you want to be running a newer image, there are instructions on the site for 
 
 .. _case_installing_beaglelogic:
 
-Installing BeagleLogic
-~~~~~~~~~~~~~~~~~~~~~~~
-
 .. code-block:: bash
+   :caption: Installing BeagleLogic
       
    bone$ *git clone https://github.com/abhishek-kakkar/BeagleLogic*
    bone$ *cd BeagleLogic/kernel*
@@ -365,16 +362,15 @@ Then click *Begin Capture* to capture your data, at up to 100 MHz!
 
 .. _case_beaglelogic_capture:
 
-BeagleLogic Data Capture
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/beaglelogic_capture.png
    :align: center
    :alt: BeagleLogic Data Capture
 
+   BeagleLogic Data Capture
+
 
 Discussion
-************
+-----------
 
 BeagleLogic is a complete system that includes firmware for the PRUs, 
 a kernel module and a web interface that create a powerful 100 MHz 
@@ -383,7 +379,7 @@ logic analyzer on the Bone with no additional hardware needed.
 .. tip::
 
    If you need buffered inputs, consider
-   http://standalone.beaglelogic.net/en/latest/[BeagleLogic Standalone],
+   `BeagleLogic Standalone <http://standalone.beaglelogic.net/en/latest/>`_,
    a turnkey Logic Analyzer built on top of BeagleLogic.
 
 
@@ -434,10 +430,10 @@ explaining how the PRUs get this type of performance.
 
 
 NeoPixels -- 5050 RGB LEDs with Integrated Drivers (Falcon Christmas)
-----------------------------------------------------------------------
+***********************************************************************
 
 Problem
-*********
+--------
 
 You have an `Adafruit NeoPixel LED string <http://www.adafruit.com/products/1138>`_,
 `Adafruit NeoPixel LED matrix <http://www.adafruit.com/products/1487>`_ or
@@ -448,10 +444,10 @@ and want to light it up.
 .. TODO Show how to drive ws2812's with FPP.
 
 Solution
-*********
+---------
 
 If you are driving just one string you can write your own code 
-(See :ref:`../05blocks/blocks.adoc#blocks_ws2812, WS2812 Driver`)
+(See :ref:`blocks_ws2812`)
 If you plan to drive multiple strings, then consider
 Falcon Christmas (`FPP <https://falconchristmas.com/>`_). 
 FPP can be used to drive both LEDs with an integrated
@@ -460,7 +456,7 @@ set up for the integrated drive and in the next section the no driver LEDs will 
 show.
 
 Hardware
-*********
+----------
 
 For this setup we'll wire a single string of NeoPixels to the Beagle.  
 I've attached the black wire on the string to ground on the Beagle 
@@ -475,7 +471,7 @@ line 27.  It's the 20th entry in the list.  You could pick any of the others
 if you'd rather.
 
 Software Setup
-***************
+---------------
 
 Assuming the PocketBeagle is attached via the USB cable, 
 on your host computer browse to <http://192.168.7.2/> and you will see 
@@ -483,12 +479,11 @@ on your host computer browse to <http://192.168.7.2/> and you will see
 
 .. _case_fpp_program_control2:
 
-Falcon Play Program Control
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_program_control.png
    :align: center
    :alt: Falcon Play Program Control
+
+   Falcon Play Program Control
 
 You can test the display by first setting up the Channel Outputs and then 
 going to *Display Testing*.  :ref:`case_channel_outputs_menu2` shows where to 
@@ -496,21 +491,19 @@ select Channel Outputs and :ref:`case_channel_outputs2` shows which settings to 
 
 .. _case_channel_outputs_menu2:
 
-Selecting Channel Outputs
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_channel_outputs_menu.png
    :align: center
    :alt: Selecting Channel Outputs
 
-.. _case_channel_outputs2:
+   Selecting Channel Outputs
 
-Channel Outputs Settings
-~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _case_channel_outputs2:
 
 .. figure:: figures/fpp_channel_outputs_strings.png
    :align: center
    :alt: Channel Outputs Settings
+
+   Channel Outputs Settings
 
 Click on the *Pixel Strings* tab.  Earlier we noted that *P1.31* is attached
 to port 20.  Note that at the bottom of the screen, port 20 has a PIXEL COUNT
@@ -524,12 +517,11 @@ Next we need to test the display.  Select **Display Testing** shown in
 
 .. _case_display_testing_menu2:
 
-Selecting Display Testing
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_display_testing_menu2.png
    :align: center
    :alt: Selecting Display Testing
+
+   Selecting Display Testing
 
 Set the *End Channel* to *72*. (72 is 3*24)  
 Click *Enable Test Mode* and your matrix should light up.  Try the different 
@@ -544,12 +536,11 @@ testing patterns shown in :ref:`case_display_testing2`.
 
 .. _case_display_testing2:
 
-Display Testing Options
-~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_display_testing2.png
    :align: center
    :alt: Display Testing Options
+
+   Display Testing Options
 
 You can control the LED string using the E1.31 protocol. 
 (https://www.doityourselfchristmas.com/wiki/index.php?title=E1.31_(Streaming-ACN)_Protocol)
@@ -558,54 +549,52 @@ First configure the input channels by going to Channel Inputs as shown in
 
 .. _case_channel_inputs:
 
-Going to Channel Inputs
-~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_channel_inputs.png
    :align: center
    :alt: Going to Channel Inputs
+
+   Going to Channel Inputs
 
 Tell it you have 72 LEDs and enable the input as shown in :ref:`case_set_inputs`.
 
 .. _case_set_inputs:
 
-Setting Channel Inputs
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_inputs_setup2.png
    :align: center
    :alt: Setting Channel Inputs
+
+   Setting Channel Inputs
 
 Finally go to the Status Page as shown in :ref:`case_status`.
 
 .. _case_status:
 
-Watching the status
-~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_status.png
    :align: center
    :alt: Watching Status
 
+   Watching the status
+
 Now run a program on another computer that generated E1.31 packets.
-:ref:`case_1.31_example` is an example python program.
+:ref:`case_e1.31_example` is an example python program.
 
-.. _cse_e1.31_example:
+.. _case_e1.31_example:
 
-.e1.31-test.py 
-~~~~~~~~~~~~~~
+.. literalinclude:: code/e1.31-test.py
+   :caption: e1.31-test.py -Example of generating packets to control the NeoPixels
+   :linenos:
 
-:downlod:`e1.31-test.py <code/e1.31-test.py>`- Example of generating packets to control the NeoPixels 
+:download:`e1.31-test.py <code/e1.31-test.py>` 
 
 .. TODO document the code
 
 .. _case_rgb_matrix:
 
 RGB LED Matrix -- No Integrated Drivers (Falcon Christmas)
------------------------------------------------------------
+************************************************************
 
 Problem
-*************************
+--------
 
 You want to use a RGB LED Matrix display that doesn't have integrated
 drivers such as the 
@@ -614,20 +603,17 @@ shown in :ref:`case_adfruit_matrix`.
 
 .. _case_adfruit_matrix:
 
-Adafruit LED Matrix
-~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/ledmatrix.jpg
    :align: center
    :alt: Adafruit LED Matrix
 
-Solution
-*************************
+   Adafruit LED Matrix
 
-`Falcon Christmas <http://falconchristmas.com>`_ makes a software package
-called 
-`Falcon Player <http://falconchristmas.com/forum/index.php/board,8.0.html>`_ (FPP) which can drive 
-such displays.
+Solution
+---------
+
+`Falcon Christmas <http://falconchristmas.com>`_ makes a software package called 
+`Falcon Player <http://falconchristmas.com/forum/index.php/board,8.0.html>`_ (FPP) which can drive such displays.
 
 .. admonition:: information:
 
@@ -642,7 +628,7 @@ such displays.
    http://www.falconchristmas.com/wiki/FPP:FAQ#What_is_FPP.3F
 
 Hardware
-~~~~~~~~~
+---------
 
 The Beagle hardware can be either a BeagleBone Black with the 
 `Octoscroller Cape <https://oshpark.com/shared_projects/7mSHNZcD>`_, or a 
@@ -658,20 +644,18 @@ to full white at the same time you will need at least a 4A supply.
 
 .. _case_pocket:
 
-Pocket Beagle Driving a P5 RGB LED Matrix via the PocketScroller Cape
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/pocketscroller.jpg
    :align: center
    :alt: Pocket Beagle Driving a P5 RGB LED Matrix via the PocketScroller Cape
 
+   Pocket Beagle Driving a P5 RGB LED Matrix via the PocketScroller Cape
 
 Software
-~~~~~~~~~~
+---------
 
 The FPP software is most easily installed by downloading the 
-`current FPP release <https://github.com/FalconChristmas/fpp/releases/>`_, flashing an SD card and 
-booting from it. 
+`current FPP release <https://github.com/FalconChristmas/fpp/releases/>`_, 
+flashing an SD card and booting from it. 
 
 .. tip::
 
@@ -685,12 +669,11 @@ on your host computer browse to http://192.168.7.2/ and you will see
 
 .. _case_fpp_program_control:
 
-Falcon Play Program Control
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_program_control.png
    :align: center
    :alt: Falcon Play Program Control
+
+   Falcon Play Program Control
 
 You can test the display by first setting up the Channel Outputs and then 
 going to *Display Testing*.  :ref:`case_channel_outputs_menu` shows where to 
@@ -698,37 +681,33 @@ select Channel Outputs and :ref:`case_channel_outputs` shows which settings to u
 
 .. _case_channel_outputs_menu:
 
-Selecting Channel Outputs
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_channel_outputs_menu.png
    :align: center
    :alt: Selecting Channel Outputs
 
-.. _case_channel_outputs:
+   Selecting Channel Outputs
 
-Channel Outputs Settings
-~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _case_channel_outputs:
 
 .. figure:: figures/fpp_channel_outputs.png
    :align: center
    :alt: Channel Outputs Settings
 
-Click on the **LED Panels** tab and then the only changes I made was 
-to select the **Single Panel Size** to be
-*64x32* and to check the **Enable LED Panel Output**.
+   Channel Outputs Settings
+
+Click on the **LED Panels** tab and then the only changes I made was to select the 
+**Single Panel Size** to be *64x32* and to check the **Enable LED Panel Output**.
 
 Next we need to test the display.  Select *Display Testing* shown in
 :ref:`case_display_testing_menu`.
 
 .. _case_display_testing_menu:
 
-Selecting Display Testing
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_display_testing_menu.png
    :align: center
    :alt: Selecting Display Testing
+
+   Selecting Display Testing
 
 Set the **End Channel** to **6144**. (6144 is 3*64*32)  
 Click **Enable Test Mode** and your matrix should light up.  Try the different 
@@ -736,15 +715,14 @@ testing patterns shown in :ref:`case_display_testing`.
 
 .. _case_display_testing:
 
-Display Testing Options
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_display_testing.png
    :align: center
    :alt: Display Testing Options
 
+   Display Testing Options
+
 xLights - Creating Content for the Display
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===========================================
 
 Once you are sure your LED Matrix is working correctly you can program it 
 with a sequence.  
@@ -776,12 +754,11 @@ Run xLights and you'll see :ref:`case_xlights_setup`.
 
 .. _case_xlights_setup:
 
-xLights Setup
-~~~~~~~~~~~~~~
-
 .. figure:: figures/xlights_setup.png
    :align: center
    :alt: xLights Setup
+
+   xLights Setup
 
 We'll walk you through a simple setup to get an animation to display on the 
 RGB Matrix.  xLights can use a protocol called E1.31 to send information to 
@@ -790,12 +767,11 @@ shown in :ref:`case_xlights_setup_e1_31`.
 
 .. _case_xlights_setup_e1_31:
 
-Setting Up E1.31
-~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/xlights_setup_e1_31.png
    :align: center
    :alt: Setting Up E1.31
+
+   Setting Up E1.31
 
 The **IP Address** is the Bone's address as seen from the host computer. 
 Each LED is one channel, so one RGB LED is three channels.  The P5 board 
@@ -809,12 +785,11 @@ Your setup should look like :ref:`case_xlights_setup_done`.  Click the
 
 .. _case_xlights_setup_done:
 
-xLights setup for P5 display
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/xlights_setup_done.png
    :align: center
    :alt: xLights setup for P5 display
+
+   xLights setup for P5 display
 
 Next click on the **Layout** tab.  Click on the *Matrix* button as shown in 
 :ref:`case_xlights_matrix`, then click on the black area where you want your 
@@ -822,23 +797,21 @@ matrix to appear.
 
 .. _case_xlights_matrix:
 
-Setting up the Matrix Layout
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/xlights_layout.png
    :align: center
    :alt: Setting up the Matrix Layout
+
+   Setting up the Matrix Layout
 
 :ref:`case_xlights_layout_details` shows the setting to use for the P5 matrix. 
 
 .. _case_xlights_layout_details:
 
-Layout details for P5 matrix
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/xlights_layout_details.png
    :align: center
    :alt: Layout details for P5 matrix
+
+   Layout details for P5 matrix
 
 All I changed was **# Strings**, **Nodes/String**, **Starting Location** and most 
 importantly, expand **String Properties** and select at **String Type** of 
@@ -851,19 +824,18 @@ Now click on the *Sequencer* tab and then click on the **New Sequence** button
 
 .. _case_seq_new:
 
-Starting a new sequence
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/xlights_seq_new.png
    :align: center
    :alt: Starting a new sequence
+
+   Starting a new sequence
 
 Then click on **Animation**, **20fps (50ms)**, and **Quick Start**. Learning how to 
 do sequences is beyond the scope of this cookbook, however I'll shown you how
 do simple sequence just to be sure xLights is talking to the Bone.
 
 Setting Up E1.31 on the Bone
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+==============================
 
 First we need to setup FPP to take input from xLights.  Do this by going to 
 the *Input/Output Setup* menu and selecting *Channel Inputs*.  Then 
@@ -872,12 +844,11 @@ enter *12* for *Universe Count* and click *set* and you will see
 
 .. _case_inputs_setup:
 
-E1.31 Inputs
-~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_inputs_setup.png
    :align: center
    :alt: .E1.31 Inputs
+
+   E1.31 Inputs
 
 Click on the **Save** button above the table.  
 
@@ -887,15 +858,14 @@ Then go to the **Status/Control** menu and select **Status Page**.
 
 .. _case_mode_bridge:
 
-Bridge Mode
-~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_mode_bridge.png
    :align: center
    :alt: Bridge Mode
 
+   Bridge Mode
+
 Testing the xLights Connection
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+===============================
 
 The Bone is now listening for commands from xLights via the E1.31 protocol.
 A quick way to verify everything is t o return to xLights and go to the 
@@ -903,12 +873,11 @@ A quick way to verify everything is t o return to xLights and go to the
 
 .. _case_xlights_test:
 
-xLights test page
-~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/xlights_test.png
    :align: center
    :alt: xLights test page
+
+   xLights test page
 
 Click the box under **Select channels...**, click **Output to lights** and 
 select **Twinkle 50%**.  You matrix should have a colorful twinkle pattern
@@ -916,15 +885,14 @@ select **Twinkle 50%**.  You matrix should have a colorful twinkle pattern
 
 .. _case_xlights_twinkle:
 
-xLights Twinkle test pattern
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/xlights_twinkle.jpg
    :align: center
    :alt: xLights Twinkle test pattern
 
+   xLights Twinkle test pattern
+
 A Simple xLights Sequence
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+==========================
 
 Now that the xLights to FPP link is tested you can generate a sequence to 
 play.  Close the Test window and click on the **Sequencer** tab.  Then drag 
@@ -935,19 +903,18 @@ toolbar.  Your matrix should now be displaying your effect.
 
 .. _case_seq_drag:
 
-Drag an effect to the timeline
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/xlights_seq_drag.png
    :align: center
    :alt: Drag an effect to the timeline
+
+   Drag an effect to the timeline
 
 The setup requires the host computer to send the animation data to the Bone. 
 The next section shows how to save the sequence and play it on the Bone 
 standalone.
 
 Saving a Sequence and Playing it Standalone
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+============================================
 
 In xLights save your sequence by hitting Ctrl-S and giving it a name.  I called 
 mine *fire* since I used a fire effect.  Now, switch back to FPP and select 
@@ -957,12 +924,11 @@ the *Content Setup* menu and select *File Manager*.  Click the black
 
 .. _case_file_manager:
 
-FPP file manager
-~~~~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_file_manager.png
    :align: center
    :alt: FPP file manager
+
+   FPP file manager
 
 Once your sequence is uploaded, got to **Content Steup** and select **Playlists**. 
 Enter you playlist name (I used **fire**) and click **Add**.  Then click
@@ -971,12 +937,11 @@ Enter you playlist name (I used **fire**) and click **Add**.  Then click
 
 .. _case_playlist:
 
-Adding a new playlist to FPP
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_playlist.png
    :align: center
    :alt: Adding a new playlist to FPP
+
+   Adding a new playlist to FPP
 
 Be sure to click **Save Playlist** on the right. Now return to 
 **Status/Control** and **Status Page** and make sure **FPPD Mode:** is set 
@@ -985,19 +950,18 @@ button and your sequence will play.
 
 .. _case_playlist_status:
 
-Adding a new playlist to FPP
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/fpp_playlist_status.png
    :align: center
    :alt: Playing a playlist
+
+   Adding a new playlist to FPP
 
 The beauty of the PRU is that the Beagle can play a detailed sequence at 
 20 frames per second and the ARM procossor is only 15% used.  The PRUs 
 are doing all the work.
 
 simpPRU -- A python-like language for programming the PRUs 
------------------------------------------------------------
+===========================================================
 
 `simpPRU <https://github.com/VedantParanjape/simpPRU>`_ is a simple, python-like 
 programming languge designed to make programming the PRUs easy. 
@@ -1029,8 +993,9 @@ Now, suppose you wanted to run the
 `LED blink <https://simppru.readthedocs.io/en/latest/examples/led_blink/>`_
 example which is reproduced here.
 
-LED Blink (blink.sim)
-~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/blink.sim
+   :caption: LED Blink (blink.sim)
+   :linenos:
 
 :download:`blink.sim <code/blink.sim>`
 
@@ -1046,7 +1011,7 @@ Just run simppru
    Current mode for P1_31 is:     pruout
 
 Detected TI AM335x PocketBeagle
---------------------------------
+================================
 
 The +--load+ flag caused the compiled code to be copied to +/lib/firmware+.
 To start just do:
@@ -1064,16 +1029,14 @@ Your LED should now be blinking.
 
 Check out the many examples (https://simppru.readthedocs.io/en/latest/examples/led_blink/).
 
-simpPRU Examples
-~~~~~~~~~~~~~~~~
-
 .. figure:: figures/LEDblink.png
    :align: center
    :alt: simpPRU Examples
 
+   simpPRU Examples
 
 MachineKit
------------
+===========
 
 `MachineKit <http://www.machinekit.io/>`_ is a platform for machine control 
 applications.  It can control machine tools, robots, or other automated devices. It can control servo 
@@ -1120,3 +1083,7 @@ multi-copters, traditional helicopters, fixed wing aircraft and rovers. ArduPilo
    colleges and universities around the world.
 
    http://www.machinekit.io/about/
+
+.. rubric:: Footnotes
+   
+.. [#] Four if you are on the BeagleBone AI

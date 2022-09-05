@@ -3,18 +3,13 @@
 Parts and Suppliers
 ####################
 
-.. note::
-   #TODO#: (Mark) Do we really need this? (Jason) Yeah, I think it is helpful.
-
 Parts
-----------
+******
 
 The following tables list where you can find the parts used in this book. 
 We have listed only one or two sources here, but you can often find a given part in many places.
 
-United States suppliers
-
-.. table::
+.. table:: United States suppliers
 
     +-------------+------------------------------------+------------------------------------+
     | Supplier    | Website                            | Notes                              |
@@ -34,9 +29,7 @@ United States suppliers
     | SparkFun    | http://www.sparkfun.com            | Good for modules and parts         |
     +-------------+------------------------------------+------------------------------------+
 
-Other suppliers
-
-.. table::
+.. table:: Other suppliers
 
     +-----------+----------------------------------+-------------------------------------------------------------------------------------------+
     | Supplier  | Website                          | Notes                                                                                     |
@@ -44,10 +37,8 @@ Other suppliers
     | Element14 | http://element14.com/BeagleBone  | World-wide BeagleBoard.org-compliant clone of BeagleBone Black, carries many accessories  |
     +-----------+----------------------------------+-------------------------------------------------------------------------------------------+
 
-.. _app_proto:
-
 Prototyping Equipment
------------------------
+======================
 
 Many of the hardware projects in this book use jumper wires and a breadboard. 
 We prefer the preformed wires that lie flat on the board. <<parts_jumper>> lists places 
@@ -55,9 +46,7 @@ with jumper wires, and <<parts_breadboard>> shows where you can get breadboards.
 
 .. _parts_jumper:
 
-Jumper wires
-
-.. table::
+.. table:: Jumper wires
 
     +-------------+--------------------------------------------------------------------------------------------+
     | Supplier    | Website                                                                                    |
@@ -74,9 +63,7 @@ Jumper wires
 
 .. _parts_breadboard:
 
-Breadboards
-
-.. table::
+.. table:: Breadboards
 
     +-------------+---------------------------------------------------------------------------------------------------------------------------------------------+
     | Supplier    | Website                                                                                                                                     |
@@ -97,9 +84,9 @@ If you want something more permanent, try `Adafruit's Perma-Proto Breadboard <ht
 .. _app_resistor:
 
 Resistors
-----------
+==========
 
-We use 220 , 1 k, 4.7 k, 10 k, 20 k, and 22 k resistors in this book. 
+We use 220 , 1k, 4.7k, 10k, 20k, and 22k resistors in this book. 
 All are 0.25 W.  The easiest way to get all these, and many more, is to order `SparkFun's Resistor Kit <http://bit.ly/1EXREh8>`_.  
 It's a great way to be ready for future projects, because it has 500 resistors. 
 `RadioShack's 500-piece Resistor Assortment <http://shack.net/1B4Io4V>`_ is a bit more 
@@ -115,10 +102,8 @@ You can find the 10 k trimpot (or variable resistor) at `SparkFun 10k POT <http:
 Flex resistors (sometimes called *flex sensors* or *bend sensors*) are available at 
 `SparkFun flex resistors <http://bit.ly/1Br7HD2>`_ and `Adafruit flex resistors <http://bit.ly/1HCGoql>`_.
 
-.. _app_transistor:
-
 Transistors and Diodes
------------------------
+=======================
 
 The `2N3904 <http://bit.ly/1B4J8H4>`_ is a common NPN transistor that you can get almost anywhere. 
 Even `Amazon NPN transitor <http://amzn.to/1AjvcsD>`_ has it. `Adafruit NPN transitor <http://bit.ly/1b2dgxT>`_ has a nice 10-pack. 
@@ -129,10 +114,8 @@ The `1N4001 <http://bit.ly/1EbRzF6>`_ is a popular 1A diode. Buy one at `SparkFu
 10 at `Adafruit diode <http://bit.ly/1Gs05zP>`_, 25 at `RadioShack diode <http://shack.net/1E5OTXi>`_, 
 or 40,000 at `DigiKey diode <http://bit.ly/18ADlT2>`_.
 
-.. _app_ic:
-
 Integrated Circuits
----------------------
+=====================
 
 The PCA9306 is a small integrated circuit (IC) that converts voltage levels between 3.3 V and 5 V. You can get it 
 cheaply in large quantities from `DigiKey PCA9306 <http://bit.ly/1Fb8REd>`_, but it's in a very small, hard-to-use, surface-mount 
@@ -153,10 +136,9 @@ sells it on a breakout board that works well with a breadboard.
 The DS18B20 is a one-wire digital temperature sensor that looks like a three-terminal transistor. 
 Both `SparkFun DS18B20 <http://bit.ly/1Fba7Hv>`_ and `Adafruit DS18B20 <http://bit.ly/1EbSYvC>`_ carry it.
 
-.. _app_opto:
 
 Opto-Electronics
------------------
+=================
 
 `LEDs <http://bit.ly/1BwZvQj>`_ are *light-emitting diodes*. LEDs come in a wide range of colors, 
 brightnesses, and styles. You can get a basic red LED at `SparkFun red LED <http://bit.ly/1GFaHPi>`_, 
@@ -165,104 +147,97 @@ brightnesses, and styles. You can get a basic red LED at `SparkFun red LED <http
 Many places carry bicolor LED matrices, but be sure to get one with an I^2^C interface. 
 `Adafruit LED matrix <http://bit.ly/18AENVn>`_ is where I got mine.
 
-.. _app_capes:
-
 Capes
-------
+======
 
 There are a number of sources for capes for BeagleBone Black. 
 `eLinux.org BeagleBoard.org capes page <http://bit.ly/1AjlXJ9>`_ keeps a current list.
 
-
-.. _app_misc:
-
 Miscellaneous
---------------
+==============
 
 Here are some things that don't fit in the other categories.
 
-.Miscellaneous
+.. table:: Miscellaneous
 
-.. table::
-
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | 3.3 V FTDI cable                                    | `SparkFun FTDI cable <http://bit.ly/1FMeXsG>`_,                                     |
-    |                                                     | `Adafruit FTDI cable <http://bit.ly/18AF1Mm>`_                                       |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | USB WiFi adapter                                    | `Adafruit WiFi adapter <http://www.adafruit.com/products/814>`_                        |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | Female HDMI to male microHDMI adapter               | `Amazon HDMI to microHDMI adapter <http://amzn.to/1C5BcLp>`_                                        |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | HDMI cable                                          | `SparkFun HDMI cable <https://www.sparkfun.com/products/11572>`_                     |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | Micro HDMI to HDMI cable                            | `Adafruit HDMI to microHDMI cable <http://www.adafruit.com/products/1322>`_                       |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | HDMI to DVI Cable                                   | `SparkFun HDMI to DVI cable <https://www.sparkfun.com/products/12612>`_                     |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | HDMI monitor                                        | `Amazon HDMI monitor <http://amzn.to/1B4MABD>`_                                        |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | Powered USB hub                                     | `Amazon power USB hub <http://amzn.to/1NKm2zB>`_,                                       |
-    |                                                     | `Adafruit power USB hub <http://www.adafruit.com/products/961>`_                        |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | Keyboard with USB hub                               | `Amazon keyboard with USB hub <http://amzn.to/1FbblSX>`_                                        |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | Soldering iron                                      | `SparkFun soldering iron <http://bit.ly/1FMfUkP>`_,                                      |
-    |                                                     | `Adafruit soldering iron <http://bit.ly/1EXZ6J1>`_                                       |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | Oscilloscope                                        | `Adafruit oscilloscope <https://www.adafruit.com/products/468>`_                       |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | Multimeter                                          | `SparkFun multimeter <http://bit.ly/1C5BUbu>`_,                                      |
-    |                                                     | `Adafruit multimeter <http://bit.ly/1wXX3np>`_                                       |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | PowerSwitch Tail II                                 | `SparkFun PowerSwitch Tail II <http://bit.ly/1Ag5bLP>`_,                                      | 
-    |                                                     | `Adafruit PowerSwitch Tail II <http://bit.ly/1wXX8aF>`_                                       |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | 3.3 V FTDI cable                                    | `SparkFun FTDI cable <http://bit.ly/1FMeXsG>`_,                                       |
+    |                                                     | `Adafruit FTDI cable <http://bit.ly/18AF1Mm>`_                                        |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | USB WiFi adapter                                    | `Adafruit WiFi adapter <http://www.adafruit.com/products/814>`_                       |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | Female HDMI to male microHDMI adapter               | `Amazon HDMI to microHDMI adapter <http://amzn.to/1C5BcLp>`_                          |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | HDMI cable                                          | `SparkFun HDMI cable <https://www.sparkfun.com/products/11572>`_                      |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | Micro HDMI to HDMI cable                            | `Adafruit HDMI to microHDMI cable <http://www.adafruit.com/products/1322>`_           |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | HDMI to DVI Cable                                   | `SparkFun HDMI to DVI cable <https://www.sparkfun.com/products/12612>`_               |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | HDMI monitor                                        | `Amazon HDMI monitor <http://amzn.to/1B4MABD>`_                                       |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | Powered USB hub                                     | `Amazon power USB hub <http://amzn.to/1NKm2zB>`_,                                     |
+    |                                                     | `Adafruit power USB hub <http://www.adafruit.com/products/961>`_                      |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | Keyboard with USB hub                               | `Amazon keyboard with USB hub <http://amzn.to/1FbblSX>`_                              |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | Soldering iron                                      | `SparkFun soldering iron <http://bit.ly/1FMfUkP>`_,                                   |
+    |                                                     | `Adafruit soldering iron <http://bit.ly/1EXZ6J1>`_                                    |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | Oscilloscope                                        | `Adafruit oscilloscope <https://www.adafruit.com/products/468>`_                      |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | Multimeter                                          | `SparkFun multimeter <http://bit.ly/1C5BUbu>`_,                                       |
+    |                                                     | `Adafruit multimeter <http://bit.ly/1wXX3np>`_                                        |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | PowerSwitch Tail II                                 | `SparkFun PowerSwitch Tail II <http://bit.ly/1Ag5bLP>`_,                              | 
+    |                                                     | `Adafruit PowerSwitch Tail II <http://bit.ly/1wXX8aF>`_                               |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
     | Servo motor                                         | `SparkFun servo motor <http://bit.ly/1C72cvw>`_,                                      |
     |                                                     | `Adafruit servo motor <http://bit.ly/1HCPQdl>`_                                       |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | 5 V power supply                                    | `SparkFun 5V power supply <http://bit.ly/1C72q5C>`_,                                      |
-    |                                                     | `Adafruit 5V power supply <http://bit.ly/18c0n2D>`_                                       |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | 5 V power supply                                    | `SparkFun 5V power supply <http://bit.ly/1C72q5C>`_,                                  |
+    |                                                     | `Adafruit 5V power supply <http://bit.ly/18c0n2D>`_                                   |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
     | 3 V to 5 V motor                                    | `SparkFun 3V-5V motor <http://bit.ly/1b2g65Y>`_,                                      |
     |                                                     | `Adafruit 3V-5V motor <http://bit.ly/1C72DWF>`_                                       |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | 3 V to 5 V bipolar stepper motor                    | `SparkFun 3V-5V bipolar stepper motor <http://bit.ly/1Bx2hVU>`_,                                      |
-    |                                                     | `Adafruit 3V-5V bipolar stepper motor <http://bit.ly/18c0HhV>`_                                       |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | 3 V to 5 V unipolar stepper motor                   | `Adafruit 3V-5V unipolar stepper motor <http://www.adafruit.com/products/858>`_                        |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | Pushbutton switch                                   | `SparkFun pushbutton switch <http://bit.ly/1AjDf90>`_,                                      |
-    |                                                     | `Adafruit pushbutton switch <http://bit.ly/1b2glhw>`_                                       |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | Magnetic reed switch                                | `SparkFun magnetic reed switch <https://www.sparkfun.com/products/8642>`_                      |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | LV-MaxSonar-EZ1 Sonar Range Finder                  | `SparkFun LV-MaxSonar-EZ1 <http://bit.ly/1C73dDH>`_,                                      |
-    |                                                     | `Amazon LV-MaxSonar-EZ1 <http://amzn.to/1wXXvlP>`_                                        |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | HC-SR04 Ultrsonic Range Sensor                      | `Amazon HC-SR04 <http://amzn.to/1FbcPNa>`_                                        |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | Rotary encoder                                      | `SparkFun rotary encoder <http://bit.ly/1D5ZypK>`_,                                      |
-    |                                                     | `Adafruit rotary encoder <http://bit.ly/1D5ZGp3>`_                                       |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | GPS receiver                                        | `SparkFun GPS <http://bit.ly/1EA2sn0>`_,                                      |
-    |                                                     | `Adafruit GPS <http://bit.ly/1MrS2VV>`_                                       |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | BLE USB dongle                                      | `Adafruit BLE USB dongle <http://www.adafruit.com/products/1327>`_                       |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | SensorTag                                           | `DigiKey SensorTag <http://bit.ly/18AGPVt>`_,                                       |
-    |                                                     | `Amazon SensorTag <http://amzn.to/1EA2B9U>`_,                                       |
-    |                                                     | `TI SensorTag <https://store.ti.com/CC2541-SensorTag-Development-Kit-P3192.aspx>`_  |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | Syba SD-CM-UAUD USB Stereo Audio Adapter            | `Amazon USB audio adapter <http://amzn.to/1EA2GdI>`_                                        |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | Sabrent External Sound Box USB-SBCV                 | `Amazon USB audio adapter (alt) <http://amzn.to/1C74kTU>`_                                        |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | Vantec USB External 7.1 Channel Audio Adapter       | `Amazon USB audio adapter (alt2) <http://amzn.to/19cinev>`_                                        |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | Nokia 5110 LCD                                      | `Adafruit 5110 LCD <http://bit.ly/1Ag6LgG>`_,                                      |
-    |                                                     | `SparkFun 5110 LCD <http://bit.ly/19cizdu>`_                                       |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
-    | BeagleBone LCD7                                     | `eLinux LCD7 <http://elinux.org/CircuitCo:BeagleBone_LCD7#Distributors>`_      |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | 3 V to 5 V bipolar stepper motor                    | `SparkFun 3V-5V bipolar stepper motor <http://bit.ly/1Bx2hVU>`_,                      |
+    |                                                     | `Adafruit 3V-5V bipolar stepper motor <http://bit.ly/18c0HhV>`_                       |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | 3 V to 5 V unipolar stepper motor                   | `Adafruit 3V-5V unipolar stepper motor <http://www.adafruit.com/products/858>`_       |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | Pushbutton switch                                   | `SparkFun pushbutton switch <http://bit.ly/1AjDf90>`_,                                |
+    |                                                     | `Adafruit pushbutton switch <http://bit.ly/1b2glhw>`_                                 |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | Magnetic reed switch                                | `SparkFun magnetic reed switch <https://www.sparkfun.com/products/8642>`_             |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | LV-MaxSonar-EZ1 Sonar Range Finder                  | `SparkFun LV-MaxSonar-EZ1 <http://bit.ly/1C73dDH>`_,                                  |
+    |                                                     | `Amazon LV-MaxSonar-EZ1 <http://amzn.to/1wXXvlP>`_                                    |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | HC-SR04 Ultrsonic Range Sensor                      | `Amazon HC-SR04 <http://amzn.to/1FbcPNa>`_                                            |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | Rotary encoder                                      | `SparkFun rotary encoder <http://bit.ly/1D5ZypK>`_,                                   |
+    |                                                     | `Adafruit rotary encoder <http://bit.ly/1D5ZGp3>`_                                    |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | GPS receiver                                        | `SparkFun GPS <http://bit.ly/1EA2sn0>`_,                                              |
+    |                                                     | `Adafruit GPS <http://bit.ly/1MrS2VV>`_                                               |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | BLE USB dongle                                      | `Adafruit BLE USB dongle <http://www.adafruit.com/products/1327>`_                    |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | SensorTag                                           | `DigiKey SensorTag <http://bit.ly/18AGPVt>`_,                                         |
+    |                                                     | `Amazon SensorTag <http://amzn.to/1EA2B9U>`_,                                         |
+    |                                                     | `TI SensorTag <https://store.ti.com/CC2541-SensorTag-Development-Kit-P3192.aspx>`_    |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | Syba SD-CM-UAUD USB Stereo Audio Adapter            | `Amazon USB audio adapter <http://amzn.to/1EA2GdI>`_                                  |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | Sabrent External Sound Box USB-SBCV                 | `Amazon USB audio adapter (alt) <http://amzn.to/1C74kTU>`_                            |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | Vantec USB External 7.1 Channel Audio Adapter       | `Amazon USB audio adapter (alt2) <http://amzn.to/19cinev>`_                           |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | Nokia 5110 LCD                                      | `Adafruit 5110 LCD <http://bit.ly/1Ag6LgG>`_,                                         |
+    |                                                     | `SparkFun 5110 LCD <http://bit.ly/19cizdu>`_                                          |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
+    | BeagleBone LCD7                                     | `eLinux LCD7 <http://elinux.org/CircuitCo:BeagleBone_LCD7#Distributors>`_             |
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+
     | MiniDisplay Cape                                    | `eLinux minidisplay <http://elinux.org/CircuitCo:MiniDisplay_Cape>`_                  |
-    +-----------------------------------------------------+---------------------------------------------------------------------------+
+    +-----------------------------------------------------+---------------------------------------------------------------------------------------+

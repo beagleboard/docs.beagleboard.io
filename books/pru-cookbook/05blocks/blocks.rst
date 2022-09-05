@@ -16,8 +16,10 @@ Resources
 * `Exploring BeagleBone by Derek Molloy <http://exploringbeaglebone.com/>`_
 * `WS2812 Data Sheet <https://cdn-shop.adafruit.com/datasheets/WS2812.pdf>`_
 
+.. _memory_allocation:
+
 Memory Allocation
-==================
+******************
 
 
 Problem
@@ -35,12 +37,11 @@ shared memory (Shared RAM) as shown in :ref:`blocks_PRU_block_diagram`.
 
 .. _blocks_PRU_block_diagram:
 
-PRU Block Diagram
-~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/blockDiagram.png
   :align: center
   :alt: PRU Block diagram
+
+  PRU Block Diagram
 
 Each PRU accesses it's own DRAM starting at location 0x0000_0000. Each PRU
 can also access the other PRU's DRAM starting at 0x0000_2000. Both PRUs 
@@ -51,8 +52,9 @@ of these memories variables are stored.
 
 .. _blocks_shared:
 
-shared.pro0.c - Examples of Using Different Memory Locations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/shared.pru0.c
+   :caption: shared.pro0.c - Examples of Using Different Memory Locations
+   :linenos:
 
 :download:`shared.pru0.c <code/shared.pru0.c>`
 
@@ -62,8 +64,7 @@ Discussion
 
 Here's the line-by-line
 
-Line-byline for shared.pru0.c
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. table:: Line-byline for shared.pru0.c
 
   +-------+---------------------------------------------------------------------------------------------------------+
   |Line   | Explanation                                                                                             |
@@ -155,9 +156,7 @@ therefore placed on the stack at run time.  The ``shared.map`` file shows the
 compile time allocations.  We have to look in the memory itself to see what
 happen at run time.
 
-Let's fire up ``prudebug`` 
-(:ref:`../04debug/debug.html#debug_prudebug, prudebug - A Simple Debugger for the PRU`)
-to see where things are.
+Let's fire up ``prudebug`` (:ref:`debug_prudebug`) to see where things are.
 
 .. code-block:: bash
 
@@ -233,10 +232,10 @@ be sure if you are hand picking where things are put, not to put them in places
 used by the compiler.
 
 Auto Initialization of built-in LED Triggers
-=============================================
+*********************************************
 
 Problem
------------
+---------
 
 I see the built-in LEDs blink to their own patterns. 
 How do I turn this off? Can this be automated?
@@ -312,8 +311,9 @@ the code work.  Fortunately the Makefile always runs it.
 
 .. _blocks_write_init_pins:
 
-write_init_pins.sh
-~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/write_init_pins.sh
+   :caption: write_init_pins.sh
+   :linenos:
 
 :download:`write_init_pins.sh <code/write_init_pins.sh>`
 
@@ -338,7 +338,7 @@ file contains everything needed to run the executable.
 .. _blocks_pwm:
 
 PWM Generator
-==============
+**************
 
 One of the simplest things a PRU can to is generate a simple
 signal starting with a single channel PWM that has a fixed frequency and
@@ -365,8 +365,9 @@ for details on making it work.
 
 .. _blocks_pwm1:
 
-pwm1.pru0.c 
-~~~~~~~~~~~~
+.. literalinclude:: code/pwm1.pru0.c
+   :caption: pwm1.pru0.c
+   :linenos:
 
 :download:`pwm1.pru0.c <code/pwm1.pru0.c>`
 
@@ -385,7 +386,7 @@ On the Pocket run
 
 .. note::
 
-  See :ref:`../08ai/ai.html#ai_device_tree, Configuring pins on the AI via device trees` 
+  See :ref:`ai_device_tree` 
   for configuring pins on the AI.
 
 Then, tell ``Makefile`` which PRU you are compiling for and what your target file is
@@ -417,17 +418,17 @@ Discussion
 
 Since this is our first example we'll discuss the many parts in detail.
 
-pwm1.pru0.c
-~~~~~~~~~~~~
+.. literalinclude:: code/pwm1.pru0.c
+   :caption: pwm1.pru0.c
+   :linenos:
+
+:download:`pwm1.pru0.c <code/pwm1.pru0.c>`
 
 :ref:`blocks_pwm1_line_by_line` is a line-by-line expanation of the c code.
 
 .. _blocks_pwm1_line_by_line:
 
-Line-by-line of pwm1.pru0.c
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. table::
+.. table:: Line-by-line of pwm1.pru0.c
 
   +-----+-------------------------------------------------------------------------------------+
   |Line | Explanation                                                                         |
@@ -446,34 +447,32 @@ Line-by-line of pwm1.pru0.c
 
 Here's what's in ``resource_table_empty.h``
 
-resource_table_empty.c 
-~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/resource_table_empty.h
+   :caption: resource_table_empty.c
+   :linenos:
 
-:download:`resource_table_empty.h <code/resource_table_empty.h>`
+:download:`resource_table_empty.c <code/resource_table_empty.h>`
 
-Line-by-line (continuted)
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. table::
+.. table:: Line-by-line (continuted)
 
   +-----+-----------------------------------------------------------------------------------------------------------------+
   |Line | Explanation                                                                                                     |
   +=====+=================================================================================================================+
-  |6-7  | `pass:[__]R30` and `pass:[__]R31` are two variables that refer to the                                           |
-  |     | PRU output (`pass:[__]R30`) and input (`pass:[__]R31`) registers.                                               |
-  |     | When you write something to `pass:[__]R30` it will show up on the                                               |
-  |     | corresponding output pins. When you read from `pass:[__]R31`                                                    |
+  |6-7  | ``__R30`` and ``__R31`` are two variables that refer to the                                                     |
+  |     | PRU output (``__R30``) and input (``__R31``) registers.                                                         |
+  |     | When you write something to ``__R30`` it will show up on the                                                    |
+  |     | corresponding output pins. When you read from ``__R31``                                                         |
   |     | you read the data on the input pins.                                                                            |
   |     | NOTE: Both names begin with two underscore's. Section 5.7.2 of the                                              |
-  |     | http://www.ti.com/lit/ug/spruhv7b/spruhv7b.pdf[PRU Optimizing C/C++ Compiler, v2.2, User's Guide]               |
+  |     | `PRU Optimizing C/C++ Compiler, v2.2, User's Guide <http://www.ti.com/lit/ug/spruhv7b/spruhv7b.pdf>`_           |
   |     | gives more details.                                                                                             |
   +-----+-----------------------------------------------------------------------------------------------------------------+
-  |11   | This line selects which GPIO pin to toggle.  The table below shows which bits in `pass:[__]R30`                 |
+  |11   | This line selects which GPIO pin to toggle.  The table below shows which bits in ``__R30``                      |
   |     | map to which pins                                                                                               |
   +-----+-----------------------------------------------------------------------------------------------------------------+
   |14   | `CT_CFG.SYSCFG_bit.STANDBY_INIT` is set to `0` to enable the OCP master port. More details on this              |
   |     | and thousands of other regesters see the                                                                        |
-  |     | https://www.ti.com/lit/ug/spruh73p/spruh73p.pdf[AM335x Technical Reference Manual]. Section 4 is on the PRU     |
+  |     | `TI AM335x TRM <https://www.ti.com/lit/ug/spruh73p/spruh73p.pdf>`_. Section 4 is on the PRU                     |
   |     | and section 4.5 gives details for all the registers.                                                            |
   +-----+-----------------------------------------------------------------------------------------------------------------+
 
@@ -483,10 +482,7 @@ Bit 0 is the LSB.
 
 .. _blocks_mapping_bits:
 
-Mapping bit positions to pin names
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. table:: 
+.. table:: Mapping bit positions to pin names
 
   +---+---+---------------------+-----------+
   |PRU|Bit|Black pin            |Pocket pin |
@@ -550,34 +546,32 @@ Mapping bit positions to pin names
 
 .. note::
 
-  See :ref:`../08ai/ai.html#ai_device_tree, Configuring pins on the AI via device trees` 
+  See :ref:`ai_device_tree` 
   for all the PRU pins on the AI.
 
 Since we are running on PRU 0, and we're using ``0x0001``, 
 that is bit 0, we'll be toggling ``P9_31``.
 
-Line-by-line (continued again)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. table::
+.. table:: Line-by-line (continued again)
 
   +-----+-----------------------------------------------------------------------+
   |Line | Explanation                                                           |
   +=====+=======================================================================+
-  |17   | Here is where the action is.  This line reads ``pass:[__]R30`` and    |
+  |17   | Here is where the action is.  This line reads ``__R30`` and           |
   |     | then ORs it with ``gpio``, setting the bits where there is            |
   |     | a 1 in ``gpio`` and leaving the bits where there is a 0.              |
   |     | Thus we are setting the bit we selected. Finally the new              |
-  |     | value is written back to ``pass:[__]R30``.                            |
+  |     | value is written back to ``__R30``.                                   |
   +-----+-----------------------------------------------------------------------+
-  |18   | ``pass:[__]delay_cycles`` is an ((instrinsic function)) that delays   |
+  |18   | ``__delay_cycles`` is an ((instrinsic function)) that delays          |
   |     | with number of cycles passed to it. Each cycle is 5ns,                |
   |     | and we are delaying 100,000,000 cycles which is                       |
   |     | 500,000,000ns, or 0.5 seconds.                                        |
   +-----+-----------------------------------------------------------------------+
   |19   | This is like line 17, but ``~gpio`` inverts all the bits in ``gpio``  |
   |     | so that where we had a 1, there is now a 0.  This 0                   |
-  |     | is then ANDed with ``pass:[__]R30`` setting the corresponding         |
+  |     | is then ANDed with ``__R30`` setting the corresponding                |
   |     | bit to 0.  Thus we are clearing the bit we selected.                  |
   +-----+-----------------------------------------------------------------------+
 
@@ -590,31 +584,30 @@ Line-by-line (continued again)
 
 When you run this code and look at the output you will see something like the following figure.
 
-Output of pwm1.pru0.c with 100,000,000 delays cycles giving a 1s period
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. figure:: figures/pwm1.png
   :align: center
   :alt: pwm1.pru0.c output
+
+  Output of pwm1.pru0.c with 100,000,000 delays cycles giving a 1s period
 
 Notice the on time (``+Width(1)``) is 500ms, just as we predicted.  
 The off time is 498ms, which is only 2ms off from our prediction. 
 The standard deviation is 0, or only 380as, which is 380 * 10^-18^!.
 
 You can see how fast the PRU can run by setting both of the 
-``pass:[__]delay_cycles`` to 0. This results in the next figure.
-
-Output of pwm1.pru0c with 0 delay cycles
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+``__delay_cycles`` to 0. This results in the next figure.
 
 .. figure:: figures/pwm2.png
   :align: center
   :alt: pwm1.pru0.c output with 0 delay
 
+  Output of pwm1.pru0c with 0 delay cycles
+
 Notice the period is 15ns which gives us a frequency of about 67MHz. At this high 
 frequency the breadboard that I'm using distorts the waveform so it's no longer a squarewave. 
-The **on** time is 5.3ns and the **off** time is 9.8ns.  That means **pass:[__]R30 |= gpio** 
-took only one 5ns cycle and ``pass:[__]R30 &= ~gpio`` also only took one cycle, but there 
+The **on** time is 5.3ns and the **off** time is 9.8ns.  That means **__R30 |= gpio** 
+took only one 5ns cycle and ``__R30 &= ~gpio`` also only took one cycle, but there 
 is also an extra cycle needed for the loop.  This means the compiler was able to implement 
 the ``while`` loop in just three 5ns instructions!  Not bad.
 
@@ -622,29 +615,35 @@ We want a square wave, so we need to add a delay to correct for the delay of loo
 
 Here's the code that does just that.
 
-pwm2.pru0.c 
-~~~~~~~~~~~~~
+.. literalinclude:: code/pwm2.pru0.c
+   :caption: pwm2.pru0.c
+   :linenos:
 
 :download:`pwm2.pru0.c <code/pwm2.pru0.c>`
 
 The output now looks like:
 
-Output of pwm2.pru0.c corrected delay
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/pwm3.png
   :align: center
   :alt: pwm2.c corrected delay
 
-It's not hard to adjust the two ``pass:[__]delay_cycles`` 
+  Output of pwm2.pru0.c corrected delay
+
+It's not hard to adjust the two ``__delay_cycles`` 
 to get the desired frequency and duty cycle.
 
-### Controlling the PWM Frequency
-#### Problem
+Controlling the PWM Frequency
+******************************
+
+Problem
+---------
+
 You would like to control the frequency and 
 duty cycle of the PWM without recompiling.
 
-#### Solution
+Solution
+----------
+
 Have the PRU read the **on** and **off** times from a shared memory location. 
 Each PRU has is own 8KB of data memory (DRAM) and 12KB of shared memory 
 (SHAREDMEM) that the ARM processor can also access.  See :ref:`blocks_PRU_block_diagram`.
@@ -654,8 +653,7 @@ The DRAM 0 address is 0x0000 for PRU 0.  The same DRAM appears at address
 
 .. tip::
 
-  See page
-  184 of the https://www.ti.com/lit/ug/spruh73p/spruh73p.pdf[AM335x Technical Reference Manual].  
+  See page 184 of the `AM335x TRM (184) <https://www.ti.com/lit/ug/spruh73p/spruh73p.pdf>`_. 
 
 We take the previous PRU code and add the lines
  
@@ -692,15 +690,17 @@ the ARM can write values into the DRAM and change the PWM on and off times.
 
 .. _blocks_pwm4:
 
-pwm4.pru0.c 
-~~~~~~~~~~~~
+.. literalinclude:: code/pwm4.pru0.c
+   :caption: pwm4.pru0.c
+   :linenos:
 
 :download:`pwm4.pru0.c <code/pwm4.pru0.c>`
 
 Here is code that runs on the ARM side to set the on and off time values.
 
-pwm-test.c 
-~~~~~~~~~~~~
+.. literalinclude:: code/pwm-test.c
+   :caption: pwm-test.c
+   :linenos:
 
 :download:`pwm-test.c <code/pwm-test.c>`
 
@@ -708,12 +708,11 @@ A quick check on the 'scope shows :ref:`blocks_pwm_arm_control`.
 
 .. _blocks_pwm_arm_control:
 
-Four Channel PWM with ARM control
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/pwm4.png
   :align: center
   :alt: pwm4.png
+
+  Four Channel PWM with ARM control
 
 From the 'scope you see a 1 cycle **on** time results in a 450ns wide pulse and a 
 3.06us period is 326KHz, much slower than the 10ns pulse we saw before.  But it 
@@ -722,39 +721,35 @@ may be more than fast enough for many applications.  For example, most servos ru
 But we can do better.
 
 Loop Unrolling for Better Performance
-======================================
+***************************************
 
 Problem
------------
+---------
 
 The ARM controlled PRU code runs too slowly.
 
 Solution
------------
+----------
 
-Simple loop unrolling can greatly improve the speed.  ``pwm5.pru0.c`` is our unrolled
-version.
+Simple loop unrolling can greatly improve the speed.  ``pwm5.pru0.c`` is our unrolled version.
 
-pwm5.pru0.c Unrolled
-~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/pwm5.pru0.c
+   :caption: pwm5.pru0.c Unrolled
+   :linenos:
 
 :download:`pwm5.pru0.c <code/pwm5.pru0.c>`
 
 The output of ``pwm5.pru0.c`` is in the figure below.
 
-pwm5.pru0.c Unrolled version of pwm4.pru0.c
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/pwm5_no_loop.png
   :align: center
   :alt: pwm5.pru0.c Unrolled version of pwm4.pru0.c
 
+  pwm5.pru0.c Unrolled version of pwm4.pru0.c
+
 It's running about 6 times faster than ``pwm4.pru0.c``.
 
-pwm4.pru0.c vs. pwm5.pru0.c
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. table::
+.. table:: pwm4.pru0.c vs. pwm5.pru0.c
   
   +---------+-----------------+-----------------+---------+-----------------------+---------+
   |Measure  |pwm4.pru0.c time |pwm5.pru0.c time |Speedup  |pwm5.pru0.c w/o UNROLL |Speedup  |
@@ -786,7 +781,7 @@ it copies the code an then it's compiled.
 This unrolling gets us an impressive 6x speedup.
 
 Making All the Pulses Start at the Same Time
-=============================================
+**********************************************
 
 Problem
 -----------
@@ -802,21 +797,22 @@ in each channel starts about 15ns later than the channel above it.
 
 .. _blocks_zoomed:
 
-pwm5.pru0 Zoomed In 
-~~~~~~~~~~~~~~~~~~~~~
 .. figure:: figures/pwm5_zoomed.png
   :align: center
   :alt: pwm5.pru0 zoomed.png
 
-The solution is to declare ``Rtmp`` (line 35) which holds the value for ``pass:[__]R30``.
+  pwm5.pru0 Zoomed In 
 
-pwm6.pru0.c Sync'ed Version of pwm5.pru0.c 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The solution is to declare ``Rtmp`` (line 35) which holds the value for ``__R30``.
+
+.. literalinclude:: code/pwm6.pru0.c
+   :caption: pwm6.pru0.c Sync'ed Version of pwm5.pru0.c 
+   :linenos:
 
 :download:`pwm6.pru0.c Sync'ed Version of pwm5.pru0.c <code/pwm6.pru0.c>`
 
 Each channel writes it's value to ``Rtmp`` (lines 17 and 20) and then after
-each channel has updated, ``Rtmp`` is copied to ``pass:[__]R30`` (line 54).
+each channel has updated, ``Rtmp`` is copied to ``__R30`` (line 54).
 
 Discussion
 -----------
@@ -824,16 +820,16 @@ Discussion
 The following figure shows the channel are sync'ed. Though the period is slightly
 longer than before.
 
-pwm6.pru0 Synchronized Channels
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. figure:: figures/pwm6_synced.png
   :align: center
   :alt: pwm6.pru0 Synchronized Channels
 
+  pwm6.pru0 Synchronized Channels
+
 
 Adding More Channels via PRU 1
-================================
+*******************************
 
 Problem
 -----------
@@ -857,15 +853,17 @@ will make the period half as long.
 
 Here's the code (``pwm7.pru0.c``)
 
-pwm7.pru0.c Using Both PRUs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/pwm7.pru0.c
+   :caption: pwm7.pru0.c Using Both PRUs
+   :linenos:
 
 :download:`pwm7.pru0.c Using Both PRUs <code/pwm7.pru0.c>`
 
 Be sure to run ``pwm7_setup.sh`` to get the correct pins configured.
 
-pwm7_setup.sh
-~~~~~~~~~~~~~~~
+.. literalinclude:: code/pwm7_setup.sh
+   :caption: pwm7_setup.sh
+   :linenos:
 
 :download:`pw7_setup.sh <code/pwm7_setup.sh>`
 
@@ -908,6 +906,7 @@ Discussion
 
 There weren't many changes to be made.  Line 15 we set MAXCH to 2. Lines 44-48
 is where the big change is.
+
 .. code-block:: c
 
 		pru0_dram[2*ch  ] = on [ch+PRUNUN*MAXCH];	// Copy to DRAM0 so the ARM can change it
@@ -924,22 +923,20 @@ behavior.
 
 Running the code you will see the next figure.
 
-pwm7.pru0 Two PRUs running
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/pwm7_two_prus_running.png
   :align: center
   :alt: pwm7.pru0 Two PRUs running
 
+  pwm7.pru0 Two PRUs running
+
 What's going on there, the first channels look fine, but the PRU 1 channels
 are blurred.  To see what's happening, let's stop the oscilloscope.
-
-pwm7.pru0 Two PRUs stopped
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. figure:: figures/pwm7_two_prus_stopped.png
   :align: center
   :alt: pwm7 Two PRUs stopped
+
+  pwm7.pru0 Two PRUs stopped
 
 The stopped display shows that the four channels are doing what we wanted, except 
 The PRU 0 channels have a period of 370ns while the PRU 1 channels at 330ns.
@@ -947,7 +944,7 @@ It appears the compiler has optimied the two PRUs slightly differenty.
 
 
 Synchronizing Two PRUs
-=======================
+***********************
 
 Problem
 -----------
@@ -958,26 +955,28 @@ Solution
 -----------
 
 Use the Interrupt Controller (INTC).  It allows one PRU to signal the other.
-Page 225 of the `AM335x Technical Reference Manual <https://www.ti.com/lit/ug/spruh73p/spruh73p.pdf>`_
+Page 225 of the `AM335x TRM 225 <https://www.ti.com/lit/ug/spruh73p/spruh73p.pdf>`_
 has details of how it works.  Here's the code for PRU 0, which at the end of the
 ``while`` loop signals PRU 1 to start(``pwm8.pru0.c``).
 
-pwm8.pru0.c PRU 0 using INTC to send a signal to PRU 1 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/pwm8.pru0.c
+   :caption: pwm8.pru0.c PRU 0 using INTC to send a signal to PRU 1 
+   :linenos:
 
 :download:`pwm8.pru0.c  PRU 0 using INTC to send a signal to PRU 1 <code/pwm8.pru0.c>`
 
 PRU 2's code waits for PRU 0 before going.
 
-pwm8.pru1.c PRU 1 waiting for INTC from PRU 0 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/pwm8.pru1.c
+   :caption: pwm8.pru1.c PRU 1 waiting for INTC from PRU 0
+   :linenos:
 
 :download:`pwm8.pru1.c PRU 1 waiting for INTC from PRU 0 <code/pwm8.pru1.c>`
 
 In ``pwm8.pru0.c`` PRU 1 waits for a signal from PRU 0, so be sure to start PRU 1 first.
 
 .. code-block:: bash
-
+  
   bone$ *make TARGET=pwm8.pru0; make TARGET=pwm8.pru1*
 
 Discussion
@@ -986,31 +985,27 @@ Discussion
 The figure below shows the two PRUs are synchronized, though there is some extra
 overhead in the process so the period is longer.
 
-pwm8.pru0 PRUs sycned
-~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/pwm8_prus_sycned.png
   :align: center
   :alt: pwm8.pru0 PRUs sycned
 
+  pwm8.pru0 PRUs sycned
+
 This isn't much different from the previous examples.
 
-pwm8.pru0.c changes from pwm7.pru0.c 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. table::
+.. table:: pwm8.pru0.c changes from pwm7.pru0.c
 
   +-----+-------+---------------------------------------------------------------------------------------+
   |PRU  |Line   |Change                                                                                 |
   +=====+=======+=======================================================================================+
   |0    |37-45  |For PRU 0 these define ``configInitc()`` which initializes the interupts.              |
   |     |       |See page 226 of the                                                                    |
-  |     |       |`AM335x Technical Reference Manual <https://www.ti.com/lit/ug/spruh73p/spruh73p.pdf>`_ |
+  |     |       |`AM335x TRM <https://www.ti.com/lit/ug/spruh73p/spruh73p.pdf>`_                        |
   |     |       |for a diagram explaining events, channels, hosts, etc.                                 |
   +-----+-------+---------------------------------------------------------------------------------------+
   |0    |55-56  |Set a configuration register and call `configInitc`.                                   |
   +-----+-------+---------------------------------------------------------------------------------------+
-  |1    |59-61  |PRU 1 then waits for PRU 0 to signal it.  Bit 31 of ``pass:[__]R31`` corresponds       |
+  |1    |59-61  |PRU 1 then waits for PRU 0 to signal it.  Bit 31 of ``__R31`` corresponds              |
   |     |       |to the Host-1 channel which ``configInitc()`` set up. We also clear event 16 so        |
   |     |       |PRU 0 can set it again.                                                                |
   +-----+-------+---------------------------------------------------------------------------------------+
@@ -1022,7 +1017,7 @@ pwm8.pru0.c changes from pwm7.pru0.c
 This ends the multipart pwm example.
 
 Reading an Input at Regular Intervals
-======================================
+**************************************
 
 Problem
 -----------
@@ -1032,15 +1027,11 @@ You have an input pin that needs to be read at regular intervals.
 Solution
 -----------
 
-You can use the ``pass:[__]R31`` register to read an input pin. Let's use the following
-pins.
+You can use the ``__R31`` register to read an input pin. Let's use the following pins.
 
 .. _blocks_io_pins:
 
-Input/Output pins
-~~~~~~~~~~~~~~~~~~
-
-.. table::
+.. table:: Input/Output pins
 
   +---------+----------+-----+----------+---------+
   |Direction|Bit number|Black|AI (ICSS2)|Pocket   |
@@ -1054,25 +1045,27 @@ These values came from :ref:`blocks_mapping_bits`.
 
 Configure the pins with ``input_setup.sh``.
 
-input_setup.sh
-~~~~~~~~~~~~~~~
+.. literalinclude:: code/input_setup.sh
+   :caption: input_setup.sh
+   :linenos:
 
 :download:`input_setup.sh <code/input_setup.sh>`
 
 The following code reads the input pin and writes its value to the output pin.
 
-input.c
-~~~~~~~~~~
+.. literalinclude:: code/input.pru0.c
+   :caption: code/input.pru0.c
+   :linenos:
 
 :download:`input.pru0.c <code/input.pru0.c>`
 
 Discussion
 -----------
 
-Just remember that ``pass:[__]R30`` is for outputs and ``pass:[__]R31`` is for inputs.
+Just remember that ``__R30`` is for outputs and ``__R31`` is for inputs.
 
 Analog Wave Generator
-=======================
+**********************
 
 Problem
 -----------
@@ -1092,13 +1085,13 @@ a large duty cycle for when it is large.
 
 This example was inspired by 
 `A PRU Sin Wave Generator <https://github.com/derekmolloy/exploringBB/tree/master/chp13/sineWave>`_
-in chapter 13 of 
-`Exploring BeagleBone by Derek Molloy<http://exploringbeaglebone.com/>`_.
+in chapter 13 of `Exploring BeagleBone by Derek Molloy <http://exploringbeaglebone.com/>`_.
 
 Here's the code.
 
-sine.pru0.c
-~~~~~~~~~~~~~
+.. literalinclude:: code/sine.pru0.c
+   :caption: sine.pru0.c
+   :linenos:
 
 :download:`sine.pru0.c <code/sine.pru0.c>`
 
@@ -1124,12 +1117,11 @@ Suppose you want to generate a sawtooth waveform like the one shown in :ref:`blo
 
 .. _blocks_sawtooth:
 
-Continuous Sawtooth Waveform
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/sawtoothsmooth.png
   :align: center
   :alt: Continuous Sawtooth Waveform
+
+  Continuous Sawtooth Waveform
 
 You need to sample the waveform and store one cycle. :ref:`blocks_sawtoothsampled`
 shows a sampled version of the sawtooth. You need to generate ``MAXT`` samples; 
@@ -1137,19 +1129,15 @@ here we show 20 samples, which may be enough. In the code ``MAXT`` is set to 100
 
 .. _blocks_sawtoothsampled:
 
-Sampled Sawtooth Waveform
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/sawtoothsampled.png
   :align: center
   :alt: Sampled Sawtooth Waveform
 
+  Sampled Sawtooth Waveform
+
 There's a lot going on here; let's take it line by line.
 
-Line-by-line of sine.pru0.c
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. table::
+.. table:: Line-by-line of sine.pru0.c
 
   +-------+---------------------------------------------------------------------------------+
   |Line   | Explanation                                                                     |
@@ -1194,12 +1182,11 @@ Line-by-line of sine.pru0.c
 
 .. _blocks_sawunfiltered:
 
-Unfiltered Sawtooth Waveform
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/sawunfiltered.png
   :align: center
   :alt: Unfiltered Sawtooth Waveform
+
+  Unfiltered Sawtooth Waveform
 
 It doesn't look like a sawtooth; but if you look at the left side you will 
 see each cycle has a longer and longer on time.  The duty cycle is increasing.
@@ -1214,12 +1201,11 @@ A simple low-pass filter, built with one resistor and one capacitor will do it.
 
 .. _blocks_filterwiring:
 
-Low-Pass Filter Wiring Diagram
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/filter_bb.png
   :align: center
   :alt: Low-Pass Filter Wiring Diagram
+
+  Low-Pass Filter Wiring Diagram
 
 .. note::
 
@@ -1231,12 +1217,11 @@ Low-Pass Filter Wiring Diagram
 
 .. _blocks_sawscope:
 
-Reconstructed Sawtooth Waveform
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/sawscope.png
   :align: center
   :alt: Reconstructed Sawtooth Waveform
+
+  Reconstructed Sawtooth Waveform
 
 Now that looks more like a sawtooth wave.  The top plot is the time-domain
 plot of the output of the low-pass filter. The bottom plot is the FFT of the top 
@@ -1252,12 +1237,11 @@ resistor.  You'll see something like :ref:`blocks_lowercutoff`.
 
 .. _blocks_lowercutoff:
 
-Reconstructed Sawtooth Waveform with Lower Cutoff Frequency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/sawlowercutoff.png
   :align: center
   :alt: Reconstructed Sawtooth Waveform with Lower Cutoff Frequency
+
+  Reconstructed Sawtooth Waveform with Lower Cutoff Frequency
 
 The high freqencies have been reduced, but the corner of the waveform has 
 been rounded.  You can also adjust the cutoff to a higher frequency and you'll 
@@ -1266,12 +1250,11 @@ get a sharper corner, but you'll also get more high frequencies. See
 
 .. _blocks_highercutoff:
 
-Reconstructed Sawtooth Waveform with Higher Cutoff Frequency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/sawhighercutoff.png
   :align: center
   :alt: Reconstructed Sawtooth Waveform with Higher Cutoff Frequency
+
+  Reconstructed Sawtooth Waveform with Higher Cutoff Frequency
 
 Adjust to taste, though the real solution is to build a higher order filter. 
 Search for _second order **filter** and you'll find some nice circuits.
@@ -1285,23 +1268,21 @@ You can also get a triangle waveform by setting the ``#define``.
 
 .. _blocks_triangle:
 
-Reconstructed Triangle Waveform
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/triangle.png
   :align: center
   :alt: Reconstructed Triangle Waveform
+
+  Reconstructed Triangle Waveform
 
 And also the sine wave as shown in :ref:`blocks_sine`.
 
 .. _blocks_sine:
 
-Reconstructed Sinusoid Waveform
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/sine.png
   :align: center
   :alt: Reconstructed Sinusoid Waveform
+
+  Reconstructed Sinusoid Waveform
 
 Notice on the bottom plot the harmonics are much more suppressed.
 
@@ -1311,8 +1292,9 @@ You can look in `/tmp/cloud9-examples/sine.pru0.map` to see how much memory is b
 
 .. _blocks_sine_map:
 
-/tmp/cloud9-examples/sine.pru0.map for Sine Wave
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/sine.map
+   :caption: /tmp/cloud9-examples/sine.pru0.map for Sine Wave
+   :linenos:
 
 :download:`lines=1..22 <code/sine.map>`
 
@@ -1330,7 +1312,7 @@ to the PRU.
 .. _blocks_ws2812:
 
 WS2812 (NeoPixel) driver
-==========================
+***************************
 
 Problem
 -----------
@@ -1353,40 +1335,38 @@ Wire the input to ``P9_29`` and power to 3.3V and ground to ground as shown in
 
 .. _blocks_neo_wiring:
 
-.NeoPixel Wiring
 .. figure:: figures/neo_bb.png
   :align: center
   :alt: NeoPixel Wiring
+
+  NeoPixel Wiring
 
 Test your wiring with the simple code in :ref:`blocks_neo1` 
 which to turns all pixels white.
 
 .. _blocks_neo1:
 
-neo1.pru0.c - Code to turn all NeoPixels's white
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: bash
+.. literalinclude:: code/neo1.pru0.c
+   :caption: neo1.pru0.c - Code to turn all NeoPixels's white
+   :linenos:
 
 :download:`neo1.pru0.c <code/neo1.pru0.c>`
 
 Discussion
 -----------
 
-:ref:`blocks_sequence` (taken from  `WS2812 Data Sheet <https://cdn-shop.adafruit.com/datasheets/WS2812.pdf>`_) shows the following waveforms are used to send a bit of data.
+:ref:`blocks_sequence` (taken from  `WS2812 Data Sheet <https://cdn-shop.adafruit.com/datasheets/WS2812.pdf>`_) 
+shows the following waveforms are used to send a bit of data.
 
 .. _blocks_sequence:
-
-NeoPixel bit sequence
-~~~~~~~~~~~~~~~~~~~~~~
 
 .. figure:: figures/neo_sequence.png
   :align: center
   :alt: NeoPixel bit sequence
 
-Where the times are:
+  NeoPixel bit sequence
 
-.. table::
+.. table:: Where the times are:
 
   +-------+-------------+
   |Label  | Time in ns  |
@@ -1411,12 +1391,11 @@ shows the waveform for sending a 0 value.  Note the times are spot on.
 
 .. _blocks_zero_scope:
 
-NeoPixel zero timing
-~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/neo_scope.png
   :align: center
-  :alt: 
+  :alt: NeoPixel zero timing
+
+  NeoPixel zero timing
 
 Each NeoPixel listens for a RGB value. Once a value has arrived all other values
 that follow are passed on to the next NeoPixel which does the same thing.
@@ -1428,23 +1407,24 @@ grab the next value for itself and start over again.
 
 
 Setting NeoPixels to Different Colors
-======================================
+***************************************
 
 Problem
------------
+---------
 
 I want to set the LEDs to different colors.
 
 Solution
------------
+---------
 
-Wire your NeoPixels as shown in :ref:`blocks_neo_wiring` then run the code in 
-:ref:`blocks_neo2`.
+Wire your NeoPixels as shown in :ref:`blocks_neo_wiring` 
+then run the code in :ref:`blocks_neo2`.
 
 .. _blocks_neo2:
 
-neo2.pru0.c - Code to turn on green, red, blue
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/neo2.pru0.c
+   :caption: neo2.pru0.c - Code to turn on green, red, blue
+   :linenos:
 
 :download:`neo2.pru0.c <code/neo2.pru0.c>`
 
@@ -1458,25 +1438,21 @@ used to control the green, red and blue values.
 
 .. _blocks_new_data_seq:
 
-NeoPixel data sequence
-~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/neo_data_seq.png
   :align: center
-  :alt: 
+  :alt: NeoPixel data sequence
+
+  NeoPixel data sequence
 
 .. note::
 
-The usual order for colors is RGB (red, green, blue), but the NeoPixels use GRB (green, red, blue).
+  The usual order for colors is RGB (red, green, blue), but the NeoPixels use GRB (green, red, blue).
 
 :ref:`blocks_neo2_line` is the line-by-line for ``neo2.pru0.c``.
 
 .. _blocks_neo2_line:
 
-Line-by-line for neo2.pru0.c
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. table::
+.. table:: Line-by-line for neo2.pru0.c
 
   +-------+---------------------------------------------------------------------------------+
   |Line   | Explanation                                                                     |
@@ -1501,12 +1477,10 @@ Line-by-line for neo2.pru0.c
 
 .. note::
 
-This will only change the first ``STR_LEN`` LEDs.  The LEDs that follow will not
-be changed.
-====
+  This will only change the first ``STR_LEN`` LEDs.  The LEDs that follow will not be changed.
 
 Controlling Arbitrary LEDs
-============================
+***************************
 
 Problem
 -----------
@@ -1522,30 +1496,30 @@ string to the LEDs.  :ref:`blocks_neo3` shows an example animates a red pixel
 running around a ring of blue background.  :ref:`blocks_neo3_video` shows
 the code in action.
 
-.. _blocks_neo3_video:
-
-neo3.pru0.c - Simple animation
-
-:download:`ring_around.mp4 <figures/ring_around.mp4>`
-
 .. _blocks_neo3:
 
-neo3.pru0.c - Code to animate a red pixel running around a ring of blue
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/neo3.pru0.c
+   :caption: neo3.pru0.c - Code to animate a red pixel running around a ring of blue
+   :linenos:
 
 :download:`neo3.pru0.c <code/neo3.pru0.c>`
+
+.. _blocks_neo3_video:
+
+Neo3 Video
+-----------
+
+:download:`neo3.pru0.c - Simple animation <figures/ring_around.mp4>`
 
 
 Discussion
 -----------
 
-Here's the highlights.
-
-.. table::
+.. table:: Here's the highlights.
 
   +-----+---------------------------------+
   |Line |Explanation                      |
-  +=====|=================================+
+  +=====+=================================+
   |32,33|Initiallize the array of colors. |
   +-----+---------------------------------+
   |38-41|Update the array.                |
@@ -1558,7 +1532,7 @@ Here's the highlights.
   +-----+---------------------------------+
 
 Controlling NeoPixels Through a Kernel Driver
-======================================
+*************************************************
 
 Problem
 -----------
@@ -1576,8 +1550,9 @@ an example.
 
 .. _blocks_neo4:
 
-neo4.pru0.c - Code to talk to the PRU via rpmsg_pru
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/neo4.pru0.c
+   :caption: neo4.pru0.c - Code to talk to the PRU via rpmsg_pru
+   :linenos:
 
 :download:`neo4.pru0.c <code/neo4.pru0.c>`
 
@@ -1614,32 +1589,41 @@ There's a lot here.  I'll just hit some of the highlights in :ref:`blocks_neo4_l
 
 .. _blocks_neo4_lines:
 
-Line-by-line for neo4.pru0.c
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. table:: Line-by-line for neo4.pru0.c
 
-.. table::
-
-|Line |Explanation
-
-|30   |The `CHAN_NAME` of `rpmsg-pru` matches that `prmsg_pru` driver that is
-is already installed.  This connects this PRU to the driver.
-|32   |The `CHAN_PORT` tells it to use port 30.  That's why we use
-`/dev/rpmsg_pru30`
-|40   |`payload[]` is the buffer that receives the data from the ARM.
-|42-48|Same as the previous NeoPixel examples.
-|52   |`color[]` is the state to be sent to the LEDs.
-|66-68|`color[]` is initialized.
-|70-85|Here are a number of details needed to set up the channel between 
-the PRU and the ARM.
-|88   |Here we wait until the ARM sends us some numbers.
-|99   |Receive all the data from the ARM, store it in `payload[]`.
-|101-111|The data sent is:  index red green blue.  Pull off the index.  If it's 
-in the right range, pull off the red, green and blue values.
-|113  |The NeoPixels want the data in GRB order.  Shift and OR everything 
-together.
-|116-133|If the `index` = -1, send the contents of `color` to the LEDs.  This
-code is same as before.
-|====
+  +---------+---------------------------------------------------------------------------+
+  |Line     | Explanation                                                               |
+  +=========+===========================================================================+
+  |30       | The `CHAN_NAME` of `rpmsg-pru` matches that `prmsg_pru` driver that is    |
+  |         | is already installed.  This connects this PRU to the driver.              |
+  +---------+---------------------------------------------------------------------------+
+  |32       | The `CHAN_PORT` tells it to use port 30.  That's why we use               |
+  |         | `/dev/rpmsg_pru30`                                                        |
+  +---------+---------------------------------------------------------------------------+
+  |40       | `payload[]` is the buffer that receives the data from the ARM.            |
+  +---------+---------------------------------------------------------------------------+
+  |42-48    | Same as the previous NeoPixel examples.                                   |
+  +---------+---------------------------------------------------------------------------+
+  |52       | `color[]` is the state to be sent to the LEDs.                            |
+  +---------+---------------------------------------------------------------------------+
+  |66-68    | `color[]` is initialized.                                                 |
+  +---------+---------------------------------------------------------------------------+
+  |70-85    | Here are a number of details needed to set up the channel between         |
+  |         | the PRU and the ARM.                                                      |
+  +---------+---------------------------------------------------------------------------+
+  |88       | Here we wait until the ARM sends us some numbers.                         |
+  +---------+---------------------------------------------------------------------------+
+  |99       | Receive all the data from the ARM, store it in `payload[]`.               |
+  +---------+---------------------------------------------------------------------------+
+  |101-111  | The data sent is:  index red green blue.  Pull off the index.  If it's    |
+  |         | in the right range, pull off the red, green and blue values.              |
+  +---------+---------------------------------------------------------------------------+
+  |113      | The NeoPixels want the data in GRB order.  Shift and OR everything        |
+  |         | together.                                                                 |
+  +---------+---------------------------------------------------------------------------+
+  |116-133  | If the `index` = -1, send the contents of `color` to the LEDs.  This      |
+  |         | code is same as before.                                                   |
+  +---------+---------------------------------------------------------------------------+
 
 You can now use programs running on the ARM to send colors to the PRU.
 
@@ -1647,8 +1631,9 @@ You can now use programs running on the ARM to send colors to the PRU.
 
 .. _blocks_neo-rainbow:
 
-neo-rainbow.py - A python program using /dev/rpmsg_pru30
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/neo-rainbow.py
+   :caption: neo-rainbow.py - A python program using /dev/rpmsg_pru30
+   :linenos:
 
 :download:`neo-rainbow.py <code/neo-rainbow.py>`
 
@@ -1658,7 +1643,6 @@ the last number, or you numbers will get blurred together.
 
 Switching from pru0 to pru1 with rpmsg_pru
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 There are three things you need to change when switching from pru0 to pru1
 when using rpmsg_pru.
@@ -1675,14 +1659,13 @@ when using rpmsg_pru.
 These changes switch to the proper channel numbers to use pru1 instead of pru0.
 
 RGB LED Matrix - No Integrated Drivers
-======================================
-
+***************************************
 
 Problem
 -----------
 
 You have a RGB LED matrix 
-(:ref:`../01case/case.html#case_rgb_matrix, 1.4. RGB LED Matrix - No Integrated Drivers`) and want to know
+(:ref:`case_rgb_matrix`) and want to know
 at a low level how the PRU works.
 
 Solution
@@ -1735,8 +1718,9 @@ high-level view of how to drive the display.
 
 .. _blocks_rgb_python:
 
-rgb_python.py - Python code for driving RGB LED matrix
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/rgb_python.py
+   :caption: rgb_python.py - Python code for driving RGB LED matrix
+   :linenos:
 
 :download:`rgb_python.py <code/rgb_python.py>`
 
@@ -1744,8 +1728,9 @@ Be sure to run the :ref:`blocks_rgb_setup` script before running the python code
 
 .. _blocks_rgb_setup:
 
-rgb_python_setup.sh
-~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/rgb_python_setup.sh
+   :caption: rgb_python_setup.sh
+   :linenos:
 
 :download:`rgb_python_setup.sh <code/rgb_python_setup.sh>`
 
@@ -1762,12 +1747,11 @@ Your display should look like :ref:`blocks_rgb_python_jpg`.
 
 .. _blocks_rgb_python_jpg:
 
-Display running rgb_python.py
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/rgb_python.jpg
   :align: center
   :alt: Display running rgb_python.py
+
+  Display running rgb_python.py
 
 So why do only two lines appear at a time?  That's how the display works. 
 Currently lines 6 and 22 are showing, then a moment later 7 and 23 show, etc. 
@@ -1775,13 +1759,15 @@ The display can only display two lines at a time, so it cycles through all the
 lines.  Unfortunately, python is too slow to make the display appear 
 all at once.  Here's where the PRU comes in.
 
-:ref:``blocks_rgb1`` is the PRU code to drive the RGB LED matrix.   Be sure to run
-``bone$ source rgb_setup.sh`` first.
+:ref:``blocks_rgb1`` is the PRU code to drive the RGB LED matrix. 
+Be sure to run ``bone$ source rgb_setup.sh`` first.
 
 .. _blocks_rgb1:
 
-PRU code for driving the RGB LED matrix
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. literalinclude:: code/rgb1.pru0.c
+   :caption: PRU code for driving the RGB LED matrix
+   :linenos:
 
 :download:`rgb1.pru0.c <code/rgb1.pru0.c>`
 
@@ -1790,12 +1776,11 @@ The results are shown in :ref:`blocks_rgb_pru`.
 
 .. _blocks_rgb_pru:
 
-Display running rgb1.c on PRU 0
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/rgb_pru.jpg
   :align: center
   :alt: Display running rgb1.pru0.c on PRU 0
+
+  Display running rgb1.c on PRU 0
 
 The PRU is fast enough to quickly write to the display so that it appears 
 as if all the LEDs are on at once.
@@ -1803,19 +1788,18 @@ as if all the LEDs are on at once.
 Discussion
 -----------
 
-There are a lot of details needed to make this simple display work.  Let's 
-go over some of them.
+There are a lot of details needed to make this simple display work. 
+Let's go over some of them.
 
 First, the connector looks like :ref:`blocks_matrix_j1`.
 
 .. _blocks_matrix_j1:
 
-RGB Matrix J1 connector
-~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/matrix_j1.jpg
   :align: center
   :alt: RGB Matrix J1 connector, 200
+
+  RGB Matrix J1 connector
 
 Notice the labels on the connect match the labels in the code.
 :ref:`blocks_pocket_scroller_pins` shows how the pins on the display are 
@@ -1826,10 +1810,7 @@ mapped to the pins on the Pocket Beagle.
 
 .. _blocks_pocket_scroller_pins:
 
-PocketScroller pin table
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. table::
+.. table:: PocketScroller pin table
 
   +-----------------+---------------+------------------------+------------------+-------------------+
   |J1 Connector Pin |Pocket Headers |gpio port and bit number|Linux gpio number |PRU R30 bit number |
@@ -1870,12 +1851,11 @@ https://docs.google.com/spreadsheets/d/1FRGvYOyW1RiNSEVprvstfJAVeapnASgDXHtxeDOj
 
 .. _blocks_rgb_waveforms:
 
-Oscilloscope display of CLK, OE, LAT and R1
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/rgb_waveforms.png
   :align: center
-  :alt: .Oscilloscope display of CLK, OE, LAT and R1
+  :alt: Oscilloscope display of CLK, OE, LAT and R1
+
+  Oscilloscope display of CLK, OE, LAT and R1
 
 The top waveform is the CLK, the next is OE, followed by LAT and finally R1. 
 The OE (output enable) is active low, so most of the time the display is visible. 
@@ -1883,9 +1863,7 @@ The sequence is:
 
 * Put data on the R1, G1, B1, R2, G2 and B2 lines
 * Toggle the clock.
-* Repeat the first two steps as one row of data is transfered.  There are 
-384 LEDs (2 rows of 32 RGB LEDs times 3 LED per RGB), but we are clocking in 
-six bits (R1, G1, etc.) at a time, so 384/6=64 values need to be clocked in.
+* Repeat the first two steps as one row of data is transfered.  There are 384 LEDs (2 rows of 32 RGB LEDs times 3 LED per RGB), but we are clocking in six bits (R1, G1, etc.) at a time, so 384/6=64 values need to be clocked in.
 * Once all the values are in, disable the display (OE goes high)
 * Then toggle the latch (LAT) to latch the new data.
 * Turn the display back on.
@@ -1901,12 +1879,11 @@ comparision.
 
 .. _blocks_rgb_fpp:
 
-FPP waveforms
-~~~~~~~~~~~~~~
-
 .. figure:: figures/rgb_fpp.png
   :align: center
   :alt: FPP waveforms
+
+  FPP waveforms
 
 Getting More Colors
 ~~~~~~~~~~~~~~~~~~~~~
@@ -1927,7 +1904,7 @@ The Adafruit description goes on to say:
 This is what FPP does, but it's beyond the scope of this project.
 
 Compiling and Inserting rpmsg_pru
-======================================
+***********************************
 
 Problem
 -----------
@@ -1970,8 +1947,9 @@ It's now installed and ready to go.
 Copyright
 ==========
 
-copyright.c
-~~~~~~~~~~~~~
+.. literalinclude:: code/copyright.c
+   :caption: copyright.c
+   :linenos:
 
 :download:`copyright.c <code/copyright.c>`
 

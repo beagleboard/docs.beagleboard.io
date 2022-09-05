@@ -4,6 +4,7 @@ stages:
   - deploy
 
 cache:
+  key: bbdocs
   paths:
     - public
 

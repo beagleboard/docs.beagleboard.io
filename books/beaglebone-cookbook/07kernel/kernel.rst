@@ -4,33 +4,35 @@ The Kernel
 ###########
 
 Introduction
----------------------------------
+*************
+
 The kernel is the heart of the Linux operating system. It's the software that takes the 
 low-level requests, such as reading or writing files, or reading and writing general-purpose 
 input/output (GPIO) pins, and maps them to the hardware. When you install a new version of the 
-OS (:ref:`<basics_latest_os>`), you get a certain version of the kernel. 
+OS (:ref:`basics_latest_os`), you get a certain version of the kernel. 
 
 You usually won't need to mess with the kernel, but sometimes you might want to try something new 
 that requires a different kernel. This chapter shows how to switch kernels. The nice thing is you 
 can have multiple kernels on your system at the same time and select from among them which to boot up.
 
-// TODO is this still true?
+.. TODO 
+    is this still true?
 
 .. note:: 
-    We assume here that you are logged on to your Bone as +root+ and superuser privileges. 
+    We assume here that you are logged on to your Bone as *root* and superuser privileges. 
     You also need to be logged in to your Linux host computer as a nonsuperuser.
 
 
 Updating the Kernel
----------------------
+====================
 
 Problem
-***********
+--------
 
 You have an out-of-date kernel and want to want to make it current.
 
 Solution
-***********
+---------
 
 Use the following command to determine which kernel you are running:
 
@@ -41,10 +43,10 @@ Use the following command to determine which kernel you are running:
     GNU/Linux
 
 
-The +3.8.13-bone67+ string is the kernel version.
+The *3.8.13-bone67* string is the kernel version.
 
 To update to the current kernel, ensure that your Bone is on the Internet 
-(:ref:`<networking_usb>` or :ref:`<networking_wired>`) and then run the following commands:
+(:ref:`networking_usb` or :ref:`networking_wired`) and then run the following commands:
 
 .. code-block:: bash
 
@@ -72,74 +74,67 @@ After you have rebooted, the new kernel will be running.
 If the current kernel is doing its job adequately, you probably don't need to update, but sometimes a new 
 software package requires a more up-to-date kernel. Fortunately, precompiled kernels are available and ready to download.  
 
-Discussion
-***********
-
-
 .. _kernel_building_modules:
 
 Building and Installing Kernel Modules
----------------------------------
+=======================================
 
 Problem
-***********
+--------
 
 You need to use a peripheral for which there currently is no driver, or you need to improve the 
 performance of an interface previously handled in user space.
 
 Solution
-***********
+---------
 
 The solution is to run in kernel space by building a kernel module. There are entire 
 `books on writing Linux Device Drivers <http://bit.ly/1Fb0usf>`_. This recipe assumes that 
 the driver has already been written and shows how to compile and install it. After you've 
 followed the steps for this simple module, you will be able to apply them to any other module.
 
-For our example module, add the code in :ref:`<kernel_simple_module>` to a file called _hello.c_.
+For our example module, add the code in :ref:`kernel_simple_module` to a file called ``hello.c``.
 
 .. _kernel_simple_module:
 
-Simple Kernel Module (hello.c)
+.. literalinclude:: code/hello.c
+   :caption: Simple Kernel Module (hello.c)
+   :linenos:
 
-.. code-block:: JavaScript
+:download:`hello.c <code/hello.c>`
 
-    include::code/hello.c
-
-
-
-When compiling on the Bone, all you need to do is load the Kernel Headers for the version of the kernel you're running:
+When compiling on the Bone, all you need to do is load the Kernel 
+Headers for the version of the kernel you're running:
 
 .. code-block:: bash
 
-    bone$ sudo apt install linux-headers-`uname -r`
-
+    bone$ sudo apt install linux-headers-``uname -r``
 
 .. note:: 
-    The quotes around +`uname -r`+ are backtick characters. On a United States keyboard, 
+
+    The quotes around ``uname -r`` are backtick characters. On a United States keyboard, 
     the backtick key is to the left of the 1 key.
 
 
-This took a little more than three minutes on my Bone. The +`uname -r`+ part of the command 
+This took a little more than three minutes on my Bone. The ``uname -r`` part of the command 
 looks up what version of the kernel you are running and loads the headers for it. 
 
-Next, add the code in :ref:`<kernel_Makefle>` to a file called _Makefile_.
+Next, add the code in :ref:`kernel_Makefle` to a file called ``Makefile``.
 
 .. _kernel_Makefle:
 
-Simple Kernel Module (_Makefile_)
+.. literalinclude:: code/Makefile.display
+   :caption: Simple Kernel Module (``Makefile``)
+   :linenos:
 
-.. code-block:: JavaScript
-
-    include::code/Makefile.display
-
-
+:download:`Makefile.display <code/Makefile.display>`
 
 .. note:: 
-    Replace the two instances of +<TAB>+ with a tab character (the key left of the Q key on a United States keyboard). 
+    Replace the two instances of *<TAB>* with a tab character (the key left of the Q key on a United States keyboard). 
     The tab characters are very important to makefiles and must appear as shown.
 
 
-Now, compile the kernel module by using the +make+ command:
+Now, compile the kernel module by using the *make* command:
 
 .. code-block:: bash
 
@@ -158,7 +153,8 @@ Now, compile the kernel module by using the +make+ command:
     Module.symvers  hello.ko  hello.mod.o  modules.order
 
 
-Notice that several files have been created. _hello.ko_ is the one you want. Try a couple of commands with it:
+Notice that several files have been created. 
+``hello.ko`` is the one you want. Try a couple of commands with it:
 
 .. code-block:: bash
 
@@ -175,26 +171,25 @@ Notice that several files have been created. _hello.ko_ is the one you want. Try
     [491540.999476] Hello world
 
 
-The first command displays information about the module. The +insmod+ command inserts the module into the running kernel. 
-If all goes well, nothing is displayed, but the module does print something in the kernel log. The +dmesg+ command displays 
-the messages in the log, and the +tail -4+ command shows the last four messages. The last two messages are from the module. It worked!
-
-Discussion
-***********
+The first command displays information about the module. The *insmod* command inserts the module into the running kernel. 
+If all goes well, nothing is displayed, but the module does print something in the kernel log. The *dmesg* command displays 
+the messages in the log, and the *tail -4* command shows the last four messages. The last two messages are from the module. It worked!
 
 .. _kernel_LEDs:
 
 Controlling LEDs by Using SYSFS Entries
----------------------------------
+========================================
 
 Problem
-***********
+---------
+
 You want to control the onboard LEDs from the command line.
 
 Solution
-***********
-On Linux, http://bit.ly/1AjhWUW[everything is a file]; that is, you can access all the inputs and outputs, the LEDs, 
-and so on by opening the right _file_ and reading or writing to it. For example, try the following:
+---------
+
+On Linux, `everything is a file <http://bit.ly/1AjhWUW>`_ that is, you can access all the inputs and outputs, the LEDs, 
+and so on by opening the right ``file`` and reading or writing to it. For example, try the following:
 
 .. code-block:: bash
 
@@ -216,8 +211,8 @@ What you are seeing are four directories, one for each onboard LED. Now try this
         backlight gpio cpu0 default-on transient 
 
 
-The first command changes into the directory for LED +usr0+, which is the LED closest to the edge of the board. 
-The +[heartbeat]+ indicates that the default trigger (behavior) for the LED is to blink in the heartbeat pattern. 
+The first command changes into the directory for LED *usr0*, which is the LED closest to the edge of the board. 
+The *[heartbeat]* indicates that the default trigger (behavior) for the LED is to blink in the heartbeat pattern. 
 Look at your LED.  Is it blinking in a heartbeat pattern?
 
 Then try the following:
@@ -230,7 +225,7 @@ Then try the following:
         backlight gpio cpu0 default-on transient 
 
 
-This instructs the LED to use +none+ for a trigger. Look again. It should be no longer blinking.
+This instructs the LED to use *none* for a trigger. Look again. It should be no longer blinking.
 
 Now, try turning it on and off:
 
@@ -242,39 +237,36 @@ Now, try turning it on and off:
 
 The LED should be turning on and off with the commands.
 
-Discussion
-***********
-
 .. _kernel_gpio_sysfs:
 
 Controlling GPIOs by Using SYSFS Entries
------------------------------------------
+=========================================
 
 Problem
-***********
+--------
 
 You want to control a GPIO pin from the command line.
 
 Solution
-***********
+---------
 
-:ref:`<kernel_LEDs>` introduces the +sysfs+. This recipe shows how to read and write a GPIO pin. 
+:ref:`kernel_LEDs` introduces the *sysfs*. This recipe shows how to read and write a GPIO pin. 
 
 Reading a GPIO Pin via sysfs
-******************************
+=============================
 
-Suppose that you want to read the state of the +P9_42+ GPIO pin. (:ref:`<sensors_pushbutton>` shows how to wire a switch to +P9_42+.)  
-First, you need to map the +P9+ header location to GPIO number using :ref:`<kernel_gpio_map_fig>`, which shows that +P9_42+ maps to GPIO 7.
+Suppose that you want to read the state of the *P9_42* GPIO pin. (:ref:`sensors_pushbutton` shows how to wire a switch to *P9_42*.)  
+First, you need to map the *P9* header location to GPIO number using :ref:`kernel_gpio_map_fig`, which shows that *P9_42* maps to GPIO 7.
 
 .. _kernel_gpio_map_fig:
-
-.Mapping P9_42 header position to GPIO 7
 
 .. figure:: figures/cape-headers-digitalGPIO7.png
     :align: center
     :alt: Mapping Header Position to GPIO Numbers
 
-Next, change to the GPIO +sysfs+ directory:
+    Mapping P9_42 header position to GPIO 7
+
+Next, change to the GPIO *sysfs* directory:
 
 .. code-block:: bash
 
@@ -283,8 +275,8 @@ Next, change to the GPIO +sysfs+ directory:
     export  gpiochip0  gpiochip32  gpiochip64  gpiochip96  unexport
 
 
-The +ls+ command shows all the GPIO pins that have be exported. In this case, none have, 
-so you see only the four GPIO controllers. Export using the +export+ command:
+The *ls* command shows all the GPIO pins that have be exported. In this case, none have, 
+so you see only the four GPIO controllers. Export using the *export* command:
 
 .. code-block:: bash
 
@@ -293,7 +285,7 @@ so you see only the four GPIO controllers. Export using the +export+ command:
     export  gpio7  gpiochip0  gpiochip32  gpiochip64  gpiochip96  unexport
 
 
-Now you can see the _gpio7_ directory. Change into the _gpio7_ directory and look around:
+Now you can see the ``gpio7`` directory. Change into the ``gpio7`` directory and look around:
 
 .. code-block:: bash
 
@@ -307,7 +299,7 @@ Now you can see the _gpio7_ directory. Change into the _gpio7_ directory and loo
 
 
 Notice that the pin is already configured to be an input pin. (If it wasn't already configured that way, 
-use +echo in > direction+ to configure it.) You can also see that its current value is +0+—that is, it 
+use *echo in > direction* to configure it.) You can also see that its current value is *0*—that is, it 
 isn't pressed. Try pressing and holding it and running again:
 
 .. code-block:: bash
@@ -316,7 +308,7 @@ isn't pressed. Try pressing and holding it and running again:
     1
 
 
-The +1+ informs you that the switch is pressed. When you are done with GPIO 7, you can always +unexport+ it:
+The *1* informs you that the switch is pressed. When you are done with GPIO 7, you can always *unexport* it:
 
 .. code-block:: bash
 
@@ -327,11 +319,11 @@ The +1+ informs you that the switch is pressed. When you are done with GPIO 7, y
 
 
 Writing a GPIO Pin via sysfs
-******************************
+=============================
 
-Now, suppose that you want to control an external LED. :ref:`<displays_externalLED>` shows 
-how to wire an LED to +P9_14+. :ref:`<kernel_gpio_map_fig>` shows +P9_14+ is GPIO 50. Following 
-the approach in :ref:`<kernel_gpio_sysfs>`, enable GPIO 50 and make it an output:
+Now, suppose that you want to control an external LED. :ref:`displays_externalLED` shows 
+how to wire an LED to *P9_14*. :ref:`kernel_gpio_map_fig` shows *P9_14* is GPIO 50. Following 
+the approach in :ref:`kernel_gpio_sysfs`, enable GPIO 50 and make it an output:
 
 .. code-block:: bash
 
@@ -346,7 +338,7 @@ the approach in :ref:`<kernel_gpio_sysfs>`, enable GPIO 50 and make it an output
     in
 
 
-By default, +P9_14+ is set as an input. Switch it to an output and turn it on:
+By default, *P9_14* is set as an input. Switch it to an output and turn it on:
 
 .. code-block:: bash
 
@@ -355,23 +347,20 @@ By default, +P9_14+ is set as an input. Switch it to an output and turn it on:
     bone$ echo 0 > value
 
 
-The LED turns on when a +1+ is written to +value+ and turns off when a +0+ is written.
-
-Discussion
-***********
+The LED turns on when a *1* is written to *value* and turns off when a *0* is written.
 
 .. _kernel_compiling:
 
 Compiling the Kernel
-----------------------
+=====================
 
 Problem
-***********
+--------
 
 You need to download, patch, and compile the kernel from its source code.
 
 Solution
-***********
+---------
 
 This is easier than it sounds, thanks to some very powerful scripts.
 
@@ -381,7 +370,7 @@ This is easier than it sounds, thanks to some very powerful scripts.
 
 
 Downloading and Compiling the Kernel
-**************************************
+=====================================
 
 To download and compile the kernel, follow these steps:
 
@@ -394,52 +383,49 @@ To download and compile the kernel, follow these steps:
     host$ ./build_kernel.sh # <4>
 
 1. The first command clones a repository with the tools to build the kernel for the Bone.
+2. This command lists all the different versions of the kernel that you can build. You'll need to pick one of these. How do you know which one to pick? A good first step is to choose the one you are currently running.  *uname -a* will reveal which one that is. When you are able to reproduce the current kernel, go to `Linux Kernel Newbies <http://kernelnewbies.org/>`_ to see what features are available in other kernels. `LinuxChanges <http://bit.ly/1AjiL00>`_ shows the features in the newest kernel and `LinuxVersions <http://bit.ly/1MrIHx3>`_ links to features of pervious kernels.
+3. When you know which kernel to try, use *git checkout* to check it out. This command checks out at tag *3.8.13-bone60* and creates a new branch, *v3.8.13-bone60*.
+4. *build_kernel* is the master builder. If needed, it will download the cross compilers needed to compile the kernel (`linaro <http://www.linaro.org/>`_ is the current cross compiler). If there is a kernel at ``~/linux-dev``, it will use it; otherwise, it will download a copy to ``bb-kernel/ignore/linux-src``. It will then patch the kernel so that it will run on the Bone. 
 
-2. This command lists all the different versions of the kernel that you can build. You'll need to pick one of these. How do you know which one to pick? A good first step is to choose the one you are currently running.  +uname -a+ will reveal which one that is. When you are able to reproduce the current kernel, go to http://kernelnewbies.org/[Linux Kernel Newbies] to see what features are available in other kernels. http://bit.ly/1AjiL00[LinuxChanges] shows the features in the newest kernel and http://bit.ly/1MrIHx3[LinuxVersions] links to features of pervious kernels.
-
-3. When you know which kernel to try, use +git checkout+ to check it out. This command checks out at tag +3.8.13-bone60+ and creates a new branch, +v3.8.13-bone60+.
-
-4. +build_kernel+ is the master builder. If needed, it will download the cross compilers needed to compile the kernel (linaro [http://www.linaro.org/] is the current cross compiler). If there is a kernel at _~/linux-dev_, it will use it; otherwise, it will download a copy to _bb-kernel/ignore/linux-src_. It will then patch the kernel so that it will run on the Bone. 
-
-After the kernel is patched, you'll see a screen similar to :ref:`<kernel_config_fig>`, on which you can configure the kernel.
+After the kernel is patched, you'll see a screen similar to :ref:`kernel_config_fig`, on which you can configure the kernel.
 
 .. _kernel_config_fig:
-
-Kernel configuration menu
 
 .. figure:: figures/KernelConfig3.16.png
     :align: center
     :alt: Kernel configuration menu
 
+    Kernel configuration menu
+
 You can use the arrow keys to navigate. No changes need to be made, so you can just press the right 
 arrow and Enter to start the kernel compiling. The entire process took about 25 minutes on my 8-core host. 
 
-The _bb-kernel/KERNEL_ directory contains the source code for the kernel. The _bb-kernel/deploy_ 
+The ``bb-kernel/KERNEL`` directory contains the source code for the kernel. The ``bb-kernel/deploy``
 directory contains the compiled kernel and the files needed to run it.
 
 .. _kernel_install:
 
 Installing the Kernel on the Bone
-***********************************
+===================================
 
 To copy the new kernel and all its files to the microSD card, you need to halt the Bone, 
 and then pull the microSD card out and put it in an microSD card reader on your host computer. 
-Run +Disk+ (see :ref:`<basics_latest_os>`) to learn where the microSD card appears on your host 
-(mine appears in _/dev/sdb_). Then open the _bb-kernel/system.sh_ file and find this line near the end:
+Run *Disk* (see :ref:`basics_latest_os`) to learn where the microSD card appears on your host 
+(mine appears in ``/dev/sdb``). Then open the ``bb-kernel/system.sh`` file and find this line near the end:
 
 .. code-block:: bash
 
     MMC=/dev/sde
 
 
-Change that line to look like this (where +/dev/sdb+ is the path to your device):
+Change that line to look like this (where */dev/sdb* is the path to your device):
 
 .. code-block:: bash
     
     MMC=/dev/sdb
 
 
-Now, while in the _bb-kernel_ directory, run the following command:
+Now, while in the ``bb-kernel`` directory, run the following command:
 
 .. code-block:: bash
 
@@ -469,42 +455,38 @@ Now, while in the _bb-kernel_ directory, run the following command:
 The script lists the partitions it sees and asks if you have the correct one. 
 If you are sure, press Y, and the script will uncompress and copy the files to 
 the correct locations on your card. When this is finished, eject your card, plug 
-it into the Bone, and boot it up. Run +uname -a+, and you 
+it into the Bone, and boot it up. Run *uname -a*, and you 
 will see that you are running your compiled kernel.
-
-Discussion
-***********
 
 .. _kernel_using_cross_compiler:
 
 Using the Installed Cross Compiler
-------------------------------------
+===================================
 
 Problem
-***********
+--------
 
-You have followed the instructions in :ref:`<kernel_compiling>` 
+You have followed the instructions in :ref:`kernel_compiling` 
 and want to use the cross compiler it has downloaded.
 
-[TIP]
+.. tip::
+    You can cross-compile without installing the 
+    entire kernel source by running the following:
+
+    .. code-block:: bash
+
+        host$ sudo apt install gcc-arm-linux-gnueabihf
 
 
-You can cross-compile without installing the entire kernel source by running the following:
-
-.. code-block:: bash
-
-    host$ sudo apt install gcc-arm-linux-gnueabihf
-
-
-Then skip down to :ref:`<kernel_skip_to_here>`. 
+Then skip down to :ref:`kernel_skip_to_here`. 
 
 
 Solution
-***********
+---------
 
-:ref:`<kernel_compiling>` installs a cross compiler, but you need to set up a 
-couple of things so that it can be found. :ref:`<kernel_compiling>` installed the 
-kernel and other tools in a directory called _bb-kernel_. Run the 
+:ref:`kernel_compiling` installs a cross compiler, but you need to set up a 
+couple of things so that it can be found. :ref:`kernel_compiling` installed the 
+kernel and other tools in a directory called ``bb-kernel``. Run the 
 following commands to find the path to the cross compiler:
 
 .. code-block:: bash
@@ -516,7 +498,7 @@ following commands to find the path to the cross compiler:
 
 
 Here, the path to the cross compiler contains the version number 
-of the compiler. Yours might be different from mine. +cd+ into it:
+of the compiler. Yours might be different from mine. *cd* into it:
 
 .. code-block:: bash
 
@@ -526,7 +508,7 @@ of the compiler. Yours might be different from mine. +cd+ into it:
     arm-linux-gnueabihf                      lib  share
 
 
-At this point, we are interested in what's in _bin_:
+At this point, we are interested in what's in ``bin``:
 
 .. code-block:: bash
 
@@ -535,12 +517,12 @@ At this point, we are interested in what's in _bin_:
     arm-linux-gnueabihf-addr2line     arm-linux-gnueabihf-gfortran
     arm-linux-gnueabihf-ar            arm-linux-gnueabihf-gprof
     arm-linux-gnueabihf-as            arm-linux-gnueabihf-ld
-    arm-linux-gnueabihf-c++           arm-linux-gnueabihf-ld.bfd
+    arm-linux-gnueabihf-c+*           arm-linux-gnueabihf-ld.bfd
     arm-linux-gnueabihf-c++filt       arm-linux-gnueabihf-ldd
     arm-linux-gnueabihf-cpp           arm-linux-gnueabihf-ld.gold
     arm-linux-gnueabihf-ct-ng.config  arm-linux-gnueabihf-nm
     arm-linux-gnueabihf-elfedit       arm-linux-gnueabihf-objcopy
-    arm-linux-gnueabihf-g++           arm-linux-gnueabihf-objdump
+    arm-linux-gnueabihf-g+*           arm-linux-gnueabihf-objdump
     arm-linux-gnueabihf-gcc           arm-linux-gnueabihf-pkg-config
     arm-linux-gnueabihf-gcc-4.7.3     arm-linux-gnueabihf-pkg-config-real
     arm-linux-gnueabihf-gcc-ar        arm-linux-gnueabihf-ranlib
@@ -551,7 +533,7 @@ At this point, we are interested in what's in _bin_:
 
 
 What you see are all the cross-development tools. You need to add this directory 
-to the +$PATH+ the shell uses to find the commands it runs:
+to the *$PATH* the shell uses to find the commands it runs:
 
 .. code-block:: bash
 
@@ -566,7 +548,7 @@ to the +$PATH+ the shell uses to find the commands it runs:
 
 The first command displays the path to the directory where the cross-development 
 tools are located. The second shows which directories are searched to find commands 
-to be run. Currently, the cross-development tools are not in the +$PATH+. Let's add it:
+to be run. Currently, the cross-development tools are not in the *$PATH*. Let's add it:
 
 .. code-block:: bash
 
@@ -579,15 +561,15 @@ to be run. Currently, the cross-development tools are not in the +$PATH+. Let's 
 
 
 .. note:: 
-    Those are backtick characters (left of the "1" key on your keyboard) around +pwd+.
+    Those are backtick characters (left of the "1" key on your keyboard) around *pwd*.
 
 
-The second line shows the +$PATH+ now contains the directory with the cross-development tools.
+The second line shows the *$PATH* now contains the directory with the cross-development tools.
 
 .. _kernel_skip_to_here:
 
 Setting Up Variables
-*********************
+=====================
 
 Now, set up a couple of variables to know which compiler you are using:
 
@@ -598,17 +580,15 @@ Now, set up a couple of variables to know which compiler you are using:
 
 
 These lines set up the standard environmental variables so that you can determine which cross-development 
-tools to use. Test the cross compiler by adding :ref:`<kernel_helloWorld>` to a file named _helloWorld.c_.
+tools to use. Test the cross compiler by adding :ref:`kernel_helloWorld` to a file named _helloWorld.c_.
 
 .. _kernel_helloWorld:
 
-Simple helloWorld.c to test cross compiling (helloWorld.c)
+.. literalinclude:: code/helloWorld.c
+   :caption: Simple helloWorld.c to test cross compiling (helloWorld.c)
+   :linenos:
 
-.. code-block:: C
-
-    include::code/helloWorld.c
-
-
+:download:`helloWorld.c <code/helloWorld.c>`
 
 You can then cross-compile by using the following commands:
 
@@ -621,42 +601,36 @@ You can then cross-compile by using the following commands:
     BuildID[sha1]=0x10182364352b9f3cb15d1aa61395aeede11a52ad, not stripped
 
 
-The +file+ command shows that +a.out+ was compiled for an ARM processor.
-
-Discussion
-***********
-
+The *file* command shows that *a.out* was compiled for an ARM processor.
 
 .. _kernel_patches:
 
 Applying Patches
---------------------
+=================
 
 Problem
-***********
+--------
 
 You have a patch file that you need to apply to the kernel.
 
 Solution
-***********
+---------
 
-:ref:`<kernel_hello_patch>` shows a patch file that you can use on the kernel. 
+:ref:`kernel_hello_patch` shows a patch file that you can use on the kernel. 
 
 .. _kernel_hello_patch:
 
-Simple kernel patch file (hello.patch)
+.. literalinclude:: code/hello.patch
+   :caption: Simple kernel patch file (hello.patch)
+   :linenos:
 
-.. code-block:: C
-
-    include::code/hello.patch[]
-
-
+:download:`hello.patch <code/hello.patch>`
 
 Here's how to use it:
 
-- Install the kernel sources (:ref:`<kernel_compiling>`).
+- Install the kernel sources (:ref:`kernel_compiling`).
 - Change to the kernel directory (+cd bb-kernel/KERNEL+).
-- Add :ref:`<kernel_hello_patch>` to a file named _hello.patch_ in the _bb-kernel/KERNEL_ directory.
+- Add :ref:`kernel_hello_patch` to a file named ``hello.patch`` in the ``bb-kernel/KERNEL`` directory.
 - Run the following commands:
 
 .. code-block:: bash
@@ -667,8 +641,8 @@ Here's how to use it:
     patching file hello/hello.c
 
 
-The output of the +patch+ command apprises you of what it's doing. 
-Look in the _hello_ directory to see what was created:
+The output of the *patch* command apprises you of what it's doing. 
+Look in the ``hello`` directory to see what was created:
 
 .. code-block:: bash
 
@@ -676,26 +650,24 @@ Look in the _hello_ directory to see what was created:
     host$ ls
     hello.c  Makefile
 
-
-Discussion
-***********
-
-:ref:`<kernel_building_modules>` shows how to build and install a module, and :ref:`<kernel_create_patch>` 
+:ref:`kernel_building_modules` shows how to build and install a module, and :ref:`kernel_create_patch` 
 shows how to create your own patch file.
 
 .. _kernel_create_patch:
 
 Creating Your Own Patch File
----------------------------------
+=============================
 
 Problem
-***********
+--------
+
 You made a few changes to the kernel, and you want to share them with your friends.
 
 Solution
-***********
+---------
 
-Create a patch file that contains just the changes you have made. Before making your changes, check out a new branch:
+Create a patch file that contains just the changes you have made. 
+Before making your changes, check out a new branch:
 
 .. code-block:: bash
 
@@ -715,7 +687,7 @@ Good, so far no changes have been made. Now, create a new branch:
     nothing to commit (working directory clean)
 
 
-You've created a new branch called _hello1_ and checked it out. Now, make whatever changes 
+You've created a new branch called ``hello1`` and checked it out. Now, make whatever changes 
 to the kernel you want. I did some work with a simple character driver that we can use as an example:
 
 .. code-block:: bash
@@ -764,8 +736,4 @@ Finally, create the patch file:
 .. code-block:: bash
 
     host$ git format-patch master --stdout &gt; hello1.patch
- 
-
-Discussion
-***********
 

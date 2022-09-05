@@ -13,7 +13,7 @@ Finally, using one of the UARTS to send debugging information out a serial port
 is shown. 
 
 Debugging via an LED
-=====================
+**********************
 
 Problem
 ---------
@@ -28,17 +28,16 @@ flash. :ref:`debug_LED` shows an LED attached to pin P9_29 of the BeagleBone Bla
 
 .. _debug_LED:
 
-LED used for debugging P9_29
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/LED_bb.png
   :align: center
   :alt: LED used for debugging P9_29
 
+  LED used for debugging P9_29
+
 Make sure you have the LED in the correct way, or it won't work.
 
 Discussion
----------
+-----------
 
 If your output is changing more than a few times a second, the LED will be 
 blinking too fast and you'll need an oscilloscope or a logic analyzer to
@@ -50,7 +49,7 @@ RAM is discussed in :ref:`debug_prudebug`.
 .. _dmesg_hw:
 
 dmesg Hw
-=========
+***********
 
 Problem
 ---------
@@ -60,16 +59,16 @@ when I load my code, but don't know what's causing it.
 
 Solution
 ---------
+
 The command ``dmesg`` outputs useful information when dealing with the kernel.
 Simplying running ``dmesg -Hw`` can tell you a lot.  The ``-H`` flag puts the
 dates in the human readable form, the ``-w`` tells it to wait for more information.
 Often I'll have a window open running ``dmesg -Hw``.
-.
 
 Here's what ``dmesg`` said for the example above.
 
 dmesg -Hw
-~~~~~~~~~~
+**********
 
 .. code-block:: bash
 
@@ -83,7 +82,7 @@ to my code.
 .. _debug_prudebug:
 
 prudebug - A Simple Debugger for the PRU
-=========================================
+******************************************
 
 Problem
 ---------
@@ -200,10 +199,7 @@ restart back at the beginning.
 
 The ``dd`` command dumps the memory.  Keep in mind the following.
 
-Important memory locations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. table::
+.. table:: Important memory locations
 
   +-------+---------------------------------------------------------------------------+
   |Address|Contents                                                                   |
@@ -274,12 +270,10 @@ Here's the shared memory.
 You can also use ``prudebug`` to set breakpoints and single step, 
 but I haven't used that feature much.
 
-:ref:`../05blocks/blocks.html#_memory_allocation, Memory Allocation` gives examples 
-of how you can control where your vaiables are stored in memory.
-
+:ref:`memory_allocation` gives examples of how you can control where your vaiables are stored in memory.
 
 UART
-======
+******
 
 Problem
 ---------
@@ -297,44 +291,39 @@ use the UART (serial port) to output debug information.  The PRU has it's
 own UART that can send characters to a serial port.
 
 You'll need a 3.3V FTDI cable to go between your Beagle and the USB port 
-on your host computer as shown in :ref:`debug_ftdi`. [#debug1]_ 
+on your host computer as shown in :ref:`ftdi_cable`. [#debug1]_ 
 you can get such a cable from places such as 
 `Sparkfun <https://www.sparkfun.com/products/9717>`_ or 
 `Adafruit <https://www.adafruit.com/product/70>`_.  
 
-.. _debug_ftdi:
-
-FTDI cable
-~~~~~~~~~~~
+.. _ftdi_cable:
 
 .. figure:: figures/FTDIcable.jpg
   :align: center
   :alt: FTDI cable
 
+  FTDI cable
+
 Discussion
----------
+-----------
 
 The Beagle side of the FTDI cable has a small triangle on it as shown in 
 :ref:`debug_ftdi_connector` which marks the ground pin, pin 1.  
 
 .. _debug_ftdi_connector:
 
-FTDI connector
-~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/FTDIconnector.jpg
   :align: center
   :alt: FTDI connector
+
+  FTDI connector
 
 The :ref:`debug_FTDI` table shows which pins connect where and :ref:`debug_ftdi_pins`
 is a wiring diagram for the BeagleBone Black.
 
 .. _debug_FTDI:
 
-Wriing for FTDI cable to Beagle
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. table::
+.. table:: Wring for FTDI cable to Beagle
 
   +--------+------+---------+-------------+--------+------+---------+
   |FTDI pin|Color |Black pin|AI 1 pin     |AI 2 pin|Pocket|Function |
@@ -348,15 +337,14 @@ Wriing for FTDI cable to Beagle
 
 .. _debug_ftdi_pins:
 
-FTDI to BB Black
-~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/FTDIhookup_bb.png
   :align: center
   :alt: FTDI to BB Black
 
+  FTDI to BB Black
+
 Details
-~~~~~~~~
+--------
 
 Two examples of using the UART are presented here. The first 
 (:ref:`debug_uart1`) sends a character out the serial port then 
@@ -375,7 +363,7 @@ Once an ENTER appears the string is sent back.
 You need to set the pin muxes.
 
 config-pin
-~~~~~~~~~~~
+-----------
 
 .. code-block:: bash
 
@@ -391,8 +379,9 @@ config-pin
 
 .. note::
 
-  See :ref:`../08ai/ai.html#ai_device_tree, Configuring pins on the AI via device trees` for configuring 
-  pins on the AI. Make sure your `rx` pins are configured as input pins in the device tree.
+  See :ref:`ai_device_tree` for configuring 
+  pins on the AI. Make sure your `rx` pins are 
+  configured as input pins in the device tree.
 
 For example 
 
@@ -402,15 +391,16 @@ For example
 
 .. * TODO - Add code for Blue.
 
-uart1.pru1_0.c
-~~~~~~~~~~~~~~~
+.. literalinclude:: code/uart1.pru1_0.c
+   :caption: uart1.pru1_0.c
+   :linenos:
+
+:download:`uart1.pru1_0.c <code/uart1.pru1_0.c>`
 
 Set the following variables so ``make`` will know what to compile.
 
-make
-~~~~~
-
 .. code-block:: bash
+  :caption: make
 
   bone$ *make TARGET=uart1.pru0*
   /var/lib/cloud9/common/Makefile:29: MODEL=TI_AM335x_BeagleBone_Black,TARGET=uart1.pru0
@@ -433,19 +423,19 @@ In a terminal window on your host computer run
 It will initially display the first charters (``H``) and then as you enter
 characters on the keyboard, the rest of the message will appear.
 
-uart1.pru0.c output
-~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/uart1.pru0.png
   :align: center
   :alt: uart1.pru0.c output
+
+  uart1.pru0.c output
 
 Here's the code (``uart1.pru1_0.c``) that does it.
 
 .. _debug_uart1:
 
-uart1.pru1_0.c
-~~~~~~~~~~~~~~~
+.. literalinclude:: code/uart1.pru1_0.c
+   :caption: uart1.pru1_0.c
+   :linenos:
 
 :download:`uart1.pru1_0.c <code/uart1.pru1_0.c>`
 
@@ -472,15 +462,16 @@ receive register on the UART.
 These simple lines should be enough to place in your code to print out
 debugging information.
 
-uart2.pru0.c
-~~~~~~~~~~~~
+.. literalinclude:: code/uart2.pru0.c
+   :caption: uart2.pru0.c
+   :linenos:
+
+:download:`uart2.pru0.c <code/uart2.pru0.c>`
 
 If you want to try ``uart2.pru0.c``, run the following:
 
-make
-~~~~~
-
 .. code-block:: bash
+  :caption: make
 
   bone$ *make TARGET=uart2.pru0*
   /var/lib/cloud9/common/Makefile:29: MODEL=TI_AM335x_BeagleBone_Black,TARGET=uart2.pru0
@@ -495,12 +486,11 @@ make
 
 You will see:
 
-uart2.pru0.c output
-~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/uart2.pru0.png
   :align: center
   :alt: uart2.pru0.c output
+
+  uart2.pru0.c output
 
 Type a few characters and hit ENTER. The PRU will playback what you typed,
 but it won't echo it as you type.
@@ -514,8 +504,9 @@ wait for the FIFO to empty, which may cause your code to miss something.
 
 .. _debug_uart2:
 
-uart2.pru1_0.c
-~~~~~~~~~~~~~~~
+.. literalinclude:: code/uart2.pru1_0.c
+   :caption: uart2.pru1_0.c
+   :linenos:
 
 :download:`uart2.pru1_0.c <code/uart2.pru1_0.c>`
 
@@ -524,11 +515,12 @@ More complex examples can be built using the principles shown in these examples.
 Copyright
 ==========
 
-copyright.c
-~~~~~~~~~~~~~
+.. literalinclude:: code/copyright.c
+   :caption: copyright.c
+   :linenos:
 
 :download:`copyright.c <code/copyright.c>`
 
 .. rubric:: Footnotes
 
-.. [#debug1] FTDI images are from the BeagleBone Cookbook http://shop.oreilly.com/product/0636920033899.do
+.. [#debug1] `FTDI images are from the BeagleBone Cookbook <http://shop.oreilly.com/product/0636920033899.do>`_

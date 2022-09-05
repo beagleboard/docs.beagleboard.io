@@ -14,7 +14,7 @@ key to ensure proper orientation of the cape. On AI-64 you can see a clear
 silkscreen marking for the cape orientation. Most of BeagleBone capes
 can be used with your BeagleBone AI-64 also like shown in :ref:`bbai-cape-placement-figure` below.
 
-.. _bbai-cape-placement-figure, BeagleBone Ai Cape Placement figure:
+.. _bbai-cape-placement-figure:
 
 .. figure:: images/ch08/cape-placement.jpg
    :width: 400px
@@ -65,7 +65,7 @@ will also be compatible with BeeagleBone AI-64.
    This section is still being worked on, please make sure you have the latest system reference manual (SRM).
 
 
-.. todo:: 
+.. todo
 
    Add BeagleBone AI-64 LCD pins information.
    Add BeagleBone AI-64 eMMC pins information.
@@ -87,7 +87,7 @@ The address of the EEPROM will be set via either jumpers or a dipswitch
 on each expansion board. :ref:`expansion-board-eeprom-without-write-protect-figure` 
 below is the design of the EEPROM circuit.
 
-.. _expansion-board-eeprom-without-write-protect-figure, Expansion board EEPROM without write protect figure:
+.. _expansion-board-eeprom-without-write-protect-figure:
 
 .. figure:: images/ch08/eeprom.png
    :width: 400px
@@ -174,7 +174,7 @@ discretion of the cape designer.
 
 VSYS_IO_3V3
 
-.. _expansion-board-eeprom-with-write-protect-figure, Expansion board EEPROM with write protect figure:
+.. _expansion-board-eeprom-with-write-protect-figure:
 
 .. figure:: images/ch08/eeprom-write-protect.png
    :width: 400px
@@ -187,7 +187,7 @@ VSYS_IO_3V3
 .. _eeprom-data-format:
 
 EEPROM Data Format
-***************************
+===================
 
 :ref:`expansion-board-eeprom-table`
 shows the format of the contents of the expansion board
@@ -198,7 +198,7 @@ by the user when the EEPROM contents are dumped.
 
 *Clean/Update table*
 
-.. _expansion-board-eeprom-table, Expansion Board EEPROM table:
+.. _expansion-board-eeprom-table:
 
 .. list-table:: Expansion Board EEPROM
    :header-rows: 1
@@ -267,9 +267,9 @@ by the user when the EEPROM contents are dumped.
 .. _pin-usage:
 
 Pin Usage
-***************************
+==========
 
-:ref:`eeprom-pin-usage-table`` shows the locations in the EEPROM to set the I/O pin usage for
+:ref:`eeprom-pin-usage-table` shows the locations in the EEPROM to set the I/O pin usage for
 the cape. It contains the value to be written to the Pad Control
 Registers. Details on this can be found in section *9.2.2* of the
 *TDA4VM Technical Reference Manual*, The table is left blank as a
@@ -300,7 +300,7 @@ for the AIN signals.
 
 
 
-.. _eeprom-pin-usage-table, EEPROM Pin Usage table:
+.. _eeprom-pin-usage-table:
 
 .. list-table:: EEPROM Pin Usage
    :header-rows: 1
@@ -1450,7 +1450,7 @@ for the AIN signals.
 .. _pin-usage-consideration:
 
 Pin Usage Consideration
--------------------------------------------
+========================
 
 This section covers things to watch for when hooking up to certain pins
 on the expansion headers.
@@ -1458,7 +1458,7 @@ on the expansion headers.
 .. _expansion-connectors-1:
 
 Expansion Connectors
--------------------------------------------
+====================
 
 A combination of male and female headers is used for access to the
 expansion headers on the main board. There are three possible mounting
@@ -1474,14 +1474,14 @@ and used for each of the different configurations.
 .. _non-stacking-headers-single-cape:
 
 Non-Stacking Headers-Single Cape
-*********************************
+=================================
 
 For non-stacking capes single configurations or where the cape can be
 the last board on the stack, the two 46 pin expansion headers use the
 same connectors. :ref:`single-expansion-connector-figure` is a picture of 
 the connector. These are dual row 23 position 2.54mm x 2.54mm connectors.
 
-.. _single-expansion-connector-figure,Single expansion connector figure:
+.. _single-expansion-connector-figure:
 
 .. figure:: images/ch08/single-expansion-connector.jpg
    :width: 400px
@@ -1491,7 +1491,7 @@ the connector. These are dual row 23 position 2.54mm x 2.54mm connectors.
    Fig-Single expansion connector
 
 The connector is typically mounted on the bottom side of the board as
-shown in :ref:`single-cape-expansion-connector-figure` . These are very common connectors and should be
+shown in :ref:`single-cape-expansion-connector-figure`. These are very common connectors and should be
 easily located. You can also use two single row 23 pin headers for each
 of the dual row headers.
 
@@ -1502,8 +1502,7 @@ of the dual row headers.
 
    Fig-Single cape expansion connector on BeagleBone Proto Cape with EEPROM from onlogic
 
-.. _single-cape-expansion-connector-figure, Single cape expansion connector figure:
-
+.. _single-cape-expansion-connector-figure:
 
 It is allowed to only populate the pins you need. As this is a
 non-stacking configuration, there is no need for all headers to be
@@ -1522,7 +1521,7 @@ amount of the pin that goes past the contact point of the connector on
 BeagleBone AI-64
 
 
-.. _single-cape-connectors-figure, Single Cape Connectors:
+.. _single-cape-connectors-figure:
 
 .. list-table:: Single Cape Connectors
    :header-rows: 1
@@ -1554,13 +1553,13 @@ depth into the connector is sufficient
 .. _main-expansion-headers-stacking:
 
 Main Expansion Headers-Stacking
-*********************************
+================================
 
 For stacking configuration, the two 46 pin expansion headers use the
 same connectors. :ref:`expansion-connector-figure` is a picture of the 
 connector. These are dual row 23 position 2.54mm x 2.54mm connectors.
 
-.. _expansion-connector-figure, Expansion connector figure:
+.. _expansion-connector-figure:
 
 .. figure:: images/ch08/expansion-connector.jpg
    :width: 400px
@@ -1571,10 +1570,10 @@ connector. These are dual row 23 position 2.54mm x 2.54mm connectors.
 
 The connector is mounted on the top side of the board with longer tails
 to allow insertion into BeagleBone AI-64. 
-:ref:`stacked-cape-expansion-connector-figure`` is the
+:ref:`stacked-cape-expansion-connector-figure` is the
 connector configuration for the connector.
 
-.. _stacked-cape-expansion-connector-figure, Stacked cape expansion connector figure:
+.. _stacked-cape-expansion-connector-figure:
 
 .. figure:: images/ch08/can-cape.jpg
    :width: 250px
@@ -1598,10 +1597,10 @@ know and they will be added to this document. The first item in **Table
 amount of the pin that goes past the contact point of the connector on
 BeagleBone AI-64.
 
-The third part listed in :ref:`stacked-cape-connectors-figure`` will have 
+The third part listed in :ref:`stacked-cape-connectors-figure` will have 
 insertion force issues.
 
-.. _stacked-cape-connectors-figure, Stacked cape connectors figure:
+.. _stacked-cape-connectors-figure:
 
 .. list-table:: Stacked Cape Connectors
    :header-rows: 1
@@ -1634,28 +1633,28 @@ one that has the correct mating depth.
 .. _stacked-capes-wsignal-stealing:
 
 Stacked Capes w/Signal Stealing
-*********************************
+================================
 
-:ref:`stacked-with-signal-stealing-expansion-connector-figure`` is the connector configuration for stackable capes that does
+:ref:`stacked-with-signal-stealing-expansion-connector-figure` is the connector configuration for stackable capes that does
 not provide all of the signals upwards for use by other boards. This is
 useful if there is an expectation that other boards could interfere with
 the operation of your board by exposing those signals for expansion.
 This configuration consists of a combination of the stacking and
 nonstacking style connectors.
 
-.. _stacked-with-signal-stealing-expansion-connector-figure, Stacked with signal stealing expansion connector figure:
+.. _stacked-with-signal-stealing-expansion-connector-figure:
 
 .. figure:: images/ch08/stealing-expansion-connector.jpg
    :width: 400px
    :align: center 
    :alt: Fig-Stacked with signal stealing expansion connector figure
 
-   Fig: Stacked with signal stealing expansion connector figure
+   Stacked with signal stealing expansion connector figure
 
 .. _retention-force:
 
 Retention Force
-***************************
+================
 
 The length of the pins on the expansion header has a direct relationship
 to the amount of force that is used to remove a cape from BeagleBone
@@ -1673,20 +1672,20 @@ consider when selecting a connector and its pin length.
 .. _beaglebone-ai-64-female-connectors:
 
 BeagleBone AI-64 Female Connectors
-************************************
+===================================
 
 :ref:`connector-pin-insertion-depth` shows the key measurements used in calculating how much the
 pin extends past the contact point on the connector, what we call
 overhang.
 
-.. _connector-pin-insertion-depth, Connector pin insertion depth figure:
+.. _connector-pin-insertion-depth:
 
 .. figure:: images/ch08/berg-stip-insertion.jpg
    :width: 400px
    :align: center 
    :alt: Fig:Connector Pin Insertion Depth
 
-   Fig:Connector Pin Insertion Depth
+   Connector Pin Insertion Depth
 
 To calculate the amount of the pin that extends past the Point of
 Contact, use the following formula:
@@ -1700,7 +1699,7 @@ than the insertion.
 .. _signal-usage:
 
 Signal Usage
------------------------
+=============
 
 Based on the pin muxing capabilities of the processor, each expansion
 pin can be configured for different functions. When in the stacking
@@ -1710,7 +1709,7 @@ detected will be used to set the pin muxing of each pin. This will
 prevent other modes from being supported on stacked cards and may result
 in them being inoperative.
 
-In :ref:`section-7-1`` of this document, the functions of the pins are defined
+In :ref:`section-7-1` of this document, the functions of the pins are defined
 as well as the pin muxing options. Refer to this section for more
 information on what each pin is. To simplify things, if you use the
 default name as the function for each pin and use those functions, it
@@ -1729,20 +1728,20 @@ BOARD. IT WILL DAMAGE THE PROCESSOR AND VOID THE WARRANTY.*
 .. _cape-power:
 
 Cape Power
--------------------------------------------
+===========
 
 This section describes the power rails for the capes and their usage.
 
 .. _main-board-power:
 
 Main Board Power
-***************************
+=================
 
 The :ref:`expansion-header-voltages-table` describes the voltages from the 
 main board that are available on the expansion connectors and their ratings. 
 All voltages are supplied by connector**P9**. The current ratings listed are per pin.
 
-.. _expansion-header-voltages-table, Expansion header voltages figure:
+.. _expansion-header-voltages-table:
 
 
 .. list-table:: Expansion Voltages
@@ -1794,7 +1793,7 @@ the USB and DC external supplies.
 .. _expansion-board-external-power:
 
 Expansion Board External Power
-*******************************
+===============================
 
 A cape can have a jack or terminals to bring in whatever voltages may be
 needed by that board. Care should be taken not to let this voltage be
@@ -1823,11 +1822,11 @@ the expansion headers to prevent damage to the board.*
 .. _standard-cape-size:
 
 Standard Cape Size
-***************************
+===================
 
 :ref:`cape-board-dimensions-figure` shows the outline of the standard cape. The dimensions are in inches.
 
-.. _cape-board-dimensions-figure, Cape board dimensions figure:
+.. _cape-board-dimensions-figure:
 
 .. figure:: images/ch08/cape-dimension.jpg
    :width: 400px
@@ -1845,7 +1844,7 @@ align it with the notch on the board silkscreen.
 .. _extended-cape-size:
 
 Extended Cape Size
-***************************
+===================
 
 Capes larger than the standard board size are also allowed. A good
 example would be the new BeagleBone AI-64 robotics cape. 

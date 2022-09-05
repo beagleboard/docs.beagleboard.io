@@ -22,15 +22,15 @@ Resources
 * `PRU Assembly Instruction User Guide <http://www.ti.com/lit/ug/spruij2/spruij2.pdf>`_
 
 Calling Assembly from C
--------------------------
+************************
 
 Problem
-~~~~~~~~~
+--------
 
 You have some C code and you want to call an assembly language routine from it.
 
 Solution
-~~~~~~~~~
+---------
 
 You need to do two things, write the assembler file and modify the ``Makefile``
 to include it. For example, let's write our own ``my_delay_cycles`` routine in
@@ -42,28 +42,30 @@ constant.  Our new ``delay_cycles`` can take a runtime delay value.
 
 .. _more_delay-test:
 
-delay-test.pru0.c
-~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/delay-test.pru0.c
+   :caption: delay-test.pru0.c
+   :linenos:
 
-:download:`code/delay-test.pru0.c <code/delay-test.pru0.c>`
+:download:`delay-test.pru0.c <code/delay-test.pru0.c>`
 
 :ref:`more_delay` is the assembly code.
 
 .. _more_delay:
 
-delay.pru0.asm
-~~~~~~~~~~~~~~~
+.. literalinclude:: code/delay.pru0.asm
+   :caption: delay.pru0.asm
+   :linenos:
 
 :download:`delay.pru0.asm <code/delay.pru0.asm>`
 
 The ``Makefile`` has one addition that needs to be made to compile both :ref:`more_delay-test`
-and :ref:`more_delay`.
-If you look in the local ``Makefile`` you'll see:
+and :ref:`more_delay`. If you look in the local ``Makefile`` you'll see:
 
 .. _more_makefile:
 
-Makefile
-~~~~~~~~~
+.. literalinclude:: code/Makefile
+   :caption: Makefile
+   :linenos:
 
 :download:`Makefile <code/Makefile>`
 
@@ -102,23 +104,20 @@ The resulting output is shown in :ref:`more_my_delay_cycles`.
 
 .. _more_my_delay_cycles:
 
-Output of my_delay_cycles()
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 .. figure:: figures/my_delay_cycles.png
   :align: center
   :alt: Output of my_delay_cycles()
 
+  Output of my_delay_cycles()
+
 Notice the on time is about 35ns and the off time is 30ns.
 
 Discission
-~~~~~~~~~~~~
+-----------
 
 There is much to explain here.  Let's start with :ref:`more_delay`.
 
-Line-by-line of delay.pru0.asm
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. table::
+.. table:: Line-by-line of delay.pru0.asm
 
   +-------+-------------------------------------------------------------------------------------------------------+
   |Line   | Explanation                                                                                           |
@@ -152,22 +151,23 @@ The extra instruction is the branch at the bottom of the ``while`` loop.
 
 
 Returning a Value from Assembly
---------------------------------
+********************************
 
 Problem
-~~~~~~~~~
+--------
 
 Your assembly code needs to return a value.
 
 Solution
-~~~~~~~~~
+--------
 
 ``R14`` is how the return value is passed back.  :ref:`more_test2` shows the c code.
 
 .. _more_test2:
 
-delay-test2.pru0.c
-~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/delay-test2.pru0.c
+   :caption: delay-test2.pru0.c
+   :linenos:
 
 :download:`delay-test2.pru0.c <code/delay-test2.pru0.c>`
 
@@ -175,8 +175,9 @@ delay-test2.pru0.c
 
 .. _more_delay2:
 
-delay2.pru0.asm
-~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/delay2.pru0.asm
+   :caption: delay2.pru0.asm
+   :linenos:
 
 :download:`delay2.pru0.asm <code/delay2.pru0.asm>`
 
@@ -187,15 +188,15 @@ In this example, line 6 of :ref:`more_test2` `#defines` TEST and line 12 of
 
 
 Using the Built-In Counter for Timing
----------------------------------------
+***************************************
 
 Problem
-~~~~~~~~~
+--------
 
 I want to count how many cycles my routine takes.
 
 Solution
-~~~~~~~~~
+---------
 
 Each PRU has a ``CYCLE`` register which counts the number of cycles since
 the PRU was enabled. They also have a ``STALL`` register that counts how
@@ -204,23 +205,21 @@ many times the PRU stalled fetching an instruction.
 
 .. _more_cycle:
 
-cycle.pru0.c - Code to count cycles.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/cycle.pru0.c
+   :caption: cycle.pru0.c - Code to count cycles.
+   :linenos:
 
-:download:`delay2.pru0.asm <code/cycle.pru0.c>`
+:download:`cycle.pru0.c <code/cycle.pru0.c>`
 
 Discission
-~~~~~~~~~~~~
+------------
 
 The code is mostly the same as other examples. ``cycle`` and ``stall`` end up in registers which
 we can read using prudebug. :ref:`more_cycle_lines` is the Line-by-line.
 
 .. _more_cycle_lines:
 
-Line-by-line for cycle.pru0.c
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. table::
+.. table:: Line-by-line for cycle.pru0.c
 
   +-------+---------------------------------------------------------------------------------------+
   |Line   | Explanation                                                                           |
@@ -244,20 +243,26 @@ You can see where ``cycle`` and ``stall`` are stored by looking into :ref:`more_
 
 .. _more_cycle_list0:
 
-/tmp/cloud9-examples/cycle.pru0.lst Lines 113..119
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/cycle.pru0.lst
+   :caption: /tmp/cloud9-examples/cycle.pru0.lst Lines 113..119
+   :lines: 113-119
+   :lineno-start: 113
+   :linenos:
 
-:download:`cycle.pru0.lst lines=113..119 <code/cycle.pru0.lst>`
+:download:`cycle.pru0.lst <code/cycle.pru0.lst>`
 
 Here the ``LDI32`` instruction loads the address ``0x22000`` into ``r0``. This is the offset to 
 the ``CTRL`` registers. Later in the file we see :ref:`more_cycle_list1`.
  
 .. _more_cycle_list1:
 
-/tmp/cloud9-examples/cycle.pru0.lst Lines 146..152
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: code/cycle.pru0.lst
+   :caption: /tmp/cloud9-examples/cycle.pru0.lst Lines 146..152
+   :lines: 146-152
+   :lineno-start: 146
+   :linenos:
 
-:download:`lines=146..152 <code/cycle.pru0.lst>`
+:download:`cycle.pru0.lst <code/cycle.pru0.lst>`
 
 
 The first ``LBBO`` takes the contents of ``r0`` and adds the offset 12 to it and copies 4 bytes 
@@ -298,23 +303,24 @@ If you switch the order of lines 30 and 31 you'll see ``cycle`` is 7 and ``stall
 time needed to read ``stall`` and ``stall`` no longer includes the time to read ``cycle``.
 
 Xout and Xin - Transfering Between PRUs
----------------------------------------
+*****************************************
 
 Problem
-~~~~~~~~~
+--------
 
 I need to transfer data between PRUs quickly.
 
 Solution
-~~~~~~~~~
+---------
 
 The ``pass:[__]xout()`` and ``pass:[__]xin()`` intrinsics are able to transfer up to 30 registers between PRU 0 and PRU 1 quickly. 
 :ref:`more_xout` shows how ``xout()`` running on PRU 0 transfers six registers to PRU 1.
 
 .. _more_xout:
 
-xout.pru0.c
-~~~~~~~~~~~~
+.. literalinclude:: code/xout.pru0.c
+   :caption: xout.pru0.c
+   :linenos:
 
 :download:`xout.pru0.c <code/xout.pru0.c>`
 
@@ -323,8 +329,9 @@ interupt to PRU 0 and waits for it to send the data.
 
 .. _more_xin:
 
-xin.pru1.c
-~~~~~~~~~~~
+.. literalinclude:: code/xin.pru1.c
+   :caption: xin.pru1.c
+   :linenos:
 
 :download:`xin.pru1.c <code/xin.pru1.c>`
 
@@ -373,15 +380,13 @@ Use ``prudebug`` to see registers R5-R10 are transfered from PRU 0 to PRU 1.
 
 
 Discussion
-~~~~~~~~~
+-----------
 
 :ref:`more_zout_lines` shows the line-by-line for ``xout.pru0.c``
 
 .. _more_zout_lines:
 
-xout.pru0.c Line-by-line
-~~~~~~~~~~~~~~~~~~~~~~~~~
-.. table::
+.. table:: xout.pru0.c Line-by-line
 
   +-------+---------------------------------------------------------------------------------------------------------+
   |Line   | Explanation                                                                                             |
@@ -415,9 +420,7 @@ xout.pru0.c Line-by-line
 
 .. _more_xin_lines:
 
-xin.pru1.c Line-by-line
-~~~~~~~~~~~~~~~~~~~~~~~~
-.. table::
+.. table:: xin.pru1.c Line-by-line
 
   +-------+-----------------------------------------------------------+
   |Line   | Explanation                                               |
@@ -435,9 +438,10 @@ xin.pru1.c Line-by-line
 If you really need speed, considering using ``pass:[__]xout()`` and ``pass:[__]xin()`` in assembly.
 
 Copyright
-----------
+==========
 
-copyright.c
-~~~~~~~~~~~~~
+.. literalinclude:: code/copyright.c
+   :caption: copyright.c
+   :linenos:
 
 :download:`copyright.c <code/copyright.c>`

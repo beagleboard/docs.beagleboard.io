@@ -4,7 +4,7 @@ Capes
 #####
 
 Introduction
------------------------------
+**************
 
 Previous chapters of this book show a variety of ways to interface BeagleBone Black 
 to the physical world by using a breadboard and wiring to the +P8+ and +P9+ headers. 
@@ -16,7 +16,7 @@ you want to share your hardware with the masses.
 You can easily expand the functionality of the Bone by adding a  `cape <http://bit.ly/1wucweC>`_. 
 A cape is simply a board--often a printed circuit board (PCB) that connects to the +P8+ 
 and +P9+ headers and follows a few standard pin usages. You can stack up to four capes onto the 
-Bone. Capes can range in size from Bone-sized (:ref:`<capes_miniDisplay>`) to much larger than the Bone (:ref:`<capes_7inLCD>`).
+Bone. Capes can range in size from Bone-sized (:ref:`capes_miniDisplay`) to much larger than the Bone (:ref:`capes_7inLCD`).
 
 This chapter shows how to attach a couple of capes, move your design to a protoboard, then to a PCB, 
 and finally on to mass production.
@@ -24,24 +24,27 @@ and finally on to mass production.
 .. _capes_7inLCD:
 
 Using a Seven-Inch LCD Cape
------------------------------
+============================
 
 Problem
-***********
+--------
 
 You want to display the Bone's desktop on a portable LCD.
 
 Solution
-***********
+--------
 
 A number of `LCD capes <http://bit.ly/1AjlXJ9>`_ are built for the Bone, ranging in size from three 
 to seven inches. This recipe attaches a seven-inch `BeagleBone LCD7 <http://bit.ly/1NK8Hra>`_ 
-from `CircuitCo http://circuitco.com/`_ (shown in :ref:`<capes_7inLCD_fig>`) to the Bone.
+from `CircuitCo <http://circuitco.com/>`_ (shown in :ref:`capes_7inLCD_fig`) to the Bone.
 
 .. _capes_7inLCD_fig:
 
+7" LCD
+========
+
 .. note:: 
-    Seven-inch LCD from CircuitCo, :ref:`<capes_7inLCD_fig>` was originally posted by CircuitCo 
+    Seven-inch LCD from CircuitCo, :ref:`capes_7inLCD_fig` was originally posted by CircuitCo 
     at http://elinux.org/File:BeagleBone-LCD7-Front.jpg under a 
     `Creative Commons Attribution-ShareAlike 3.0 Unported License <http://creativecommons.org/licenses/by-sa/3.0/>`_.
 
@@ -51,55 +54,52 @@ from `CircuitCo http://circuitco.com/`_ (shown in :ref:`<capes_7inLCD_fig>`) to 
 
 To make this recipe, you will need:
 
-* Seven-inch LCD cape (see :ref:`app misc<app_misc>`)
-* A 5 V power supply (see :ref:`app misc<app_misc>`)
+* Seven-inch LCD cape
+* A 5 V power supply
 
 Just attach the Bone to the back of the LCD, making sure pin 1 of *P9* lines up with 
 pin 1 of +P9+ on the LCD. Apply a 5 V power supply, and the desktop will appear on 
-your LCD, as shown in :ref:`<capes_LCD7Desktop>`. 
+your LCD, as shown in :ref:`capes_LCD7Desktop`. 
 
 .. _capes_LCD7Desktop:
-
-Seven-inch LCD desktop
 
 .. figure:: figures/LCD7Desktop.png
     :align: center
     :alt: 7 inch LCD desktop
 
+    Seven-inch LCD desktop
+
 Attach a USB keyboard and mouse, and you have a portable Bone. 
 `Wireless keyboard and mouse combinations <https://www.adafruit.com/products/922>`_ 
 make a nice solution to avoid the need to add a USB hub.
 
-Discussion
-***********
-
 .. _capes_miniDisplay:
 
 Using a 128 x 128-Pixel LCD Cape
----------------------------------
+=================================
 
 Problem
-***********
+--------
 
 You want to use a small LCD to display things other than the desktop.
 
 Solution
-***********
+---------
 
-The http://bit.ly/1xd0r8p[MiniDisplay] is a 128 x 128 full-color LCD cape that just fits on the 
-Bone, as shown in :ref:`<capes_miniDisplay_fig>`. 
+The `MiniDisplay <http://bit.ly/1xd0r8>`p_ is a 128 x 128 full-color LCD cape that just fits on the 
+Bone, as shown in :ref:`capes_miniDisplay_fig`. 
 
 .. _capes_miniDisplay_fig:
-
-MiniDisplay 128 x 128-pixel LCD from CircuitCo
 
 .. figure:: figures/MiniDisplay-A1.jpg
     :align: center
     :alt: miniDisplay LCD
 
+    MiniDisplay 128 x 128-pixel LCD from CircuitCo
+
 To make this recipe, you will need:
 
-* MiniDisplay LCD cape (see :ref:`app misc<app_misc>`)
+* MiniDisplay LCD cape
 
 Attach to the Bone and apply power. Then run the following commands:
 
@@ -108,31 +108,32 @@ Attach to the Bone and apply power. Then run the following commands:
     # From http://elinux.org/CircuitCo:MiniDisplay_Cape
     # Datasheet:
     # https://www.crystalfontz.com/products/document/3277/ST7735_V2.1_20100505.pdf
-    bone$ <strong>wget http://elinux.org/images/e/e4/Minidisplay-example.tar.gz</strong>
-    bone$ <strong>tar zmxvf Minidisplay-example.tar.gz</strong>
-    bone$ <strong>cd minidisplay-example</strong>
-    bone$ <strong>make</strong>
-    bone$ <strong>./minidisplay-test</strong>
+    bone$ wget http://elinux.org/images/e/e4/Minidisplay-example.tar.gz
+    bone$ tar zmxvf Minidisplay-example.tar.gz
+    bone$ cd minidisplay-example
+    bone$ make
+    bone$ ./minidisplay-test
     Unable to initialize SPI: No such file or directory
     Aborted
 
 
-.. warning:: You might get a compiler warning, but the code should run fine.
+.. warning:: 
+    You might get a compiler warning, but the code should run fine.
 
 The MiniDisplay uses the Serial Peripheral Interface (SPI) interface, and it's not initialized. 
 The `manufacturer's website <http://bit.ly/1xd0r8p>`_ suggests enabling SPI0 by using the following commands:
 
 .. code-block:: bash
 
-    bone$ <strong>export SLOTS=/sys/devices/bone_capemgr.*/slots</strong>
-    bone$ <strong>echo BB-SPIDEV0 &gt; $SLOTS</strong>
+    bone$ export SLOTS=/sys/devices/bone_capemgr.*/slots
+    bone$ echo BB-SPIDEV0 &gt; $SLOTS
 
 
 Hmmm, something isn't working here. Here's how to see what happened:
 
 .. code-block:: bash
     
-    bone$ <strong>dmesg | tail</strong>
+    bone$ dmesg | tail
     [  625.334497] bone_capemgr.9: part_number 'BB-SPIDEV0', version 'N/A'
     [  625.334673] bone_capemgr.9: slot #11: generic override
     [  625.334720] bone_capemgr.9: bone: Using override eeprom data at slot 11
@@ -160,7 +161,7 @@ Here's how to see what's already configured:
 
 .. code-block:: bash
 
-    bone$ <strong>cat $SLOTS</strong>
+    bone$ cat $SLOTS
     0: 54:PF--- 
     1: 55:PF--- 
     2: 56:PF--- 
@@ -182,8 +183,8 @@ You can unconfigure it by using the following commands:
 
 .. code-block:: bash
 
-    bone$ <strong>echo -10 &gt; $SLOTS</strong>
-    bone$ <strong>cat $SLOTS</strong>
+    bone$ echo -10 &gt; $SLOTS
+    bone$ cat $SLOTS
     0: 54:PF--- 
     1: 55:PF--- 
     2: 56:PF--- 
@@ -194,71 +195,86 @@ You can unconfigure it by using the following commands:
     8: ff:P-O-L Override Board Name,00A0,Override Manuf,bspm_P9_41_27
     9: ff:P-O-L Override Board Name,00A0,Override Manuf,am33xx_pwm
 
-Now +P9_21+ is free for the MiniDisplay to use.
+Now *P9_21* is free for the MiniDisplay to use.
 
-.. note:: In future Bone images, all of the pins will already be allocated as part of the main device tree using runtime pinmux helpers and configured at runtime using the http://bit.ly/1EXLeP2[+config-pin+ utility]. This would eliminate the need for device tree overlays in most cases.
-====
+.. note:: 
+    In future Bone images, all of the pins will already be allocated as part of the main device 
+    tree using runtime pinmux helpers and configured at runtime using the `config-pin utility <http://bit.ly/1EXLeP2>`_. 
+    This would eliminate the need for device tree overlays in most cases.
 
 Now, configure it for the MiniDisplay and run a test:
 
 .. code-block:: bash
 
-    bone$ <strong>echo BB-SPIDEV0 &gt; $SLOTS</strong>
-    bone$ <strong>./minidisplay-test</strong>
+    bone$ echo BB-SPIDEV0 &gt; $SLOTS
+    bone$ ./minidisplay-test
 
 
-You then see Boris, as shown in :ref:`<capes_miniDisplayBoris>`.
+You then see Boris, as shown in :ref:`capes_miniDisplayBoris`.
 
 .. _capes_miniDisplayBoris:
 
-.. note:: MiniDisplay showing Boris, :ref:`<capes_miniDisplayBoris>` was originally posted by David Anders at http://elinux.org/File:Minidisplay-boris.jpg under a `Creative Commons Attribution-ShareAlike 3.0 Unported License <http://creativecommons.org/licenses/by-sa/3.0/>`_.
+Mini display Boris
+==================
+
+.. note:: 
+    MiniDisplay showing Boris, :ref:`capes_miniDisplayBoris` was originally posted by David Anders at http://elinux.org/File:Minidisplay-boris.jpg 
+    under a `Creative Commons Attribution-ShareAlike 3.0 Unported License <http://creativecommons.org/licenses/by-sa/3.0/>`_.
 
 .. figure:: figures/miniDisplay_Boris.png
     :align: center
     :alt: miniDisplay LCD showing Boris
 
-Discussion
-***********
-
 Connecting Multiple Capes
------------------------------
+==========================
 
 Problem
-***********
+--------
 
 You want to use more than one cape at a time.
 
 Solution
-***********
+---------
 
 First, look at each cape that you want to stack mechanically. Are they all using stacking
-headers like the ones shown in :ref:`<capes_stacking_headers>`? No more than one should be using non-stacking headers.
+headers like the ones shown in :ref:`capes_stacking_headers`? No more than one should be using non-stacking headers.
 
 .. _capes_stacking_headers:
-
-Stacking headers
 
 .. figure:: figures/stacking_headers.JPG
     :align: center
     :alt: 
 
+    Stacking headers
+
 Note that larger LCD panels might provide expansion headers, such as the ones
-shown in :ref:`<capes_lcd_backside>`, rather than the stacking headers, and that those can also be used for adding
+shown in :ref:`capes_lcd_backside`, rather than the stacking headers, and that those can also be used for adding
 additional capes.
 
 .. _capes_lcd_backside:
 
-.. note:: Back side of LCD7 cape, :ref:`<capes_lcd_backside>` was originally posted by CircuitCo at http://elinux.org/File:BeagleBone-LCD-Backside.jpg under a `Creative Commons Attribution-ShareAlike 3.0 Unported License <http://creativecommons.org/licenses/by-sa/3.0/>`_.
+LCD Backside
+=============
+
+.. note:: 
+    Back side of LCD7 cape, :ref:`capes_lcd_backside` was originally posted by CircuitCo at http://elinux.org/File:BeagleBone-LCD-Backside.jpg under 
+    a `Creative Commons Attribution-ShareAlike 3.0 Unported License <http://creativecommons.org/licenses/by-sa/3.0/>`_.
 
 .. figure:: figures/LCD7back.png
     :align: center
     :alt: 
 
-Next, take a note of each pin utilized by each cape. The http://beaglebonecapes.com[BeagleBone Capes catalog] provides a graphical representation for the pin usage of most capes, as shown in :ref:`<Audio_cape_pins_fig>` for the Circuitco Audio Cape.
+Next, take a note of each pin utilized by each cape. The `BeagleBone Capes catalog <http://beaglebonecapes.com>`_ 
+provides a graphical representation for the pin usage of most capes, as shown in :ref:`Audio_cape_pins_fig` for the Circuitco Audio Cape.
 
 .. _Audio_cape_pins_fig:
 
-.. note:: Pins utilized by CircuitCo Audio Cape, :ref:`<Audio_cape_pins_fig>` was originally posted by Djackson at http://elinux.org/File:Audio_pins_revb.png under a `Creative Commons Attribution-ShareAlike 3.0 Unported License <http://creativecommons.org/licenses/by-sa/3.0/>`_.
+Audio cape pins
+===============
+
+.. note:: 
+    Pins utilized by CircuitCo Audio Cape, :ref:`Audio_cape_pins_fig` was originally posted by Djackson at http://elinux.org/File:Audio_pins_revb.png 
+    under a `Creative Commons Attribution-ShareAlike 3.0 Unported License <http://creativecommons.org/licenses/by-sa/3.0/>`_.
 
 .. figure:: figures/audioCape.png
     :align: center
@@ -267,47 +283,49 @@ Next, take a note of each pin utilized by each cape. The http://beaglebonecapes.
 In most cases, the same pin should never be used on two different capes, though in some cases, pins can be shared. Here are some exceptions:
 
 - GND 
-    - The ground (+GND+) pins should be shared between the capes, and there's no need to worry about consumed resources on those pins.
+    - The ground (*GND*) pins should be shared between the capes, and there's no need to worry about consumed resources on those pins.
 - VDD_3V3
-    - The 3.3 V power supply (+VDD_3V3+) pins can be shared by all capes to supply power, but the total combined consumption of all the capes should be less than 500 mA (250 mA per +VDD_3V3+ pin).
+    - The 3.3 V power supply (*VDD_3V3*) pins can be shared by all capes to supply power, but the total combined consumption of all the capes should be less than 500 mA (250 mA per *VDD_3V3* pin).
 - VDD_5V
-    - The 5.0 V power supply (+VDD_5V+) pins can be shared by all capes to supply power, but the total combined consumption of all the capes should be less than 2 A (1 A per +VDD_5V+ pin). It is possible for one, and only one, of the capes to _provide_ power to this pin rather than consume it, and it should provide at least 3 A to ensure proper system function. Note that when no voltage is applied to the DC connector, nor from a cape, these pins will not be powered, even if power is provided via USB.
+    - The 5.0 V power supply (*VDD_5V*) pins can be shared by all capes to supply power, but the total combined consumption of all the capes should be less than 2 A (1 A per +VD*_5V+ p*n). It is possible for one, and only one, of the capes to _provide_ power to this pin rather than consume it, and it should provide at least 3 A to ensure proper system function. Note that when no voltage is applied to the DC connector, nor from a cape, these pins will not be powered, even if power is provided via USB.
 - SYS_5V
-    - The regulated 5.0 V power supply (+SYS_5V+) pins can be shared by all capes to supply power, but the total combined consumption of all the capes should be less than 500 mA (250 mA per +SYS_5V+ pin).
+    - The regulated 5.0 V power supply (*SYS_5V*) pins can be shared by all capes to supply power, but the total combined consumption of all the capes should be less than 500 mA (250 mA per *SYS_5V* pin).
 - VADC and AGND
     - The ADC reference voltage pins can be shared by all capes.
 - I2C2_SCL and I2C2_SDA
-    - I^2^C is a shared bus, and the +I2C2_SCL+ and +I2C2_SDA+ pins default to having this bus enabled for use by cape expansion ID EEPROMs.
+    - |I2C| is a shared bus, and the *I2C2_SCL* and *I2C2_SDA* pins default to having this bus enabled for use by cape expansion ID EEPROMs.
 
-Discussion
-***********
+.. |I2C| replace:: I\ :sub:`2`\ C
 
 .. _capes_soldering:
 
 Moving from a Breadboard to a Protoboard
------------------------------------------
+=========================================
 
 Problem
-***********
+--------
 
 You have your circuit working fine on the breadboard, but you want a more reliable solution.
 
 Solution
-***********
+---------
 
 Solder your components to a protoboard. 
 
 To make this recipe, you will need:
 
-* Protoboard (see :ref:`<app_proto>`)
-* Soldering iron (see :ref:`app misc<app_misc>`)
+* Protoboard
+* Soldering iron
 * Your other components
 
 Many places make premade circuit boards that are laid out like the breadboard we have been using. 
-:ref:`<capes_beaglebread_fig>` shows the http://bit.ly/1HCwtB4[BeagleBone Breadboard], 
+:ref:`capes_beaglebread_fig` shows the `BeagleBone Breadboard <http://bit.ly/1HCwtB4>`_, 
 which is just one protoboard option.
 
 .. _capes_beaglebread_fig:
+
+Beaglebread
+============
 
 .. note:: 
     This was originally posted by William 
@@ -320,71 +338,65 @@ which is just one protoboard option.
 
 You just solder your parts on the protoboard as you had them on the breadboard.
 
-Discussion
-***********
-
 .. _capes_creating_prototype_schematic:
 
 Creating a Prototype Schematic
------------------------------
+==============================
 
 Problem
-***********
+--------
 
 You've wired up a circuit on a breadboard. How do you turn that prototype into a schematic others can read and 
 that you can import into other design tools?
 
 Solution
-***********
+---------
 
-In :ref:`<tips_fritzing>`, we introduced Fritzing as a useful tool for drawing block diagrams. Fritzing can also 
-do circuit schematics and printed-circuit layout. For example, :ref:`<capes_quickRobo_fig>` shows a block diagram 
+In :ref:`tips_fritzing`, we introduced Fritzing as a useful tool for drawing block diagrams. Fritzing can also 
+do circuit schematics and printed-circuit layout. For example, :ref:`capes_quickRobo_fig` shows a block diagram 
 for a simple robot controller (quickBot.fzz is the name of the Fritzing file used to create the diagram).
 
 .. _capes_quickRobo_fig:
-
-A simple robot controller diagram (quickBot.fzz)
 
 .. figure:: figures/quickBot_bb.png
     :align: center
     :alt: Simple robot diagram
 
-The controller has an H-bridge to drive two DC motors (:ref:`<motors_dcDirection>`), an IR range sensor, 
+    A simple robot controller diagram (quickBot.fzz)
+
+The controller has an H-bridge to drive two DC motors (:ref:`motors_dcDirection`), an IR range sensor, 
 and two headers for attaching analog encoders for the motors. Both the IR sensor and the encoders 
 have analog outputs that exceed 1.8 V, so each is run through a voltage divider (two resistors) to 
-scale the voltage to the correct range (see :ref:`<sensors_hc-sr04>` for a voltage divider example).
+scale the voltage to the correct range (see :ref:`sensors_hc-sr04` for a voltage divider example).
 
-:ref:`<capes_quickRobo_schemRaw>` shows the schematic automatically generated by Fritzing. 
+:ref:`capes_quickRobo_schemRaw` shows the schematic automatically generated by Fritzing. 
 It's a mess. It's up to you to fix it.
 
 .. _capes_quickRobo_schemRaw:
-
-Automatically generated schematic
 
 .. figure:: figures/quickBot_schemRaw.png
     :align: center
     :alt: Autogenerated schematic
 
-:ref:`<capes_quickRobo_schem>` shows my cleaned-up schematic. I did it by moving the parts around until it looked better.
+    Automatically generated schematic
+
+:ref:`capes_quickRobo_schem` shows my cleaned-up schematic. I did it by moving the parts around until it looked better.
 
 .. _capes_quickRobo_schem:
-
-Cleaned-up schematic
 
 .. figure:: figures/quickBot_schem.png
     :align: center
     :alt: Cleaned up schematic
 
-Discussion
-***********
+    Cleaned-up schematic
 
 .. _capes_quickRobo_schemZoom:
-
-Zoomed-in schematic
 
 .. figure:: figures/quickBot_schemZoom.png
     :align: center
     :alt: Zoomed in schematic
+
+    Zoomed-in schematic
 
 You might find that you want to create your design in a more advanced design tool, 
 perhaps because it has the library components you desire, it integrates better with other tools 
@@ -393,27 +405,28 @@ you are using, or it has some other feature (such as simulation) of which you'd 
 .. _capes_verify:
 
 Verifying Your Cape Design
------------------------------
+===========================
 
 Problem
-***********
+--------
 
 You've got a design. How do you quickly verify that it works?
 
 Solution
-***********
+---------
 
 To make this recipe, you will need:
 
-* An oscilloscope (see :ref:`app misc<app_misc>`)
+* An oscilloscope
 
 Break down your design into functional subcomponents and write tests for each. 
 Use components you already know are working, such as the onboard LEDs, to display 
-the test status with the code in :ref:`<capes_quickBot_motor_test_code>`.
+the test status with the code in :ref:`capes_quickBot_motor_test_code`.
 
 .. _capes_quickBot_motor_test_code:
 
 Testing the quickBot motors interface (quickBot_motor_test.js)
+==============================================================
 
 .. code-block:: bash
 
@@ -557,94 +570,86 @@ Testing the quickBot motors interface (quickBot_motor_test.js)
 .. <dd><p>The <code>analogWrite()</code> call uses the absolute value of <code>speed</code>, making any negative numbers a positive magnitude.</p></dd>
 .. </dl>
 
-++++
-====
-
 .. _quickBot_motor_kickback:
-
-quickBot motor test showing kickback
 
 .. figure:: figures/quickBot_motor_kickback.JPG
     :align: center
     :alt: quickBot kicking back
 
-Using the solution in :ref:`<basics_autorun>`, you can untether from your coding station to test your 
-design at your lab workbench, as shown in :ref:`<quickBot_scope_fig>`.
+    quickBot motor test showing kickback
+
+Using the solution in :ref:`beaglebone-cookbook-basics`, you can untether from your coding station to test your 
+design at your lab workbench, as shown in :ref:`quickBot_scope_fig`.
 
 .. _quickBot_scope_fig:
-
-quickBot motor test code under scope
 
 .. figure:: figures/quickBot_motor_test_scope.JPG
     :align: center
     :alt: quickBot under scope
 
+    quickBot motor test code under scope
+
 SparkFun provides a `useful guide to using an oscilloscope <http://bit.ly/18AzuoR>`_. 
 You might want to check it out if you've never used an oscilloscope before.
 Looking at the stimulus you'll generate *before* you connect up your hardware will help you avoid surprises.
 
-Discussion
-***********
-
 .. _capes_layout:
 
 Laying Out Your Cape PCB
------------------------------
+=========================
 
 Problem
-***********
+--------
 
 You've generated a diagram and schematic for your circuit and verified that they are correct. How do you create a PCB?
 
 Solution
-***********
+---------
 
 If you've been using Fritzing, all you need to do is click the PCB tab, and there's your board. Well, almost. 
-Much like the schematic view shown in :ref:`<capes_creating_prototype_schematic>`, you need to do some layout work 
+Much like the schematic view shown in :ref:`capes_creating_prototype_schematic`, you need to do some layout work 
 before it's actually usable. I just moved the components around until they seemed to be grouped logically and 
 then clicked the Autoroute button.  After a minute or two of trying various layouts, Fritzing picked the one it 
-determined to be the best. :ref:`<capes_quickRobo_pcb>` shows the results.
+determined to be the best. :ref:`capes_quickRobo_pcb` shows the results.
 
 .. _capes_quickRobo_pcb:
-
-Simple robot PCB
 
 .. figure:: figures/quickBot_pcb.png
     :align: center
     :alt: Simple robot PCB
 
+    Simple robot PCB
+
 The `Fritzing pre-fab web page <http://bit.ly/1HCxokQ>`_ has a few helpful hints, including checking the widths 
 of all your traces and cleaning up any questionable routing created by the autorouter.
 
-Discussion
-***********
-
-The PCB in :ref:`<capes_quickRobo_pcb>` is a two-sided board. One color (or shade of gray in the printed book) 
+The PCB in :ref:`capes_quickRobo_pcb` is a two-sided board. One color (or shade of gray in the printed book) 
 represents traces on one side of the board, and the other color (or shade of gray) is the other side. Sometimes, 
 you'll see a trace come to a small circle and then change colors. This is where it is switching sides of the board 
 through what's called a _via_. One of the goals of PCB design is to minimize the number of vias.
 
-:ref:`<capes_quickRobo_pcb>` wasn't my first try or my last. My approach was to see what was needed to hook where and 
+:ref:`capes_quickRobo_pcb` wasn't my first try or my last. My approach was to see what was needed to hook where and 
 move the components around to make it easier for the autorouter to carry out its job.
 
 .. note:: 
     There are entire books and websites dedicated to creating PCB layouts. Look around and see 
-    what you can find. http://bit.ly/1wXTLki[SparkFun's guide to making PCBs] is particularly useful.
+    what you can find. `SparkFun's guide to making PCBs <http://bit.ly/1wXTLki>`_ is particularly useful.
 
 Customizing the Board Outline
-*******************************
+=============================
 
 One challenge that slipped my first pass review was the board outline. The part we installed in 
-:ref:`<tips_fritzing>` is meant to represent BeagleBone Black, not a cape, so the outline doesn't have 
-the notch cut out of it for the Ethernet pass:[<span class="keep-together">connector</span>]. 
+:ref:`tips_fritzing` is meant to represent BeagleBone Black, not a cape, so the outline doesn't have 
+the notch cut out of it for the Ethernet connector. 
 
-The http://bit.ly/1xd1aGV[Fritzing custom PCB outline page] describes how to create and use a custom 
-board outline. Although it is possible to use a drawing tool like https://inkscape.org/en/[Inkscape], 
-I chose to use http://bit.ly/1b2aZmn[the SVG _path_ command] directly to create :ref:`<capes_boardoutline_code>`.
+The `Fritzing custom PCB outline page <http://bit.ly/1xd1aGV>`_ describes how to create and use a custom 
+board outline. Although it is possible to use a drawing tool like `Inkscape <https://inkscape.org/en/>`_, 
+I chose to use `the SVG path command <http://bit.ly/1b2aZmn>`_ directly to create :ref:`capes_boardoutline_code`.
 
 .. _capes_boardoutline_code:
 
 Outline SVG for BeagleBone cape (beaglebone_cape_boardoutline.svg)
+===================================================================
 
 .. &lt;?xml version='1.0' encoding='UTF-8' standalone='no'?&gt;
 .. &lt;svg xmlns="http://www.w3.org/2000/svg" version="1.1"
@@ -665,111 +670,119 @@ Outline SVG for BeagleBone cape (beaglebone_cape_boardoutline.svg)
 .. </dl>
 .. ++++
 
-The measurements are taken from the http://bit.ly/1C5rSa8[BeagleBone Black System Reference Manual], 
-as shown in :ref:`<capes_dimensions_fig>`.
+The measurements are taken from the `BeagleBone Black System Reference Manual <http://bit.ly/1C5rSa8>`_, as shown in :ref:`capes_dimensions_fig`.
 
 .. _capes_dimensions_fig:
-
-Cape dimensions
 
 .. figure:: figures/srm_cape_dimensions.png
     :align: center
     :alt: Cape dimensions in SRM
 
-You can observe the rendered output of :ref:`<capes_boardoutline_code>` quickly by opening the file in a web browser, as shown in :ref:`<capes_boardoutline_fig>`.
+    Cape dimensions
+
+You can observe the rendered output of :ref:`capes_boardoutline_code` quickly by opening the 
+file in a web browser, as shown in :ref:`capes_boardoutline_fig`.
 
 .. _capes_boardoutline_fig:
-
-Rendered cape outline in Chrome
 
 .. figure:: figures/beaglebone_cape_boardoutline.png
     :align: center
     :alt: Board outline in Chrome
 
-After you have the SVG outline, you'll need to select the PCB in Fritzing and select a custom shape in the Inspector box. Begin with the original background, as shown in :ref:`<capes_fritzing1>`.
+    Rendered cape outline in Chrome
+
+.. _tips_fritzing:
+
+Fritzing tips
+==============
+
+After you have the SVG outline, you'll need to select the PCB in Fritzing and select a custom shape in the 
+Inspector box. Begin with the original background, as shown in :ref:`capes_fritzing1`.
 
 .. _capes_fritzing1:
-
-PCB with original board, without notch for Ethernet connector
 
 .. figure:: figures/fritzing1.png
     :align: center
     :alt: PCB orginal baord
 
-Hide all but the Board Layer (:ref:`<capes_fritzing2>`).
+    PCB with original board, without notch for Ethernet connector
+
+Hide all but the Board Layer (:ref:`capes_fritzing2`).
 
 .. _capes_fritzing2:
-
-PCB with all but the Board Layer hidden
 
 .. figure:: figures/fritzing2.png
     :align: center
     :alt: PCB orginal baord hidden
 
-Select the PCB1 object and  then, in the Inspector pane, scroll down to the "load image file" button (:ref:`<capes_fritzing3>`).
+    PCB with all but the Board Layer hidden
+
+Select the PCB1 object and  then, in the Inspector pane, 
+scroll down to the "load image file" button (:ref:`capes_fritzing3`).
 
 .. _capes_fritzing3:
-
-Clicking :load image file: with PCB1 selected
 
 .. figure:: figures/fritzing3.png
     :align: center
     :alt: PCB load image file
 
-Navigate to the _beaglebone_cape_boardoutline.svg_ file created in :ref:`<capes_boardoutline_code>`, as shown in :ref:`<capes_fritzing4>`.
+    Clicking :load image file: with PCB1 selected
+
+Navigate to the *beaglebone_cape_boardoutline.svg* file created in 
+:ref:`capes_boardoutline_code`, as shown in :ref:`capes_fritzing4`.
 
 .. _capes_fritzing4:
-
-Selecting the .svg file
 
 .. figure:: figures/fritzing4.png
     :align: center
     :alt: PCB selecting svg file
 
-Turn on the other layers and line up the Board Layer with the rest of the PCB, as shown in :ref:`<capes_fritzing_inspector_fig>`.
+    Selecting the .svg file
+
+Turn on the other layers and line up the Board Layer with the rest of the 
+PCB, as shown in :ref:`capes_fritzing_inspector_fig`.
 
 .. _capes_fritzing_inspector_fig:
-
-PCB Inspector
 
 .. figure:: figures/Fritzing_Inspector.png
     :align: center
     :alt: PCB Inspector
 
-Now, you can save your file and send it off to be made, 
-as described in :ref:`<capes_prototype>`.
+    PCB Inspector
+
+Now, you can save your file and send it off to be made, as described in :ref:`capes_prototype`.
 
 PCB Design Alternatives
-*************************
+=======================
 
 There are other free PCB design programs. Here are a few.
 
 TO PROD: The headings I've marked as bold lines really should be subheadings of "PCB Design Alternatives," 
-but AsciiDoc won't let me go that deep (to the ==level). Is what I've done the best solution, 
+but AsciiDoc won't let me go that deep (to the level). Is what I've done the best solution, 
 or is there a way to create another heading level?
 
 *EAGLE*
 
-http://www.cadsoftusa.com/[Eagle PCB] and http://bit.ly/19cbwS0[DesignSpark PCB] are two popular 
+`Eagle PCB <http://www.cadsoftusa.com/>`_ and `DesignSpark PCB <http://bit.ly/19cbwS0>`_ are two popular 
 design programs. Many capes (and other PCBs) are designed with Eagle PCB, and the files are available. 
-For example, the MiniDisplay cape (:ref:`<capes_miniDisplay>`) has the schematic shown in :ref:`<capes_miniDisplay_schem>` 
-and PCB shown in :ref:`<capes_miniDisplay_pcb>`.
+For example, the MiniDisplay cape (:ref:`capes_miniDisplay`) has the schematic shown in :ref:`capes_miniDisplay_schem` 
+and PCB shown in :ref:`capes_miniDisplay_pcb`.
 
 .. _capes_miniDisplay_schem:
-
-Schematic for the MiniDisplay cape
 
 .. figure:: figures/miniDisplay_Cape_schem.png
     :align: center
     :alt: Schematic for miniDisplay
 
-.. _capes_miniDisplay_pcb:
+    Schematic for the MiniDisplay cape
 
-PCB for MiniDisplay cape
+.. _capes_miniDisplay_pcb:
 
 .. figure:: figures/miniDisplay_Cape_pcb.png
     :align: center
     :alt: PCB for miniDisplay
+
+    PCB for MiniDisplay cape
 
 A good starting point is to take the PCB layout for the MiniDisplay and edit it for your project. 
 The connectors for +P8+ and +P9+ are already in place and ready to go.
@@ -785,37 +798,36 @@ You can install Eagle PCB on your Linux host by using the following command:
 
 .. code-block:: bash
 
-    host$ <strong>sudo apt install eagle</strong>
+    host$ sudo apt install eagle
     Reading package lists... Done
     Building dependency tree       
     Reading state information... Done
     ...
     Setting up eagle (6.5.0-1) ...
     Processing triggers for libc-bin (2.19-0ubuntu6.4) ...
-    host$ <strong>eagle</strong>
+    host$ eagle
 
 
-You'll see the startup screen shown in :ref:`<capes_Eagle_License>`.
+You'll see the startup screen shown in :ref:`capes_Eagle_License`.
 
 .. _capes_Eagle_License:
-
-Eagle PCB startup screen
 
 .. figure:: figures/EagleLicense.png
     :align: center
     :alt: Eagle License
 
+    Eagle PCB startup screen
+
 Click "Run as Freeware." When my Eagle started, it said it needed to be updated. To update on Linux, 
-follow the link provided by Eagle and download _eagle-lin-7.2.0.run_ (or whatever version is current.). 
+follow the link provided by Eagle and download *eagle-lin-7.2.0.run* (or whatever version is current.). 
 Then run the following commands:
 
 .. code-block:: bash
 
-    host$ <strong>chmod +x eagle-lin-7.2.0.run</strong>
-    host$ <strong>./eagle-lin-7.2.0.run</strong>
+    host$ chmod +x eagle-lin-7.2.0.run
+    host$ ./eagle-lin-7.2.0.run
 
-
-A series of screens will appear. Click Next. When you see a screen that looks like :ref:`<capes_eagle3>`, note the Destination Directory.
+A series of screens will appear. Click Next. When you see a screen that looks like :ref:`capes_eagle3`, note the Destination Directory.
 
 .. _capes_eagle3:
 
@@ -826,36 +838,36 @@ A series of screens will appear. Click Next. When you see a screen that looks li
     The Eagle installation destination directory
 
 Continue clicking Next until it's installed. Then run the following commands 
-(where +~/eagle-7.2.0+ is the path you noted in :ref:`<capes_eagle3>`):
+(where *~/eagle-7.2.0* is the path you noted in :ref:`capes_eagle3`):
 
 .. code-block:: bash
 
-    host$ <strong>cd /usr/bin</strong>
-    host$ <strong>sudo rm eagle</strong>
-    host$ <strong>sudo ln -s ~/eagle-7.2.0/bin/eagle .</strong>
-    host$ <strong>cd</strong>
-    host$ <strong>eagle</strong>
+    host$ cd /usr/bin
+    host$ sudo rm eagle
+    host$ sudo ln -s ~/eagle-7.2.0/bin/eagle .
+    host$ cd
+    host$ eagle
 
 
-The +ls+ command links +eagle+ in */usr/bin*, so you can run +eagle+ from any directory. 
-After +eagle+ starts, you'll see the start screen shown in :ref:`<capes_eagle7>`.
+The *ls* command links *eagle* in */usr/bin*, so you can run +eagle+ from any directory. 
+After *eagle* starts, you'll see the start screen shown in :ref:`capes_eagle7`.
 
 .. _capes_eagle7:
-
-The Eagle start screen
 
 .. figure:: figures/eagle7.png
     :align: center
     :alt: Eagle start screen
 
+    The Eagle start screen
+
 Ensure that the correct version number appears.
 
-If you are moving a design from Fritzing to Eagle, see :ref:`<capes_schematic_migration>` 
+If you are moving a design from Fritzing to Eagle, see :ref:`capes_schematic_migration` 
 for tips on converting from one to the other.
 
 *DesignSpark PCB*
 
-The free `DesignSpark PCB <http://bit.ly/19cbwS0>` doesn't have the same limitations as Eagle PCB, 
+The free `DesignSpark PCB <http://bit.ly/19cbwS0>`_ doesn't have the same limitations as Eagle PCB, 
 but it runs only on Windows. Also, it doesn't seem to have the following of Eagle at this time.
 
 .. _capes_upverter:
@@ -863,50 +875,50 @@ but it runs only on Windows. Also, it doesn't seem to have the following of Eagl
 *Upverter*
 
 In addition to free solutions you run on your desktop, you can also work with a browser-based 
-tool called https://upverter.com/[Upverter]. With Upverter, you can collaborate easily, editing 
+tool called `Upverter <https://upverter.com/>`_. With Upverter, you can collaborate easily, editing 
 your designs from anywhere on the Internet. It also provides many conversion options and a PCB fabrication service.
 
 .. note:: 
-    Don't confuse Upverter with Upconverter (:ref:`<capes_schematic_migration>`). 
+    Don't confuse Upverter with Upconverter (:ref:`capes_schematic_migration`). 
     Though their names differ by only three letters, they differ greatly in what they do.
 
 .. _capes_kicad:
 
-*Kicad*
+Kicad
+=======
 
-Unlike the previously mentioned free (no-cost) solutions, `Kicad <http://bit.ly/1b2bnBg >`_
-is open source and provides some features beyond those of Fritzing. Notably, `CircuitHub <http://circuithub.com/>`_ 
-(discussed in :ref:`<capes_production>`) provides support for uploading Kicad designs.
+Unlike the previously mentioned free (no-cost) solutions, `Kicad <http://bit.ly/1b2bnBg>`_
+is open source and provides some features beyond those of Fritzing. Notably, `CircuitHub site <http://circuithub.com/>`_ 
+(discussed in :ref:`capes_production`) provides support for uploading Kicad designs.
 
 .. _capes_schematic_migration:
 
 Migrating a Fritzing Schematic to Another Tool
------------------------------------------------
+===============================================
 
 Problem
-***********
+--------
 
 You created your schematic in Fritzing, but it doesn't integrate with everything you need. 
 How can you move the schematic to another tool?
 
 Solution
-***********
-
+---------
 
 Use the `Upverter schematic-file-converter <http://bit.ly/1wXUkdM>`_ Python script. For example, suppose that you want 
-to convert the Fritzing file for the diagram shown in :ref:`<capes_quickRobo_fig>`. First, install Upverter.
+to convert the Fritzing file for the diagram shown in :ref:`capes_quickRobo_fig`. First, install Upverter.
 
 I found it necessary to install +libfreetype6+ and +freetype-py+ onto my system, but you might not need this first step:
 
 .. code-block:: bash
 
-    host$ <strong>sudo apt install libfreetype6</strong>
+    host$ sudo apt install libfreetype6
     Reading package lists... Done
     Building dependency tree       
     Reading state information... Done
     libfreetype6 is already the newest version.
     0 upgraded, 0 newly installed, 0 to remove and 154 not upgraded.
-    host$ <strong>sudo pip install freetype-py</strong>
+    host$ sudo pip install freetype-py
     Downloading/unpacking freetype-py
     Running setup.py egg_info for package freetype-py
 
@@ -921,11 +933,11 @@ I found it necessary to install +libfreetype6+ and +freetype-py+ onto my system,
     All these commands are being run on the Linux-based host computer, as shown by the +host$+ prompt. 
     Log in as a normal user, not +root+.
 
-Now, install the +schematic-file-converter+ tool:
+Now, install the ``schematic-file-converter`` tool:
 
 .. code-block:: bash
 
-    host$ <strong>git clone git@github.com:upverter/schematic-file-converter.git</strong>
+    host$ git clone git@github.com:upverter/schematic-file-converter.git
     Cloning into 'schematic-file-converter'...
     remote: Counting objects: 22251, done.
     remote: Total 22251 (delta 0), reused 0 (delta 0)
@@ -933,8 +945,8 @@ Now, install the +schematic-file-converter+ tool:
     Resolving deltas: 100% (14761/14761), done.
     Checking connectivity... done.
     Checking out files: 100% (16880/16880), done.
-    host$ <strong>cd schematic-file-converter</strong>
-    host$ <strong>sudo python setup.py install</strong>
+    host$ cd schematic-file-converter
+    host$ sudo python setup.py install
     .
     .
     .
@@ -945,8 +957,8 @@ Now, install the +schematic-file-converter+ tool:
     Installed /usr/local/lib/python2.7/dist-packages/python_upconvert-0.8.9-py2.7.egg
     Processing dependencies for python-upconvert==0.8.9
     Finished processing dependencies for python-upconvert==0.8.9
-    host$ <strong>cd ..</strong>
-    host$ <strong>python -m upconvert.upconverter -h</strong>
+    host$ cd ..
+    host$ python -m upconvert.upconverter -h
     usage: upconverter.py [-h] [-i INPUT] [-f TYPE] [-o OUTPUT] [-t TYPE]
                         [-s SYMDIRS [SYMDIRS ...]] [--unsupported]
                         [--raise-errors] [--profile] [-v] [--formats]
@@ -1000,35 +1012,32 @@ At the time of this writing, Upverter suppports the following file types:
     | netlist (csv)  | out only                |
     +----------------+-------------------------+
 
-After Upverter is installed, run the file (_quickBot.fzz_) that generated :ref:`<capes_quickRobo_fig>` through Upverter:
+After Upverter is installed, run the file (``quickBot.fzz``) that generated :ref:`capes_quickRobo_fig` through Upverter:
 
 .. code-block:: bash
 
-    host$ <strong>python -m upconvert.upconverter -i quickBot.fzz \
-    -f fritzing -o quickBot-eaglexml.sch -t eaglexml --unsupported</strong> 
+    host$ python -m upconvert.upconverter -i quickBot.fzz \
+    -f fritzing -o quickBot-eaglexml.sch -t eaglexml --unsupported 
     WARNING: RUNNING UNSUPPORTED VERSION OF PYTHON (2.7 > 2.6)
     DEBUG:main:parsing quickBot.fzz in format fritzing
-    host$ <strong>ls -l</strong>
+    host$ ls -l
     total 188
     -rw-rw-r-- 1 ubuntu ubuntu  63914 Nov 25 19:47 quickBot-eaglexml.sch
     -rw-r--r-- 1 ubuntu ubuntu 122193 Nov 25 19:43 quickBot.fzz
     drwxrwxr-x 9 ubuntu ubuntu   4096 Nov 25 19:42 schematic-file-converter
 
 
-:ref:`<caps_eagle>` shows the output of the conversion.
+:ref:`caps_eagle` shows the output of the conversion.
 
 .. _caps_eagle:
-
-Output of Upverter conversion
 
 .. figure:: figures/quickBot_eaglexml.png
     :align: center
     :alt: Converter Output
 
-No one said it would be pretty!
+    Output of Upverter conversion
 
-Discussion
-***********
+No one said it would be pretty!
 
 I found that Eagle was more generous at reading in the +eaglexml+ format than the +eagle+ format. 
 This also made it easier to hand-edit any translation issues.
@@ -1036,37 +1045,39 @@ This also made it easier to hand-edit any translation issues.
 .. _capes_prototype:
 
 Producing a Prototype
------------------------------
+======================
 
 Problem
-***********
+--------
 
 You have your PCB all designed. How do you get it made?
 
 Solution
-***********
+---------
 
 To make this recipe, you will need:
 
-* A completed design (see :ref:`<capes_layout>`)
-* Soldering iron (see :ref:`app misc<app_misc>`)
-* Oscilloscope (see :ref:`app misc<app_misc>`)
-* Multimeter (see :ref:`app misc<app_misc>`)
+* A completed design
+* Soldering iron
+* Oscilloscope
+* Multimeter
 * Your other components
 
-Upload your design to http://oshpark.com[OSH Park] and order a few boards. :ref:`<capes_oshpark_share>` 
-shows a resulting http://bit.ly/1MtlzAp[shared project page for the quickBot cape] created in 
-:ref:`<capes_layout>`. We'll proceed to break down how this design was uploaded and shared to enable ordering fabricated PCBs.
+Upload your design to `OSH Park <http://oshpark.com>` and order a few boards. :ref:`capes_oshpark_share` shows a resulting 
+`shared project page for the quickBot cape <http://bit.ly/1MtlzAp>`_ created in :ref:`capes_layout`. We'll proceed to 
+break down how this design was uploaded and shared to enable ordering fabricated PCBs.
 
 .. _capes_oshpark_share:
-
-The OSH Park QuickBot Cape shared project page
 
 .. figure:: figures/quickBot_oshpark_share.png
     :align: center
     :alt: 
 
-Within Fritzing, click the menu next to "Export for PCB" and choose "Extended Gerber," as shown in :ref:`<capes_fritzing_export_fig>`. You'll need to choose a directory in which to save them and then compress them all into a http://bit.ly/1Br5lEh[Zip file]. The http://bit.ly/1B4GqRU[WikiHow article on creating Zip files] might be helpful if you aren't very experienced at making these.
+    The OSH Park QuickBot Cape shared project page
+
+Within Fritzing, click the menu next to "Export for PCB" and choose "Extended Gerber," as shown in :ref:`capes_fritzing_export_fig`. 
+You'll need to choose a directory in which to save them and then compress them all into a `Zip file <http://bit.ly/1Br5lEh>`_. 
+The `WikiHow article on creating Zip files <http://bit.ly/1B4GqRU>`_ might be helpful if you aren't very experienced at making these.
 
 .. _capes_fritzing_export_fig:
 
@@ -1076,9 +1087,16 @@ Within Fritzing, click the menu next to "Export for PCB" and choose "Extended Ge
 
     Choosing "Extended Gerber" in Fritzing
 
-Things on the `OSH Park website <http://oshpark.com>`_ are reasonably self-explanatory. You'll need to create an account and upload the Zip file containing the http://bit.ly/1B4GzEZ[Gerber files] you created. If you are a cautious person, you might choose to examine the Gerber files with a Gerber file viewer first. The http://bit.ly/18bUgeA[Fritzing fabrication FAQ] offers several suggestions, including http://gerbv.sourceforge.net/[gerbv] for Windows and Linux users.
+Things on the `OSH Park website <http://oshpark.com>`_ are reasonably self-explanatory. You'll need to create an account and 
+upload the Zip file containing the `Gerber files <http://bit.ly/1B4GzEZ>`_ you created. If you are a cautious person, 
+you might choose to examine the Gerber files with a Gerber file viewer first. The `Fritzing fabrication FAQ <http://bit.ly/18bUgeA>`_ 
+offers several suggestions, including `gerbv <http://gerbv.sourceforge.net/>`_ for Windows and Linux users.
 
-When your upload is complete, you'll be given a quote, shown images for review, and presented with options for accepting and ordering. After you have accepted the design, your https://oshpark.com/users/current[list of accepted designs] will also include the option of enabling sharing of your designs so that others can order a PCB, as well. If you are looking to make some money on your design, you'll want to go another route, like the one described in :ref:`<capes_production>`. :ref:`<capes_quickbot_pcb>` shows the resulting PCB that arrives in the mail.
+When your upload is complete, you'll be given a quote, shown images for review, and presented with options for accepting 
+and ordering. After you have accepted the design, your `list of accepted designs <https://oshpark.com/users/current>`_ 
+will also include the option of enabling sharing of your designs so that others can order a PCB, as well. If you are 
+looking to make some money on your design, you'll want to go another route, like the one described in :ref:`capes_production`. 
+:ref:`capes_quickbot_pcb` shows the resulting PCB that arrives in the mail.
 
 .. _capes_quickbot_pcb:
 
@@ -1088,13 +1106,13 @@ When your upload is complete, you'll be given a quote, shown images for review, 
 
     QuickBot PCB
 
-Now is a good time to ensure that you have all of your components and a soldering station set up as in :ref:`<capes_soldering>`, as well as an oscilloscope, as used in :ref:`<capes_verify>`.
+Now is a good time to ensure that you have all of your components and a soldering station set up as in :ref:`capes_soldering`, as well as an oscilloscope, as used in :ref:`capes_verify`.
 
-When you get your board, it is often informative to "buzz out" a few connections by using a multimeter. If you've never used a multimeter before, the http://bit.ly/18bUgeA[SparkFun] or http://bit.ly/1Br5Xtv[Adafruit] tutorials might be helpful. Set your meter to continuity testing mode and probe between points where the headers are and where they should be connecting to your components. This would be more difficult and less accurate after you solder down your components, so it is a good idea to keep a bare board around just for this purpose.
+When you get your board, it is often informative to "buzz out" a few connections by using a multimeter. If you've never used a multimeter before, the `SparkFun <http://bit.ly/18bUgeA>`_ or `Adafruit <http://bit.ly/1Br5Xtv>`_ tutorials might be helpful. Set your meter to continuity testing mode and probe between points where the headers are and where they should be connecting to your components. This would be more difficult and less accurate after you solder down your components, so it is a good idea to keep a bare board around just for this purpose.
 
 You'll also want to examine your board mechanically before soldering parts down. You don't want to waste components on a PCB that might need to be altered or replaced.
 
-When you begin assembling your board, it is advisable to assemble it in functional subsections, if possible, to help narrow down any potential issues. :ref:`<capes_motors_soldered>` shows the motor portion wired up and running the test in :ref:`<capes_quickBot_motor_test_code>`.
+When you begin assembling your board, it is advisable to assemble it in functional subsections, if possible, to help narrow down any potential issues. :ref:`capes_motors_soldered` shows the motor portion wired up and running the test in :ref:`capes_quickBot_motor_test_code`.
 
 .. _capes_motors_soldered:
 
@@ -1108,42 +1126,36 @@ Continue assembling and testing your board until you are happy. If you find issu
 choose to cut traces and use point-to-point wiring to resolve your issues before placing an 
 order for a new PCB. Better right the second time than the third!
 
-Discussion
-***********
-
 Creating Contents for Your Cape Configuration EEPROM
-------------------------------------------------------
+=====================================================
 
 Problem
-***********
+--------
 
 Your cape is ready to go, and you want it 
 to automatically initialize when the Bone boots up.
 
 Solution
-***********
+---------
 
-Complete capes have an I^2^C EEPROM on board that contains configuration information that is read at boot time. 
-`Adventures in BeagleBone Cape EEPROMs <http://bit.ly/1Fb64uF>` gives a helpful description of two methods for 
+Complete capes have an |I2C| EEPROM on board that contains configuration information that is read at boot time. 
+`Adventures in BeagleBone Cape EEPROMs <http://bit.ly/1Fb64uF>`_ gives a helpful description of two methods for 
 programming the EEPROM.  `How to Roll your own BeagleBone Capes <http://bit.ly/1E5M7RJ>`_ is a good four-part 
 series on creating a cape, including how to wire and program the EEPROM.
-
-Discussion
-***********
 
 .. _capes_production:
 
 Putting Your Cape Design into Production
------------------------------------------
+=========================================
 
 Problem
-***********
+--------
 
 You want to share your cape with others. 
 How do you scale up?
 
 Solution
-***********
+---------
 
 `CircuitHub <https://circuithub.com/>`_ offers a great tool to get a quick quote on assembled PCBs. 
 To make things simple, I downloaded the `CircuitCo MiniDisplay Cape Eagle design materials <http://bit.ly/1C5uvJc>`_
@@ -1152,35 +1164,32 @@ and uploaded them to CircuitHub.
 After the design is uploaded, you'll need to review the parts to verify that CircuitHub has or 
 can order the right ones. Find the parts in the catalog by changing the text in the search box 
 and clicking the magnifying glass. When you've found a suitable match, select it to confirm 
-its use in your design, as shown in :ref:`<capes_circuithub_parts>`.
+its use in your design, as shown in :ref:`capes_circuithub_parts`.
 
 .. _capes_circuithub_parts:
-
-CircuitHub part matching
 
 .. figure:: figures/circuithub_part_matching.png
     :align: center
     :alt: 
 
-When you've selected all of your parts, a quote tool appears at the bottom of the page, 
-as shown in :ref:`<capes_circuithub_quote>`.
+    CircuitHub part matching
+
+When you've selected all of your parts, a quote tool appears at the bottom of the page, as shown in :ref:`capes_circuithub_quote`.
 
 .. _capes_circuithub_quote:
-
-CircuitHub quote generation
 
 .. figure:: figures/circuithub_quote.png
     :align: center
     :alt: 
 
-Checking out the pricing on the MiniDisplay Cape (without including the LCD itself) in :ref:`<capes_circuithub_pricing_table>`, 
+    CircuitHub quote generation
+
+Checking out the pricing on the MiniDisplay Cape (without including the LCD itself) in :ref:`capes_circuithub_pricing_table`, 
 you can get a quick idea of how increased volume can dramatically impact the per-unit costs.
 
 .. _capes_circuithub_pricing_table:
 
-CircuitHub price examples (all prices USD)
-
-.. table::
+.. table:: CircuitHub price examples (all prices USD)
 
     +-----------+----------+---------+------------+------------+-------------+
     | Quantity  | 1        | 10      | 100        | 1000       | 10,000      |
@@ -1197,13 +1206,11 @@ CircuitHub price examples (all prices USD)
     +-----------+----------+---------+------------+------------+-------------+
 
 Checking the `Crystalfontz web page for the LCD <http://bit.ly/1GF6xqE>`_, 
-you can find the prices for the LCDs as well, as shown in :ref:`<capes_lcd_pricing_table>`.
+you can find the prices for the LCDs as well, as shown in :ref:`capes_lcd_pricing_table`.
 
 .. _capes_lcd_pricing_table:
 
-LCD pricing (USD)
-
-.. table::
+.. table:: LCD pricing (USD)
 
     +-----------+---------+--------+----------+------------+-------------+
     | Quantity  | 1       | 10     | 100      | 1000       | 10,000      |
@@ -1219,15 +1226,14 @@ can choose how much markup you need to be paid for your work and launch the camp
 Money is only collected if and when the desired target quantity is reached, so there's no risk that 
 the boards will cost too much to be affordable. This is a great way to cost-effectively launch your boards to market!
 
-Discussion
-***********
-
 There's no real substitute for getting to know your contract manufacturer, its capabilities, 
 communication style, strengths, and weaknesses. Look around your town to see if anyone is 
 doing this type of work and see if they'll give you a tour.
 
 .. note:: ?
-// To DO, fix this
+
+.. To DO
+    fix this
 
 Don't confuse CircuitHub and CircuitCo. CircuitCo is the official contract manufacturer of 
 BeagleBoard.org and not the same company as CircuitHub, the online contract manufacturing 
