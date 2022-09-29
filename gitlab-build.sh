@@ -7,8 +7,8 @@ apk add date
 export VER_LATEST_MAJOR=0
 export VER_LATEST_MINOR=1
 export VER_LATEST_EXTRA=rc
-export PATCHLEVEL=$(date +%Y%m%d)
-export VERSION_TWEAK=$(( $(date "+10#%H * 60 + 10#%M") ))
+export PATCHLEVEL=
+export VERSION_TWEAK=$(date +%Y%m%d) $(( $(date "+10#%H * 60 + 10#%M") ))
 
 if [ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]; then
 	export VER_DIR=latest
