@@ -4,11 +4,11 @@ apk add git
 apk add rsync
 apk add date
 
-export VER_LATEST_MAJOR=0
-export VER_LATEST_MINOR=1
-export VER_LATEST_EXTRA=rc
-export PATCHLEVEL=
-export VERSION_TWEAK=$(date +%Y%m%d) $(( $(date "+10#%H * 60 + 10#%M") ))
+export VER_LATEST_MAJOR=1
+export VER_LATEST_MINOR=0
+export VER_LATEST_EXTRA=wip
+export PATCHLEVEL=$(date +%Y%m%d)
+export VERSION_TWEAK=$(( $(date "+10#%H * 60 + 10#%M") ))
 
 if [ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]; then
 	export VER_DIR=latest
@@ -32,8 +32,13 @@ elif [ "$CI_COMMIT_BRANCH" != "" ]; then
 	export BRANCH_VER=($(echo $CI_COMMIT_BRANCH | tr "." "\n"))
 	export VERSION_MAJOR=${BRANCH_VER[0]}
 	export VERSION_MINOR=${BRANCH_VER[1]}
-	export EXTRAVERSION=
+	export EXTRAVERSION=wip
 elif [ "$CI_COMMIT_TAG" != "" ]; then
+	export TAG_SPLIT=($(echo $CI_COMMIT_TAG | tr "-" "\n"))
+	export TAG_VER=($(echo ${TAG_SPLIT[0]} | tr "." "\n"))
+	export VERSION_MAJOR=${TAG_VER[0]}
+	export VERSION_MINOR=${TAG_VER[1]}
+	export EXTRAVERSION=${TAG_SPLIT[1]}
 	export GIT_BRANCH=$(git branch -a --contains tags/$CI_COMMIT_TAG | grep origin | sed 's/.*origin\///')
 	if [ "$GIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]; then
 		export VER_DIR=latest
@@ -43,9 +48,6 @@ elif [ "$CI_COMMIT_TAG" != "" ]; then
 		export GITLAB_HOST=$CI_SERVER_HOST
 		export PROJECT_BRANCH=$GIT_BRANCH
 		export PROJECT_REPO=docs.beagleboard.io
-		export VERSION_MAJOR=$VER_LATEST_MAJOR
-		export VERSION_MINOR=$VER_LATEST_MINOR
-		export EXTRAVERSION=$VER_LATEST_EXTRA
 	else
 		export VER_DIR=$GIT_BRANCH
 		export PAGES_URL=https://docs.beagleboard.org
@@ -54,10 +56,6 @@ elif [ "$CI_COMMIT_TAG" != "" ]; then
 		export GITLAB_HOST=$CI_SERVER_HOST
 		export PROJECT_BRANCH=$GIT_BRANCH
 		export PROJECT_REPO=docs.beagleboard.io
-		export BRANCH_VER=($(echo $GIT_BRANCH | tr "." "\n"))
-		export VERSION_MAJOR=${BRANCH_VER[0]}
-		export VERSION_MINOR=${BRANCH_VER[1]}
-		export EXTRAVERSION=
 	fi
 else
 	echo "***** Not on a branch or tag *****"
