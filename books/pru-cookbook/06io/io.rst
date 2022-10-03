@@ -8,14 +8,15 @@ through the ``pass:[__]R30`` register.  Below shows how more GPIO pins can be ac
 
 The following are resources used in this chapter.
 
-Resources
-~~~~~~~~~~
+.. note::
 
-* `P8 Header Table <https://github.com/derekmolloy/exploringBB/blob/master/chp06/docs/BeagleboneBlackP8HeaderTable.pdf>`_
-* `P9 Header Table <https://github.com/derekmolloy/exploringBB/blob/master/chp06/docs/BeagleboneBlackP9HeaderTable.pdf>`_
-* `AM572x Technical Reference Manual <http://www.ti.com/lit/pdf/spruhz6l>`_ (AI)
-* `AM335x Technical Reference Manual <http://www.ti.com/lit/pdf/spruh73>`_ (All others)
-* `PRU Assembly Language Tools <http://www.ti.com/lit/ug/spruhv6a/spruhv6a.pdf>`_
+   *Resources*
+
+   * `P8 Header Table <https://github.com/derekmolloy/exploringBB/blob/master/chp06/docs/BeagleboneBlackP8HeaderTable.pdf>`_
+   * `P9 Header Table <https://github.com/derekmolloy/exploringBB/blob/master/chp06/docs/BeagleboneBlackP9HeaderTable.pdf>`_
+   * `AM572x Technical Reference Manual <http://www.ti.com/lit/pdf/spruhz6l>`_ (AI)
+   * `AM335x Technical Reference Manual <http://www.ti.com/lit/pdf/spruh73>`_ (All others)
+   * `PRU Assembly Language Tools <http://www.ti.com/lit/ug/spruhv6a/spruhv6a.pdf>`_
 
 Editing /boot/uEnv.txt to Access the P8 Header on the Black
 ************************************************************

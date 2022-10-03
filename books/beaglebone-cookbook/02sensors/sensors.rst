@@ -3,9 +3,6 @@
 Sensors
 ########
 
-Introduction
-*************
-
 In this chapter, you will learn how to sense the physical world with BeagleBone Black. 
 Various types of electronic sensors, such as cameras and microphones, can be connected 
 to the Bone using one or more interfaces provided by the standard USB 2.0 host port, 
@@ -94,7 +91,7 @@ You are just a few simple steps from running any of the recipes in this book.
 .. code-block:: bash
 
   bone$ cd
-  bone$ cd BoneCookbook/docs/02sensors/code
+  bone$ cd beaglebone-cookbook-code/02sensors
 
 .. _sensors_vsc_bash:
 
@@ -171,19 +168,19 @@ reads GPIO port *P9_42*, which is attached to the pushbutton.
 
 .. _py_pushbutton_code:
 
-.. literalinclude:: code/pushbutton.py
+.. literalinclude:: ../code/02sensors/pushbutton.py
    :caption: Monitoring a pushbutton (pushbutton.py)
    :linenos:
 
-:download:`pushbutton.py <code/pushbutton.py>`
+:download:`pushbutton.py <../code/02sensors/pushbutton.py>`
 
 .. _js_pushbutton_code:
 
-.. literalinclude:: code/pushbutton.js
+.. literalinclude:: ../code/02sensors/pushbutton.js
    :caption: Monitoring a pushbutton (pushbutton.js)
    :linenos:
 
-:download:`pushbutton.js <code/pushbutton.js>`
+:download:`pushbutton.js <../code/02sensors/pushbutton.js>`
 
 Put this code in a file called *pushbutton.js* following the steps in :ref:`sensors_getting_started`. 
 In the VSC *bash* tab, run it by using the following commands:
@@ -297,19 +294,19 @@ Add the code to a file called _analogIn.js_ and run it; then change the resistor
 
 .. _py_analogIn_code:
 
-.. literalinclude:: code/analogIn.py
+.. literalinclude:: ../code/02sensors/analogIn.py
    :caption: Reading an analog voltage (analogIn.py)
    :linenos:
 
-:download:`analogIn.py <code/analogIn.py>`
+:download:`analogIn.py <../code/02sensors/analogIn.py>`
 
 .. _sensors_analogIn_code:
 
-.. literalinclude:: code/analogIn.js
+.. literalinclude:: ../code/02sensors/analogIn.js
    :caption: Reading an analog voltage (analogIn.js)
    :linenos:
 
-:download:`analogIn.js <code/analogIn.js>`
+:download:`analogIn.js <../code/02sensors/analogIn.js>`
 
 .. note::
 
@@ -373,20 +370,20 @@ shows the code that reads the sensor at a fixed interval.
 
 .. _py_ultrasonicRange_code:
 
-.. literalinclude:: code/ultrasonicRange.py
+.. literalinclude:: ../code/02sensors/ultrasonicRange.py
    :caption: Reading an analog voltage (ultrasonicRange.py)
    :linenos:
 
-:download:`ultrasonicRange.py <code/ultrasonicRange.py>`
+:download:`ultrasonicRange.py <../code/02sensors/ultrasonicRange.py>`
 
 .. _sensors_ultrasonicRange_code:
 
 
-.. literalinclude:: code/ultrasonicRange.js
+.. literalinclude:: ../code/02sensors/ultrasonicRange.js
    :caption: Reading an analog voltage (ultrasonicRange.js)
    :linenos:
 
-:download:`ultrasonicRange.js <code/ultrasonicRange.js>`
+:download:`ultrasonicRange.js <../code/02sensors/ultrasonicRange.js>`
 
 .. _sensors_hc-sr04:
 
@@ -436,11 +433,11 @@ HC-SR04 to the Bone's 5 V power supply.
 
 .. _sensors_hc-sr04_code:
 
-.. literalinclude:: code/hc-sr04-ultraSonic.js
+.. literalinclude:: ../code/02sensors/hc-sr04-ultraSonic.js
    :caption: Driving a HC-SR04 ultrasound sensor (hc-sr04-ultraSonic.js)
    :linenos:
 
-:download:`hc-sr04-ultraSonic.js <code/hc-sr04-ultraSonic.js>`
+:download:`hc-sr04-ultraSonic.js <../code/02sensors/hc-sr04-ultraSonic.js>`
 
 This code is more complex than others in this chapter, 
 because we have to tell the device when to start 
@@ -523,19 +520,19 @@ to a file named *rotaryEncoder.js* and run it.
 
 .. _digital_rotaryEncoder_py:
 
-.. literalinclude:: code/rotaryEncoder.py
+.. literalinclude:: ../code/02sensors/rotaryEncoder.py
    :caption: Reading a rotary encoder (rotaryEncoder.py)
    :linenos:
 
-:download:`rotaryEncoder.py <code/rotaryEncoder.py>`
+:download:`rotaryEncoder.py <../code/02sensors/rotaryEncoder.py>`
 
 .. _digital_rotaryEncoder_js:
 
-.. literalinclude:: code/rotaryEncoder.js
+.. literalinclude:: ../code/02sensors/rotaryEncoder.js
    :caption: Reading a rotary encoder (rotaryEncoder.js)
    :linenos:
 
-:download:`rotaryEncoder.js <code/rotaryEncoder.js>`
+:download:`rotaryEncoder.js <../code/02sensors/rotaryEncoder.js>`
 
 Try rotating the encoder clockwise and counter-clockwise. 
 You'll see an output like this:
@@ -611,11 +608,11 @@ will print the current location every time the GPS outputs it.
 
 .. _digital_GPS_code:
 
-.. literalinclude:: code/GPS.js
+.. literalinclude:: ../code/02sensors/GPS.js
    :caption: Talking to a GPS with UART 4 (GPS.js)
    :linenos:
 
-:download:`GPS.js <code/GPS.js>`
+:download:`GPS.js <../code/02sensors/GPS.js>`
 
 If you don't need the NMEA formatting, you can skip the *npm* part and remove the lines in the code that refer to it.
 
@@ -651,7 +648,7 @@ Solution
 The TMP101 sensor is a common digital temperature 
 sensor that uses a standard |I2C|-based serial protocol.
 
-.. |I2C| replace:: I\ :sub:`2`\ C
+.. |I2C| replace:: I\ :sup:`2`\ C
 
 To make this recipe, you will need:
 
@@ -789,19 +786,19 @@ Once the driver is in place, you can read it via code.
 
 .. _py_i2cTemp_code:
 
-.. literalinclude:: code/i2cTemp.py
+.. literalinclude:: ../code/02sensors/i2cTemp.py
    :caption: Reading an |I2C|  device (i2cTemp.py)
    :linenos:
 
-:download:`i2cTemp.py <code/i2cTemp.py>`
+:download:`i2cTemp.py <../code/02sensors/i2cTemp.py>`
 
 .. _js_i2cTemp_code:
 
-.. literalinclude:: code/i2cTemp.js
+.. literalinclude:: ../code/02sensors/i2cTemp.js
    :caption: Reading an |I2C|  device (i2cTemp.js)
    :linenos:
 
-:download:`i2cTemp.js <code/i2cTemp.js>`
+:download:`i2cTemp.js <../code/02sensors/i2cTemp.js>`
 
 Run the code by using the following command:
 
@@ -830,11 +827,11 @@ using the kernel driver.  First you need to install the i2c module.
 
 .. _js_i2ctmp101_code:
 
-.. literalinclude:: code/i2ctmp101.py
+.. literalinclude:: ../code/02sensors/i2ctmp101.py
    :caption: Reading an |I2C|  device (i2cTemp.py)
    :linenos:
 
-:download:`i2ctmp101.py <code/i2ctmp101.py>`
+:download:`i2ctmp101.py <../code/02sensors/i2ctmp101.py>`
 
 This gets only 8 bits for the temperature. See the TMP101 datasheet 
 for details on how  to get up to 12 bits.
@@ -917,19 +914,19 @@ that the path points to your device, and then run it.
 
 .. _py_onewire__code:
 
-.. literalinclude:: code/w1.py
+.. literalinclude:: ../code/02sensors/w1.py
    :caption: Reading a temperature with a DS18B20 (w1.py)
    :linenos:
 
-:download:`w1.py <code/w1.py>`
+:download:`w1.py <../code/02sensors/w1.py>`
 
 .. _sensors_onewire__code:
 
-.. literalinclude:: code/w1.js
+.. literalinclude:: ../code/02sensors/w1.js
    :caption: Reading a temperature with a DS18B20 (w1.js)
    :linenos:
 
-:download:`w1.js <code/w1.js>`
+:download:`w1.js <../code/02sensors/w1.js>`
 
 .. code-block:: bash
 
@@ -986,7 +983,7 @@ Each temperature sensor has a unique serial number, so you can have several all 
 .. // [source, js]
 .. // ----
 
-.. // include::code/sensorTag.js[sensorTag.js]
+.. // include::../code/02sensors/sensorTag.js[sensorTag.js]
 
 .. // ----
 .. // ====
@@ -1123,11 +1120,11 @@ can change that default by creating a file in your home directory called
 
 .. _sensors_asoundrc:
 
-.. literalinclude:: code/audio.asoundrc
+.. literalinclude:: ../code/02sensors/audio.asoundrc
    :caption: Change the default audio out by putting this in ~/.asoundrc (audio.asoundrc)
    :linenos:
 
-:download:`audio.asoundrc <code/audio.asoundrc>`
+:download:`audio.asoundrc <../code/02sensors/audio.asoundrc>`
 
 You can easily play ``.wav`` files with *aplay*:
 

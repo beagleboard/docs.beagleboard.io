@@ -23,7 +23,10 @@ author = 'BeagleBoard.org Foundation'
 
 # -- General configuration ---------------------------------------------------
 
+sys.path.append(os.path.abspath("./_ext"))
+
 extensions = [
+    "callouts",
     "sphinxcontrib.rsvgconverter",
     "sphinx_design"
 ]
@@ -81,9 +84,14 @@ with open(BBDOCS_BASE  / "VERSION") as f:
 
 release = version
 
-pages_url = ""
-pages_slug = ""
-docs_url = ""
+# Variables here holds default settings
+pages_url = "http://docs.beagleboard.io"
+pages_slug = "latest"
+gitlab_user = "docs"
+gitlab_version = "main"
+gitlab_host = "git.beagleboard.org"
+gitlab_repo = "docs.beagleboard.io"
+docs_url = "https://docs.beagleboard.io/latest/"
 
 # parse pages details from 'PAGES' file
 with open(BBDOCS_BASE  / "PAGES") as f:
@@ -91,6 +99,10 @@ with open(BBDOCS_BASE  / "PAGES") as f:
         (
             r"^PAGES_URL\s*=\s*(\S+)$\n"
             + r"^PAGES_SLUG\s*=\s*(\S+)$\n"
+            + r"^GITLAB_USER\s*=\s*(\S+)$\n"
+            + r"^PROJECT_BRANCH\s*=\s*(\S+)$\n"
+            + r"^GITLAB_HOST\s*=\s*(\S+)$\n"
+            + r"^PROJECT_REPO\s*=\s*(\S+)$\n"
         ),
         f.read(),
         re.MULTILINE,
@@ -99,32 +111,33 @@ with open(BBDOCS_BASE  / "PAGES") as f:
     if not m:
         sys.stderr.write("Warning: Could not extract pages information\n")
     else:
-        url, slug = m.groups(1)
+        url, slug, user, branch, host, repo = m.groups(1)
         slug = "latest" if slug == "main" else slug
         pages_url = url
         pages_slug = slug
-        if slug == "main":
-            docs_url = "/".join((url, "latest"))
-        else:
-            docs_url = "/".join((url, slug))
+        gitlab_user = user
+        gitlab_version = branch
+        gitlab_host = host
+        gitlab_repo = repo
+        docs_url = "/".join((url, slug))
 
 html_context = {
     "display_gitlab": True,
-    "gitlab_host": "git.beagleboard.org",
-    "gitlab_user": "docs",
-    "gitlab_repo": "docs.beagleboard.io",
-    "gitlab_version": "main",
+    "gitlab_host": gitlab_host,
+    "gitlab_user": gitlab_user,
+    "gitlab_repo": gitlab_repo,
+    "gitlab_version": gitlab_version,
     "conf_py_path": "/",
     "show_license": True,
     "pages_url": pages_url,
     "pages_slug": pages_slug,
     "docs_url": docs_url,
     "current_version": version,
-    "versions": ("latest", "0.0", "0.1"),
+    "versions": ("latest", "0.0"),
     "reference_links": {
         "About": "https://beagleboard.org/about",
-        "Donate": "https://beagleboard.org/donate/",
-        "FAQ": "https://beagleboard.org/Support/FAQ"
+        "Donate": "https://beagleboard.org/donate",
+        "FAQ": "https://forum.beagleboard.org/c/faq"
     }
 }
 
@@ -134,7 +147,6 @@ latex_elements = {
     "papersize": "a4paper",
     "maketitle": open(BBDOCS_BASE / "_static" / "latex" / "title.tex").read(),
     "preamble": open(BBDOCS_BASE / "_static" / "latex" / "preamble.tex").read(),
-    "fontpkg": r"\usepackage{charter}",
     "sphinxsetup": ",".join(
         (
             "verbatimwithframe=false",
@@ -146,10 +158,15 @@ latex_elements = {
         )
     ),
 }
+latex_engine = "xelatex"
 latex_logo = str(BBDOCS_BASE / "_static" / "images" / "logo-latex.pdf")
 latex_documents = [
     ("index-tex", "beagleboard-docs.tex", "BeagleBoard Docs", author, "manual"),
 ]
+
+#language = 'en'
+#locales_dir = ['locale/']
+#gettext_compact = True
 
 def setup(app):
     # theme customizations

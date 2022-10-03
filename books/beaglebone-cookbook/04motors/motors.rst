@@ -3,8 +3,9 @@
 Motors
 ########
 
-Introduction
-**************
+.. |kohm| replace:: kΩ
+
+.. |ohm| replace:: Ω
 
 One of the many fun things about embedded computers is that you can move physical things with motors.
 But there are so many different kinds of motors (``servo``, ``stepper``, ``DC``), so how do you select the right one?
@@ -55,10 +56,10 @@ To make the recipe, you will need:
 
 * Servo motor.
 * Breadboard and jumper wires.
-* 1 k&#8486; resistor (optional)
+* 1 |kohm| resistor (optional)
 * 5 V power supply (optional)
 
-The 1 k&#8486; resistor isn't required, but it provides some protection to the general-purpose 
+The 1 |kohm| resistor isn't required, but it provides some protection to the general-purpose 
 input/output (GPIO) pin in case the servo fails and draws a large current. 
 
 Wire up your servo, as shown in :ref:`motors_servoMotor`.  
@@ -82,25 +83,25 @@ in :ref:`py_servoMotor_code`. You need to configure the pin for PWM.
 
 .. code-block:: bash
 
-    bone$ <strong>cd ~/BoneCookbook/docs/04motors/code</strong>
+    bone$ <strong>cd ~/beaglebone-cookbook-code/04motors</strong>
     bone$ <strong>config-pin P9_16 pwm</strong>
     bone$ <strong>./servoMotor.py</strong>
 
 .. _py_servoMotor_code:
 
-.. literalinclude:: code/servoMotor.py
+.. literalinclude:: ../code/04motors/servoMotor.py
    :caption: Code for driving a servo motor (servoMotor.py)
    :linenos:
 
-:download:`servoMotor.py <code/servoMotor.py>`
+:download:`servoMotor.py <../code/04motors/servoMotor.py>`
 
 .. _motors_servoMotor_code:
 
-.. literalinclude:: code/servoMotor.js
+.. literalinclude:: ../code/04motors/servoMotor.js
    :caption: Code for driving a servo motor (servoMotor.js)
    :linenos:
 
-:download:`servoMotor.js <code/servoMotor.js>`
+:download:`servoMotor.js <../code/04motors/servoMotor.js>`
 
 
 Running the code causes the motor to move back and forth, progressing to successive  
@@ -129,11 +130,11 @@ Combine the code from :ref:`digital_rotaryEncoder_js` and :ref:`motors_servo`.
 
 .. _py_servoEncoder_code:
 
-.. literalinclude:: code/servoEncoder.py
+.. literalinclude:: ../code/04motors/servoEncoder.py
    :caption: Code for driving a servo motor with a rotary encorder(servoEncoder.py)
    :linenos:
 
-:download:`servoEncoder.py <code/servoEncoder.py>`
+:download:`servoEncoder.py <../code/04motors/servoEncoder.py>`
 
 .. _motors_dcSpeed:
 
@@ -161,7 +162,7 @@ Here's what you will need:
 
 * 3 V to 5 V DC motor
 * Breadboard and jumper wires.
-* 1 k&#8486; resistor.
+* 1 |kohm| resistor.
 * Transistor 2N3904.
 * Diode 1N4001.
 * Power supply for the motor (optional)
@@ -183,19 +184,19 @@ Use the code in :ref:`motors_dcMotor_code` (``dcMotor.js``) to run the motor.
 
 .. _py_dcMotor_code:
 
-.. literalinclude:: code/dcMotor.py
+.. literalinclude:: ../code/04motors/dcMotor.py
    :caption: Driving a DC motor in one direction (dcMotor.py)
    :linenos:
 
-:download:`dcMotor.py <code/dcMotor.py>`
+:download:`dcMotor.py <../code/04motors/dcMotor.py>`
 
 .. _motors_dcMotor_code:
 
-.. literalinclude:: code/dcMotor.js
+.. literalinclude:: ../code/04motors/dcMotor.js
    :caption: Driving a DC motor in one direction (dcMotor.js)
    :linenos:
 
-:download:`dcMotor.js <code/dcMotor.js>`
+:download:`dcMotor.js <../code/04motors/dcMotor.js>`
 
 See Also
 =========
@@ -241,11 +242,11 @@ motor with a transistor (:ref:`motors_dcMotor_code`). The additional code specif
 
 .. _motors_h-bridge_code:
 
-.. literalinclude:: code/h-bridgeMotor.js
+.. literalinclude:: ../code/04motors/h-bridgeMotor.js
    :caption: Code for driving a DC motor with an H-bridge (h-bridgeMotor.js)
    :linenos:
 
-:download:`h-bridgeMotor.js <code/h-bridgeMotor.js>`
+:download:`h-bridgeMotor.js <../code/04motors/h-bridgeMotor.js>`
 
 Driving a Bipolar Stepper Motor
 ===============================
@@ -281,11 +282,11 @@ Use the code in :ref:`motors_stepperMotor_code_py` to drive the motor.
 
 .. _motors_stepperMotor_code_py:
 
-.. literalinclude:: code/bipolarStepperMotor.py
+.. literalinclude:: ../code/04motors/bipolarStepperMotor.py
    :caption: Driving a bipolar stepper motor (bipolarStepperMotor.py)
    :linenos:
 
-:download:`bipolarStepperMotor.py <code/bipolarStepperMotor.py>`
+:download:`bipolarStepperMotor.py <../code/04motors/bipolarStepperMotor.py>`
 
 When you run the code, the stepper motor will rotate back and forth.
 
@@ -338,19 +339,19 @@ so :ref:`motors_unistepperMotor_code` shows only the lines that you need to chan
 
 .. _motors_unistepperMotor_js_code:
 
-.. literalinclude:: code/unipolarStepperMotor.py.diff
+.. literalinclude:: ../code/04motors/unipolarStepperMotor.py.diff
    :caption: Changes to bipolar code to drive a unipolar stepper motor (unipolarStepperMotor.py.diff)
    :linenos:
 
-:download:`unipolarStepperMotor.py.diff <code/unipolarStepperMotor.py.diff>`
+:download:`unipolarStepperMotor.py.diff <../code/04motors/unipolarStepperMotor.py.diff>`
 
 .. _motors_unistepperMotor_code:
 
-.. literalinclude:: code/unipolarStepperMotor.js.diff
+.. literalinclude:: ../code/04motors/unipolarStepperMotor.js.diff
    :caption: Changes to bipolar code to drive a unipolar stepper motor (unipolarStepperMotor.js.diff)
    :linenos:
 
-:download:`unipolarStepperMotor.js.diff <code/unipolarStepperMotor.js.diff>`
+:download:`unipolarStepperMotor.js.diff <../code/04motors/unipolarStepperMotor.js.diff>`
 
 
 The code in this example makes the following changes:

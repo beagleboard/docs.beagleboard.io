@@ -468,7 +468,7 @@ typically do this using a new integration branch, then fetch it to your
 local machine to test everything, before merging it to your main branch.
 
 Committing changes to main branch
----------------
+---------------------------------
 
 This section is intended for BeagleBoard developers, who are allowed to
 commit changes to the BeagleBoard main "official" branch. It describes the
@@ -574,7 +574,7 @@ And push it to GitLab:
     git push --tags origin main
 
 Additional Resources
----------------
+--------------------
 
 There are a lot of different nice guides to using Git on the web:
 

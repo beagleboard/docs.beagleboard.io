@@ -3,6 +3,10 @@
 BeagleConnect
 ###############
 
+.. important::
+
+   Currently under development
+
 BeagleConnect™ is a revolutionary technology virtually eliminating low-level 
 software development for `IoT <https://en.wikipedia.org/wiki/Internet_of_things>`_ 
 and `IIoT <https://en.wikipedia.org/wiki/Industrial_internet_of_things>`_ 
@@ -37,6 +41,12 @@ BeagleConnect™ technology solves:
 * The need to connect to devices using long-range, low-power wireless, and
 * The need to produce high-volume custom hardware cost-optimized for your 
   requirements.
+
+.. toctree::
+   :maxdepth: 2
+
+   /boards/beagleconnect/technology/index.rst
+   /boards/beagleconnect/technology/story.rst
 
 BeagleConnect Experience
 *************************
@@ -86,18 +96,6 @@ For home automaters, integration into WebThings…
    :align: center
    :height: 400
    :alt: BeagleConnect
-
-
-BeagleConnect Technology
-************************
-
-Learn about the technology behind BeagleConnect.
-
-.. toctree::
-   :maxdepth: 2
-
-   /boards/beagleconnect/technology/index.rst
-   /boards/beagleconnect/technology/story.rst
 
 
 BeagleConnect Boards

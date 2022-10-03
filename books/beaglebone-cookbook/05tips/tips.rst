@@ -3,9 +3,6 @@
 Beyond the Basics
 ##################
 
-Introduction
-*************
-
 In :ref:`beaglebone-cookbook-basics`, you learned how to set up BeagleBone Black, and 
 :ref:`beaglebone-cookbook-sensors`, :ref:`beaglebone-cookbook-displays`, 
 and :ref:`beaglebone-cookbook-motors` showed how to 
@@ -531,8 +528,8 @@ Just enter the following command:
 
 You are now in nano (:ref:`tips_nano_fig`). You can't move around the screen 
 using the mouse, so use the arrow keys. The bottom two lines of the screen 
-list some useful commands. Pressing &#708;G (Ctrl-G) will display more useful 
-commands. &#708;X (Ctrl-X) exits nano and gives you the option of saving the file.
+list some useful commands. Pressing ^G (Ctrl-G) will display more useful 
+commands. ^X (Ctrl-X) exits nano and gives you the option of saving the file.
 
 .. _tips_nano_fig:
 
@@ -817,11 +814,11 @@ file called ``ipMasquerade.sh`` on your host computer.
 
 .. _tips_ipmasq_code:
 
-.. literalinclude:: code/ipMasquerade.sh
+.. literalinclude:: ../code/05tips/ipMasquerade.sh
    :caption: Code for IP Masquerading (ipMasquerade.sh)
    :linenos:
 
-:download:`ipMasquerade.sh <code/ipMasquerade.sh>`
+:download:`ipMasquerade.sh <../code/05tips/ipMasquerade.sh>`
 
 Then, on your host, run the following commands:
 
@@ -839,11 +836,11 @@ in :ref:`tips_setDNS` to ``setDNS.sh`` on your host computer.
 
 .. _tips_setDNS:
 
-.. literalinclude:: code/setDNS.sh
+.. literalinclude:: ../code/05tips/setDNS.sh
    :caption: Code for setting the DNS on the Bone (setDNS.sh)
    :linenos:
 
-:download:`setDNS.sh <code/setDNS.sh>`
+:download:`setDNS.sh <../code/05tips/setDNS.sh>`
 
 Then, on your host, run the following commands:
 
@@ -1323,11 +1320,11 @@ and is much faster.  The approach is the same, write to the */sys/class/gpio* fi
 
 .. _misc_c_blink:
 
-.. literalinclude:: code/blinkLED.c
+.. literalinclude:: ../code/05tips/blinkLED.c
    :caption: Use C to blink an LED (blinkLED.c)
    :linenos:
 
-:download:`blinkLED.c <code/blinkLED.c>`
+:download:`blinkLED.c <../code/05tips/blinkLED.c>`
 
 Here, as with JavaScript and Python, the gpio pins are refered to by the Linux gpio number. 
 :ref:`tips_cape_headers_digital` shows how the P8 and P9 Headers numbers map to the gpio number. 

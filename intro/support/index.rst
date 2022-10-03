@@ -10,13 +10,14 @@ Getting started
 
 The starting experience for all Beagles has been made to be as
 consistent as is possible. For any of the Beagle Linux-based open
-hardware computers, visit our `getting started guide <getting-started>`__.
+hardware computers, visit :ref:`beagleboard-getting-started`.
 
 .. toctree::
    :maxdepth: 2
 
    /intro/support/getting-started
 
+.. _intro-getting-support:
 
 Getting support
 ***************
@@ -36,25 +37,22 @@ there.
 Be sure to ask `smart questions <http://www.catb.org/~esr/faqs/smart-questions.html>`__
 that provide the following:
 
-*  What am I trying to accomplish?
-*  What did find when researching how to accomplish it?
-*  What are the detailed results of what I tried?
-*  How did these results differ from what I expected?
-*  What would I consider to be a success?
+*  What are you trying to accomplish?
+*  What did you find when researching how to accomplish it?
+*  What are the detailed results of what you tried?
+*  How did these results differ from what you expected?
+*  What would you consider to be a success?
 
-.. note::
-   Remember that community developers are volunteering their expertise. If you
-   want paid support, there are options for that. Respect developers time and
-   expertise and they might be happy to share with you.
+.. important::
+   Remember that community developers are volunteering their expertise. Respect
+   developers time and expertise and they might be happy to share with you. If you
+   want paid support, there are :ref:`consulting-resources` options for that. 
 
 Diagnostic tools
 ================
 
 Best to be prepared with good diagnostic information to aide with
 support.
-
-.. todo::
-   Need a reference to how to run `beagle-version`.
 
 .. note::
    #TODO#: Need a reference to how to run `beagle-version`.
@@ -74,6 +72,8 @@ of the entire community.
 -  `Frequently Asked Questions <https://forum.beagleboard.org/c/faq>`__
 -  `Mailing List <https://forum.beagleboard.org>`__
 -  `Live Chat <https://beagleboard.org/chat>`__
+
+.. _consulting-resources:
 
 Consulting and other resources
 ==============================
@@ -109,7 +109,7 @@ Understanding Your Beagle
 Working with Cape Add-on Boards
 *******************************
 
-- `Cape Documentation </boards/capes/>`__
-- `BeagleBone Cape Interface Specification </boards/capes/cape-interface-spec.html>`__
+- :ref:`capes`
+- :ref:`beaglebone-cape-interface-spec`
 
 

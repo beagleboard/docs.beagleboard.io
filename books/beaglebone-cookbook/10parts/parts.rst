@@ -3,9 +3,6 @@
 Parts and Suppliers
 ####################
 
-Parts
-******
-
 The following tables list where you can find the parts used in this book. 
 We have listed only one or two sources here, but you can often find a given part in many places.
 

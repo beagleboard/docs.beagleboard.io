@@ -16,4 +16,5 @@ BeagleBone® AI-64 brings a complete system for developing artificial intelligen
    /boards/beaglebone/ai-64/ch09.rst
    /boards/beaglebone/ai-64/ch10.rst
    /boards/beaglebone/ai-64/ch11.rst
+   /boards/beaglebone/ai-64/update.rst
    /boards/beaglebone/ai-64/edge_ai_apps/index.rst

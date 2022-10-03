@@ -11,11 +11,12 @@ four PRUs.
 
 The following are resources used in this chapter.
 
-Resources
-~~~~~~~~~~~
+.. note::
 
-* `AM572x Technical Reference Manual <http://www.ti.com/lit/pdf/spruhz6l>`_ (AI)
-* `BeagleBone AI PRU pins <https://docs.google.com/spreadsheets/d/1dFSBVem86vAUD7MLXvqdS-N0Efi8_g_O1iTqzql8DAo/edit#gid=0>`_
+   *Resources*
+
+   * `AM572x Technical Reference Manual <http://www.ti.com/lit/pdf/spruhz6l>`_ (AI)
+   * `BeagleBone AI PRU pins <https://docs.google.com/spreadsheets/d/1dFSBVem86vAUD7MLXvqdS-N0Efi8_g_O1iTqzql8DAo/edit#gid=0>`_
 
 Moving from two to four PRUs
 *****************************

@@ -7,9 +7,6 @@ Users of TI processors with PRU-ICSS have created application for many different
 A list of a few are shared below. For additional support resources, software and 
 documentation visit the PRU-ICSS wiki.
 
-PRU projects
-~~~~~~~~~~~~~~
-
 .. dropdown:: **LEDscape** 
     :open:
 
@@ -158,7 +155,7 @@ PRU projects
     **Type:** Code Library Reference
     
     **References:**
-        * http://processors.wiki.ti.com/index.php/Soft-UART_Implementation_on_AM335X_PRU_-_Software_Users_Guide
+        * https://software-dl.ti.com/processor-sdk-linux/esd/docs/latest/linux/Foundational_Components/PRU-ICSS/Linux_Drivers/pru-sw-uart.html
 
 .. dropdown:: **Deviant LCD**
     :open:

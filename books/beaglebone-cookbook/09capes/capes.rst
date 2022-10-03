@@ -3,9 +3,6 @@
 Capes
 #####
 
-Introduction
-**************
-
 Previous chapters of this book show a variety of ways to interface BeagleBone Black 
 to the physical world by using a breadboard and wiring to the +P8+ and +P9+ headers. 
 This is a great approach because it's easy to modify your circuit to debug it or try 
@@ -33,6 +30,8 @@ You want to display the Bone's desktop on a portable LCD.
 
 Solution
 --------
+
+.. note:: #TODO# The 4D Systems LCD capes would make a better example. CircuitCo is out of business.
 
 A number of `LCD capes <http://bit.ly/1AjlXJ9>`_ are built for the Bone, ranging in size from three 
 to seven inches. This recipe attaches a seven-inch `BeagleBone LCD7 <http://bit.ly/1NK8Hra>`_ 
@@ -86,7 +85,7 @@ You want to use a small LCD to display things other than the desktop.
 Solution
 ---------
 
-The `MiniDisplay <http://bit.ly/1xd0r8>`p_ is a 128 x 128 full-color LCD cape that just fits on the 
+The `MiniDisplay <http://bit.ly/1xd0r8p>`_ is a 128 x 128 full-color LCD cape that just fits on the 
 Bone, as shown in :ref:`capes_miniDisplay_fig`. 
 
 .. _capes_miniDisplay_fig:
@@ -123,67 +122,68 @@ Attach to the Bone and apply power. Then run the following commands:
 The MiniDisplay uses the Serial Peripheral Interface (SPI) interface, and it's not initialized. 
 The `manufacturer's website <http://bit.ly/1xd0r8p>`_ suggests enabling SPI0 by using the following commands:
 
-.. code-block:: bash
+.. code-block:: shell-session
 
     bone$ export SLOTS=/sys/devices/bone_capemgr.*/slots
-    bone$ echo BB-SPIDEV0 &gt; $SLOTS
+    bone$ echo BB-SPIDEV0 > $SLOTS
 
 
 Hmmm, something isn't working here. Here's how to see what happened:
 
-.. code-block:: bash
+.. callout::
+
+    .. code-block:: shell-session
     
-    bone$ dmesg | tail
-    [  625.334497] bone_capemgr.9: part_number 'BB-SPIDEV0', version 'N/A'
-    [  625.334673] bone_capemgr.9: slot #11: generic override
-    [  625.334720] bone_capemgr.9: bone: Using override eeprom data at slot 11
-    [  625.334769] bone_capemgr.9: slot #11: 'Override Board Name,00A0,Override \
-                Manuf,BB-SPIDEV0'
-    [  625.335026] bone_capemgr.9: slot #11: \Requesting part number/version based \
-                'BB-SPIDEV0-00A0.dtbo
-    [  625.335076] bone_capemgr.9: slot #11: Requesting firmware \
-                'BB-SPIDEV0-00A0.dtbo' \
-                for board-name 'Override Board Name', version '00A0'
-    [  625.335144] bone_capemgr.9: slot #11: dtbo 'BB-SPIDEV0-00A0.dtbo' loaded; \
-                converting to live tree
-    [  625.341842] bone_capemgr.9: slot #11: BB-SPIDEV0 conflict P9.21 \
-                (#10:bspwm_P9_21_b) <a class="co" id="capemgr_conflict_co" href="#capemgr_conflict" ><img src="callouts/1.png" alt="1"/></a>
-    [  625.351296] bone_capemgr.9: slot #11: Failed verification
+        bone$ dmesg | tail
+        [  625.334497] bone_capemgr.9: part_number 'BB-SPIDEV0', version 'N/A'
+        [  625.334673] bone_capemgr.9: slot #11: generic override
+        [  625.334720] bone_capemgr.9: bone: Using override eeprom data at slot 11
+        [  625.334769] bone_capemgr.9: slot #11: 'Override Board Name,00A0,Override \
+                    Manuf,BB-SPIDEV0'
+        [  625.335026] bone_capemgr.9: slot #11: \Requesting part number/version based \
+                    'BB-SPIDEV0-00A0.dtbo
+        [  625.335076] bone_capemgr.9: slot #11: Requesting firmware \
+                    'BB-SPIDEV0-00A0.dtbo' \
+                    for board-name 'Override Board Name', version '00A0'
+        [  625.335144] bone_capemgr.9: slot #11: dtbo 'BB-SPIDEV0-00A0.dtbo' loaded; \
+                    converting to live tree
+        [  625.341842] bone_capemgr.9: slot #11: BB-SPIDEV0 conflict P9.21 \
+                    (#10:bspwm_P9_21_b) # <1>
+        [  625.351296] bone_capemgr.9: slot #11: Failed verification
 
+    .. annotations::
 
+        <1> Shows there is a conflict for pin `P9_21`: it's already configured for pulse width modulation (PWM).
 
-.. <dl class="calloutlist">
-..  <dt><a class="co" id="capemgr_conflict" href="#capemgr_conflict_co"><img src="callouts/1.png" alt="1"/></a></dt>
-..   <dd>Shows there is a conflict for pin <code>P9_21</code>: it's already configured for pulse width modulation (PWM).</dd>
-.. </dl>
 
 Here's how to see what's already configured:
 
-.. code-block:: bash
 
-    bone$ cat $SLOTS
-    0: 54:PF--- 
-    1: 55:PF--- 
-    2: 56:PF--- 
-    3: 57:PF--- 
-    4: ff:P-O-L Bone-LT-eMMC-2G,00A0,Texas Instrument,BB-BONE-EMMC-2G
-    5: ff:P-O-L Bone-Black-HDMI,00A0,Texas Instrument,BB-BONELT-HDMI
-    7: ff:P-O-L Override Board Name,00A0,Override Manuf,bspm_P9_42_27
-    8: ff:P-O-L Override Board Name,00A0,Override Manuf,bspm_P9_41_27
-    9: ff:P-O-L Override Board Name,00A0,Override Manuf,am33xx_pwm
-    10: ff:P-O-L Override Board Name,00A0,Override Manuf,bspwm_P9_21_b <a class="co" id="capemgr_load_co" href="#capemgr_load"><img src="callouts/1.png" alt="1"/></a>
+.. callout::
 
+    .. code-block:: shell-session
 
-.. <dl class="calloutlist">
-..  <dt><a id="capemgr_load" href="#capemgr_load_co"><img src="callouts/1.png" alt="1"/></a></dt>
-..   <dd>You can see the eMMC, HDMI, and three PWMs are already using some of the pins. Slot 10 shows <code>P9_21</code> is in use by a PWM.</dd>
-.. </dl>
+        bone$ cat $SLOTS
+        0: 54:PF--- 
+        1: 55:PF--- 
+        2: 56:PF--- 
+        3: 57:PF--- 
+        4: ff:P-O-L Bone-LT-eMMC-2G,00A0,Texas Instrument,BB-BONE-EMMC-2G
+        5: ff:P-O-L Bone-Black-HDMI,00A0,Texas Instrument,BB-BONELT-HDMI
+        7: ff:P-O-L Override Board Name,00A0,Override Manuf,bspm_P9_42_27
+        8: ff:P-O-L Override Board Name,00A0,Override Manuf,bspm_P9_41_27
+        9: ff:P-O-L Override Board Name,00A0,Override Manuf,am33xx_pwm
+        10: ff:P-O-L Override Board Name,00A0,Override Manuf,bspwm_P9_21_b # <1>
+
+    .. annotations::
+
+        <1> You can see the eMMC, HDMI, and three PWMs are already using some of the pins. Slot 10 shows `P9_21` is in use by a PWM.
 
 You can unconfigure it by using the following commands:
 
 .. code-block:: bash
 
-    bone$ echo -10 &gt; $SLOTS
+    bone$ echo -10 > $SLOTS
     bone$ cat $SLOTS
     0: 54:PF--- 
     1: 55:PF--- 
@@ -206,7 +206,7 @@ Now, configure it for the MiniDisplay and run a test:
 
 .. code-block:: bash
 
-    bone$ echo BB-SPIDEV0 &gt; $SLOTS
+    bone$ echo BB-SPIDEV0 > $SLOTS
     bone$ ./minidisplay-test
 
 
@@ -260,12 +260,16 @@ LCD Backside
     Back side of LCD7 cape, :ref:`capes_lcd_backside` was originally posted by CircuitCo at http://elinux.org/File:BeagleBone-LCD-Backside.jpg under 
     a `Creative Commons Attribution-ShareAlike 3.0 Unported License <http://creativecommons.org/licenses/by-sa/3.0/>`_.
 
+.. note:: #TODO# One of the 4D Systems LCD capes would make a better example for an LCD cape. The CircuitCo cape is no longer available.
+
 .. figure:: figures/LCD7back.png
     :align: center
     :alt: 
 
 Next, take a note of each pin utilized by each cape. The `BeagleBone Capes catalog <http://beaglebonecapes.com>`_ 
 provides a graphical representation for the pin usage of most capes, as shown in :ref:`Audio_cape_pins_fig` for the Circuitco Audio Cape.
+
+.. note:: #TODO# Bela would make a better example for an audio cape. The CircuitCo cape is no longer available.
 
 .. _Audio_cape_pins_fig:
 
@@ -295,7 +299,7 @@ In most cases, the same pin should never be used on two different capes, though 
 - I2C2_SCL and I2C2_SDA
     - |I2C| is a shared bus, and the *I2C2_SCL* and *I2C2_SDA* pins default to having this bus enabled for use by cape expansion ID EEPROMs.
 
-.. |I2C| replace:: I\ :sub:`2`\ C
+.. |I2C| replace:: I\ :sup:`2`\ C
 
 .. _capes_soldering:
 
@@ -428,147 +432,148 @@ the test status with the code in :ref:`capes_quickBot_motor_test_code`.
 Testing the quickBot motors interface (quickBot_motor_test.js)
 ==============================================================
 
-.. code-block:: bash
+.. callout::
 
-    #!/usr/bin/env node
-    var b = require('bonescript');
-    var M1_SPEED    = 'P9_16'; <a class="co" id="co_hello_CO1-1_unique" href="#callout_hello_CO1-1_unique"><img src="callouts/1.png" alt="1"/></a>
-    var M1_FORWARD  = 'P8_15';
-    var M1_BACKWARD = 'P8_13';
-    var M2_SPEED    = 'P9_14';
-    var M2_FORWARD  = 'P8_9';
-    var M2_BACKWARD = 'P8_11';
-    var freq = 50; <a class="co" id="co_hello_CO1-2_unique" href="#callout_hello_CO1-2_unique"><img src="callouts/2.png" alt="2"/></a>
-    var fast = 0.95;
-    var slow = 0.7;
-    var state = 0;  <a class="co" id="co_hello_CO1-3_unique" href="#callout_hello_CO1-3_unique"><img src="callouts/3.png" alt="3"/></a>
+    .. code-block:: javascript
 
-    b.pinMode(M1_FORWARD, b.OUTPUT); <a class="co" id="co_hello_CO1-4_unique" href="#callout_hello_CO1-4_unique"><img src="callouts/4.png" alt="4"/></a>
-    b.pinMode(M1_BACKWARD, b.OUTPUT);
-    b.pinMode(M2_FORWARD, b.OUTPUT);
-    b.pinMode(M2_BACKWARD, b.OUTPUT);
-    b.analogWrite(M1_SPEED, 0, freq); <a class="co" id="co_hello_CO1-5_unique" href="#callout_hello_CO1-5_unique"><img src="callouts/5.png" alt="5"/></a>
-    b.analogWrite(M2_SPEED, 0, freq);
+        #!/usr/bin/env node
+        var b = require('bonescript');
+        var M1_SPEED    = 'P9_16'; // <1>
+        var M1_FORWARD  = 'P8_15';
+        var M1_BACKWARD = 'P8_13';
+        var M2_SPEED    = 'P9_14';
+        var M2_FORWARD  = 'P8_9';
+        var M2_BACKWARD = 'P8_11';
+        var freq = 50; // <2>
+        var fast = 0.95;
+        var slow = 0.7;
+        var state = 0; // <3>
 
-    updateMotors(); <a class="co" id="co_hello_CO1-6_unique" href="#callout_hello_CO1-6_unique"><img src="callouts/6.png" alt="6"/></a>
+        b.pinMode(M1_FORWARD, b.OUTPUT); // <4>
+        b.pinMode(M1_BACKWARD, b.OUTPUT);
+        b.pinMode(M2_FORWARD, b.OUTPUT);
+        b.pinMode(M2_BACKWARD, b.OUTPUT);
+        b.analogWrite(M1_SPEED, 0, freq); // <5>
+        b.analogWrite(M2_SPEED, 0, freq);
 
-    function updateMotors() { <img src="callouts/6.png" alt="6"/>
-        //console.log("Setting state = " + state); <a class="co" id="co_hello_CO1-7_unique" href="#callout_hello_CO1-7_unique"><img src="callouts/7.png" alt="7"/></a>
-        updateLEDs(state); <img src="callouts/7.png" alt="7"/>
-        switch(state) { <img src="callouts/3.png" alt="3"/>
+        updateMotors(); // <6>
+
+        function updateMotors() {
+            //console.log("Setting state = " + state); // <7>
+            updateLEDs(state);
+            switch(state) { // <3>
+                case 0:
+                default:
+                    M1_set(0); // <8>
+                    M2_set(0);
+                    state = 1; // <3>
+                    break;
+                case 1:
+                    M1_set(slow);
+                    M2_set(slow);
+                    state = 2;
+                    break;
+                case 2:
+                    M1_set(slow);
+                    M2_set(-slow);
+                    state = 3;
+                    break;
+                case 3:
+                    M1_set(-slow);
+                    M2_set(slow);
+                    state = 4;
+                    break;
+                case 4:
+                    M1_set(fast);
+                    M2_set(fast);
+                    state = 0;
+                    break;
+            }
+            setTimeout(updateMotors, 2000); // <3>
+        }
+
+        function updateLEDs(state) { // <7>
+            switch(state) {
             case 0:
-            default:
-                M1_set(0); <a class="co" id="co_hello_CO1-8_unique" href="#callout_hello_CO1-8_unique"><img src="callouts/8.png" alt="8"/></a>
-                M2_set(0);
-                state = 1; <img src="callouts/3.png" alt="3"/>
+                b.digitalWrite("USR0", b.LOW);
+                b.digitalWrite("USR1", b.LOW);
+                b.digitalWrite("USR2", b.LOW);
+                b.digitalWrite("USR3", b.LOW);
                 break;
             case 1:
-                M1_set(slow);
-                M2_set(slow);
-                state = 2;
+                b.digitalWrite("USR0", b.HIGH);
+                b.digitalWrite("USR1", b.LOW);
+                b.digitalWrite("USR2", b.LOW);
+                b.digitalWrite("USR3", b.LOW);
                 break;
             case 2:
-                M1_set(slow);
-                M2_set(-slow);
-                state = 3;
+                b.digitalWrite("USR0", b.LOW);
+                b.digitalWrite("USR1", b.HIGH);
+                b.digitalWrite("USR2", b.LOW);
+                b.digitalWrite("USR3", b.LOW);
                 break;
             case 3:
-                M1_set(-slow);
-                M2_set(slow);
-                state = 4;
+                b.digitalWrite("USR0", b.LOW);
+                b.digitalWrite("USR1", b.LOW);
+                b.digitalWrite("USR2", b.HIGH);
+                b.digitalWrite("USR3", b.LOW);
                 break;
             case 4:
-                M1_set(fast);
-                M2_set(fast);
-                state = 0;
+                b.digitalWrite("USR0", b.LOW);
+                b.digitalWrite("USR1", b.LOW);
+                b.digitalWrite("USR2", b.LOW);
+                b.digitalWrite("USR3", b.HIGH);
                 break;
+            }
         }
-        setTimeout(updateMotors, 2000); <img src="callouts/3.png" alt="3"/>
-    }
 
-    function updateLEDs(state) { <img src="callouts/7.png" alt="7"/>
-        switch(state) {
-        case 0:
-            b.digitalWrite("USR0", b.LOW);
-            b.digitalWrite("USR1", b.LOW);
-            b.digitalWrite("USR2", b.LOW);
-            b.digitalWrite("USR3", b.LOW);
-            break;
-        case 1:
-            b.digitalWrite("USR0", b.HIGH);
-            b.digitalWrite("USR1", b.LOW);
-            b.digitalWrite("USR2", b.LOW);
-            b.digitalWrite("USR3", b.LOW);
-            break;
-        case 2:
-            b.digitalWrite("USR0", b.LOW);
-            b.digitalWrite("USR1", b.HIGH);
-            b.digitalWrite("USR2", b.LOW);
-            b.digitalWrite("USR3", b.LOW);
-            break;
-        case 3:
-            b.digitalWrite("USR0", b.LOW);
-            b.digitalWrite("USR1", b.LOW);
-            b.digitalWrite("USR2", b.HIGH);
-            b.digitalWrite("USR3", b.LOW);
-            break;
-        case 4:
-            b.digitalWrite("USR0", b.LOW);
-            b.digitalWrite("USR1", b.LOW);
-            b.digitalWrite("USR2", b.LOW);
-            b.digitalWrite("USR3", b.HIGH);
-            break;
+        function M1_set(speed) { // <8>
+            speed = (speed > 1) ? 1 : speed; // <9>
+            speed = (speed < -1) ? -1 : speed;
+            b.digitalWrite(M1_FORWARD, b.LOW);
+            b.digitalWrite(M1_BACKWARD, b.LOW);
+            if(speed > 0) {
+                b.digitalWrite(M1_FORWARD, b.HIGH);
+            } else if(speed < 0) {
+                b.digitalWrite(M1_BACKWARD, b.HIGH);
+            }
+            b.analogWrite(M1_SPEED, Math.abs(speed), freq); // <10>
         }
-    }
 
-    function M1_set(speed) { <img src="callouts/8.png" alt="8"/>
-        speed = (speed &gt; 1) ? 1 : speed; <a class="co" id="co_hello_CO1-9_unique" href="#callout_hello_CO1-9_unique"><img src="callouts/9.png" alt="9"/></a>
-        speed = (speed &lt; -1) ? -1 : speed;
-        b.digitalWrite(M1_FORWARD, b.LOW);
-        b.digitalWrite(M1_BACKWARD, b.LOW);
-        if(speed &gt; 0) {
-            b.digitalWrite(M1_FORWARD, b.HIGH);
-        } else if(speed &lt; 0) {
-            b.digitalWrite(M1_BACKWARD, b.HIGH);
-        }
-        b.analogWrite(M1_SPEED, Math.abs(speed), freq); <a class="co" id="co_hello_CO1-10_unique" href="#callout_hello_CO1-10_unique"><img src="callouts/10.png" alt="10"/></a>
-    }
-
-    function M2_set(speed) {
-        speed = (speed &gt; 1) ? 1 : speed;
-        speed = (speed &lt; -1) ? -1 : speed;
-        b.digitalWrite(M2_FORWARD, b.LOW);
-        b.digitalWrite(M2_BACKWARD, b.LOW);
-        if(speed &gt; 0) {
-            b.digitalWrite(M2_FORWARD, b.HIGH);
-        } else if(speed &lt; 0) {
-            b.digitalWrite(M2_BACKWARD, b.HIGH);
-        }
-        b.analogWrite(M2_SPEED, Math.abs(speed), freq);
+        function M2_set(speed) {
+            speed = (speed > 1) ? 1 : speed;
+            speed = (speed < -1) ? -1 : speed;
+            b.digitalWrite(M2_FORWARD, b.LOW);
+            b.digitalWrite(M2_BACKWARD, b.LOW);
+            if(speed > 0) {
+                b.digitalWrite(M2_FORWARD, b.HIGH);
+            } else if(speed < 0) {
+                b.digitalWrite(M2_BACKWARD, b.HIGH);
+            }
+            b.analogWrite(M2_SPEED, Math.abs(speed), freq);
 
 
-.. <dl class="calloutlist">
-.. <dt><a class="co" id="callout_hello_CO1-1_unique" href="#co_hello_CO1-1_unique"><img src="callouts/1.png" alt="1"/></a></dt>
-.. <dd><p>Define each pin as a variable. This makes it easy to change to another pin if you decide that is necessary.</p></dd>
-.. <dt><a class="co" id="callout_hello_CO1-2_unique" href="#co_hello_CO1-2_unique"><img src="callouts/2.png" alt="2"/></a></dt>
-.. <dd><p>Make other simple parameters variables. Again, this makes it easy to update them. When creating this test, I found that the PWM frequency to drive the motors needed to be relatively low to get over the kickback shown in <a data-type="xref" href="#quickBot_motor_kickback"/>. I also found that I needed to get up to about 70 percent duty cycle for my circuit to reliably start the motors turning.</p></dd>
-.. <dt><a class="co" id="callout_hello_CO1-3_unique" href="#co_hello_CO1-3_unique"><img src="callouts/3.png" alt="3"/></a></dt>
-.. <dd><p>Use a simple variable such as <code>state</code> to keep track of the test phase. This is used in a <code>switch</code> statement to jump to the code to configure for that test phase and updated after configuring for the current phase in order to select the next phase. Note that the next phase isn&#8217;t entered until after a two-second delay, as specified in the call to <code>setTimeout()</code>.</p></dd>
-.. <dt><a class="co" id="callout_hello_CO1-4_unique" href="#co_hello_CO1-4_unique"><img src="callouts/4.png" alt="4"/></a></dt>
-.. <dd><p>Perform the initial setup of all the pins.</p></dd>
-.. <dt><a class="co" id="callout_hello_CO1-5_unique" href="#co_hello_CO1-5_unique"><img src="callouts/5.png" alt="5"/></a></dt>
-.. <dd><p>The first time a PWM pin is used, it is configured with the update frequency. It is important to set this just once to the right frequency, because other PWM channels might use the same PWM controller, and attempts to reset the PWM frequency might fail. The <code>pinMode()</code> function doesn&#8217;t have an argument for providing the update frequency, so use the <code>analogWrite()</code> function, instead. You can review using the PWM in <a data-type="xref" href="#motors_servo"/>.</p></dd>
-.. <dt><a class="co" id="callout_hello_CO1-6_unique" href="#co_hello_CO1-6_unique"><img src="callouts/6.png" alt="6"/></a></dt>
-.. <dd><p><code>updateMotors()</code> is the test function for the motors and is defined after all the setup and initialization code. The code calls this function every two seconds using the <code>setTimeout()</code> JavaScript function. The first call is used to prime the loop.</p></dd>
-.. <dt><a class="co" id="callout_hello_CO1-7_unique" href="#co_hello_CO1-7_unique"><img src="callouts/7.png" alt="7"/></a></dt>
-.. <dd><p>The call to <code>console.log()</code> was initially here to observe the state transitions in the debug console, but it was replaced with the <code>updateLEDs()</code> call. Using the <code>USER</code> LEDs makes it possible to note the state transitions without having visibility of the debug console. <code>updateLEDs()</code> is defined later.</p></dd>
-.. <dt><a class="co" id="callout_hello_CO1-8_unique" href="#co_hello_CO1-8_unique"><img src="callouts/8.png" alt="8"/></a></dt>
-.. <dd><p>The <code>M1_set()</code> and <code>M2_set()</code> functions are defined near the bottom and do the work of configuring the motor drivers into a particular state. They take a single argument of <code>speed</code>, as defined between <code>-1</code> (maximum reverse), <code>0</code> (stop), and <code>1</code> (maximum forward).</p></dd>
-.. <dt><a class="co" id="callout_hello_CO1-9_unique" href="#co_hello_CO1-9_unique"><img src="callouts/9.png" alt="9"/></a></dt>
-.. <dd><p>Perform simple bounds checking to ensure that speed values are between <code>-1</code> and <code>1</code>.</p></dd>
-.. <dt><a class="co" id="callout_hello_CO1-10_unique" href="#co_hello_CO1-10_unique"><img src="callouts/10.png" alt="10"/></a></dt>
-.. <dd><p>The <code>analogWrite()</code> call uses the absolute value of <code>speed</code>, making any negative numbers a positive magnitude.</p></dd>
-.. </dl>
+   .. annotations::
+
+      <1> Define each pin as a variable. This makes it easy to change to another pin if you decide that is necessary.
+
+      <2> Make other simple parameters variables. Again, this makes it easy to update them. When creating this test, I found that the PWM frequency to drive the motors needed to be relatively low to get over the kickback shown in :ref:`quickBot_motor_kickback`. I also found that I needed to get up to about 70 percent duty cycle for my circuit to reliably start the motors turning.
+
+      <3> Use a simple variable such as `state` to keep track of the test phase. This is used in a `switch` statement to jump to the code to configure for that test phase and updated after configuring for the current phase in order to select the next phase. Note that the next phase isn't entered until after a two-second delay, as specified in the call to `setTimeout()`.
+
+      <4> Perform the initial setup of all the pins.
+
+      <5> The first time a PWM pin is used, it is configured with the update frequency. It is important to set this just once to the right frequency, because other PWM channels might use the same PWM controller, and attempts to reset the PWM frequency might fail. The `pinMode()` function doesn't have an argument for providing the update frequency, so use the `analogWrite()` function, instead. You can review using the PWM in :ref:`motors_servo`.
+
+      <6> `updateMotors()` is the test function for the motors and is defined after all the setup and initialization code. The code calls this function every two seconds using the `setTimeout()` JavaScript function. The first call is used to prime the loop.
+
+      <7> The call to `console.log()` was initially here to observe the state transitions in the debug console, but it was replaced with the `updateLEDs()` call. Using the `USER` LEDs makes it possible to note the state transitions without having visibility of the debug console. `updateLEDs()` is defined later.
+
+      <8> The `M1_set()` and `M2_set()` functions are defined near the bottom and do the work of configuring the motor drivers into a particular state. They take a single argument of `speed`, as defined between `-1` (maximum reverse), `0` (stop), and `1` (maximum forward).
+
+      <9> Perform simple bounds checking to ensure that speed values are between `-1` and `1`.
+
+      <10> The `analogWrite()` call uses the absolute value of `speed`, making any negative numbers a positive magnitude.
 
 .. _quickBot_motor_kickback:
 
@@ -646,31 +651,33 @@ The `Fritzing custom PCB outline page <http://bit.ly/1xd1aGV>`_ describes how to
 board outline. Although it is possible to use a drawing tool like `Inkscape <https://inkscape.org/en/>`_, 
 I chose to use `the SVG path command <http://bit.ly/1b2aZmn>`_ directly to create :ref:`capes_boardoutline_code`.
 
-.. _capes_boardoutline_code:
+.. callout::
 
-Outline SVG for BeagleBone cape (beaglebone_cape_boardoutline.svg)
-===================================================================
+    .. code-block:: xml
+       :caption: Outline SVG for BeagleBone cape (beaglebone_cape_boardoutline.svg)
+       :name: capes_boardoutline_code
+       :linenos:
+    
+       <?xml version='1.0' encoding='UTF-8' standalone='no'?>
+       <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+        width="306"  height="193.5"> <!-- <1> -->
+        <g id="board"> <!-- <2> -->
+         <path fill="#338040" id="boardoutline" d="M 22.5,0 l 0,56 L 72,56
+          q 5,0 5,5 l 0,53.5 q 0,5 -5,5 L 0,119.5 L 0,171 Q 0,193.5 22.5,193.5 
+          l 238.5,0 c 24.85281,0 45,-20.14719 45,-45 L 306,45 
+          C 306,20.14719 285.85281,0 261,0 z"/> <!-- <3> -->
+        </g>
+       </svg>
 
-.. &lt;?xml version='1.0' encoding='UTF-8' standalone='no'?&gt;
-.. &lt;svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-..     width="306"  height="193.5"&gt;&lt;!--<a class="co" id="co_capes_bo_1_co" href="#callout_capes_bo_1_co"><img src="callouts/1.png" alt="1"/></a>--&gt;
-..  &lt;g id="board"&gt;&lt;!--<a class="co" id="co_capes_bo_2_co" href="#callout_capes_bo_2_co"><img src="callouts/2.png" alt="2"/></a>--&gt;
-..   &lt;path fill="#338040" id="boardoutline" d="M 22.5,0 l 0,56 L 72,56
-..       q 5,0 5,5 l 0,53.5 q 0,5 -5,5 L 0,119.5 L 0,171 Q 0,193.5 22.5,193.5 
-..       l 238.5,0 c 24.85281,0 45,-20.14719 45,-45 L 306,45 
-..       C 306,20.14719 285.85281,0 261,0 z"/&gt;&lt;!--<a class="co" id="co_capes_bo_3_co" href="#callout_capes_bo_3_co"><img src="callouts/3.png" alt="3"/></a>--&gt;
-..  &lt;/g&gt;
-.. &lt;/svg&gt;
+    .. annotations::
 
-.. ++++
-.. <dl class="calloutlist">
-.. <dt><a class="co" id="callout_capes_bo_1_co" href="#co_capes_bo_1_co"><img src="callouts/1.png" alt="1"/></a></dt><dd><p>This is a standard SVG header. The width and height are set based on the BeagleBone outline provided in the Adafruit library.</p></dd>
-.. <dt><a class="co" id="callout_capes_bo_2_co" href="#co_capes_bo_2_co"><img src="callouts/2.png" alt="2"/></a></dt><dd><p>Fritzing requires the element to be within a layer called <code>board</code>.</p></dd>
-.. <dt><a class="co" id="callout_capes_bo_3_co" href="#co_capes_bo_3_co"><img src="callouts/3.png" alt="3"/></a></dt><dd><p>Fritzing requires the color to be <code>#338040</code> and the layer to be called <code>boardoutline</code>. The units end up being 1/90 of an inch. That is, take the numbers in the SVG code and divide by 90 to get the numbers from the System Reference Manual.</p></dd>
-.. </dl>
-.. ++++
+       <1> This is a standard SVG header. The width and height are set based on the BeagleBone outline provided in the Adafruit library.
 
-The measurements are taken from the `BeagleBone Black System Reference Manual <http://bit.ly/1C5rSa8>`_, as shown in :ref:`capes_dimensions_fig`.
+       <2> Fritzing requires the element to be within a layer called `board`
+
+       <3> Fritzing requires the color to be `#338040` and the layer to be called `boardoutline`. The units end up being 1/90 of an inch. That is, take the numbers in the SVG code and divide by 90 to get the numbers from the System Reference Manual.
+
+The measurements are taken from the :ref:`beagleboneblack-mechanical` section of the :ref:`BeagleBone Black System Reference Manual <beagleboneblack-home>`, as shown in :ref:`capes_dimensions_fig`.
 
 .. _capes_dimensions_fig:
 
@@ -1230,15 +1237,6 @@ There's no real substitute for getting to know your contract manufacturer, its c
 communication style, strengths, and weaknesses. Look around your town to see if anyone is 
 doing this type of work and see if they'll give you a tour.
 
-.. note:: ?
+.. note::
 
-.. To DO
-    fix this
-
-Don't confuse CircuitHub and CircuitCo. CircuitCo is the official contract manufacturer of 
-BeagleBoard.org and not the same company as CircuitHub, the online contract manufacturing 
-service. CircuitCo would be an excellent choice for you to consider to perform your contract 
-manufacturing, but it doesn't offer an online quote service at this point, so it isn't as easy 
-to include details on how to engage with it in this book.
-
-
+   Don't confuse CircuitHub and CircuitCo. CircuitCo is closed.

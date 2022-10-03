@@ -3,9 +3,6 @@
 Real-Time I/O
 ###############
 
-Introduction
-*************
-
 Sometimes, when BeagleBone Black interacts with the physical world, it needs to respond in a timely manner. 
 For example, your robot has just detected that one of the driving motors needs to turn a bit faster. 
 Systems that can respond quickly to a real event are known as ``real-time`` systems. There are two broad 
@@ -65,19 +62,19 @@ pushbutton, and turns on the LED attached to *P9_12* when the button is pushed.
 
 .. _py_pushLED_code:
 
-.. literalinclude:: code/pushLED.py
+.. literalinclude:: ../code/08realtime/pushLED.py
    :caption: Monitoring a pushbutton (pushLED.py)
    :linenos:
 
-:download:`pushLED.py <code/pushLED.py>`
+:download:`pushLED.py <../code/08realtime/pushLED.py>`
 
 .. _realtime_pushLED_code:
 
-.. literalinclude:: code/pushLED.js
+.. literalinclude:: ../code/08realtime/pushLED.js
    :caption: Monitoring a pushbutton (pushLED.js)
    :linenos:
 
-:download:`pushLED.js <code/pushLED.js>`
+:download:`pushLED.js <../code/08realtime/pushLED.js>`
 
 
 Add the code to a file named ``pushLED.js`` and run it by using the following commands:
@@ -115,11 +112,11 @@ Then add the code in :ref:`realtime_pushLED_c_code` to a file named ``pushLED.c`
 
 .. _realtime_pushLED_c_code:
 
-.. literalinclude:: code/pushLED.c
+.. literalinclude:: ../code/08realtime/pushLED.c
    :caption: Code for reading a switch and blinking an LED (pushLED.c)
    :linenos:
 
-:download:`pushLED.c <code/pushLED.c>`
+:download:`pushLED.c <../code/08realtime/pushLED.c>`
 
 Compile and run the code:
 
@@ -283,22 +280,22 @@ Add the code in :ref:`realtime_pushLEDmmap_h` to a file named ``pushLEDmmap.h``.
 
 .. _realtime_pushLEDmmap_h:
 
-.. literalinclude:: code/pushLEDmmap.h
+.. literalinclude:: ../code/08realtime/pushLEDmmap.h
    :caption: Memory address definitions (pushLEDmmap.h)
    :linenos:
 
-:download:`pushLEDmmap.h <code/pushLEDmmap.h>`
+:download:`pushLEDmmap.h <../code/08realtime/pushLEDmmap.h>`
 
 
 Add the code in :ref:`realtime_pushLEDmmap_c` to a file named ``pushLEDmmap.c``.
 
 .. _realtime_pushLEDmmap_c:
 
-.. literalinclude:: code/pushLEDmmap.c
+.. literalinclude:: ../code/08realtime/pushLEDmmap.c
    :caption: Code for directly reading memory addresses (pushLEDmmap.c)
    :linenos:
 
-:download:`pushLEDmmap.c <code/pushLEDmmap.c>`
+:download:`pushLEDmmap.c <../code/08realtime/pushLEDmmap.c>`
 
 Now, compile and run the code:
 
@@ -410,11 +407,11 @@ Here's how to run the scripts.
 
 .. _realtime_install_fig:
 
-.. literalinclude:: code/rt/install.sh
+.. literalinclude:: ../code/08realtime/rt/install.sh
    :caption: rt/install.sh
    :linenos:
 
-:download:`rt/install.sh <code/rt/install.sh>`
+:download:`rt/install.sh <../code/08realtime/rt/install.sh>`
 
 
 * Open up another window and start something that will create a load on the Bone, then run the following:
@@ -428,11 +425,11 @@ The data is saved in *nort.hist*, which stands for no RT  histogram.
 
 .. _realtime_hist_gen_fig:
 
-.. literalinclude:: code/rt/hist.gen
+.. literalinclude:: ../code/08realtime/rt/hist.gen
    :caption: hist.gen
    :linenos:
 
-:download:`rt/hist.gen <code/rt/hist.gen>`
+:download:`rt/hist.gen <../code/08realtime/rt/hist.gen>`
 
 .. note:: 
     If you get an error:
@@ -489,7 +486,7 @@ This will generate the file *cyclictest.png* which contains your plot.  It shoul
 
 .. _realtime_cyclictest_fig:
 
-.. figure:: code/rt/cyclictest.png
+.. figure:: ../code/08realtime/rt/cyclictest.png
     :align: center
     :alt: Histogram of Non-RT and RT kernels running cyclictest
 

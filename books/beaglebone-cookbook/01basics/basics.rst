@@ -3,9 +3,6 @@
 Basics
 #######
 
-Introduction
-*************
-
 When you buy BeagleBone Black, pretty much everything you need to get going comes with it. 
 You can just plug it into the USB of a host computer, and it works. The goal of this 
 chapter is to show what you can do with your Bone, right out of the box. It has enough 
@@ -173,15 +170,13 @@ Connect your Bone to the Internet and log into it.  From the command line run:
 
 .. code-block::
 
-    bone$ git clone git@github.com:MarkAYoder/BoneCookbook.git
-    bone$ cd BoneCookbook/docs
+    bone$ git clone https://git.beagleboard.org/beagleboard/beaglebone-cookbook-code
+    bone$ cd beaglebone-cookbook-code
     bone$ ls
 
 You can look around from the command line, or explore from Visual Sudio Code. 
 If you ar using VSC, go to the *File* menu and select *Open Folder ...* and 
-select BoneCookbook/docs. Then explore.   You'll find there is a directory 
-for each chapter and most chapters have a *code* directory for the sample 
-scripts and a *figures* directory for the figures.  
+select beaglebone-cookbook-code. Then explore.
 
 .. _basics_wire_breadboard:
 

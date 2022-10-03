@@ -3,9 +3,6 @@
 The Kernel
 ###########
 
-Introduction
-*************
-
 The kernel is the heart of the Linux operating system. It's the software that takes the 
 low-level requests, such as reading or writing files, or reading and writing general-purpose 
 input/output (GPIO) pins, and maps them to the hardware. When you install a new version of the 
@@ -97,11 +94,11 @@ For our example module, add the code in :ref:`kernel_simple_module` to a file ca
 
 .. _kernel_simple_module:
 
-.. literalinclude:: code/hello.c
+.. literalinclude:: ../code/07kernel/hello.c
    :caption: Simple Kernel Module (hello.c)
    :linenos:
 
-:download:`hello.c <code/hello.c>`
+:download:`hello.c <../code/07kernel/hello.c>`
 
 When compiling on the Bone, all you need to do is load the Kernel 
 Headers for the version of the kernel you're running:
@@ -123,11 +120,11 @@ Next, add the code in :ref:`kernel_Makefle` to a file called ``Makefile``.
 
 .. _kernel_Makefle:
 
-.. literalinclude:: code/Makefile.display
+.. literalinclude:: ../code/07kernel/Makefile.display
    :caption: Simple Kernel Module (``Makefile``)
    :linenos:
 
-:download:`Makefile.display <code/Makefile.display>`
+:download:`Makefile.display <../code/07kernel/Makefile.display>`
 
 .. note:: 
     Replace the two instances of *<TAB>* with a tab character (the key left of the Q key on a United States keyboard). 
@@ -140,13 +137,13 @@ Now, compile the kernel module by using the *make* command:
 
     bone$ make
     make -C /lib/modules/3.8.13-bone67/build \
-        SUBDIRS=/root/cookbook-atlas/code/hello modules
+        SUBDIRS=/home/debian/beaglebone-cookbook-code/07kernel/hello modules
     make[1]: Entering directory `/usr/src/linux-headers-3.8.13-bone67'
-    CC [M]  /root/cookbook-atlas/code/hello/hello.o
+    CC [M]  /home/debian/beaglebone-cookbook-code/07kernel/hello/hello.o
     Building modules, stage 2.
     MODPOST 1 modules
-    CC      /root/cookbook-atlas/code/hello/hello.mod.o
-    LD [M]  /root/cookbook-atlas/code/hello/hello.ko
+    CC      /home/debian/beaglebone-cookbook-code/07kernel/hello/hello.mod.o
+    LD [M]  /home/debian/beaglebone-cookbook-code/07kernel/hello/hello.ko
     make[1]: Leaving directory `/usr/src/linux-headers-3.8.13-bone67'
     bone$ ls
     Makefile        hello.c   hello.mod.c  hello.o
@@ -159,7 +156,7 @@ Notice that several files have been created.
 .. code-block:: bash
 
     bone$ modinfo hello.ko
-    filename:       /root/hello/hello.ko
+    filename:       /home/debian/beaglebone-cookbook-code/07kernel/hello/hello.ko
     srcversion:     87C6AEED7791B4B90C3B50C
     depends:        
     vermagic:       3.8.13-bone67 SMP mod_unload modversions ARMv7 thumb2 p2v8
@@ -584,11 +581,11 @@ tools to use. Test the cross compiler by adding :ref:`kernel_helloWorld` to a fi
 
 .. _kernel_helloWorld:
 
-.. literalinclude:: code/helloWorld.c
+.. literalinclude:: ../code/07kernel/helloWorld.c
    :caption: Simple helloWorld.c to test cross compiling (helloWorld.c)
    :linenos:
 
-:download:`helloWorld.c <code/helloWorld.c>`
+:download:`helloWorld.c <../code/07kernel/helloWorld.c>`
 
 You can then cross-compile by using the following commands:
 
@@ -620,11 +617,11 @@ Solution
 
 .. _kernel_hello_patch:
 
-.. literalinclude:: code/hello.patch
+.. literalinclude:: ../code/07kernel/hello.patch
    :caption: Simple kernel patch file (hello.patch)
    :linenos:
 
-:download:`hello.patch <code/hello.patch>`
+:download:`hello.patch <../code/07kernel/hello.patch>`
 
 Here's how to use it:
 

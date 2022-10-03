@@ -35,7 +35,7 @@ Here we present:
 
 .. TODO Switch from LEDscape to FPP
 
-* `Robotics Control Library <http://strawsondesign.com/docs/roboticscape/>`_
+* `Robotics Control Library <https://beagleboard.org/librobotcontrol>`_
 * `BeagleLogic <https://github.com/abhishek-kakkar/BeagleLogic/wiki>`_
 * `NeoPixels -- 5050 RGB LEDs with Integrated Drivers (Falcon Christmas) <http://falconchristmas.com>`_
 * `RGB LED Matrix (Falcon Christmas) <http://falconchristmas.com>`_
@@ -77,7 +77,7 @@ in :ref:`case_blue`.
 
    Blue balancing
 
-The `Robotics Control Library <http://strawsondesign.com/docs/roboticscape/>`_ is a 
+The `Robotics Control Library <https://beagleboard.org/librobotcontrol>`_ is a 
 package that is already installed on the Beagle 
 that contains a C library and example/testing programs. It uses the PRU to extend the 
 real-time hardware of the Bone by adding eight addional servo channels and one 

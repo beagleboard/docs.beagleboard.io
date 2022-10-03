@@ -1,3 +1,5 @@
+.. _beagleboard-boards-home:
+
 BeagleBoard (all)
 ###################
 

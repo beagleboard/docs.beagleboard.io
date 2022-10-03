@@ -1,5 +1,11 @@
+.. _beagleconnect_freedom_home:
+
 BeagleConnect Freedom
 ######################
+
+.. important::
+
+   Currently under development
 
 .. image:: media/image1.jpg
    :width: 600
@@ -29,12 +35,12 @@ devices within the first year after the initial release.
 BeagleConnect™ Freedom
 **********************
 
-BeagleConnect™ Freedom is based on the `TI CC1352 <https://www.ti.com/product/CC1352R>`_ 
+BeagleConnect™ Freedom is based on a `TI Arm Cortex-M4 wireless-enabled microcontroller <https://www.ti.com/product/CC1352P7>`_ 
 and is the first available BeagleConnect™ solution. It implements:
 
 * BeagleConnect™ gateway device function for Sub-GHz 802.15.4 long-range 
   wireless
-* BeagleConnect™ node device function for Bluetooth Low-Energe (BLE) and 
+* BeagleConnect™ node device function for Bluetooth Low-Energy (BLE) and 
   Sub-GHz 802.15.4 long range wireless
 * USB-based serial console and firmware updates
 * 2x `mikroBUS sockets <https://www.mikroe.com/mikrobus>`_ with BeagleConnect™ 
@@ -125,9 +131,9 @@ Long-range, low-power wireless
 ==============================
 
 BeagleConnect™ Freedom wireless hardware is built around a 
-`TI CC1352 <http://www.ti.com/product/CC1352R>`_ multiprotocol and multi-band 
-Sub-1 GHz and 2.4-GHz wireless microcontroller (MCU). CC1352R includes a 48-MHz
-Arm® Cortex®-M4F processor, 352KB Flash, 256KB ROM, 8KB Cache SRAM, 80KB of 
+`TI CC1352P7 <http://www.ti.com/product/CC1352P7>`_ multiprotocol and multi-band 
+Sub-1 GHz and 2.4-GHz wireless microcontroller (MCU). CC1352P7 includes a 48-MHz
+Arm® Cortex®-M4F processor, 704KB Flash, 256KB ROM, 8KB Cache SRAM, 144KB of 
 ultra-low leakage SRAM, and `Over-the-Air <https://en.wikipedia.org/wiki/Over-the-air_programming>`_ 
 upgrades (OTA).
 
@@ -160,12 +166,12 @@ Each BeagleBoard.org BeagleConnect™ solution will be:
 Getting Started
 ***************
 
-* `Typical usage with a Linux host </boards/beagleconnect/freedom/usage.html>`__
-* `Programming with Zephyr </boards/beagleconnect/freedom/zephyr.html>`__
+* :ref:`Typical BeagleConnect Freedom usage with a Linux host <beagleconnect-usage>`
+* :ref:`Programming BeagleConnect Freedom with Zephyr <beagleconnect-zephyr>`
 
 .. toctree::
    :maxdepth: 1
    :hidden:
 
-   usage.rst
-   zephyr.rst
+   /boards/beagleconnect/freedom/usage.rst
+   /boards/beagleconnect/freedom/zephyr.rst

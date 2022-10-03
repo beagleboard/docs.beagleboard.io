@@ -1,4 +1,4 @@
-.. _beagleconnect-home:
+.. _beagleconnect-story:
 
 BeagleConnect™ Story
 *********************

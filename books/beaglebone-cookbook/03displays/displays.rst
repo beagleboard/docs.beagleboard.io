@@ -3,9 +3,6 @@
 Displays and Other Outputs
 ###########################
 
-Introduction
-*************
-
 In this chapter, you will learn how to control physical hardware via 
 BeagleBone Black's general-purpose input/output (GPIO) pins. The Bone has 
 65 GPIO pins that are brought out on two 46-pin headers, called 
@@ -60,25 +57,25 @@ a more traditional editor (as shown in :ref:`tips_editing_files`).
 
 .. _py_internLED_code:
 
-.. literalinclude:: code/internLED.py
+.. literalinclude:: ../code/03displays/internLED.py
    :caption: Using an internal LED (internLED.py)
    :linenos:
 
-:download:`internLED.py <code/internLED.py>`
+:download:`internLED.py <../code/03displays/internLED.py>`
 
 .. _js_internLED_code:
 
-.. literalinclude:: code/internLED.js
+.. literalinclude:: ../code/03displays/internLED.js
    :caption: Using an internal LED (internLED.js)
    :linenos:
 
-:download:`internLED.js <code/internLED.js>`
+:download:`internLED.js <../code/03displays/internLED.js>`
 
 In the *bash* command window, enter the following commands:
 
 .. code-block:: bash
 
-     bone$ cd ~/BoneCookbook/docs/03displays/code
+     bone$ cd ~/beaglebone-cookbook-code/03displays
      bone$ ./internLED.js
 
 
@@ -129,19 +126,19 @@ and find the code shown in :ref:`py_externLED_code`.
 
 .. _py_externLED_code:
 
-.. literalinclude:: code/externLED.py
+.. literalinclude:: ../code/03displays/externLED.py
    :caption: Code for using an external LED (externLED.py)
    :linenos:
 
-:download:`externLED.py <code/externLED.py>`
+:download:`externLED.py <../code/03displays/externLED.py>`
 
 .. _js_externLED_code:
 
-.. literalinclude:: code/externLED.js
+.. literalinclude:: ../code/03displays/externLED.js
    :caption: Code for using an external LED (externLED.js)
    :linenos:
 
-:download:`externLED.js <code/externLED.js>`
+:download:`externLED.js <../code/03displays/externLED.js>`
 
 Save your file and run the code as before (:ref:`displays_onboardLED`).
 
@@ -204,19 +201,19 @@ Then run it as before.
 
 .. _py_fadeLED_code:
 
-.. literalinclude:: code/fadeLED.py
+.. literalinclude:: ../code/03displays/fadeLED.py
    :caption: Code for using an external LED (fadeLED.py)
    :linenos:
 
-:download:`fadeLED.py <code/fadeLED.py>`
+:download:`fadeLED.py <../code/03displays/fadeLED.py>`
 
 .. _js_fadeLED_code:
 
-.. literalinclude:: code/fadeLED.js
+.. literalinclude:: ../code/03displays/fadeLED.js
    :caption: Code for using an external LED (fadeLED.js)
    :linenos:
 
-:download:`fadeLED.js <code/fadeLED.js>`
+:download:`fadeLED.js <../code/03displays/fadeLED.js>`
 
 The Bone has several outputs that can be use as pwm's as shown in :ref:`cape-headers-pwm_fig`.  
 There are three *EHRPWM's* which each has a pair  of pwm channels. Each pair must have the same period.  
@@ -318,7 +315,7 @@ The LED matrix is a 5 V device, but you can drive it from 3.3 V. Wire, as shown 
 
 :ref:`sensors_i2c_temp` shows how to use *i2cdetect* to discover the address of an |I2C| device.
 
-.. |I2C| replace:: I\ :sub:`2`\ C
+.. |I2C| replace:: I\ :sup:`2`\ C
 
 Run the *i2cdetect -y -r 2* command to discover the address of the display on |I2C| bus 2, as shown in :ref:`displays_i2cdetect`.
 
@@ -357,7 +354,7 @@ LED matrix display (matrixLEDi2c.py)
 
 .. code-block:: C
 
-     include::code/matrixLEDi2c.py
+     include::../code/03displays/matrixLEDi2c.py
 
 
 1. This line states which bus to use. The last digit gives the BoneScript bus number.
@@ -464,7 +461,7 @@ Writing to a NeoPixel LED String Using LEDscape
 .. // [source, bash]
 .. // ----
 
-.. // include::code/neoPixel.sh
+.. // include::../code/03displays/neoPixel.sh
 
 .. // ----
 .. // ====
@@ -493,10 +490,10 @@ Then add the code from :ref:`speak_code` in a file called ``speak.js`` and run.
 
 .. _speak_code:
 
-.. literalinclude:: code/speak.js
+.. literalinclude:: ../code/03displays/speak.js
    :caption: A program that talks (speak.js)
    :linenos:
 
-:download:`speak.js <code/speak.js>`
+:download:`speak.js <../code/03displays/speak.js>`
 
 See :ref:`sensors_audio` to see how to use a USB audio dongle and set your default audio out.

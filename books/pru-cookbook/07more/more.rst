@@ -14,12 +14,13 @@ C. Detailing on how to program in assembly are beyond the scope of this text.
 
 The following are resources used in this chapter.
 
-Resources
-~~~~~~~~~~
+.. note::
 
-* `PRU Optimizing C/C++ Compiler, v2.2, User's Guide <http://www.ti.com/lit/ug/spruhv7b/spruhv7b.pdf>`_
-* `PRU Assembly Language Tools User's Guide <http://www.ti.com/lit/ug/spruhv6b/spruhv6b.pdf>`_
-* `PRU Assembly Instruction User Guide <http://www.ti.com/lit/ug/spruij2/spruij2.pdf>`_
+   *Resources*
+
+   * `PRU Optimizing C/C++ Compiler, v2.2, User's Guide <http://www.ti.com/lit/ug/spruhv7b/spruhv7b.pdf>`_
+   * `PRU Assembly Language Tools User's Guide <http://www.ti.com/lit/ug/spruhv6b/spruhv6b.pdf>`_
+   * `PRU Assembly Instruction User Guide <http://www.ti.com/lit/ug/spruij2/spruij2.pdf>`_
 
 Calling Assembly from C
 ************************

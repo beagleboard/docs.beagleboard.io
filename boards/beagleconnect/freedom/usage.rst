@@ -1,4 +1,4 @@
-.. _beagleconnect-Usage:
+.. _beagleconnect-usage:
 
 BeagleConnect Freedom Usage
 ###########################

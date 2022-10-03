@@ -7,14 +7,15 @@ Here are some examples that use the basic PRU building blocks.
 
 The following are resources used in this chapter.
 
-Resources
-~~~~~~~~~~
+.. note::
 
-* `PRU Optimizing C/C++ Compiler, v2.2, User's Guide <http://www.ti.com/lit/ug/spruhv7b/spruhv7b.pdf>`_
-* `AM572x Technical Reference Manual <http://www.ti.com/lit/pdf/spruhz6l>`_ (AI)
-* `AM335x Technical Reference Manual <http://www.ti.com/lit/pdf/spruh73>`_ (All others)
-* `Exploring BeagleBone by Derek Molloy <http://exploringbeaglebone.com/>`_
-* `WS2812 Data Sheet <https://cdn-shop.adafruit.com/datasheets/WS2812.pdf>`_
+   *Resources*
+
+   * `PRU Optimizing C/C++ Compiler, v2.2, User's Guide <http://www.ti.com/lit/ug/spruhv7b/spruhv7b.pdf>`_
+   * `AM572x Technical Reference Manual <http://www.ti.com/lit/pdf/spruhz6l>`_ (AI)
+   * `AM335x Technical Reference Manual <http://www.ti.com/lit/pdf/spruh73>`_ (All others)
+   * `Exploring BeagleBone by Derek Molloy <http://exploringbeaglebone.com/>`_
+   * `WS2812 Data Sheet <https://cdn-shop.adafruit.com/datasheets/WS2812.pdf>`_
 
 .. _memory_allocation:
 

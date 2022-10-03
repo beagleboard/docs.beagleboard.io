@@ -1,4 +1,4 @@
-.. _beagleconnect-connectivity:
+.. _beagleconnect-zephyr:
 
 BeagleConnect Freedom & Zephyr
 ###############################
@@ -73,61 +73,12 @@ BeagleBone® Green Gateway host.
 
 #TODO: describe how to know it is working
 
-Log into BeagleBone Green Gateway
-=================================
+Other systems
+-------------
 
-These instructions assume an x86_64 computer runing Ubuntu 20.04.3 LTS, but any
-computer can be used to connect to your BeagleBone Green Gateway.
+.. important::
 
-#. Log onto the Seeed BeagleBone® Green Gateway using :code:`ssh`.
-    * We need IP address, Username, and Password to connect to the device.
-    * The default IP for the BeagleBone hardware is :code:`192.168.7.2`
-    * The default Username is :code:`debian` & Password is :code:`temppwd`
-    * To connect you can simply type :code:`$ ssh debian@192.168.7.2` and when 
-      asked for password just type :code:`temppwd`
-    * Congratulations, You are now connected to the device!
-
-#. Connect to the `WiFi <https://forum.beagleboard.org/t/debian-11-x-bullseye-monthly-snapshots/31280>`_
-    * Execute :code:`sudo nano /etc/wpa_supplicant/wpa_supplicant-wlan0.conf` 
-      and provide the password :code:`temppwd` to edit the configuration file 
-      for the WiFi connection.
-    * Now edit the file (shown below) under the :code:`network={...}`
-      section you can set you :code:`ssid` (WiFi name) and :code:`psk` (Wifi 
-      Password).
-    .. code-block::
-
-        ctrl_interface=DIR=/run/wpa_supplicant GROUP=netdev
-        update_config=1
-        #country=IN
-        network={
-                ssid="WiFi Name"
-                psk="WiFi Password"
-        }
-    * Now save the file with :code:`CTRL+O` and exit with :code:`CTRL+X`.
-    * Check if the connection is established by executing :code:`$ ping 8.8.8.8`
-      you should see something like shown below.
-    .. code-block:: bash
-
-        debian@BeagleBone:~$ ping 8.8.8.8
-        PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
-        64 bytes from 8.8.8.8: icmp_seq=1 ttl=118 time=10.5 ms
-        64 bytes from 8.8.8.8: icmp_seq=2 ttl=118 time=5.72 ms
-        64 bytes from 8.8.8.8: icmp_seq=3 ttl=118 time=6.13 ms
-        64 bytes from 8.8.8.8: icmp_seq=4 ttl=118 time=6.11 ms
-        ...
-    * If everything goes well, you are ready to update your system and install 
-      new applications for beagleconnect.
-
-Note: If you are facing some issue during boot then you can try debugging the 
-boot session with a USB to serial interface cable such as those made by FTDI 
-plugged into J10 with the black wire of the FTDI cable toward the Ethernet 
-connector. Application like tio/minicom/putty can be used to make the connection 
-establishment procedure easy. 
-
-TODO: Simplify and elaborate on this section, add boot session debugging walkthrough
-
-Install Zephyr development tools on BeagleBone Green Gateway
-============================================================
+    If you are using the image above, none of the instructions in this section are required.
 
 #. Update the system.
     .. code-block:: bash
@@ -172,6 +123,70 @@ Install Zephyr development tools on BeagleBone Green Gateway
 
         sudo reboot
 
+
+Log into BeagleBone Green Gateway
+=================================
+
+These instructions assume an x86_64 computer runing Ubuntu 20.04.3 LTS, but any
+computer can be used to connect to your BeagleBone Green Gateway.
+
+#. Log onto the Seeed BeagleBone® Green Gateway using :code:`ssh`.
+    * We need IP address, Username, and Password to connect to the device.
+    * The default IP for the BeagleBone hardware is :code:`192.168.7.2`
+    * The default Username is :code:`debian` & Password is :code:`temppwd`
+    * To connect you can simply type :code:`$ ssh debian@192.168.7.2` and when 
+      asked for password just type :code:`temppwd`
+    * Congratulations, You are now connected to the device!
+#. Connect to the `WiFi <https://forum.beagleboard.org/t/debian-11-x-bullseye-monthly-snapshots/31280>`_
+    * Execute :code:`sudo nano /etc/wpa_supplicant/wpa_supplicant-wlan0.conf` 
+      and provide the password :code:`temppwd` to edit the configuration file 
+      for the WiFi connection.
+    * Now edit the file (shown below) under the :code:`network={...}`
+      section you can set you :code:`ssid` (WiFi name) and :code:`psk` (Wifi 
+      Password).
+
+      .. code-block::
+
+        ctrl_interface=DIR=/run/wpa_supplicant GROUP=netdev
+        update_config=1
+        #country=IN
+        network={
+                ssid="WiFi Name"
+                psk="WiFi Password"
+        }
+
+    * Now save the file with :code:`CTRL+O` and exit with :code:`CTRL+X`.
+    * Check if the connection is established by executing :code:`$ ping 8.8.8.8`
+      you should see something like shown below.
+
+      .. code-block:: bash
+
+        debian@BeagleBone:~$ ping 8.8.8.8
+        PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+        64 bytes from 8.8.8.8: icmp_seq=1 ttl=118 time=10.5 ms
+        64 bytes from 8.8.8.8: icmp_seq=2 ttl=118 time=5.72 ms
+        64 bytes from 8.8.8.8: icmp_seq=3 ttl=118 time=6.13 ms
+        64 bytes from 8.8.8.8: icmp_seq=4 ttl=118 time=6.11 ms
+        ...
+
+    * If everything goes well, you are ready to update your system and install 
+      new applications for beagleconnect.
+
+.. note:
+
+    If you are facing some issue during boot then you can try debugging the 
+    boot session with a USB to serial interface cable such as those made by FTDI 
+    plugged into J10 with the black wire of the FTDI cable toward the Ethernet 
+    connector. Application like tio/minicom/putty can be used to make the connection 
+    establishment procedure easy. 
+
+.. note:
+
+   #TODO#: Simplify and elaborate on this section, add boot session debugging walkthrough
+
+Install Zephyr development tools on BeagleBone Green Gateway
+============================================================
+
 #. Download and setup Zephyr for BeagleConnect™
     .. code-block:: bash
         
@@ -193,32 +208,37 @@ Build applications for BeagleConnect Freedom on BeagleBone Green Gateway
 Now you can build various Zephyr applications
 
 #. Change directory to BeagleConnect Freedom zephyr repository.
+
     .. code-block:: bash
 
         cd $HOME/bcf-zephyr
         
 #. Build blinky example
+
     .. code-block:: bash
+
         west build -d build/blinky zephyr/samples/basic/blinky
 
-
-
 #. TODO
+
     .. code-block:: bash
 
         west build -d build/sensortest zephyr/samples/boards/beagle_bcf/sensortest -- -DOVERLAY_CONFIG=overlay-subghz.conf
 
 #. TODO
+
     .. code-block:: bash
 
         west build -d build/wpanusb modules/lib/wpanusb_bc -- -DOVERLAY_CONFIG=overlay-subghz.conf
 
 #. TODO
+
     .. code-block:: bash
 
         west build -d build/bcfserial modules/lib/wpanusb_bc -- -DOVERLAY_CONFIG=overlay-bcfserial.conf -DDTC_OVERLAY_FILE=bcfserial.overlay
 
 #. TODO
+
     .. code-block:: bash
 
         west build -d build/greybus modules/lib/greybus/samples/subsys/greybus/net -- -DOVERLAY_CONFIG=overlay-802154-subg.conf

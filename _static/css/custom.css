@@ -65,3 +65,7 @@
  .wy-table-responsive td p {
     font-size: 100%;
 }
+
+span.strike {
+    text-decoration: line-through;
+}

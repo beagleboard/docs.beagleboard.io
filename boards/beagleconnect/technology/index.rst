@@ -1,3 +1,6 @@
+.. role:: strike
+   :class: strike
+
 .. _beagleconnect-overview:
 
 BeagleConnect Technology
@@ -15,12 +18,8 @@ architecture.
    :height: 400
    :alt: BeagleConnect
 
-BeagleConnect™ Greybus Stack
-****************************
-
-Work in progress
-================
-
+BeagleConnect™ is built using `Greybus <https://kernel-recipes.org/en/2015/talks/an-introduction-to-greybus/>`__
+code in the Linux kernel originally designed for mobile phones.
 To understand a bit more about how the BeagleConnect™ Greybus stack is being
 built, this section helps describe the development currently in progress and
 the principles of operation.
@@ -65,16 +64,18 @@ Software architecture
 TODO items
 ----------
 
-* Linux kernel driver
+* :strike:`Linux kernel driver` (wpanusb and bcfserial still need to be upstreamed)
 
 * Provisioning
 
-* Firmware for host CC13x
+* :strike:`Firmware for host CC13x`
 
-* Firmware for device CC13x
+* :strike:`Firmware for device CC13x`
 
-* Click Board drivers and device tree formatted metadata for 100 or so Click 
-  Boards
+* Unify firmware for host/device CC13x
+
+* :strike:`Click Board drivers and device tree formatted metadata for 100 or so Click 
+  Boards`
 
 * Click Board plug-ins for node-red for the same 100 or so Click Boards
 
@@ -110,7 +111,7 @@ User experience concerns
   provisioning is completed
 
 BeagleConnect™ Greybus demo using BeagleConnect™ Freedom
-========================================================
+########################################################
 BeagleConnect™ Freedom runs a subGHz IEEE 802.15.4 network. This BeagleConnect™
 Greybus demo shows how to interact with GPIO, I2C and mikroBUS add-on boards 
 remotely connected over a BeagleConnect™ Freedom.

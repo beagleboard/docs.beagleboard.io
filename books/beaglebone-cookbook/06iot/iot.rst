@@ -3,9 +3,6 @@
 Internet of Things
 ####################
 
-Introduction
-*************
-
 You can easily connect BeagleBone Black to the Internet via a wire (:ref:`networking_wired`), wirelessly 
 (:ref:`networking_wireless`), or through the USB to a host and then to the Internet (:ref:`networking_usb`). 
 Either way, it opens up a world of possibilities for the "Internet of Things" (IoT). 
@@ -98,11 +95,11 @@ to a file called */var/www/html/test.html*, and then point your browser to *192.
 
 .. _networking_index_html:
 
-.. literalinclude:: code/test.html
+.. literalinclude:: ../code/06iot/test.html
    :caption: A sample web page (test.html)
    :linenos:
 
-:download:`test.html <code/test.html>`
+:download:`test.html <../code/06iot/test.html>`
 
 You will see the web page shown in :ref:`networking_node_page`.
 
@@ -145,8 +142,8 @@ All the code in is the Cookbook repo:
 
 .. code-block:: bash
 
-  bone$ git clone https://github.com/MarkAYoder/BoneCookbook
-  bone$ cd BoneCookbook/doc/06iod/code/flash
+  bone$ git clone https://git.beagleboard.org/beagleboard/beaglebone-cookbook-code
+  bone$ cd beaglebone-cookbook-code/06iot/flask
 
 First Flask - hello, world
 ============================
@@ -155,11 +152,11 @@ Our first example is *helloWorld.py*
 
 .. _flask_hello_world:
 
-.. literalinclude:: code/flask/helloWorld.py
+.. literalinclude:: ../code/06iot/flask/helloWorld.py
    :caption: Python code for flask hello world (helloWorld.py)
    :linenos:
 
-:download:`helloWorld.py <code/flask/helloWorld.py>`
+:download:`helloWorld.py <../code/06iot/flask/helloWorld.py>`
 
 1. The first line loads the Flask module into your Python script. 
 
@@ -191,11 +188,11 @@ Here's what's in *templates/index1.html*:
 
 .. _flask_index1:
 
-.. literalinclude:: code/flask/templates/index1.html
+.. literalinclude:: ../code/06iot/flask/templates/index1.html
    :caption: index1.html
    :linenos:
 
-:download:`index1.html <code/flask/templates/index1.html>`
+:download:`index1.html <../code/06iot/flask/templates/index1.html>`
 
 Note: a style sheet (style.css) is also included. This will be populated later.
 
@@ -206,11 +203,11 @@ function. Now, let’s create a new Python script. We will name it app1.py:
 
 .. _flask_app1:
 
-.. literalinclude:: code/flask/app1.py
+.. literalinclude:: ../code/06iot/flask/app1.py
    :caption: app1.py
    :linenos:
 
-:download:`app1.py <code/flask/app1.py>`
+:download:`app1.py <../code/06iot/flask/app1.py>`
 
 Note that we create a formatted string("timeString") using the date and time from the "now" object, that has the current time stored on it.
 
@@ -263,11 +260,11 @@ Let’s use a new Python script named *app2.py*.
 
 .. _flask_app2:
 
-.. literalinclude:: code/flask/app2.py
+.. literalinclude:: ../code/06iot/flask/app2.py
    :caption: A simple Flask-based web server to read a GPIO (app2.py)
    :linenos:
 
-:download:`app2.py <code/flask/app2.py>`
+:download:`app2.py <../code/06iot/flask/app2.py>`
 
 Look that what we are doing is defining the button on *P9_11* as input, reading its value and 
 storing it in *buttonSts*. Inside the function *index()*, we will pass that value to our web 
@@ -277,11 +274,11 @@ Let’s also see the new *index2.html* to show the GPIO status:
 
 .. _flask_index2:
 
-.. literalinclude:: code/flask/templates/index2.html
+.. literalinclude:: ../code/06iot/flask/templates/index2.html
    :caption: A simple Flask-based web server to read a GPIO (index2.html)
    :linenos:
 
-:download:`index2.html <code/flask/templates/index2.html>`
+:download:`index2.html <../code/06iot/flask/templates/index2.html>`
 
 Now, run the following command:
 
@@ -329,7 +326,7 @@ A simple Flask-based web server to read a GPIO (app3.py)
 
 .. code-block:: python
 
-  include::code/flask/app3.py
+  include::../code/06iot/flask/app3.py
 
 
 
@@ -362,11 +359,11 @@ actuator and more important, create “buttons” to send the commands:
 
 .. _flask_index3:
 
-.. literalinclude:: code/flask/templates/index3.html
+.. literalinclude:: ../code/06iot/flask/templates/index3.html
    :caption: A simple Flask-based web server to write a GPIO (index3.html)
    :linenos:
 
-:download:`index3.html <code/flask/templates/index3.html>`
+:download:`index3.html <../code/06iot/flask/templates/index3.html>`
 
 .. code-block:: bash
 
@@ -460,11 +457,11 @@ plot the buffer is here: analogInContinuous.py
 
 .. _analog_code:
 
-.. literalinclude:: code/analogInContinuous.py
+.. literalinclude:: ../code/06iot/analogInContinuous.py
    :caption: Code to read and plot a continuous analog input(analogInContinuous.py)
    :linenos:
 
-:download:`analogInContinuous.py <code/analogInContinuous.py>`
+:download:`analogInContinuous.py <../code/06iot/analogInContinuous.py>`
 
 Be sure to read the instillation instructions in the comments. Also note this uses X 
 windows and you need to *ssh -X 192.168.7.2* for X to know where the display is.
@@ -475,7 +472,7 @@ Run it:
 
   host$ ssh -X bone
 
-  bone$ cd <Cookbook repo>/doc/06iot/code>/strong>
+  bone$ cd beaglebone-cookbook-code/06iot
   bone$ ./analogInContinuous.py
   Hit ^C to stop
 
@@ -565,7 +562,7 @@ A number of files get installed, including the ADC file. Now try rerunning.
 
 .. code-block:: bash
 
-  bone$ cd <Cookbook repo>/docs/06iot/code>
+  bone$ cd beaglebone-cookbook-code/06iot
   bone$ ./analogInContinuous.py
   Hit ^C to stop
 
@@ -612,11 +609,11 @@ Then add the code in :ref:`networking_nodemailer_code` to a file named ``emailTe
 
 .. _networking_nodemailer_code:
 
-.. literalinclude:: code/emailTest.py
+.. literalinclude:: ../code/06iot/emailTest.py
    :caption: Sending email using nodemailer (emailtTest.py)
    :linenos:
 
-:download:`emailTest.py <code/emailTest.py>`
+:download:`emailTest.py <../code/06iot/emailTest.py>`
 
 Then run the script to send the email:
 
@@ -668,12 +665,12 @@ Finally, add the code in :ref:`networking_twilio_code` to a file named ``twilio-
 
 .. _networking_twilio_code:
 
-.. literalinclude:: code/twilio-test.js
+.. literalinclude:: ../code/06iot/twilio-test.js
    :caption: Sending SMS messages using Twilio (``twilio-test.js``)
    :linenos:
 
-:download:`twilio-test.js <code/twilio-test.js>`
-:download:`nodemailer-test.js <code/nodemailer-test.js>`
+:download:`twilio-test.js <../code/06iot/twilio-test.js>`
+:download:`nodemailer-test.js <../code/06iot/nodemailer-test.js>`
 
 Twilio allows a small number of free text messages, enough to test your code and to play around some.
 
@@ -704,11 +701,11 @@ Because your Bone is on the network, it's not hard to access the current weather
 
 .. _networking_weather_code:
 
-.. literalinclude:: code/weather.py
+.. literalinclude:: ../code/06iot/weather.py
    :caption: Code for getting current weather conditions (``weather.py``)
    :linenos:
 
-:download:`weather.py <code/weather.py>`
+:download:`weather.py <../code/06iot/weather.py>`
 
 1. Prints current conditions.
 2. Prints the forecast for the next day.
@@ -779,11 +776,11 @@ Add the code in :ref:`twitter_create_code` to a file called
 
 .. _twitter_create_code:
 
-.. literalinclude:: code/twitter_create_tweet.py
+.. literalinclude:: ../code/06iot/twitter_create_tweet.py
    :caption: Create a Tweet (``twitter_create_tweet.py``)
    :linenos:
 
-:download:`twitter_create_tweet.py <code/twitter_create_tweet.py>`
+:download:`twitter_create_tweet.py <../code/06iot/twitter_create_tweet.py>`
 
 Run the code and you'll have to authorize.
 
@@ -812,11 +809,11 @@ Around line 15 is the *id* number.  Paste in the value returned above.
 
 .. _twitter_delete_code:
 
-.. literalinclude:: code/twitter_delete_tweet.py
+.. literalinclude:: ../code/06iot/twitter_delete_tweet.py
    :caption: Code to delete a tweet  (``twitter_delete_tweet.py``)
    :linenos:
 
-:download:`twitter_delete_tweet.py <code/twitter_delete_tweet.py>`
+:download:`twitter_delete_tweet.py <../code/06iot/twitter_delete_tweet.py>`
 
 .. TODO
   Start Here
@@ -825,11 +822,11 @@ The code in :ref:`networking_pushbutton_code` snds a tweet whenever a button is 
 
 .. _networking_pushbutton_code:
 
-.. literalinclude:: code/twitterPushbutton.js
+.. literalinclude:: ../code/06iot/twitterPushbutton.js
    :caption: Tweet when a button is pushed (twitterPushbutton.js)
    :linenos:
 
-:download:`twitterPushbutton.js <code/twitterPushbutton.js>`
+:download:`twitterPushbutton.js <../code/06iot/twitterPushbutton.js>`
 
 To see many other examples, go to `iStrategyLabs node-twitter GitHub page <http://bit.ly/18AvST>`_.
 
@@ -1045,11 +1042,11 @@ to a file called ``launchPad.ino`` and run it on your LaunchPad.
 
 .. _js_launchPad_code:
 
-.. literalinclude:: code/launchPad/launchPad.ino
+.. literalinclude:: ../code/06iot/launchPad/launchPad.ino
    :caption: LaunchPad code for communicating via the UART (launchPad.ino)
    :linenos:
 
-:download:`launchPad.ino <code/launchPad/launchPad.ino>`
+:download:`launchPad.ino <../code/06iot/launchPad/launchPad.ino>`
 
 1. Set the mode for the built-in red and green LEDs.
 
@@ -1067,11 +1064,11 @@ On the Bone, add the script in :ref:`js_launchPadBeagle_code` to a file called `
 
 .. _js_launchPadBeagle_code:
 
-.. literalinclude:: code/launchPad.js
+.. literalinclude:: ../code/06iot/launchPad.js
    :caption: Code for communicating via the UART (launchPad.js)
    :linenos:
 
-:download:`launchPad.js <code/launchPad.js>`
+:download:`launchPad.js <../code/06iot/launchPad.js>`
 
 1. Select which serial port to use. :ref:`networking_cape-headers-serial_fig` sows what's available. We've wired *P9_24* and *P9_26*, so we are using serial port */dev/ttyO1*. (Note that's the letter ``O`` and not the number ``zero``.)
 
