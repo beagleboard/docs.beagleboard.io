@@ -18,7 +18,7 @@ experience. Software updates will be frequent and will be independent of
 the hardware revisions and as such not result in a change in the
 revision number.
 
-Make sure you check the docs repository frequently for the most up to date
+Make sure you check the latest docs rendering for the most up to date
 information.
 
-https://git.beagleboard.org/docs/docs.beagleboard.io/-/tree/main/beaglebone-black
+https://docs.beagleboard.io/latest/boards/beaglebone/black/
