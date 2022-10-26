@@ -22,6 +22,19 @@ with links to their latest PDF-formatted System Reference Manual and the latest 
 included both here and in the downloadable beagleboard-docs.pdf linked on the bottom-left
 of your screen.
 
+.. admonition:: Contributors
+
+    This work is licensed under a `Creative Commons Attribution-ShareAlike
+    4.0 International License <http://creativecommons.org/licenses/by-sa/4.0/>`__
+
+.. note::
+    Make sure to read and accept all the terms & condition provided in the :ref:`boards-terms-and-conditions` page. 
+    
+    Use of either the boards or the design materials constitutes agreement to the T&C including any 
+    modifications done to the hardware or software solutions provided by beagleboard.org foundation.
+
+All boards received without RMA approval will not be worked on.
+
 * `BeagleBone (original) <https://git.beagleboard.org/beagleboard/beaglebone/-/blob/master/BeagleBone_SRM_A6_0_1.pdf>`__
 * :ref:`beagleboneblack-home`
 * :ref:`beaglebone-blue-home`
