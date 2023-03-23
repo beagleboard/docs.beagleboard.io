@@ -1,9 +1,5 @@
 #!/bin/bash
 
-apk add git
-apk add rsync
-apk add date
-
 export VER_LATEST_MAJOR=1
 export VER_LATEST_MINOR=0
 export VER_LATEST_EXTRA=wip
