@@ -129,7 +129,7 @@ This section describes the key components on the board, their location and funct
          +----------------------------+---------------------------------------------------------------------------+
          | USB C                      | Power and connectivity.                                                   |
          +----------------------------+---------------------------------------------------------------------------+
-         | User button                | User action button, hold down to boot from sdCard on a board with eMMC    |
+         | User button                | User action button, select alternate boot mode if held at power-up        |
          +----------------------------+---------------------------------------------------------------------------+
          | Power button               | Hold down to toggle ON/OFF                                                |
          +----------------------------+---------------------------------------------------------------------------+

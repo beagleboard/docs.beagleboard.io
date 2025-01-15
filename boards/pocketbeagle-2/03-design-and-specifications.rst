@@ -207,7 +207,13 @@ operation of the SoC by stabilizing the voltage levels.
 Boot Modes
 ===========
 
-The following figure shows the boot configuration of PocketBeagle 2 for emmc and sd card version of boards.
+The following figure shows the boot configuration of PocketBeagle 2 for eMMC and microSD card versions of the board. Only the microSD
+version of the board is available, but someone customizing the design might make use of the eMMC boot capability by using the eMMC boot
+configuration.
+
+By default, PocketBeagle 2 will boot from microSD card. If not present, PocketBeagle 2 attemps to boot via USB device firmware upgrade (DFU) mode.
+
+If the USER button is held at power-up, PocketBeagle 2 will still attempt to boot from microSD card, but, if not present, will attempt to boot via UART.
 
 .. figure:: images/hardware-design/boot-config.png
    :align: center
