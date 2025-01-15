@@ -47,7 +47,6 @@ memory, connectivity interfaces, and other peripheral components.
 
 - **Memory Components**: PocketBeagle 2 includes:
    - **512MB LPDDR4 RAM**: Ensures efficient data transfer and memory access.
-   - **Optional 4GB eMMC Storage**: Provides non-volatile storage for the operating system and user data.
 
 - **Connectivity Interfaces**: The board offers various connectivity options:
    - **USB Ports**: For data transfer and power supply.
@@ -522,18 +521,20 @@ Memory, Media, and storage
 
 Described in the following sections are the memory devices found on the board.
 
-.. _pocketbeagle-2-gb-embedded-mmc:
+.. _pocketbeagle-2-emmc:
 
-4GB embedded MMC (optional)
-===========================
+eMMC (not populated)
+=====================
+
+The design includes a footprint for including eMMC flash storage, but it is not populated. For people who want to modify the design, this should be a helpful feature in the layout.
 
 .. figure:: images/hardware-design/emmc.png
    :align: center
-   :alt: 4GB eMMC storage (optional)
+   :alt: eMMC flash storage (not populated)
 
-   4GB eMMC storage (optional)
+   eMMC flash storage (not populated)
 
-.. _pocketbeagle-2-4gb-ddr4:
+.. _pocketbeagle-2-ddr4:
 
 512MB LPDDR4
 ==============

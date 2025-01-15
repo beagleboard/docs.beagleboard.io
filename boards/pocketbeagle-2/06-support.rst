@@ -52,7 +52,7 @@ Follow instructions below to download the latest image for your PocketBeagle 2:
    You can follow the :ref:`flash-latest-image` guide for more information on 
    flashing the downloaded image to your board.
 
-To see what SW revision is loaded into the eMMC check `/etc/dogtag`.
+To see what SW revision is loaded into the running software image, check `/etc/dogtag`.
 It should look something like as shown in example below,
 
 .. code-block:: shell
