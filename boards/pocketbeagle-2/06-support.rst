@@ -41,9 +41,7 @@ Software Updates
 Follow instructions below to download the latest image for your PocketBeagle 2:
 
 1. Go to `BeagleBoard.org distro <https://www.beagleboard.org/distros>`_ page.
-2. :ref:`filter-software-distribution-PB2` from dropdown and download the image.
-
-.. _filter-software-distribution-PB2:
+2. On distros page, from dropdown select PB2 and download the image.
 
 .. todo:: add distros page image selection for pocketbeagle-2
 
