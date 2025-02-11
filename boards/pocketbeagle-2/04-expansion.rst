@@ -16,11 +16,19 @@ using P1 / P2 cape header choose respective pinout diagram tab below.
 
    .. tab-item:: P1 cape header
 
-        .. todo: Add PB2 P1 cape header pinout
+        .. figure:: images/pinout/PocketBeagle-2-P1.*
+            :align: center
+            :alt: PocketBeagle 2 P1 Cape Header Pinout
+
+            PocketBeagle 2 P1 Cape Header Pinout
 
    .. tab-item:: P2 cape header
 
-        .. todo: Add PB2 P2 cape header pinout
+        .. figure:: images/pinout/PocketBeagle-2-P2.*
+            :align: center
+            :alt: PocketBeagle 2 P2 Cape Header Pinout
+
+            PocketBeagle 2 P2 Cape Header Pinout
 
 .. _pocketbeagle-2-connectors:
 
@@ -101,6 +109,12 @@ to align with the mode column will give that function on that pin.
 
 P1.02-P1.03
 -------------
+
++---------+---------+
+| Pin     | P1.01   |
++=========+=========+
+| Signal  | VIN_5V  |
++---------+---------+
 
 +------------+----------------------+------------------+------------------+
 | Pin        | P1.02                | P1.02A           | P1.03            |
@@ -782,14 +796,14 @@ P2.11 - P2.17
 +----------+-----------------------+-----------------+-----------------------+
 
 
-P2.18 - P2.22
+P2.18 - P2.23
 -------------
 
-+---------+-------+
-| Pin     | P1.21 |
-+=========+=======+
-| Signal  | GND   |
-+---------+-------+
++---------+-------+---------+
+| Pin     | P1.21 | P2.23   |
++=========+=======+=========+
+| Signal  | GND   | VDD_3V3 |
++---------+-------+---------+
 
 +----------+----------------+--------------------+----------------+----------------+
 | Pin      | P2.18          | P2.19              | P2.20          | P2.22          |
@@ -831,7 +845,6 @@ P2.24 - P2.27
 +=========+===================+
 | Signal  | RESET# - nRESET   |
 +---------+-------------------+
-
 
 +----------+----------------+--------------------------+--------------------------+
 | Pin      | P2.24          | P2.25                    | P2.27                    |
@@ -933,7 +946,7 @@ P2.30 - P2.31
 | MODE 7   | GPIO0_58       | GPIO1_15          | GPIO0_90      |
 +----------+----------------+-------------------+---------------+
 
-P2.32 - P2.35
+P2.32 - P2.34
 -------------
 
 +----------+----------------+----------------+----------------+

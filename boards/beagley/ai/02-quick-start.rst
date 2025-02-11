@@ -3,6 +3,12 @@
 BeagleY-AI Quick Start
 ######################
 
+.. figure:: images/gpio/beagley-ai-pinout.*
+    :align: center
+    :alt: BeagleY-AI Pin Out Diagram
+
+For an interactive and detailed pinout diagram, visit the `BeagleY-AI Pinout <https://pinout.beagley.ai>`_ page.
+
 What's included in the box?
 ****************************
 
@@ -513,4 +519,14 @@ To attached the Raspberry Pi cooling fan to BeagleY-AI you have to follow these 
 Demos and Tutorials
 *******************
 
+* :ref:`beagley-ai-using-gpio`
+* :ref:`beagley-ai-using-rtc`
+* :ref:`beagley-ai-using-pwm`
+* :ref:`beagley-ai-using-i2c-adc`
 * :ref:`beagley-ai-expansion-nvme`
+* :ref:`beagley-ai-object-detection-tutorial`
+* :ref:`beagley-ai-using-i2c-oled-display`
+* :ref:`beagley-ai-imx219-csi-cameras`
+* :ref:`beagley-ai-using-imx219-csi-cameras`
+* :ref:`beagley-ai-pca9685-motor-drivers`
+* :ref:`beagley-ai-arducam-imx219-v3link-dual-camera-kit`

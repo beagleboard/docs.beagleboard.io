@@ -4,7 +4,7 @@ Introduction
 ###############
 
 PocketBeagle 2 is based on `Texas Instrments AM6232 SoC <https://www.ti.com/product/AM623>`_, it's dual A53 cores can 
-provides more than double the performance of the classic PocketBeagle. The new design comes with pre-soldered headers, 
+provides higher performance than classic PocketBeagle. The new design comes with pre-soldered headers, 
 3-pin JST-SH 1.00mm uart debug port, USB-C port, MSPM0L1105, 512MB RAM, and LiPo Battery charger.
 
 .. table::

@@ -43,7 +43,8 @@ Your /boot/firmware/extlinux/extlinux.conf file should look something like this:
 
 Now reboot...
 
-.. code:: console 
+.. code:: console
+
    debian@BeagleBone:~$ ls /dev/ | grep "video"
    video0
    video1
@@ -57,6 +58,7 @@ Troubleshooting
 *******************
 
 .. code:: console
+   
    Found /extlinux/extlinux.conf
    Retrieving file: /extlinux/extlinux.conf
    beagley-ai microSD (extlinux.conf)

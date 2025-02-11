@@ -182,7 +182,7 @@ are running Linux on your host, take the ``ssh (Linux)`` tab.  Finally take the
 
 .. tab-set::
 
-    .. group-tab:: VS Code
+    .. tab-item:: VS Code
 
         Recent Beagles come with the IDE Visual Studio Code 
         (https://code.visualstudio.com/) installed and 

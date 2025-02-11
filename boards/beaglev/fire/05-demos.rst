@@ -22,6 +22,7 @@ Demos
     demos-and-tutorials/gateware/gateware-full-flow
     demos-and-tutorials/gateware/gateware-tcl-scripts-structure
     demos-and-tutorials/gateware/customize-cape-gateware-verilog
+    demos-and-tutorials/gateware/deploy-and-program-picorv-softcore
     demos-and-tutorials/gateware/running-the-bitstream-builder-on-windows
     demos-and-tutorials/gateware/exploring-gateware-design-libero
     demos-and-tutorials/gateware/gateware-design-simulation-libero

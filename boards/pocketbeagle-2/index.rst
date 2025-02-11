@@ -10,10 +10,10 @@ to support modern development needs. PocketBeagle 2 is ideal for creating IoT de
 and educational applications. Its small form factor and low power consumption make it a versatile platform 
 for embedded development, whether prototyping or deploying at scale.
 
-.. image:: images/product/pocketbeagle-2-45-front.jpg
+.. image:: images/hero.*
    :width: 740px
    :align: center
-   :alt: PocketBeagle 2 front at 45° angle
+   :alt: PocketBeagle 2
 
 .. only:: html
 

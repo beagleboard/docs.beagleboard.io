@@ -6,63 +6,10 @@
 BeagleBoard Documentation
 ############################
 
-.. grid:: 1 1 1 2
-    :gutter: 4
-
-    .. grid-item::
-
-      .. raw:: html
-
-            <div style="background-color:#F16321; border-radius:1rem; padding:1rem">
-               <h2 style="margin-top:1rem; background-color:#C7480D; border-radius:1rem; padding:1rem; color:white; text-align:center;"> Open hardware computers! </h2>
-               <h4 style="margin-top:1rem; color:white; text-align:center;"> For makers, educators, and professionals </h4>
-               <h6 style="margin-top:1rem;background-color:#FFFFFF;text-align:center;border-radius:1rem;padding:1rem;color:black;">
-                  Welcome to the BeagleBoard project documentation.
-                  If you are looking for help with your Beagle open-hardware development platform, you've found the right place!
-               </h6>
-            </div>
-
-
-    .. grid-item::
-
-      .. raw:: html
-
-         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-         <div class="carousel-inner">
-            <!-- BeagleV-Fire banner -->
-            <div class="carousel-item active">
-               <div style="background-color:#E62427; border-radius:1rem; padding:1rem">
-                  <h2 style="margin-top:1rem; background-color:#8C171A; border-radius:1rem; padding:1rem; color:white; text-align:center;"> BeagleV-Fire </h2>
-                  <h4 style="margin-top:1rem; color:white; text-align:center;"> Perfect Blend of FPGA + RISC-V </h4>
-                  <h6 style="margin-top:1rem;background-color:#FFFFFF;text-align:center;border-radius:1rem;padding:1rem;color:black;">
-                     For those who want cutting edge FPGA + RISC-V technology on a single board 
-                     go for BeagleV-Fire, it's the perfect blend of both!
-                  </h6>
-               </div>
-            </div>
-            <!-- BeagleV-Ahead banner-->
-            <div class="carousel-item">
-               <div style="background-color:#0781BB; border-radius:1rem; padding:1rem">
-                  <h2 style="margin-top:1rem; background-color:#0B4D72; border-radius:1rem; padding:1rem; color:white; text-align:center;"> BeagleV-Ahead </h2>
-                  <h4 style="margin-top:1rem; color:white; text-align:center;"> RISC-V SBC with BeagleBone Black cape header</h4>
-                  <h6 style="margin-top:1rem;background-color:#FFFFFF;text-align:center;border-radius:1rem;padding:1rem;color:black;">
-                     Powerful quad-core RISC-V processor, BeagleV®-Ahead is designed as an affordable RISC-V enabled pocket-size 
-                     computer for anybody who want’s to dive deep into the new RISC-V ISA.
-                  </h6>
-               </div>
-            </div>
-         </div>
-         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-         </button>
-         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-         </button>
-         </div>
-
 .. image:: _static/images/banner.webp
+
+Welcome to the `BeagleBoard project documentation <https://git.beagleboard.org/docs/docs.beagleboard.io>`_.
+If you are looking for help with your Beagle open-hardware development platform, you've found the right place!
    
 Introduction
 ************
