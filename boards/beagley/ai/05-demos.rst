@@ -3,10 +3,10 @@
 Demos and tutorials
 ####################
 
+.. todo:: Isn't including "beagley-ai" in the filename superfluous?
+
 .. toctree::
    :maxdepth: 1
-
-.. todo:: Isn't including "beagley-ai" in the filename superfluous?
 
    demos/beagley-ai-using-gpio
    demos/beagley-ai-using-pwm
