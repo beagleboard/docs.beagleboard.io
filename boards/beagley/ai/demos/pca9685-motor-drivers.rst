@@ -1,9 +1,9 @@
 .. _beagley-ai-pca9685-motor-drivers:
 
-.. todo:: Add further testing steps, results, and images.
-
 Using PCA9685 Motor Drivers
 #############################
+
+.. todo:: Add further testing steps, results, and images.
 
 There are several such "Motor and Servo Driver HATs" available on Amazon, Adafruit and other marketplaces. While different manufacturers implement them slightly differently, the operating principle remains the same.
 

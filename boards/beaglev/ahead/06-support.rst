@@ -56,7 +56,7 @@ For BeagleV Ahead specific software projects you can checkout all the
 Support forum
 =============
 
-For any additional support you can submit your queries on our forum,
+For any additional support you can submit your queries on our forum:
 https://forum.beagleboard.org/c/beaglev
 
 Pictures
@@ -83,7 +83,7 @@ are noted below.
 .. table:: BeagleV Ahead board change history
 
     +---------+------------------------------------------------------------+----------------------+-------+
-    | Rev     |   Changes                                                  | Date                 |    By |
+    | Rev     | Changes                                                    | Date                 | By    |
     +=========+============================================================+======================+=======+
     |         |                                                            | 2023-03-08           |       |
     +---------+------------------------------------------------------------+----------------------+-------+

@@ -44,7 +44,9 @@ design, including the
 `materials <https://git.beagleboard.org/explore/projects/topics/boards>`__ to modify the designs
 from source using appropriate design tools.
 
-* Check out our easy-to-use Linux-based board at: :ref:`beagleplay-home`
+* Check out our tiniest single board computer: :ref:`pocketbeagle-2-home`
+* Check out our Pi form-factor computer with 4 TOPs AI engine at: :ref:`beagley-ai-home`
+* Check out our easy-to-use gateway computer at: :ref:`beagleplay-home`
 * Check out our highest performance (8 TOPs) board at: :ref:`bbai64-home`
 * Check out our first Zephyr-based board at: :ref:`beagleconnect-freedom-home`
 * Find all of our boards at: :ref:`boards`
@@ -52,6 +54,21 @@ from source using appropriate design tools.
 .. grid:: 1 1 2 4
    :margin: 4 4 0 0
    :gutter: 4
+
+   .. grid-item-card::
+      :link: pocketbeagle-2-home
+      :link-type: ref
+
+      **PocketBeagle® 2**
+      ^^^
+
+      .. image:: boards/pocketbeagle-2/images/product/pocketbeagle-2-45-front.*
+         :align: center
+      +++
+
+      Tiny board with quad A53 cores, M4, PRUs and lots of I/O. Higher performance than original PocketBeagle
+      with pre-soldered headers, UART debug port, high-speed USB-C port, MSPM0L1105, 512MB RAM, and LiPo Battery
+      charger.
 
    .. grid-item-card::
       :link: beagley-ai-home

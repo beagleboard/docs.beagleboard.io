@@ -178,6 +178,7 @@ Demos and tutorials
     demos-and-tutorials/using-grove
     demos-and-tutorials/using-mikrobus
     demos-and-tutorials/using-qwiic
+    demos-and-tutorials/using-nodered
     demos-and-tutorials/using-rtc
     demos-and-tutorials/using-oldi
     demos-and-tutorials/using-csi
@@ -185,4 +186,4 @@ Demos and tutorials
     demos-and-tutorials/beagleplay-kernel-development
     demos-and-tutorials/greybus-host
     demos-and-tutorials/understanding-boot
-    demos-and-tutorials/using-nodered
+    demos-and-tutorials/low-power-video-doorbell

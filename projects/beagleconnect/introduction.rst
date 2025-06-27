@@ -29,7 +29,7 @@ While Greybus is a great protocol, the implementation is tightly coupled with th
 BeagleConnect™ Technology Mission
 **********************************
 
-BeagleConnect™ Technology aims to use Greybus outside of the traditional Greybus network. This includes using transports other than UniPro (such as 6lowpan), using embedded devices running `ZephyrRTOS <https://zephyrproject.org/>`_ as modules, emulating :term:`SVC <BeagleConnect SVC>` in co-processor, etc. This makes BeagleConnect™ much more flexible than what traditional greybus seems to support. Here is a diagram of the general BeagleConnect™ setup:
+BeagleConnect™ Technology aims to use Greybus outside of the traditional Greybus network. This includes using transports other than UniPro (such as 6lowpan), using embedded devices running `Zephyr RTOS <https://zephyrproject.org/>`_ as modules, emulating :term:`SVC <BeagleConnect SVC>` in co-processor, etc. This makes BeagleConnect™ much more flexible than what traditional greybus seems to support. Here is a diagram of the general BeagleConnect™ setup:
 
 .. image:: images/software_prop_transport.svg
    :align: center
@@ -49,7 +49,7 @@ Why should you use BeagleConnect™?
 
 #. **Network agnostic:** BeagleConnect™ allows Greybus to be network agnostic. This means it can be used over networks like 6lowpan, which has incredible wireless range, or over optical networks for high-throughput, low-latency use cases.
 
-#. **Rapid Prototyping:** Any device (e.g., `mikroBUS add-on boards <https://www.mikroe.com/click-boards>`_) connected to the greybus node can be accessed from the Linux host. In this setup, only the Linux host needs to have device drivers. We remove the need to write drivers for the OS our node (the device with which peripheral is actually connected) runs on (e.g. `ZephyrRTOS <https://www.zephyrproject.org>`_, `Nuttx <https://nuttx.apache.org>`_, etc). This allows being able to prototype devices by just creating a Linux driver instead of having to write drivers for each individual embedded OS.
+#. **Rapid Prototyping:** Any device (e.g., `mikroBUS add-on boards <https://www.mikroe.com/click-boards>`_) connected to the greybus node can be accessed from the Linux host. In this setup, only the Linux host needs to have device drivers. We remove the need to write drivers for the OS our node (the device with which peripheral is actually connected) runs on (e.g. `Zephyr RTOS Project <https://www.zephyrproject.org>`_, `Nuttx <https://nuttx.apache.org>`_, etc). This allows being able to prototype devices by just creating a Linux driver instead of having to write drivers for each individual embedded OS.
 
 #. **Star topology IoT and IIoT networks:** Greybus was designed to be low level and allow hot-plugging of remote devices. This means a greybus network does not need to use bulky protocols like REST and data formats like JSON. This in turn allows using relatively low-powered device as nodes.
 

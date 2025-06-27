@@ -110,13 +110,17 @@ USB-C Power/Data Port
 
     BeagleY-AI USB-C
 
-The board is primarily intended to be powered via USB-C. PD Power negotiation is not done dynamically but rather
-by tying the CC lines to GND via 5.1KΩ resistors to indicate to the PD Source that the device requires 5V 3A. 
-Using USB-PD power supplies rated for higher wattages is safe as they will always negotiate to the 5V 3A requested by the board. 
 
-The USB-C port is configured by default to also show up as a USB2.0 Device which exposes a serial console, ethernet gadget (for connection sharing) as well as MTP (Flash Drive)
-so that only one cable is required to use the board. A Type-C to Type-C cable and avoiding un-powered USB hubs is recommended due to
-the board's power consumption requirements. Inadequate behavior may result in brownouts/resets or other unexpected behavior. 
+The board is powered via USB-C, using 5.1 kΩ resistors to signal itself as a power sink (UFP) and enable 5V output.
+It assumes 500 mA by default (per USB-C’s "Power Sinking Device" rules) but requires 5V @ 3A for stable operation. 
+The USB-C source dictates available current (via CC-line signaling), which the board does not validate. Users must 
+ensure their charger explicitly supports 3A. While USB-PD supplies default to 5V, they may not deliver 3A unless the 
+source advertises it, risking instability or port damage if undersourced.
+
+The USB-C port also functions as a USB 2.0 device, providing serial console access, Ethernet gadget connectivity, 
+and USB Mass Storage (UMS) emulation. A Type-C to Type-C cable is recommended to avoid power limitations, and 
+unpowered hubs should be avoided. single-cable design simplifies connectivity but relies on proper power sourcing.
+Inadequate behavior may result in brownouts/resets or other unexpected behavior. 
 
 PMIC
 ----------------

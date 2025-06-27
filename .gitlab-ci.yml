@@ -1,4 +1,4 @@
-image: registry.git.beagleboard.org/docs/sphinx-build-env:latest
+image: beagle/sphinx-build-env:latest
 
 variables:
   GIT_SUBMODULE_STRATEGY: recursive

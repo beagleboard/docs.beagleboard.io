@@ -49,7 +49,8 @@ Find the instructions below on using each cape:
    :maxdepth: 2
    :hidden:
 
-   /boards/capes/cape-interface-spec
-   /boards/capes/relay
-   /boards/capes/comms
+   cape-interface-spec
+   relay
+   comms
+   motor_cape
 

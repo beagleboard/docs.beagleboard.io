@@ -96,7 +96,7 @@ Board components location
 Front components
 =================
 
-.. figure:: images/components-location/front.*
+.. figure:: images/components-location/beagley-ai-board-front-annotated.*
     :width: 1400
     :align: center
     :alt: BeagleY-AI board front components location 
@@ -143,7 +143,7 @@ Front components
 Back components
 ================
 
-.. figure:: images/components-location/back.*
+.. figure:: images/components-location/beagley-ai-board-back-annotated.*
     :width: 1400
     :align: center
     :alt: BeagleY-AI board back components location 

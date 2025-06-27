@@ -30,6 +30,7 @@ to propose changes to this document in a merge request.
 
    code-of-conduct
    faq
+   prerequisites
    background
    how
    gsoc
