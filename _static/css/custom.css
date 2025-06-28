@@ -140,3 +140,6 @@ figure a.headerlink {
     background-color: #C7480D; /* Slightly darker blue on hover */
 }
 
+.admonition-no-left-border {
+    border-left: none;
+}

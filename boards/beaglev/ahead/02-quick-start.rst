@@ -6,7 +6,7 @@ Quick Start
 What's included in the box?
 ****************************
 
-When you purchase a brand new BeagleV Ahead, In the box you'll get:
+When you purchase a brand new BeagleV Ahead, in the box you'll get:
 
 1. `BeagleV Ahead board <https://www.beagleboard.org/boards/beaglev-ahead>`_
 2. One (1) 2.4GHz/5GHz antenna
@@ -48,9 +48,8 @@ Antenna guide
 
    .. tab-item:: Disconnecting antenna
 
-
       If for some reason you want to disconnect the antenna from your BeagleV Ahead board 
-      you can follow the guide below to remove the antenna without beaking the uFL antenna connector.
+      you can follow the guide below to remove the antenna without breaking the uFL antenna connector.
 
       .. figure:: images/antenna-guide/disconnect.*
           :align: center
@@ -87,7 +86,6 @@ or a USB 3.0 super-speed micro-B cable. Connection guide for both are shown belo
           super-speed micro-B (USB 3.0) connection guide for BeagleV Ahead.
 
    .. tab-item:: high-speed micro-B connection (USB 2.0)
-
 
       For USB 2.0 connection it's recommended to use high-speed micro-B USB cable.  
       To get a high-speed micro-B cable you can checkout links below:
@@ -184,7 +182,7 @@ Flash the latest image on eMMC
 
        .. important:: Make sure your board is in flash mode, you can follow the guide above to do that.
 
-       To flash the board you just have to exexute the script `fastboot_emmc.sh` as root and provide your passoword:
+       To flash the board you just have to execute the script `fastboot_emmc.sh` as root and provide your password:
        
        .. code-block:: bash
 
@@ -204,8 +202,8 @@ Flash the latest image on eMMC
 Access UART debug console
 **************************
 
-.. note:: It has been noticed that 6pin FTDI cables like `this <https://www.adafruit.com/product/70>`_ 
-    doesn't seem work with BeagleV Ahead debug port and there might be other cables/modules based on PL2303
+.. note:: It has been noticed that 6-pin FTDI cables like `this <https://www.adafruit.com/product/70>`_ 
+    don't seem to work with BeagleV Ahead debug port and there might be other cables/modules based on PL2303
     which give garbage values in the serial port. It is recommended to use the below listed modules for
     accessing the UART debug console.
     
@@ -224,8 +222,8 @@ to your board as shown below:
     BeagleV Ahead UART debug port connection
 
 To see the board boot log and access your BeagleV Ahead's console you can use application like ``tio`` 
-to access the conole. If you are using Linux your USB to UART converter may appear as ``/dev/ttyUSB``. 
-It will be different for Mac and Windows operatig systems. To find serial port for your system you can checkout 
+to access the console. If you are using Linux your USB to UART converter may appear as ``/dev/ttyUSB``. 
+It will be different for Mac and Windows operating systems. To find serial port for your system you can check out 
 `this guide <https://www.mathworks.com/help/supportpkg/arduinoio/ug/find-arduino-port-on-windows-mac-and-linux.html>`_.
 
 .. code-block:: shell
@@ -266,8 +264,8 @@ Connect to WiFi
 
             BeagleV login:
 
-        Here you have to simply type ``root`` and press enter to start uisng your 
-        BeagleV Head board. Once you are in, to connect to any WiFi access point 
+        Here you have to simply type ``root`` and press enter to start using your 
+        BeagleV Ahead board. Once you are in, to connect to any WiFi access point 
         you have to edit the ``/etc/wpa_supplicant.conf``
         
         .. code-block:: bash
@@ -275,7 +273,7 @@ Connect to WiFi
             root@BeagleV:~# nano /etc/wpa_supplicant.conf
 
         In the ``wpa_supplicant.conf`` file you have to provide ``ssid`` and ``psk``. 
-        Here ``ssid`` is your WiFi access point name and ``psk`` is the passoword. It 
+        Here ``ssid`` is your WiFi access point name and ``psk`` is the password. It 
         should look as shown below:
 
         .. callout:: 
@@ -289,7 +287,7 @@ Connect to WiFi
 
                network={
                        ssid="My WiFi" <1>
-                       psk="passoword" <2>
+                       psk="password" <2>
                        key_mgmt=WPA-PSK
                }
         
@@ -297,7 +295,7 @@ Connect to WiFi
 
                 <1> WiFi access point name
 
-                <2> WiFi passoword
+                <2> WiFi password
 
         Once you are done with editing the file you can save the file with 
         ``CTRL+O`` and exit the nano editor with ``CTRL+X``. Once you are 
@@ -331,15 +329,15 @@ Connect to WiFi
 
         .. important:: 
 
-            Due to a software issue Yocto might now assign any ip address to wlan0 wireless interface 
+            Due to a software issue Yocto might not assign any IP address to wlan0 wireless interface 
             thus even if you are connected successfully to the access point of your choice you will still not 
-            be able to connect to the internet. Particularly If you are not getting any pings back when you execute 
+            be able to connect to the internet. Particularly if you are not getting any pings back when you execute 
             ``ping 8.8.8.8`` you must execute the commands below:
 
             1. ``root@BeagleV:~# cp /lib/systemd/network/80-wifi-station.network.example /lib/systemd/network/80-wifi-station.network``
             2. ``root@BeagleV:~# networkctl reload``
 
-            this should fix the no internet issue on your BeagleV Ahead board!
+            This should fix the no internet issue on your BeagleV Ahead board!
 
 
 

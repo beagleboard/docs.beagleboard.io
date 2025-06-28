@@ -31,8 +31,8 @@ required to implement a total interface.
 
 The column heading is the pin number on the expansion header.
 
-The **GPIO** row is the expected gpio identifier number in the Linux
-kernel. 
+The **GPIO** row is the expected GPIO identifier number in the Linux
+kernel.
 
 Each row includes the gpiochipX and pinY in the format of 
 `X Y`. You can use these values to directly control the GPIO pins with the 
@@ -46,7 +46,7 @@ commands shown below.
     # to set the GPIO pin state to LOW
     debian@BeagleBone:~$ gpioset X Y=0
 
-    For Example:
+    For example:
 
     +---------+----------+
     | Pin     | P8.03    |
@@ -478,7 +478,7 @@ required to implement a total interface.
 
 The column heading is the pin number on the expansion header.
 
-The **GPIO** row is the expected gpio identifier number in the Linux
+The **GPIO** row is the expected GPIO identifier number in the Linux
 kernel.
 
 Each row includes the gpiochipX and pinY in the format of 
@@ -493,7 +493,7 @@ commands shown below.
     # to set the GPIO pin state to LOW
     debian@BeagleBone:~$ gpioset X Y=0
 
-    For Example:
+    For example:
 
     +---------+----------+
     | Pin     | P9.11    |

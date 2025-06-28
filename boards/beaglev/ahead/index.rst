@@ -4,9 +4,9 @@ BeagleV-Ahead
 ###################
 
 BeagleV-Ahead is a high-performance open-source RISC-V single board computer (SBC) built around the Alibaba TH1520 SoC. It has the same P8 & P9 cape header pins as
-BeagleBone Black allowing you to stack your favourite BeagleBone cape on top to expand it's capability.
+BeagleBone Black allowing you to stack your favorite BeagleBone cape on top to expand its capability.
 Featuring a powerful quad-core RISC-V processor BeagleV Ahead is designed as an affordable
-RISC-V enabled pocket-size computer for anybody who want's to dive deep into the new RISC-V ISA.
+RISC-V enabled pocket-size computer for anybody who wants to dive deep into the new RISC-V ISA.
 
 .. image:: images/BeagleV-Ahead-with-hand.*
     :align: center
@@ -91,7 +91,7 @@ RISC-V enabled pocket-size computer for anybody who want's to dive deep into the
 
         .. image:: images/chapter-thumbnails/05-demos-and-tutorials.*
             :align: center
-            :alt: BeagleV Ahead Chapter5 thumbnail
+            :alt: BeagleV Ahead Chapter 5 thumbnail
 
         +++
 
