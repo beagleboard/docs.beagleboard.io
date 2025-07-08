@@ -5,12 +5,12 @@ BeagleV-Ahead
 
 BeagleV-Ahead is a high-performance open-source RISC-V single board computer (SBC) built around the Alibaba TH1520 SoC. It has the same P8 & P9 cape header pins as
 BeagleBone Black allowing you to stack your favorite BeagleBone cape on top to expand its capability.
-Featuring a powerful quad-core RISC-V processor BeagleV Ahead is designed as an affordable
+Featuring a powerful quad-core RISC-V processor BeagleV-Ahead is designed as an affordable
 RISC-V enabled pocket-size computer for anybody who wants to dive deep into the new RISC-V ISA.
 
 .. image:: images/BeagleV-Ahead-with-hand.*
     :align: center
-    :alt: BeagleV Ahead with hand
+    :alt: BeagleV-Ahead with hand
 
 .. only:: html
 
@@ -27,11 +27,11 @@ RISC-V enabled pocket-size computer for anybody who wants to dive deep into the 
 
         .. image:: images/chapter-thumbnails/01-introduction.*
             :align: center
-            :alt: BeagleV Ahead Chapter01 thumbnail
+            :alt: BeagleV-Ahead Chapter01 thumbnail
 
         +++
 
-        Introduction to BeagleV Ahead board with information on each component
+        Introduction to BeagleV-Ahead board with information on each component
         location on both front and back of the board.
 
     .. grid-item-card::
@@ -43,7 +43,7 @@ RISC-V enabled pocket-size computer for anybody who wants to dive deep into the 
 
         .. image:: images/chapter-thumbnails/02-quick-start.*
             :align: center
-            :alt: BeagleV Ahead Chapter02 thumbnail
+            :alt: BeagleV-Ahead Chapter02 thumbnail
 
         +++
 
@@ -59,11 +59,11 @@ RISC-V enabled pocket-size computer for anybody who wants to dive deep into the 
 
         .. image:: images/chapter-thumbnails/03-design-and-specifications.*
             :align: center
-            :alt: BeagleV Ahead Chapter03 thumbnail
+            :alt: BeagleV-Ahead Chapter03 thumbnail
 
         +++
 
-        Hardware and mechanical design and specifications of BeagleV Ahead board
+        Hardware and mechanical design and specifications of BeagleV-Ahead board
         for those who want to know their board inside and out.
 
     .. grid-item-card::
@@ -75,7 +75,7 @@ RISC-V enabled pocket-size computer for anybody who wants to dive deep into the 
 
         .. image:: images/chapter-thumbnails/04-connectors-and-pinouts.*
             :align: center
-            :alt: BeagleV Ahead Chapter04 thumbnail
+            :alt: BeagleV-Ahead Chapter04 thumbnail
 
         +++
 
@@ -91,11 +91,11 @@ RISC-V enabled pocket-size computer for anybody who wants to dive deep into the 
 
         .. image:: images/chapter-thumbnails/05-demos-and-tutorials.*
             :align: center
-            :alt: BeagleV Ahead Chapter 5 thumbnail
+            :alt: BeagleV-Ahead Chapter 5 thumbnail
 
         +++
 
-        Demos and tutorials to quickly learn about BeagleV Ahead capabilities.
+        Demos and tutorials to quickly learn about BeagleV-Ahead capabilities.
 
     .. grid-item-card::
         :link: beaglev-ahead-support
@@ -106,7 +106,7 @@ RISC-V enabled pocket-size computer for anybody who wants to dive deep into the 
 
         .. image:: images/chapter-thumbnails/06-support-documents.*
             :align: center
-            :alt: BeagleV Ahead Chapter6 thumbnail
+            :alt: BeagleV-Ahead Chapter6 thumbnail
 
         +++
 

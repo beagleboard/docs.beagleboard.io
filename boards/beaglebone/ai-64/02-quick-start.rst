@@ -221,7 +221,7 @@ Each of these configurations is discussed in general terms in the following sect
          
          BeagleBone AI-64 LEDs
 
-      While the four user LEDS can be over written and used as desired, they do have specific 
+      While the four user LEDs can be over written and used as desired, they do have specific 
       meanings in the image that is shipped with the board once the Linux kernel has booted.
 
       * **USR0** is the heartbeat indicator from the Linux kernel.

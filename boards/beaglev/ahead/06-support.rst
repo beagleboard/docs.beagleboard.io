@@ -3,7 +3,7 @@
 Support
 #######
 
-All support for BeagleV Ahead design is through BeagleBoard.org 
+All support for BeagleV-Ahead design is through BeagleBoard.org 
 community at `BeagleBoard.org forum <https://forum.beagleboard.org/tag/ahead>`_.
 
 Production board boot media
@@ -45,13 +45,13 @@ Hardware docs
 
 For any hardware document like schematic diagram PDF, 
 EDA files, issue tracker, and more you can checkout the 
-`BeagleV Ahead design repository <https://git.beagleboard.org/beaglev-ahead/beaglev-ahead>`_.
+`BeagleV-Ahead design repository <https://git.beagleboard.org/beaglev-ahead/beaglev-ahead>`_.
 
 Software docs
 ==============
 
-For BeagleV Ahead specific software projects you can checkout all the 
-`BeagleV Ahead project repositories group <https://git.beagleboard.org/beaglev-ahead>`_.
+For BeagleV-Ahead specific software projects you can checkout all the 
+`BeagleV-Ahead project repositories group <https://git.beagleboard.org/beaglev-ahead>`_.
 
 Support forum
 =============
@@ -80,7 +80,7 @@ Board Changes
 For all changes, see https://git.beagleboard.org/beaglev-ahead/beaglev-ahead. Versions released into production
 are noted below.
 
-.. table:: BeagleV Ahead board change history
+.. table:: BeagleV-Ahead board change history
 
     +---------+------------------------------------------------------------+----------------------+-------+
     | Rev     | Changes                                                    | Date                 | By    |

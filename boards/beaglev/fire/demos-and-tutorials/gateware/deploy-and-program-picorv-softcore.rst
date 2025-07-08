@@ -7,7 +7,7 @@ Introduction
 ************
 
 The PicoRV Softcore is a 32-bit RISC-V CPU subsystem on the BeagleV-Fire's FPGA fabric, functionally equivalent to the PRU subsystem on the BeagleBone Black. 
-The core is designed for low-latency I/O operations and offloading smaller tasks like PWM, LEDS, etc .
+The core is designed for low-latency I/O operations and offloading smaller tasks like PWM, LEDs, etc .
 
 Prerequisites
 *************

@@ -174,7 +174,7 @@ exposed as a mass storage device like shown in the image below:
 Once your board is exposed as a mass storage device, you can proceed to flash the ``sdcard.img`` on
 your BeagleV-Fire's eMMC.
 
-This document outlines two methods to flash from your local machine to BeagleV Fire's eMMC.
+This document outlines two methods to flash from your local machine to BeagleV-Fire's eMMC.
 
 1. First method is to use `Balena Etcher <https://etcher.balena.io/#download-etcher>`_ software.
 This software can be used to flash image in either Windows or Linux operating system.

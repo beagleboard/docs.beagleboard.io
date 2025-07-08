@@ -176,7 +176,7 @@ I have some low-latency I/O tasks. How do I get started programming the BeagleBo
 
 There is a "Hello, World" app at
 https://gist.github.com/jadonk/2ecf864e1b3f250bad82c0eae12b7b64 that
-will get you blinking the USRx LEDS.
+will get you blinking the USRx LEDs.
 
 The `libroboticscape
 software <https://github.com/StrawsonDesign/Robotics_Cape_Installer>`__

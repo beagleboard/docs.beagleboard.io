@@ -72,16 +72,16 @@ Once we have the pre-requisites out of the way, it's time to get BeagleV-Fire re
 Device Firmware Update (DFU)
 ============================
 
-To enter "DFU" mode, you press and hold the USER button while connecting your Fire to the USB port on your Machine.
+To enter "DFU" mode, you press and hold the USER button while connecting your Fire to the USB port on your machine.
 
 You should let the button go once the first LED comes on.
 
-Once you have two solid lit LEDS and an extra USB drive, we're all set to continue.
+Once you have two solid lit LEDs and an extra USB drive, we're all set to continue.
 
-Imager
-======
+BeagleBoard Imager
+===================
 
-With Imager running, work your way from left to right, like so:
+With BeagleBoard Imager running, work your way from left to right, like so:
 
 1. Select board. This one's obvious.
 2. Select your image from above.
@@ -90,13 +90,13 @@ With Imager running, work your way from left to right, like so:
 
 .. figure:: images/emmc-imager-prefilled.png
     :align: center
-    :alt: BeagleV-Fire: This is how the Imager should look when ready
+    :alt: BeagleV-Fire: This is how the BeagleBoard Imager should look when ready
 
-With a little luck, all goes well and Imager reports no errors.
+With a little luck, all goes well and BeagleBoard Imager reports no errors.
 
-In that case, you can close out Imager and disconnect the USB cable.
+In that case, you can close out BeagleBoard Imager and disconnect the USB cable.
 
-On the next power-up, your Beagle will boot up the new image and you're ready to Rock!
+On the next power-up, your Beagle will boot up the new image and you're ready to rock!
 
 
 Access UART debug console

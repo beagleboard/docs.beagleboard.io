@@ -185,7 +185,7 @@ the power LED will be on as shown in Figure 13 below.
 and the userLEDs **Figure 14** will come on in sequence as shown below.
 It will take a few seconds for the status LEDs to come on, like teaching
 PocketBeagle to 'stay'. The LEDs will be flashing as it begins to boot
-the Linux kernel. While the four user LEDS can be over written and used
+the Linux kernel. While the four user LEDs can be over written and used
 as desired, they do have specific meanings in the image that you've
 initially placed on your microSD card once the Linux kernel has booted.
 

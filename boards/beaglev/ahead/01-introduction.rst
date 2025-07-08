@@ -5,7 +5,7 @@ Introduction
 
 BeagleV-Ahead is a high-performance open-source RISC-V single board computer (SBC) built around the Alibaba TH1520 SoC. It has the same P8 & P9 cape header pins as
 BeagleBone Black allowing you to stack your favourite BeagleBone cape on top to expand its capability.
-Featuring a powerful quad-core RISC-V processor BeagleV Ahead is designed as an affordable
+Featuring a powerful quad-core RISC-V processor BeagleV-Ahead is designed as an affordable
 RISC-V enabled pocket-size computer for anybody who wants to dive deep into the new RISC-V ISA.
 
 .. table::
@@ -16,7 +16,7 @@ RISC-V enabled pocket-size computer for anybody who wants to dive deep into the 
    | .. image:: images/product-pictures/front.*         | .. image:: images/product-pictures/back.*               |
    |    :width: 700                                     |       :width: 700                                       |
    |    :align: center                                  |       :align: center                                    |
-   |    :alt: BeagleV Ahead front                       |       :alt: BeagleV Ahead back                          |
+   |    :alt: BeagleV-Ahead front                       |       :alt: BeagleV-Ahead back                          |
    +----------------------------------------------------+---------------------------------------------------------+
 
 Pinout Diagrams
@@ -30,25 +30,25 @@ Choose the cape header to see respective pinout diagram.
 
         .. figure:: images/pinout/BeagleV-Ahead-P8.*
             :align: center
-            :alt: BeagleV Ahead P8 cape header pinout
+            :alt: BeagleV-Ahead P8 cape header pinout
 
-            BeagleV Ahead P8 cape header pinout
+            BeagleV-Ahead P8 cape header pinout
 
 
    .. tab-item:: P9 cape header
 
         .. figure:: images/pinout/BeagleV-Ahead-P9.*
             :align: center
-            :alt: BeagleV Ahead P9 cape header pinout
+            :alt: BeagleV-Ahead P9 cape header pinout
 
-            BeagleV Ahead P9 cape header pinout
+            BeagleV-Ahead P9 cape header pinout
 
 .. _beaglev-ahead-detailed-overview:
 
 Detailed overview
 ******************
 
-BeagleV Ahead is built around T-Head TH1520 RISC-V SoC with quad-core 
+BeagleV-Ahead is built around T-Head TH1520 RISC-V SoC with quad-core 
 Xuantie C910 processor clocked at 1.85GHz with a 4 TOPS NPU, support for 
 64-bit DDR, and audio processing using a single core C906.
 
@@ -56,7 +56,7 @@ Xuantie C910 processor clocked at 1.85GHz with a 4 TOPS NPU, support for
 
     remove "<To-Do>" items in the table below.
 
-.. table:: BeagleV Ahead features
+.. table:: BeagleV-Ahead features
         
     +----------------------------+---------------------------------------------------------------------------+
     | Feature                    | Description                                                               |
@@ -99,12 +99,12 @@ Front components location
 .. figure:: images/components-front.*
     :width: 1400
     :align: center
-    :alt: BeagleV Ahead board front components location
+    :alt: BeagleV-Ahead board front components location
 
-    BeagleV Ahead board front components location
+    BeagleV-Ahead board front components location
 
 
-.. table:: BeagleV Ahead board front components location
+.. table:: BeagleV-Ahead board front components location
     :align: center
         
     +----------------------------+---------------------------------------------------------------------------+
@@ -121,7 +121,7 @@ Front components location
     | User LEDs                  | Five user LEDs, :ref:`board-power-and-boot` section provides more details.|
     |                            | These LEDs are connect to the TH1520 SoC                                  |
     +----------------------------+---------------------------------------------------------------------------+
-    | Reset button               | Press to reset BeagleV Ahead board (TH1520 SoC)                           |
+    | Reset button               | Press to reset BeagleV-Ahead board (TH1520 SoC)                           |
     +----------------------------+---------------------------------------------------------------------------+
     | Power button               | Press to shut-down (OFF), hold down to boot (ON)                          |
     +----------------------------+---------------------------------------------------------------------------+
@@ -147,12 +147,12 @@ Back components location
 .. figure:: images/components-back.*
     :width: 1400
     :align: center
-    :alt: BeagleV Ahead board back components location
+    :alt: BeagleV-Ahead board back components location
 
-    BeagleV Ahead board back components location
+    BeagleV-Ahead board back components location
 
 
-.. table:: BeagleV Ahead board back components location
+.. table:: BeagleV-Ahead board back components location
     :align: center
         
     +----------------------------+---------------------------------------------------------------------------+

@@ -3,7 +3,7 @@
 Design & specifications
 #######################
 
-If you want to know how BeagleV Ahead board is designed and what are its 
+If you want to know how BeagleV-Ahead board is designed and what are its 
 high-level specifications then this chapter is for you. We are going to discuss 
 each hardware design element in detail and provide high-level device 
 specifications in a short and crisp form as well.
@@ -396,7 +396,7 @@ Mechanical Specifications
    | .. image:: images/mechanical-design/top.*          | .. image:: images/mechanical-design/bottom.*            |
    |    :width: 427                                     |       :width: 427                                       |
    |    :align: center                                  |       :align: center                                    |
-   |    :alt: BeagleV Ahead top                         |       :alt: BeagleV Ahead bottom                        |
+   |    :alt: BeagleV-Ahead top                         |       :alt: BeagleV-Ahead bottom                        |
    +----------------------------------------------------+---------------------------------------------------------+
 
 .. table::
@@ -409,7 +409,7 @@ Mechanical Specifications
    | .. image:: images/mechanical-design/front.*        | .. image:: images/mechanical-design/left.*              | .. image:: images/mechanical-design/right.*             |
    |    :width: 247                                     |       :width: 295                                       |    :width: 168                                          |
    |    :align: center                                  |       :align: center                                    |    :align: center                                       |
-   |    :alt: BeagleV Ahead top                         |       :alt: BeagleV Ahead left                          |    :alt: BeagleV Ahead right                            |
+   |    :alt: BeagleV-Ahead top                         |       :alt: BeagleV-Ahead left                          |    :alt: BeagleV-Ahead right                            |
    +----------------------------------------------------+---------------------------------------------------------+---------------------------------------------------------+
 
 .. table:: Dimensions & weight
