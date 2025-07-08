@@ -3,10 +3,10 @@
 Design & specifications
 #######################
 
-If you want to know how BeagleV Ahead board is designed and what are it's 
+If you want to know how BeagleV-Ahead board is designed and what are its 
 high-level specifications then this chapter is for you. We are going to discuss 
 each hardware design element in detail and provide high-level device 
-specifications in  a short and crisp form as well.
+specifications in a short and crisp form as well.
 
 Block diagram
 **************
@@ -396,7 +396,7 @@ Mechanical Specifications
    | .. image:: images/mechanical-design/top.*          | .. image:: images/mechanical-design/bottom.*            |
    |    :width: 427                                     |       :width: 427                                       |
    |    :align: center                                  |       :align: center                                    |
-   |    :alt: BeagleV Ahead top                         |       :alt: BeagleV Ahead bottom                        |
+   |    :alt: BeagleV-Ahead top                         |       :alt: BeagleV-Ahead bottom                        |
    +----------------------------------------------------+---------------------------------------------------------+
 
 .. table::
@@ -409,7 +409,7 @@ Mechanical Specifications
    | .. image:: images/mechanical-design/front.*        | .. image:: images/mechanical-design/left.*              | .. image:: images/mechanical-design/right.*             |
    |    :width: 247                                     |       :width: 295                                       |    :width: 168                                          |
    |    :align: center                                  |       :align: center                                    |    :align: center                                       |
-   |    :alt: BeagleV Ahead top                         |       :alt: BeagleV Ahead left                          |    :alt: BeagleV Ahead right                            |
+   |    :alt: BeagleV-Ahead top                         |       :alt: BeagleV-Ahead left                          |    :alt: BeagleV-Ahead right                            |
    +----------------------------------------------------+---------------------------------------------------------+---------------------------------------------------------+
 
 .. table:: Dimensions & weight
@@ -417,11 +417,11 @@ Mechanical Specifications
     +--------------------+----------------------------------------------------+
     | Parameter          | Values                                             |
     +====================+====================================================+
-    | Size               | 96.5×60.7×19.9mm                                   |
+    | Size               | 96.5x60.7x19.9mm                                   |
     +--------------------+----------------------------------------------------+
-    | Max heigh          | 21.1mm                                             |
+    | Max height         | 21.1mm                                             |
     +--------------------+----------------------------------------------------+
-    | PCB Size           | 96.5x60.5*1.6mm                                    |
+    | PCB Size           | 96.5x60.5x1.6mm                                    |
     +--------------------+----------------------------------------------------+
     | PCB Layers         | 10 layers                                          |
     +--------------------+----------------------------------------------------+
@@ -431,5 +431,5 @@ Mechanical Specifications
     +--------------------+----------------------------------------------------+
     | Gross Weight       | 128.8g                                             |
     +--------------------+----------------------------------------------------+
-    |  Net weight        | 49.7g                                              |
+    | Net weight         | 49.7g                                              |
     +--------------------+----------------------------------------------------+

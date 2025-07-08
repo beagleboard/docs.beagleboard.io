@@ -7,15 +7,15 @@ Using CSI Cameras
 #################
 
 .. note:: 
-    CSI support is only available in Yocto image for BeagleV Ahead, 
-    to flash latest Yoctor image on your BeagleV Ahead you can checkout 
+    CSI support is only available in Yocto image for BeagleV-Ahead, 
+    to flash latest Yoctor image on your BeagleV-Ahead you can checkout 
     :ref:`beaglev-ahead-flashing-emmc` section.
 
 
 Hardware
 *********
 
-IMX219 camera modules has been tested to work well with BeagleV Ahead, some of them are listed below:
+IMX219 camera modules has been tested to work well with BeagleV-Ahead, some of them are listed below:
 
 1. `Raspberry Pi Camera Board v2 - 8 Megapixels (Adafruit) <https://www.adafruit.com/product/3099>`_
 2. `Raspberry Pi NoIR Camera Board v2 - 8 Megapixels (Adafuit) <https://www.adafruit.com/product/3100>`_

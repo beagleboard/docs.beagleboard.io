@@ -82,13 +82,12 @@ call our custom cape gateware ``MY_LOVELY_CAPE``.
 
         HSS:
             type: git
-            link: https://git.beagleboard.org/beaglev-fire/hart-software-services.git
-            branch: develop-beaglev-fire
-            board: bvf
+            link: https://github.com/polarfire-soc/hart-software-services.git
+            branch: master
+            make_clean: 1
         gateware:
             type: sources
             build-args: "M2_OPTION:NONE CAPE_OPTION:MY_LOVELY_CAPE" # <1>
-            unique-design-version: 9.0.2
 
     .. annotations::
 
@@ -127,94 +126,51 @@ Copy the cape Verilog template
 
 
 Customize The Cape's Verilog Source Code
-*****************************************
+****************************************
 
-Move to your custom gateware source directory
-=============================================
+.. line-block::
+    You will only need to change the content of ``ADD_CAPE.tcl`` if you want to modify how the cape interfaces with the rest of the gateware
+    (RISC-V processor subsystem, clock and reset blocks).
 
-.. code-block:: shell
-
-    cd MY_LOVELY_CAPE
-
-You will need to first edit the ``ADD_CAPE.tcl`` TCL script to use your source code within your custom
-gateware directory and not the Verilog template source code. In this example this means using source
-code within the ``MY_LOVELY_CAPE`` directory rather the VERILOG_TEMPLATE directory.
-
-Edit ADD_CAPE.tcl
-==================
-
-Replace ``VERILOG_TEMPLATE`` with ``MY_LOVELY_CAPE`` in file ``ADD_CAPE.tcl``.
-
-.. code-block:: tcl
-
-    #-------------------------------------------------------------------------------
-    # Import HDL source files
-    #-------------------------------------------------------------------------------
-    import_files -hdl_source {script_support/components/CAPE/MY_LOVELY_CAPE/HDL/apb_ctrl_status.v}
-    import_files -hdl_source {script_support/components/CAPE/MY_LOVELY_CAPE/HDL/P8_IOPADS.v}
-    import_files -hdl_source {script_support/components/CAPE/MY_LOVELY_CAPE/HDL/P9_11_18_IOPADS.v}
-    import_files -hdl_source {script_support/components/CAPE/MY_LOVELY_CAPE/HDL/P9_21_31_IOPADS.v}
-    import_files -hdl_source {script_support/components/CAPE/MY_LOVELY_CAPE/HDL/P9_41_42_IOPADS.v}
-    import_files -hdl_source {script_support/components/CAPE/MY_LOVELY_CAPE/HDL/CAPE.v}
-
-Add the path to your additional Verilog source code files.
-
-.. callout::
-    
-    .. code-block:: tcl
-
-        #-------------------------------------------------------------------------------
-        # Import HDL source files
-        #-------------------------------------------------------------------------------
-        import_files -hdl_source {script_support/components/CAPE/MY_LOVELY_CAPE/HDL/blinky.v} // <1>
-        import_files -hdl_source {script_support/components/CAPE/MY_LOVELY_CAPE/HDL/apb_ctrl_status.v}
-        import_files -hdl_source {script_support/components/CAPE/MY_LOVELY_CAPE/HDL/P8_IOPADS.v}
-        import_files -hdl_source {script_support/components/CAPE/MY_LOVELY_CAPE/HDL/P9_11_18_IOPADS.v}
-        import_files -hdl_source {script_support/components/CAPE/MY_LOVELY_CAPE/HDL/P9_21_31_IOPADS.v}
-        import_files -hdl_source {script_support/components/CAPE/MY_LOVELY_CAPE/HDL/P9_41_42_IOPADS.v}
-        import_files -hdl_source {script_support/components/CAPE/MY_LOVELY_CAPE/HDL/CAPE.v}
-
-    .. annotations::
-
-        <1> In our case we will be adding a new Verilog source file called blinky.v.
-
-You will only need to revisit the content of ``ADD_CAPE.tcl`` if you want to add more Verilog source files
-or want to modify how the cape interfaces with the rest of the gateware (RISC-V processor subsystem,
-clock and reset blocks).
+.. tip::
+    | Any Verilog file (\*.v) you put in the ``HDL`` subdirectory will automatically be pulled into the project by the build system.
+    | Manual intervention is no longer required.
 
 Customize The Cape's Verilog source code
-=========================================
+========================================
 
-We will add a simple Verilog source file, ``blinky.v``, in the ``MY_LOVELY_CAPE`` directory. Code below:
+We will add a simple Verilog source file, ``blinky.v``, in the ``MY_LOVELY_CAPE/HDL`` directory. Code below:
 
 .. code-block:: verilog
 
     `timescale 1ns/100ps
-    module blinky(
-    input    clk,
-    input    resetn,
-    output   blink
+
+    module blinky (
+      input  clk,
+      input  resetn,
+      output blink
     );
 
-    
     reg [22:0] counter;
-    
+
     assign blink = counter[22];
 
-    always@(posedge clk or negedge resetn)
+    always @(posedge clk, negedge resetn)
     begin
-        if(~resetn)
-            begin
-                counter <= 23'h0;
-            end
-        else
-            begin
-                counter <= counter + 23'b1;
-            end
+      if(~resetn)
+      begin
+        counter <= 23'b0;
+      end
+      else
+      begin
+        counter <= counter + 23'b1;
+      end
     end
+
     endmodule
 
-Let's connect the blinky Verilog module within the cape by editing the ``CAPE.v`` file.
+Let's connect the blinky Verilog module within the cape by editing the ``CAPE.v`` file (we're still in the HDL subdirectory).
+
 
 Add the instantiation of the blinky module:
 
@@ -253,6 +209,7 @@ Add the instantiation of the blinky module:
 
         <4> Connect the blinky's blink output using the BLINK wire. This BLINK wire needs to be declared.
 
+
 Add the BLINK wire:
 
 .. callout::
@@ -269,73 +226,77 @@ Add the BLINK wire:
 
         <1> Create a wire called BLINK.
 
-The BLINK wire will be used to connect the blinky module's output to a top level output connected
-to an LED. Do you see where this is going?
+.. line-block::
+    The BLINK wire will be used to connect the blinky module's output to a top level output connected to a LED.
+    Do you see where this is going?
 
-Now for the complicated part. We are going to change the wiring of the bi-directional buffers
-controlling the cape I/Os including the user LEDs. 
+    Now for the complicated part. We are going to change the wiring of the bi-directional buffers
+    controlling the cape I/Os including the user LEDs. 
 
-The original code populates two 43 bits wide wires for controlling the output-enable and output
-values of the P8 cape connector I/Os. The bottom 28 bits being controlled by the microprocessor
-subsystem's GPIO block.
+    The original code populates two 43 bit-wide vectors,
+    for controlling the output-enable and output values of the P8 cape connector I/Os.
 
- .. code-block:: verilog
+    The bottom 28 bits being controlled by the microprocessor subsystem's GPIO block; those are the ones we want.
 
-     //--------------------------------------------------------------------
-     // Concatenation assignments
-     //--------------------------------------------------------------------
-     assign GPIO_OE_net_0  = { 16'h0000 , GPIO_OE };
-     assign GPIO_OUT_net_0 = { 16'h0000 , GPIO_OUT };
+.. code-block:: verilog
+
+    //--------------------------------------------------------------------
+    // Concatenation assignments
+    //--------------------------------------------------------------------
+    assign GPIO_OE_net_0  = { 16'h0000 , GPIO_OE };
+    assign GPIO_OUT_net_0 = { 16'h0000 , GPIO_OUT };
+
 
 We are going to hijack the 6th I/O with our blinky's output:
 
 .. callout::
-    
+
     .. code-block:: verilog
 
         //--------------------------------------------------------------------
         // Concatenation assignments
         //--------------------------------------------------------------------
-        assign GPIO_OE_net_0 = { 16'h0000, GPIO_OE[27:6], 1'b1, GPIO_OE[4:0] };         // <1>
-        assign GPIO_OUT_net_0 = { 16'h0000 , GPIO_OUT[27:6], BLINK, GPIO_OUT[4:0] };    // <2>
+        assign GPIO_OE_net_0  = { 16'h0000,  GPIO_OE[27:6],  1'b1,  GPIO_OE[4:0] };    // <1>
+        assign GPIO_OUT_net_0 = { 16'h0000, GPIO_OUT[27:6], BLINK, GPIO_OUT[4:0] };    // <2>
 
     .. annotations::
 
         <1> Tie high the output-enable of the 6th bit to constantly enable that output.
 
-        <2> Control the 6th output from the blink module through the WIRE wire.
+        <2> Control the 6th output from the blink module through the BLINK wire.
 
 
 Edit The Cape's Device Tree Overlay
-=====================================
+===================================
 
-You should always have a device tree overlay associated with your gateware even if there is limited
-control from Linux. The device tree overlay is very useful to identify which gateware is currently
-programmed on your BeagleV-Fire.
+.. line-block::
+    You should always have a device tree overlay associated with your gateware even if there is limited control from Linux.
+    The device tree overlay is very useful to identify which gateware is currently programmed on your BeagleV-Fire.
 
 .. callout::
-    
+
     .. code-block:: dts
 
         /dts-v1/;
         /plugin/;
 
         &{/chosen} {
-            overlays {
-                MY-LOVELY-CAPE-GATEWARE = "GATEWARE_GIT_VERSION";   // <1>
-            };
+                overlays {
+                        MY-LOVELY-CAPE-GATEWARE = "GATEWARE_GIT_VERSION";   // <1>
+                };
         };
 
     .. annotations::
 
         <1> Replace VERILOG-CAPE-GATEWARE with MY-LOVELY-CAPE-GATEWARE.
 
-This change will result in ``MY-LOVELY-CAPE-GATEWARE`` being visible in ``/proc/device-tree/chosen/overlays``
-at run-time, allowing to check that my lovely gateware is successfully programmed on BeagleV-Fire.
+.. line-block::
+    This change will result in ``MY-LOVELY-CAPE-GATEWARE`` being visible in ``/proc/device-tree/chosen/overlays`` at run-time,
+    allowing to check that my lovely gateware is successfully programmed on BeagleV-Fire.
 
 
 Commit And Push Changes To Your Forked Repository
-**************************************************
+*************************************************
 
 Move back up to the root directory of your gateware project. This is the my-lovely-gateware directory in our current example.
 
@@ -359,11 +320,11 @@ Push changes to your beagleboard Gitlab repository:
 
 
 Retrieve The Forked Repositories Artifacts
-*******************************************
+******************************************
 
-Navigate to your forked repository. Click Pipelines in the left pane then the Download Artifacts
-button on the right handside. Select ``build-job:archive``. This will result in an ``artifacts.zip`` file
-being downloaded.
+.. line-block::
+    Navigate to your forked repository. Click Pipelines in the left pane then the Download Artifacts button on the right handside.
+    Select ``build-job:archive``. This will result in an ``artifacts.zip`` file being downloaded.
 
 .. figure:: images/gateware-pipeline.png
     :align: center
@@ -381,8 +342,9 @@ Unzip the downloaded ``artifacts.zip`` file. Go to the ``gateware-builds-tester/
 
     cd gateware-builds-tester/artifacts/bitstreams
 
-On your Linux host development computer, use the scp command to copy the bitstream to BeagleV-Fire
-home directory, replacing ``<IP_ADDRESS>`` with the IP address of your BeagleV-Fire.
+.. line-block::
+    On your Linux host development computer, use the scp command to copy the bitstream to BeagleV-Fire home directory,
+    replacing ``<IP_ADDRESS>`` with the IP address of your BeagleV-Fire.
 
 .. code:: shell
 
@@ -396,11 +358,12 @@ On BeagleV-Fire, initiate the reprogramming of the FPGA with your gateware bitst
 
 Wait for a couple of minutes for the BeagleV-Fire to reprogram itself.
 
-You will see the 6th user LED flash once the board is reprogrammed. That's the Verilog you added
-blinking the LED.
+.. line-block::
+    You will see the 6th user LED flash once the board is reprogrammed.
+    That's the Verilog you added blinking the LED.
 
-On BeagleV-Fire, You can check that your gateware was loaded using the following command to see the
-device tree overlays:
+    On BeagleV-Fire, You can check that your gateware was loaded using the following command
+    to see the device tree overlays:
 
 .. code:: shell
 

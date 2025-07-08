@@ -16,7 +16,7 @@ For software reference, you can :ref:`see how PCIe is used on NVMe HATs<beagley-
 CSI
 ***
 
-For software reference, you can :ref:`see how CSI is used on IMX219-based camera modules<beagley-ai-imx219-csi-cameras>`.
+For software reference, you can :ref:`see how CSI is used on IMX219-based camera modules<beagley-ai-using-imx219-csi-cameras>`.
 
 RTC
 ***

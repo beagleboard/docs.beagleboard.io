@@ -22,6 +22,7 @@ BeagleBoard Docs
    boards/beaglev/fire/index
    boards/capes/index
    boards/pocketbeagle/index
+   boards/pocketbeagle-2/index
    boards/beagleconnect/freedom/index
    boards/beagleboard/index
    projects/index

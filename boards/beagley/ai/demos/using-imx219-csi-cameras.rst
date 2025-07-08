@@ -5,6 +5,8 @@ Using IMX219 CSI Cameras
 
 .. todo:: Add further testing steps, results, and images.
 
+.. todo:: Need to add `gstreamer` and/or `cheese` commands to show how to make use of connected cameras.
+
 Camera connection
 ******************
 

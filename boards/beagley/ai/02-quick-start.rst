@@ -526,7 +526,6 @@ Demos and Tutorials
 * :ref:`beagley-ai-expansion-nvme`
 * :ref:`beagley-ai-object-detection-tutorial`
 * :ref:`beagley-ai-using-i2c-oled-display`
-* :ref:`beagley-ai-imx219-csi-cameras`
 * :ref:`beagley-ai-using-imx219-csi-cameras`
 * :ref:`beagley-ai-pca9685-motor-drivers`
 * :ref:`beagley-ai-arducam-imx219-v3link-dual-camera-kit`

@@ -92,7 +92,7 @@ Step 6. Flash the Image to BeagleV-Fire's eMMC
 - Restart the board and halt the HSS (Hart Software Services) by pressing any key 
 - In the HSS command line interface, type `usbdmsc` to expose the eMMC as a USB mass storage device using the USB-C connector.    
 - If successful, a message saying "USB Host connected" will be displayed
-- Now, copy the image from local machine to BeagleV Fire's eMMC
+- Now, copy the image from local machine to BeagleV-Fire's eMMC
 
 .. code:: console
 

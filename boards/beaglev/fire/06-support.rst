@@ -3,7 +3,7 @@
 Support
 #######
 
-All support for BeagleV Fire design is through BeagleBoard.org 
+All support for BeagleV-Fire design is through BeagleBoard.org 
 community at `BeagleBoard.org forum <https://forum.beagleboard.org/tag/fire>`_.
 
 Production board boot media

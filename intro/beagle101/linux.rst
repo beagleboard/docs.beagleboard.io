@@ -92,7 +92,7 @@ Kernel Modules
 
 Writing a bit of code that runs in the kernel is not too difficult.
 
-See :ref:`play-kernel-development`.
+See :ref:`beagleplay-kernel-development`.
 
 .. _embedded-linux-training:
 

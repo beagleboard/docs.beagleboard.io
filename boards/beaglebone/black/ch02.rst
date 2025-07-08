@@ -61,7 +61,7 @@ Document Change History
    * - A5.5
      -
        1. Release of the A5B version. 
-       2. The LEDS were dimmed by changing the resistors. 
+       2. The LEDs were dimmed by changing the resistors. 
        3. The serial termination mode was incorporated into the PCB.
      - May 20, 2013
      - GC
