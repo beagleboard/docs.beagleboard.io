@@ -7,7 +7,7 @@
    viewBox="0 0 630 630"
    id="svg2"
    version="1.1"
-   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
    sodipodi:docname="PocketBeagle-2-P2.svg"
    xml:space="preserve"
    inkscape:export-filename="PocketBeagle-2-P2.png"
@@ -27,18 +27,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.0326797"
-     inkscape:cx="173.81963"
-     inkscape:cy="363.6171"
+     inkscape:zoom="1.0778812"
+     inkscape:cx="300.58972"
+     inkscape:cy="369.24293"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g60252"
      showgrid="true"
      units="in"
-     inkscape:window-width="1518"
-     inkscape:window-height="1234"
-     inkscape:window-x="280"
-     inkscape:window-y="235"
-     inkscape:window-maximized="0"
+     inkscape:window-width="1280"
+     inkscape:window-height="730"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
      inkscape:snap-global="true"
      inkscape:snap-bbox="true"
      inkscape:bbox-nodes="false"
@@ -668,7 +668,7 @@
            id="tspan59348"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.36</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.36</tspan></text></g><g
        id="g59360"
        transform="translate(-233.97501,-36.80994)"><path
          id="path59354"
@@ -683,7 +683,7 @@
            id="tspan59356"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.34</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.34</tspan></text></g><g
        id="g59368"
        transform="translate(-233.97501,-51.80994)"><path
          id="path59362"
@@ -698,7 +698,7 @@
            id="tspan59364"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.32</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.32</tspan></text></g><g
        id="g59376"
        transform="translate(-233.97501,-66.809936)"><path
          id="path59370"
@@ -713,7 +713,7 @@
            id="tspan59372"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.30</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.30</tspan></text></g><g
        id="g59384"
        transform="translate(-233.97501,-81.809936)"><path
          id="path59378"
@@ -728,7 +728,7 @@
            id="tspan59380"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.28</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.28</tspan></text></g><g
        id="g59392"
        transform="translate(-233.97501,-96.809936)"><path
          id="path59386"
@@ -743,7 +743,7 @@
            id="tspan59388"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.26</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.26</tspan></text></g><g
        id="g59400"
        transform="translate(-233.97501,-111.80995)"><path
          id="path59394"
@@ -758,7 +758,7 @@
            id="tspan59396"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.24</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.24</tspan></text></g><g
        id="g59408"
        transform="translate(-233.97501,-126.80995)"><path
          id="path59402"
@@ -773,7 +773,7 @@
            id="tspan59404"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.22</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.22</tspan></text></g><g
        id="g59416"
        transform="translate(-233.97501,-141.80995)"><path
          id="path59410"
@@ -788,7 +788,7 @@
            id="tspan59412"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.20</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.20</tspan></text></g><g
        id="g59424"
        transform="translate(-233.97501,-156.80995)"><path
          id="path59418"
@@ -803,7 +803,7 @@
            id="tspan59420"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.18</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.18</tspan></text></g><g
        id="g59432"
        transform="translate(-233.97501,-171.80995)"><path
          id="path59426"
@@ -818,7 +818,7 @@
            id="tspan59428"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.16</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.16</tspan></text></g><g
        id="g59440"
        transform="translate(-233.97501,-186.80995)"><path
          id="path59434"
@@ -833,7 +833,7 @@
            id="tspan59436"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.14</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.14</tspan></text></g><g
        id="g59448"
        transform="translate(-233.97501,-201.80995)"><path
          id="path59442"
@@ -848,7 +848,7 @@
            id="tspan59444"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.12</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.12</tspan></text></g><g
        id="g59456"
        transform="translate(-233.97501,-216.80995)"><path
          id="path59450"
@@ -863,7 +863,7 @@
            id="tspan59452"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.10</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.10</tspan></text></g><g
        id="g59464"
        transform="translate(-233.97501,-231.80995)"><path
          id="path59458"
@@ -878,7 +878,7 @@
            id="tspan59460"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.08</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.08</tspan></text></g><g
        id="g59472"
        transform="translate(-233.97501,-246.80995)"><path
          id="path59466"
@@ -893,7 +893,7 @@
            id="tspan59468"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.06</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.06</tspan></text></g><g
        id="g59480"
        transform="translate(-233.97501,-261.80995)"><path
          id="path59474"
@@ -908,7 +908,7 @@
            id="tspan59476"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.04</tspan></text></g><g
+           style="font-size:10.2979px;line-height:1.25">P2.04</tspan></text></g><g
        id="g59488"
        transform="translate(-233.97501,-276.80995)"><path
          id="path59482"
@@ -923,7 +923,7 @@
            id="tspan59484"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.02</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.02</tspan></text></g><circle
        r="5.2591066"
        cy="765.55219"
        cx="279.02499"
@@ -961,7 +961,7 @@
            id="tspan59840"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.35</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.35</tspan></text></g><circle
        r="5.2591066"
        cy="750.55219"
        cx="279.02499"
@@ -999,7 +999,7 @@
            id="tspan59864"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.33</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.33</tspan></text></g><circle
        r="5.2591066"
        cy="735.55219"
        cx="279.02499"
@@ -1037,7 +1037,7 @@
            id="tspan59888"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.31</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.31</tspan></text></g><circle
        r="5.2591066"
        cy="720.55219"
        cx="279.02499"
@@ -1075,7 +1075,7 @@
            id="tspan59912"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.29</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.29</tspan></text></g><circle
        r="5.2591066"
        cy="705.55219"
        cx="279.02499"
@@ -1113,7 +1113,7 @@
            id="tspan59936"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.27</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.27</tspan></text></g><circle
        r="5.2591066"
        cy="690.55219"
        cx="279.02499"
@@ -1151,7 +1151,7 @@
            id="tspan59960"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.25</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.25</tspan></text></g><circle
        r="5.2591066"
        cy="675.55219"
        cx="279.02499"
@@ -1189,7 +1189,7 @@
            id="tspan59984"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.23</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.23</tspan></text></g><circle
        r="5.2591066"
        cy="660.55219"
        cx="279.02499"
@@ -1227,7 +1227,7 @@
            id="tspan60008"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.21</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.21</tspan></text></g><circle
        r="5.2591066"
        cy="645.55219"
        cx="279.02499"
@@ -1265,7 +1265,7 @@
            id="tspan60032"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.19</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.19</tspan></text></g><circle
        r="5.2591066"
        cy="630.55219"
        cx="279.02499"
@@ -1303,7 +1303,7 @@
            id="tspan60056"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.17</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.17</tspan></text></g><circle
        r="5.2591066"
        cy="615.55219"
        cx="279.02499"
@@ -1341,7 +1341,7 @@
            id="tspan60080"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.15</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.15</tspan></text></g><circle
        r="5.2591066"
        cy="600.55219"
        cx="279.02499"
@@ -1379,7 +1379,7 @@
            id="tspan60104"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.13</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.13</tspan></text></g><circle
        r="5.2591066"
        cy="585.55219"
        cx="279.02499"
@@ -1417,7 +1417,7 @@
            id="tspan60128"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.11</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.11</tspan></text></g><circle
        r="5.2591066"
        cy="570.55219"
        cx="279.02499"
@@ -1455,7 +1455,7 @@
            id="tspan60152"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.09</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.09</tspan></text></g><circle
        r="5.2591066"
        cy="555.55219"
        cx="279.02499"
@@ -1493,7 +1493,7 @@
            id="tspan60176"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.07</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.07</tspan></text></g><circle
        r="5.2591066"
        cy="540.55225"
        cx="279.02499"
@@ -1531,7 +1531,7 @@
            id="tspan60200"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.05</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.05</tspan></text></g><circle
        r="5.2591066"
        cy="525.55225"
        cx="279.02499"
@@ -1569,7 +1569,7 @@
            id="tspan60224"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.03</tspan></text></g><circle
+           style="font-size:10.2979px;line-height:1.25">P2.03</tspan></text></g><circle
        r="5.2591066"
        cy="510.55231"
        cx="279.02499"
@@ -1607,7 +1607,7 @@
            id="tspan60248"
            x="629.97504"
            y="791.03888"
-           style="font-size:10.2979px;line-height:1.25">P1.01</tspan></text></g><path
+           style="font-size:10.2979px;line-height:1.25">P2.01</tspan></text></g><path
        id="path60230"
        style="opacity:0.74;fill:#000000;fill-opacity:1;stroke-width:0"
        d="m 310.09479,514.62302 h -8.13951 v -8.14137 h 8.13951 z" /><path
