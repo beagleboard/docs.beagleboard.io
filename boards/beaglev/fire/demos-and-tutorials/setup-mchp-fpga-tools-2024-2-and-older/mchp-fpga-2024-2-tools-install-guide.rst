@@ -1,7 +1,7 @@
-.. _beaglev-fire-mchp-fpga-tools-installation-guide:
+.. _beaglev-fire-mchp-fpga-2024-2-and-older-tools-installation-guide:
 
-Microchip FPGA Tools Installation Guide
-#########################################
+Microchip 2024.2 and Older FPGA Tools Installation Guide
+#########################################################
 
 Instructions for installing the Microchip FPGA tools on a Ubuntu 20.04 or Ubuntu 22.04 desktop.
 
@@ -128,11 +128,11 @@ Execute tool setup script
 
 Download the script:
 
-.. literalinclude:: ./setup-microchip-tools.sh
+.. literalinclude:: ./setup-microchip-2024-2-and-older-tools.sh
     :caption: Libero environment and license setup script
     :language: bash
 
-:download:`setup-microchip-tools.sh <./setup-microchip-tools.sh>`
+:download:`setup-microchip-2024-2-and-older-tools.sh <./setup-microchip-2024-2-and-older-tools.sh>`
 
 Details:
 

@@ -12,7 +12,7 @@ Prerequisites
 
 The prerequisites required for creating the Libero project locally are:
 
-1. Microchip design tools: Refer to the document here for :ref:`installation instructions<beaglev-fire-mchp-fpga-tools-installation-guide>` of microchip FPGA tools.
+1. Microchip design tools: Refer to the document here for :ref:`installation instructions<beaglev-fire-mchp-fpga-2025-1-tools-installation-guide>` of microchip FPGA tools.
 2. Python requirements for gateware build scripts:
     
 .. code-block:: shell
@@ -43,7 +43,7 @@ The prerequisites required for creating the Libero project locally are:
     - ``LIBERO_INSTALL_DIR``
     - ``LM_LICENSE_FILE``
     
-    | A script is provided for setting up these variables in the :ref:`fpga tools installation <beaglev-fire-mchp-fpga-tools-installation-guide>` section.
+    | A script is provided for setting up these variables in the :ref:`fpga tools installation <beaglev-fire-mchp-fpga-2025-1-tools-installation-guide>` section.
     | An example script for setting up the environment is available `here <https://openbeagle.org/beaglev-fire/Microchip-FPGA-Tools-Setup>`_.
 
 5. It is highly recommended to go through the :ref:`beaglev-fire-customize-cape-gateware-verilog` tutorial

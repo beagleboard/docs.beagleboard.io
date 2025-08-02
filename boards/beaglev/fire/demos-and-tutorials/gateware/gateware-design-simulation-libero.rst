@@ -11,7 +11,7 @@ which is integrated with Libero. The gateware design that we will simulate is th
 Prerequisites
 *************
 
-#. Libero SoC 2022 or later. You can follow this guide to install Libero SoC: :ref:`beaglev-fire-mchp-fpga-tools-installation-guide`.
+#. Libero SoC 2022 or later. You can follow this guide to install Libero SoC: :ref:`beaglev-fire-mchp-fpga-2025-1-tools-installation-guide`.
 #. A copy of the `gateware repository <https://openbeagle.org/beaglev-fire/gateware/>`_.
 #. The ``setup_microchip_tools.sh`` file, to start the license server and set the environment variables. The setup of this script is also covered in the installation guide.
 
