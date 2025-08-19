@@ -42,6 +42,8 @@ To connect BeagleV-Fire board to PC via USB Type C receptacle you need a USB typ
     
     BeagleV-Fire tethered connection
 
+.. _beaglev-fire-quick-start-flash-the-emmc:
+
 Flashing eMMC
 *************
 
@@ -98,6 +100,7 @@ In that case, you can close out BeagleBoard Imager and disconnect the USB cable.
 
 On the next power-up, your Beagle will boot up the new image and you're ready to rock!
 
+.. _beaglev-fire-quick-start-debug-console:
 
 Access UART debug console
 *************************
