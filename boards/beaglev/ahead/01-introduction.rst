@@ -8,6 +8,23 @@ BeagleBone Black allowing you to stack your favourite BeagleBone cape on top to 
 Featuring a powerful quad-core RISC-V processor BeagleV-Ahead is designed as an affordable
 RISC-V enabled pocket-size computer for anybody who wants to dive deep into the new RISC-V ISA.
 
+.. warning::
+
+    **Security Notice: GhostWrite Vulnerability**
+
+    The BeagleV-Ahead platform, like many RISC-V systems based on the XuanTie C910 and C920 processors,
+    are affected by the "GhostWrite" vulnerability (CVE-2023-4966), which allows for potential privilege
+    escalation or unauthorized memory access. As this vulnerabiity is due to the faulty instructions in the
+    vector extension of this core, there is no patch fix available for this. Only one way to mitigate this
+    is to disable the vector extension but this will drastically reduce the performance of the board.
+
+    For a hands-on demonstration, see :ref:`beaglev-ahead-ghostwrite-exploit` in the demos and tutorials section.
+
+    For more details on this vulnerability please refer to the following links:
+
+    - `GhostWrite Vulnerability <https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-4966>`_
+    - `GhostWrite Vulnerability Official Page <https://ghostwriteattack.com/>`_
+
 .. table::
    :align: center
    :widths: auto
