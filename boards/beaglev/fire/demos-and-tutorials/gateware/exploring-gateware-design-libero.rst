@@ -231,6 +231,9 @@ Making The Connections
     You can also verify the design by pressing the checkmark icon in the editor toolbar.
     Now, it's time to export our design back to the gateware repository.
 
+.. tip::
+    You will hear **Exporting** and **Backannotation** used interchangeably; it's the same thing.
+
 Exporting The Design
 ********************
 
@@ -265,18 +268,27 @@ Now, simply copy it into the gateware at the following path.
 
     cp ~/export/gateware/CAPE.tcl ~/gateware/sources/FPGA-design/script_support/components/CAPE/DEFAULT/
 
+.. tip::
+    | You will find that sometimes Libero can export a TCL file that's quite different from what you started out with,
+    | even when you've only made `relatively` small changes.
+    | It is worth spending a little time to look at the changes with a tool like git diff (VS Code works really well too),
+    | to make sure Libero didn't just run off on a tangent with your code.
+
 Exporting The HDL
 =================
 
 .. line-block::
     To add new HDL to the gateware repository, first we need to copy it
-    to the HDL directory at `gateware/sources/FPGA-design/script_support/HDL`.
+    to the HDL directory at `sources/FPGA-design/script_support/components/CAPE/DEFAULT/HDL`.
     You can do that by just creating a folder named blinky inside and copying the HDL to it.
 
 .. code-block:: shell
 
-    mkdir ~/gateware/sources/FPGA-design/script_support/HDL/BLINKY
-    cp ~/gateware/work/libero/hdl/blinky.v ~/gateware/sources/FPGA-design/script_support/HDL/BLINKY/
+    mkdir ~/gateware/sources/FPGA-design/script_support/components/CAPE/DEFAULT/HDL
+
+.. code-block:: shell
+
+    cp ~/gateware/work/libero/hdl/blinky.v ~/gateware/sources/FPGA-design/script_support/components/CAPE/DEFAULT/HDL/
 
 .. line-block::
     Now, to add the TCL script to import this design for the CAPE scripts,
@@ -289,38 +301,25 @@ Exporting The HDL
 
     Export HDL
 
-Now, concatenate the contents of this exported file to our gateware's HDL sourcing script at 
-`gateware/sources/FPGA-design/script_support/hdl_source.tcl` like so:
+Now, copy this exported file to our gateware's CAPE directory at `gateware/sources/FPGA-design/script_support/components/CAPE/DEFAULT/` like so:
 
 .. code-block:: shell
 
-    cat blinky.tcl >> ~/gateware/sources/FPGA-design/script_support/hdl_source.tcl
+    cp blinky.tcl ~/gateware/sources/FPGA-design/script_support/components/CAPE/DEFAULT/blinky_config.tcl
 
 .. line-block::
-    First, copy the contents of the exported TCL file to the bottom of the file.
-    Replace the ``-file`` argument in the line with ``-file $project_dir/hdl/blinky.v``.
-    Finally, source the file by add a line below line no. 11 as:
+    Then we make sure it's getting sourced by adding the following to ``ADD_CAPE.tcl``:
 
-.. code-block:: none
+.. figure:: images/exploring/add_cape_diff.png
+    :align: center
+    :alt: Add Cape Diff
 
-        -hdl_source {script_support/HDL/AXI4_address_shim/AXI4_address_shim.v} \
-        -hdl_source {script_support/HDL/BLINKY/blinky.v} # ⓵ Source the script below line 11
-
-    #......
-    #...... towards the end of the file
-
-    hdl_core_assign_bif_signal -hdl_core_name {AXI_ADDRESS_SHIM} -bif_name {AXI4_INITIATOR} -bif_signal_name {RREADY} -core_signal_name {INITIATOR_OUT_RREADY} 
- 
-    create_hdl_core -file $project_dir/hdl/blinky.v -module {blinky} -library {work} -package {} 
-    # ⓶ Add the core at the end of the file
-
-Feel free to cut any extra comment lines introduced when concatenating above.
 Verify your script as above, save it and now you're good to compile your project! 
 
 .. important::
 
     | Make sure you close Libero at this point.
-    | If you don't, ``build-bitstream.py`` **will** fail to properly checkout the required licenses.
+    | If you don't, ``build-bitstream.py`` **will fail** to properly checkout the required licenses.
 
 Now is a good time to check in your changes to git:
 
@@ -328,8 +327,9 @@ Now is a good time to check in your changes to git:
 
     cd ~/gateware
     git add ./sources/FPGA-design/script_support/components/CAPE/DEFAULT/CAPE.tcl
-    git add ./sources/FPGA-design/script_support/hdl_source.tcl
-    git add ./sources/FPGA-design/script_support/HDL/BLINKY/blinky.v
+    git add ./sources/FPGA-design/script_support/components/CAPE/DEFAULT/ADD_CAPE.tcl
+    git add ./sources/FPGA-design/script_support/components/CAPE/DEFAULT/blinky_config.tcl
+    git add ./sources/FPGA-design/script_support/components/CAPE/DEFAULT/HDL/blinky.v
     git clean -df
 
 Final Verification
