@@ -18,4 +18,5 @@ Demos and tutorials
    demos/using-imx219-csi-cameras
    demos/arducam-imx219-v3link-dual-camera-kit
    demos/object-detection-tutorial
+   demos/using-edge-ai
 
