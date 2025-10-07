@@ -47,32 +47,14 @@ To connect BeagleV-Fire board to PC via USB Type C receptacle you need a USB typ
 Flashing eMMC
 *************
 
-On Windows 10
-=============
+First we need to go get `Beagleboard Imager <https://github.com/beagleboard/bb-imager-rs/releases>`_.
 
-First we need to go get `Beagleboard Imager <https://github.com/beagleboard/bb-imager-rs/releases>`_. Just grab the latest MSI one.
-
-Once that is installed, we make our way to `Artifacts <https://openbeagle.org/beaglev-fire/BeagleV-Fire-ubuntu/-/artifacts>`_
-where we pick up the latest-n-greatest image:
-
-.. figure:: images/emmc-os-image-download.png
-    :class: admonition admonition-no-left-border
-    :align: center
-    :alt: BeagleV-Fire: selecting your OS image
-
-.. note::
-
-    | The images are sorted by kernel and distro, so make sure you get the one that suits your needs.
-    |
-    | Also, pay attention to the file-size:
-    | A good Artifact needs to be larger than 200 MiB; the smaller ones were pruned and are no good.
-
-Hit the download button and extract ``sdcard.img.xz``: This is the file we hand over to Beagleboard Imager.
-
-Once we have the pre-requisites out of the way, it's time to get BeagleV-Fire ready for action.
+Grab the version suitable for your operating system.
 
 Device Firmware Update (DFU)
 ============================
+
+Next we need your Beagle to be ready to receive an updated image:
 
 To enter "DFU" mode, you press and hold the USER button while connecting your Fire to the USB port on your machine.
 
@@ -86,7 +68,7 @@ BeagleBoard Imager
 With BeagleBoard Imager running, work your way from left to right, like so:
 
 1. Select board. This one's obvious.
-2. Select your image from above.
+2. Select your image variant.
 3. Select your drive. This one is critical to get right; see below.
 4. Click ``WRITE`` and watch it go!
 
