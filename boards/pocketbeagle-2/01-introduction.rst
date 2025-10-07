@@ -3,7 +3,7 @@
 Introduction
 ###############
 
-PocketBeagle 2 is based on `Texas Instrments AM6232 SoC <https://www.ti.com/product/AM623>`_, it's dual A53 cores can 
+PocketBeagle 2 is based on `Texas Instruments AM6254 SoC <https://www.ti.com/product/AM625>`_, it's quad A53 cores can 
 provides higher performance than classic PocketBeagle. The new design comes with pre-soldered headers, 
 3-pin JST-SH 1.00mm uart debug port, USB-C port, MSPM0L1105, 512MB RAM, and LiPo Battery charger.
 
@@ -35,11 +35,11 @@ much as possible. There are several significant differences between the designs.
    +-------------------+---------------------+----------------------------+
    | Feature           | PocketBeagle 2      | PocketBeagle original      |
    +===================+=====================+============================+
-   | SoC               | AM6232              | AM3358                     |
+   | SoC               | AM6254              | AM3358                     |
    +-------------------+---------------------+----------------------------+
    | Arm CPU           | Cortex-A53 (64-bit) | Cortex-A8 (32-bit)         |
    +-------------------+---------------------+----------------------------+
-   | Arm cores         | 2 x 1GHz            | 1 x 1GHz                   |
+   | Arm cores         | 4 x 1.4GHz          | 1 x 1GHz                   |
    +-------------------+---------------------+----------------------------+
    | RAM               | 512MB DDR4          | 512MB DDR3                 |
    +-------------------+---------------------+----------------------------+
@@ -65,7 +65,7 @@ description of the major components and interfaces that make up the board.
    +-------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
    |                         | Feature                                                                                                                                 |
    +=========================+=========================================================================================================================================+
-   | **Processor**           | `Texas Instruments AM6232 <https://www.ti.com/product/AM623>`_                                                                          |
+   | **Processor**           | `Texas Instruments AM6254 <https://www.ti.com/product/AM625>`_                                                                          |
    +-------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
    | **SDRAM Memory**        | 512MB DDR4 (Kingston D2516AN9EXGXN-TU)                                                                                                  |
    +-------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
@@ -121,7 +121,7 @@ This section describes the key components on the board, their location and funct
          +----------------------------+---------------------------------------------------------------------------+
          | Feature                    | Description                                                               |
          +============================+===========================================================================+
-         | AM6232 SoC                 | Internet of Things (IoT) and gateway SoC with dual core A53 @ 1GHz        |
+         | AM6254 SoC                 | Human-machine-interaction SoC with quad core A53 @ 1.4GHz                 |
          +----------------------------+---------------------------------------------------------------------------+
          | MSPM0 MCU                  | MSPM0 MCU to provide ADC and EEPROM functionality                         |
          +----------------------------+---------------------------------------------------------------------------+
@@ -137,7 +137,7 @@ This section describes the key components on the board, their location and funct
          +----------------------------+---------------------------------------------------------------------------+
          | 512MB RAM                  | 512MB DDR4 RAM                                                            |
          +----------------------------+---------------------------------------------------------------------------+
-         | JTAG debug port            | Tag-Connect JTAG (AM6232) debug port                                      |
+         | JTAG debug port            | Tag-Connect JTAG (AM6254) debug port                                      |
          +----------------------------+---------------------------------------------------------------------------+
 
    .. tab-item:: Back components location
@@ -161,4 +161,10 @@ This section describes the key components on the board, their location and funct
          +----------------------------+---------------------------------------------------------------------------+
          | UART debug ports           | 3pin JST-SH 1.00mm UART debug port (RPI debug probe compatible)           |
          +----------------------------+---------------------------------------------------------------------------+
- 
+
+Revision Note
+*************
+PB2 revisions are as follows:
+
+- A1(Current/In-production) w/ AM6254 SOC.
+- A0(Out-of-production) w/ AM6232 SOC.
