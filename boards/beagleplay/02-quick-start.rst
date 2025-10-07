@@ -14,6 +14,11 @@ When you purchase a brand new BeaglePlay, In the box you'll get:
 4. Plastic standoff hardware
 5. Quick-start card
 
+.. important::
+    | Depending on the size of the standoff hex-nuts, please ensure that you have a good hold
+    | on the nut as you secure it. The clearance between mounting-hole and eMMC is a little tight
+    | and you will want to avoid accidentally damaging the eMMC while mounting.
+
 .. tip:: For board files, 3D model, and more, you can checkout `BeaglePlay repository on OpenBeagle <https://openbeagle.org/beagleplay/beagleplay>`_.
 
 .. image:: images/product-pictures/45fontall.*
