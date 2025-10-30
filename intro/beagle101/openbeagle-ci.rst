@@ -30,7 +30,7 @@ A .gitlab-ci.yml file is a YAML file that defines the structure and order of the
     - Jobs: A job is a set of instructions that are executed by a runner. Jobs can include scripts, dependencies, and other configuration.
     - Pipelines: A pipeline is a set of jobs that are run in a specific order. Pipelines can be triggered by a commit, a schedule, or manually.
 
-Here is an example of the ``.gitlab-ci.yml`` file used in `<https://docs.beagleboard.org>`_ 
+Here is an example of the ``.gitlab-ci.yml`` file used in |DOCS_URL|
 
 Global Configurations: We define the global configurations for the pipeline.
 

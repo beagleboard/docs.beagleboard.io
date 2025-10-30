@@ -3,7 +3,7 @@
 ReStructuredText Cheat Sheet
 ############################
 
-`BeagleBoard.org docs site <https://docs.beagleboard.org>`_ uses ReStructuredText (rst) which is a 
+`BeagleBoard.org docs site </>`_ uses ReStructuredText (rst) which is a 
 file format [#]_ for textual data used primarily in the Python programming language community 
 for technical documentation. It is part of the Docutils project of the Python Doc-SIG, aimed at 
 creating a set of tools for Python similar to Javadoc for Java or Plain Old Documentation for 

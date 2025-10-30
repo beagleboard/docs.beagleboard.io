@@ -30,7 +30,7 @@ MikroE
 
 MikroE `Accel click <https://www.mikroe.com/accel-click>`_ is recommended, but many other boards
 can work. More information about the mikroBUS interface can be found
-`here <https://docs.beagleboard.org/boards/beagleplay/demos-and-tutorials/using-mikrobus.html>`_.
+:ref:`here <beagleplay-mikrobus>`.
 
 Let's get started!
 ********************

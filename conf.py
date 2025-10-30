@@ -30,7 +30,7 @@ ImagemagickConverter.conversion_rules.append(('image/webp', 'image/png'))
 sys.path.append(str(Path(".").resolve()))
 
 # Add latest images to rst_epilog
-rst_epilog =""
+rst_epilog = ""
 rst_epilog_path = "_static/epilog/"
 for (dirpath, dirnames, filenames) in os.walk(rst_epilog_path):
     for filename in filenames:
@@ -124,6 +124,7 @@ extensions = [
     "sphinxcontrib.rsvgconverter",
     "sphinx_design",
     "sphinxcontrib.images",
+    "sphinx.ext.extlinks",
     "sphinx.ext.imgconverter",
     "sphinx.ext.graphviz",
     "sphinx.ext.todo",
@@ -227,7 +228,6 @@ html_sourcelink_suffix = ""
 html_last_updated_fmt = ""
 html_theme_path = [pydata_sphinx_theme.Path()]
 html_title = "BeagleBoard Documentation"
-html_baseurl = "docs.beagleboard.io"
 html_css_files = [
     'css/custom.css',
 ]
@@ -345,6 +345,20 @@ with open("PAGES") as f:
         gitlab_repo = repo
         gitlab_project = "/".join((gitlab_url, gitlab_user, gitlab_repo))
         docs_url = url
+
+html_baseurl = docs_url or "https://docs.beagleboard.org"
+
+# Needed in situtations where we want explicit full URLs
+# :docs_url:`latest` -> https://docs.beagleboard.org/latest
+extlinks = {
+    'docs_url': (html_baseurl + '/%s', None),
+}
+
+# Extlinks only works for URLs with paths, so we also add an alias option
+# Visit |DOCS_URL| -> Visit https://docs.beagleboard.org
+rst_epilog += f"""
+.. |DOCS_URL| replace:: {html_baseurl}
+"""
 
 # Specify the 404 template file
 notfound_template = '404.html'

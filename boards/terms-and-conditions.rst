@@ -203,7 +203,7 @@ back to a distributor without contacting rma/support.
     `RMA request <https://www.beagleboard.org/rma>`_
 
     Before making any attempt to return your defective board to a distributor 
-    you should visit `support page <https://docs.beagleboard.org/latest/intro/support/index.html>`_ 
+    you should visit :ref:`support page <support>` 
     and reach out to `Jason <https://beagleboard.org/about/jkridner>`_ for possible solutions.
     
     Additional terms:

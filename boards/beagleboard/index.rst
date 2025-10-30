@@ -15,7 +15,7 @@ platforms also enable rapid prototyping for professionals to develop industrial 
 
 The latest unified docs PDF is linked below.
 
-* `BeagleBoard.org unified docs PDF <https://docs.beagleboard.org/latest/beagleboard-docs.pdf>`_
+* `BeagleBoard.org unified docs PDF </latest/beagleboard-docs.pdf>`_
 
 The latest System Reference Manual (PDF) for older BeagleBoard boards are linked below.
 

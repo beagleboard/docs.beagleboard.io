@@ -11,7 +11,7 @@ This section includes tested accessories for BeagleBoard.org hardware and kits.
     and add new hardware accessories that they have tested. General feedback and contribution 
     is also appreciated. You can checkout these pages to contribuite to the BeagleBoard.org docs project,\
     
-    1. `Docs contribution guide <https://docs.beagleboard.io/latest/intro/contribution/index.html>`_
+    1. :ref:`Docs contribution guide <contribution>`
     2. `Docs project issue tracker. <https://git.beagleboard.org/docs/docs.beagleboard.io/-/issues>`_
 
 .. danger::

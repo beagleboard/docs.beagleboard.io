@@ -8,7 +8,7 @@ community at `BeagleBoard.org forum <https://forum.beagleboard.org/tag/bbai>`_.
 
 .. todo::
 
-  Reference https://docs.beagleboard.org/latest/intro/support/index.html and
+  Reference :ref:`support` and
   https://beagleboard.org/resources
 
   Related TI documentation: http://www.ti.com/tool/BEAGLE-3P-BBONE-AI

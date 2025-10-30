@@ -106,4 +106,4 @@ Step 6. Flash the Image to BeagleV-Fire's eMMC
 - Once the transfer is complete, type `CTRL+C` to disconnect your device
 - Finally boot the new Linux image by typing `boot` or reset your board
 
-Detailed description of this step is mentioned in `Flashing eMMC <https://docs.beagleboard.org/latest/boards/beaglev/fire/demos-and-tutorials/flashing-board.html#flashing-emmc>`_ section.
+Detailed description of this step is mentioned in :ref:`Flashing eMMC <beaglev-fire-flashing-emmc>` section.
