@@ -63,7 +63,7 @@ Voltage to current conversion will have to be done in software.
 Pinout
 ******
 
-The full pinout for the cape interface spec can be found `here <https://docs.beagleboard.org/latest/boards/capes/cape-interface-spec.html#id18>`_ . You can also see the pinout below, refer to the last column for comms-cape specific pins.
+The full pinout for the cape interface spec can be found :ref:`here <beaglebone-cape-interface-spec>`. You can also see the pinout below, refer to the last column for comms-cape specific pins.
 
 P8 Header
 =========

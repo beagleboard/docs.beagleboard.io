@@ -112,6 +112,8 @@ If you see a lot of green color and the progress bar says
 ``PASSED`` then well done you have successfully flashed
 the gateware image on your BeagleV-Fire board.
 
+.. _beaglev-fire-flashing-emmc:
+
 Flashing eMMC
 **************
 

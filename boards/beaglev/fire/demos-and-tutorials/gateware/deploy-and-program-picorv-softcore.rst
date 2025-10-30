@@ -113,7 +113,7 @@ Once the code is compiled, build the bitstream using the 'build-bitstream.py' sc
 Step 5
 ------
 
-Program BeagleV-Fire With Your `Custom Bitstream <https://docs.beagleboard.org/boards/beaglev/fire/demos-and-tutorials/gateware/customize-cape-gateware-verilog.html>`_.
+Program BeagleV-Fire With Your :ref:`Custom Bitstream <beaglev-fire-customize-cape-gateware-verilog>`.
 
 
 2. Programming the softcore in run-time

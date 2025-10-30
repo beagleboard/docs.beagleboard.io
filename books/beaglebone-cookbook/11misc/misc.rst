@@ -57,7 +57,7 @@ micropython Examples
 --------------------
 
 Here is the output from running the examples from here:
-https://docs.beagleboard.org/latest/boards/beagleconnect/freedom/demos-and-tutorials/using-micropython.html
+:ref:`beagleconnect-freedom-using-micropython`
 
 Plug the BeagleConnect Freedom into the USB on the Play.
 
@@ -782,7 +782,7 @@ BeagleBoard.org uses the `Sphinx Python Documentation Generator
 `rst <https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html>`_ markup language.
 
 Here's what you need to do to fork the repository and render a local copy of
-the documentation.  Browse to https://docs.beagleboard.org/latest/ and click on 
+the documentation.  Browse to :docs_url:`latest` and click on 
 the **Edit on GitLab** button on the upper-right of the page. Clone the repository.
 
 .. code-block:: shell

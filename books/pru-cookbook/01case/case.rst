@@ -48,12 +48,12 @@ The following are resources used in this chapter.
 
 .. admonition:: Resources
 
-   * `PocketBeagle System Reference Manual <https://docs.beagleboard.io/latest/boards/pocketbeagle/original/index.html>`_
-   * `BeagleBone Black P8 Header Table <https://docs.beagleboard.io/latest/boards/beaglebone/black/ch07.html#id2>`_
+   * :ref:`PocketBeagle System Reference Manual <pocketbeagle-home>`
+   * :ref:`BeagleBone Black P8 Header Table <beagleboneblack-connectors>`
       * `P8 Header Table from exploringBB <https://github.com/derekmolloy/exploringBB/blob/master/chp06/docs/BeagleboneBlackP8HeaderTable.pdf>`_
-   * `BeagleBone Black P9 Header Table <https://docs.beagleboard.io/latest/boards/beaglebone/black/ch07.html#id3>`_
+   * :ref:`BeagleBone Black P9 Header Table <beagleboneblack-connectors>`
       * `P9 Header Table from exploringBB <https://github.com/derekmolloy/exploringBB/blob/master/chp06/docs/BeagleboneBlackP9HeaderTable.pdf>`_
-   * `BeagleBone AI System Reference Manual <https://docs.beagleboard.io/latest/boards/beaglebone/ai/index.html>`_
+   * :ref:`BeagleBone AI System Reference Manual <bbai-home>`
 
 
 Robotics Control Library

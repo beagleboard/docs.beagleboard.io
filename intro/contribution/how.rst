@@ -60,7 +60,7 @@ A bit more detailed suggestions can be found in the articles linked below.
 Site Editing Guide
 *******************
 
-`Docs <https://docs.beagleboard.org/>`_ site uses `OpenBeagle Continous Integration (CI) / Continous Development
+Docs |DOCS_URL| site uses `OpenBeagle Continous Integration (CI) / Continous Development
 (CD) <https://docs.gitlab.com/ee/ci/>`_ which is a continuous method of software development, where
 you continuously build, test, deploy, and monitor iterative code changes. which means you don't have to setup
 anything on your local machine to update anything on the site. To contribute to this site, you can follow the
@@ -156,8 +156,8 @@ If you select to open your file in ``Web IDE`` you'll see a familar interface. T
     Wed IDE
 
 .. tip:: We use `reStructuredText (RST) <https://en.wikipedia.org/wiki/ReStructuredText>`_ for all of our documentation projects
-   including `GSoC site  <https://gsoc.beagleboard.io/>`_ and `documentation site <https://docs.beagleboard.org/latest/>`_.
-   If you are new to reStructuredText you can checkout our `reStructuredText cheatsheet <https://docs.beagleboard.org/latest/
+   including `GSoC site  <https://gsoc.beagleboard.io/>`_ and `documentation site </latest/>`_.
+   If you are new to reStructuredText you can checkout our `reStructuredText cheatsheet </latest/
    intro/contribution/rst-cheat-sheet.html>`_ to get yourself familiar with reStructuredText.
 
 .. admonition:: Why not use Markdown for documentation?
@@ -292,7 +292,7 @@ Tackle to-do list
 *****************
 
 This documentation has a number of ``todo`` items where help is needed that can be searched in the source. This list will
-show up directly in the staging documentation at https://docs.beagleboard.io/latest/intro/contribution/how.html#contribution-todo-list
+show up directly in the staging documentation at :ref:`contribution-todo-list`.
 
 .. todolist::
 

@@ -1177,7 +1177,7 @@ series on creating a cape, including how to wire and program the EEPROM.
 
 .. note::
 
-   The current effort to document how to enable software for a cape is ongoing at https://docs.beagleboard.org/latest/boards/capes.
+   The current effort to document how to enable software for a cape is ongoing at :ref:`capes`.
 
 .. todo
     This needs updating.
