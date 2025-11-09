@@ -93,5 +93,5 @@ following command in the gateware directory:
     python build-bitstream.py ./build-options/default.yaml # build option depending on the gateware
 
 You will need to have all microchip tools installed and the environment variables set up correctly. Refer 
-to the :ref:`Microchip tools installation guide <beaglev-fire-mchp-fpga-tools-installation-guide>` for information on how to install these tools.
+to the :ref:`Microchip tools installation guide <beaglev-fire-mchp-fpga-2025-1-tools-installation-guide>` for information on how to install these tools.
 

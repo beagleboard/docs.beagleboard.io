@@ -121,6 +121,7 @@ Demos and Tutorials
 * :ref:`beaglev-fire-upgrade-gateware`
 * :ref:`beaglev-fire-flashing-board`
 * :ref:`beaglev-fire-gateware-design`
-* :ref:`beaglev-fire-mchp-fpga-tools-installation-guide`
+* :ref:`beaglev-fire-mchp-fpga-2024-2-and-older-tools-installation-guide`
+* :ref:`beaglev-fire-mchp-fpga-2025-1-tools-installation-guide`
 * :ref:`beagleV-fire-gateware-builder`
 
