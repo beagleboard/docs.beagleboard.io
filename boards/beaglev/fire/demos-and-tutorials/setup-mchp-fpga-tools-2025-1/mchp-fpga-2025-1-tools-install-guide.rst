@@ -157,7 +157,7 @@ and create your own custom design.
 
 
 License Issues running the gateware script
-***************************
+**********************************************
 
 If you encounter a license checkout error such as:
 
