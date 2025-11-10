@@ -3,6 +3,13 @@
 Libero Setup - Ubuntu 24.04
 ############################
 
+.. note::
+
+   This guide is for advanced users comfortable with Linux system administration. 
+   It assumes a fresh installation of Ubuntu 24.04.1 LTS Desktop edition. Ubuntu 24.04.1 
+   was used for testing this guide but, it's not directly supported by microchip libero and 
+   it's not guaranteed that other point releases will work without modification.
+
 This guide is intended to help users to setup the libero design tools on a fresh ubuntu 24.04.1 installation. 
 Similar steps are followed to what is provided the the :ref:`beaglev-fire-mchp-fpga-2024-2-and-older-tools-installation-guide`, 
 :ref:`beaglev-fire-mchp-fpga-2025-1-tools-installation-guide`, and that
@@ -189,7 +196,14 @@ suggested in this guide and the licensing tools that are provided with the insta
    # Edit the following section with the location where the following tools are
    # installed:
    #   - SoftConsole (SC_INSTALL_DIR)
-   #   - Libero (LIBERO_INSTALL_DIR)
+   #   - Libero (LIBERO_IN(.venv) [lorforlinux@DRAGON-I167610 docs.beagleboard.io]$ git push lucien HEAD:add_24_04_docs
+To openbeagle.org:LucienMorey/docs.beagleboard.io.git
+ ! [rejected]        HEAD -> add_24_04_docs (non-fast-forward)
+error: failed to push some refs to 'openbeagle.org:LucienMorey/docs.beagleboard.io.git'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. If you want to integrate the remote changes, use 'git pull'
+hint: before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.STALL_DIR)
    #===============================================================================
    export SC_INSTALL_DIR=/home/$USER/Microchip/SoftConsole-v2022.2-RISC-V-747
    export LIBERO_INSTALL_DIR=/home/$USER/Microchip/Libero_SoC_v2024.2
