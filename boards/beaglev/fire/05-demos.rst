@@ -8,7 +8,8 @@ Demos
     
     demos-and-tutorials/gateware/upgrade-gateware
     demos-and-tutorials/flashing-board
-    demos-and-tutorials/mchp-fpga-tools-installation-guide
+    demos-and-tutorials/setup-mchp-fpga-tools-2025-1/mchp-fpga-2025-1-tools-install-guide
+    demos-and-tutorials/setup-mchp-fpga-tools-2024-2-and-older/mchp-fpga-2024-2-tools-install-guide.rst
     demos-and-tutorials/gateware/index
     demos-and-tutorials/gateware/how-to-find-out-whats-on-the-board
     demos-and-tutorials/building-linux-with-buildroot
@@ -22,3 +23,4 @@ Demos
     demos-and-tutorials/gateware/comms-cape-gateware-usage
     demos-and-tutorials/gateware/axi-apb-interfaces-demo
     demos-and-tutorials/gateware/help-i-broke-my-board
+    demos-and-tutorials/libero-setup-ubuntu-24.04.rst
