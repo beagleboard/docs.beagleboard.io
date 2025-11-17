@@ -35,7 +35,7 @@ Creating bootable microSD card
 
 To get started with creating a bootable microSD card, you need folloiwing items,
 
-1. Up to date `bb-imager-rs <https://openbeagle.org/ayush1325/bb-imager-rs/>`_
+1. Up to date `bb-imager-rs <https://beagleboard.github.io/bb-imager-rs/>`_
 2. microSD card (8GB or larger)
 
 .. tip::
