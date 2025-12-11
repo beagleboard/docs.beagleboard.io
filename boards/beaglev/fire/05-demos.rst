@@ -22,5 +22,6 @@ Demos
     demos-and-tutorials/gateware/gateware-design-simulation-libero
     demos-and-tutorials/gateware/comms-cape-gateware-usage
     demos-and-tutorials/gateware/axi-apb-interfaces-demo
+    demos-and-tutorials/gateware/change-mss-config-demo
     demos-and-tutorials/gateware/help-i-broke-my-board
     demos-and-tutorials/libero-setup-ubuntu-24.04.rst

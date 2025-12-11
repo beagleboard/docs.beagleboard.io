@@ -13,6 +13,8 @@ specifications in  a short and crisp form as well.
     For hardware design files and schematic diagram you can checkout BeagleV-Fire 
     GitLab repository: https://git.beagleboard.org/beaglev-fire/beaglev-fire
 
+.. _beaglev-fire-block-diagram:
+
 Block diagram
 **************
 
