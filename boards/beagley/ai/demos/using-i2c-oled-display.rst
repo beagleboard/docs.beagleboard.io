@@ -150,6 +150,117 @@ To feed ``data.out`` to ``/dev/fb0`` execute the command below,
 
 .. todo:: Add instructions to use OLED for console and printing text via ``/dev/fb0`` interface.
 
+Using Python with smbus2
+=========================
+
+For users who prefer a pure Python approach without kernel drivers, you can use the ``smbus2`` library 
+to directly control the SSD1306 OLED display. This method provides low-level control and works well 
+for custom display logic.
+
+Install smbus2
+--------------
+
+First, install the required Python package:
+
+.. code:: console
+
+    pip install smbus2
+
+Python script for SSD1306
+-------------------------
+
+Create a Python script to control the OLED display. Below is an example that demonstrates 
+basic display initialization and control:
+
+.. code:: python
+
+    import time
+    import smbus2 as smbus
+
+    _COMMAND_MODE = 0x80
+    _DATA_MODE = 0x40
+
+    _DISPLAY_OFF = 0xAE
+    _DISPLAY_ON = 0xAF
+    _INVERSE_DISPLAY = 0xA7
+    _SET_BRIGHTNESS = 0x81
+
+    BasicFont = [[0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00],
+                 [0x00, 0x00, 0x5F, 0x00, 0x00, 0x00, 0x00, 0x00],
+                 # ... (additional font data)
+                ]
+
+    class i2c_display:
+        def __init__(self, bus_id=1, address=0x3c):
+            self.bus = smbus.SMBus(bus_id)
+            self.address = address
+            self.width = 128
+            self.height = 64
+            self.pages = self.height // 8
+            self.buffer = [0] * (self.width * self.pages)
+            
+        def command(self, cmd):
+            self.bus.write_byte_data(self.address, _COMMAND_MODE, cmd)
+            
+        def data(self, data):
+            self.bus.write_byte_data(self.address, _DATA_MODE, data)
+            
+        def init_display(self):
+            # Display initialization sequence
+            self.command(_DISPLAY_OFF)
+            self.command(0x20)  # Set memory addressing mode
+            self.command(0x00)  # Horizontal addressing mode
+            self.command(0xB0)  # Set page start address
+            self.command(0xC8)  # Set COM output scan direction
+            self.command(0x00)  # Set low column address
+            self.command(0x10)  # Set high column address
+            self.command(0x40)  # Set start line address
+            self.command(0xA1)  # Set segment re-map
+            self.command(0xA6)  # Set normal display
+            self.command(0xA8)  # Set multiplex ratio
+            self.command(0x3F)  # 1/64 duty
+            self.command(0xA4)  # Display all on resume
+            self.command(0xD3)  # Set display offset
+            self.command(0x00)  # No offset
+            self.command(0xD5)  # Set display clock divide ratio
+            self.command(0x80)  # Default ratio
+            self.command(0xD9)  # Set pre-charge period
+            self.command(0xF1)
+            self.command(0xDA)  # Set com pins hardware configuration
+            self.command(0x12)
+            self.command(0xDB)  # Set VCOMH deselect level
+            self.command(0x40)
+            self.command(0x8D)  # Enable charge pump regulator
+            self.command(0x14)
+            self.command(_DISPLAY_ON)
+            
+        def clear(self):
+            self.buffer = [0] * (self.width * self.pages)
+            
+        def show(self):
+            # Write buffer to display
+            for page in range(self.pages):
+                self.command(0xB0 + page)  # Set page address
+                self.command(0x00)          # Set lower column address
+                self.command(0x10)          # Set higher column address
+                
+                for col in range(self.width):
+                    self.data(self.buffer[page * self.width + col])
+
+    # Example usage
+    display = i2c_display(bus_id=1, address=0x3c)
+    display.init_display()
+    display.clear()
+    display.show()
+
+.. note:: 
+    This is a simplified example. For a complete font rendering system and advanced features,
+    consider using existing Python libraries like ``luma.oled`` or ``Adafruit_SSD1306``.
+
+.. tip::
+    The smbus2 approach is particularly useful when you need fine-grained control over the display
+    or want to integrate OLED control into existing Python applications without kernel driver dependencies.
+
 Setup ssd1306 linux software
 =============================
 
