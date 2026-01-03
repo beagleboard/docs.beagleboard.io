@@ -20,7 +20,7 @@ librobotcontrol:
 	cd projects/librobotcontrol/docs/ ; doxygen
 
 livehtml:
-	sphinx-autobuild "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	sphinx-autobuild "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O) --ignore "*projects/librobotcontrol/*"
 
 .PHONY: help Makefile submodule librobotcontrol
 
