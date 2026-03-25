@@ -1,7 +1,7 @@
 .. _pocketbeagle-2-quick-start:
 
 Quick Start Guide
-##################
+#################
 
 This section provides instructions on how to hook up your board. This Beagle requires a 5V @ 1A (5W) 
 power supply to work properly via either USB Type-C power adapter or via cape header pins. 
@@ -11,7 +11,7 @@ Recommended adapters can be found at :ref:`accessories-power-supplies` section.
 .. _pocketbeagle-2-whats-in-the-box:
 
 What’s In the Box
-*******************
+*****************
 
 In the box you will find two main items,
 
@@ -30,69 +30,30 @@ In the box you will find two main items,
 
 .. todo:: Add picture of PocketBeagle 2 box content
 
-Creating bootable microSD card
-*******************************
+.. _pocketbeagle-2-software-updates:
 
-To get started with creating a bootable microSD card, you need folloiwing items,
+Software Updates
+****************
 
-1. Up to date `bb-imager-rs <https://beagleboard.github.io/bb-imager-rs/>`_
-2. microSD card (8GB or larger)
+Follow instructions below to download the latest image for your PocketBeagle 2:
+
+1. Go to `Beagleboard Imager <https://beagleboard.github.io/bb-imager-rs>`_ page.
+2. Select board, image, drive and hit ``WRITE``.
+3. Pop the sdcard into the card-slot on the back, with the pretty side facing out.
+4. Power on your Beagle and let it rip!
 
 .. tip::
 
-   If required you can manually download the image from 
-   `beagleboard.org distros page <https://www.beagleboard.org/distros/>`_, for example,
-   https://www.beagleboard.org/distros/pocketbeagle2-debian-12-9-2025-01-15-minimal
+   | If you connect to the debug port, you can select the ``copy microSD to eMMC`` option
+   | to quickly update it once you're happy with the result.
 
-   .. figure:: images/distro/pocketbeagle-2-distro-selection.png
-      :align: center
-      :alt: Distro selection
+To see what SW revision is loaded into the running software image, check `/etc/dogtag`.
+It should look something like as shown in example below:
 
-      Distros selection
+.. code-block:: shell
 
-To begin you have to select PocketBeagle 2 from the list of boards, 
-then select the image you want to flash, and finally select the microSD card.
-After doing this you have to select the config button to configure the image 
-and then click on the flash button to start the flashing process.
-
-.. figure:: images/distro/bb-imager-selection.png
-   :align: center
-   :alt: Board and image selection
-
-   Board and image selection
-
-Below image shows the configuration options available for the image.
-
-.. tip:: 
-
-   You can enable Skip ``Verification`` as shown in the image below, 
-   which will make the flashing process faster by skipping the verification step.
-
-.. figure:: images/distro/bb-imager-config.png
-   :align: center
-   :alt: Configuration options
-
-   Configuration options
-
-Make sure to select the correct microSD card and click on the flash button to start the flashing process.
-
-.. figure:: images/distro/bb-imager-flashing.png
-   :align: center
-   :alt: Flashing in progress
-
-   Flashing in progress
-
-Once the flashing is done, you will see the following screen.
-
-.. figure:: images/distro/bb-imager-flashing-done.png
-   :align: center
-   :alt: Flashing done
-
-   Flashing done
-
-Your microSD card is now ready to boot PocketBeagle 2.
-
-.. _pocketbeagle-2-main-connection-scenarios:
+   root@BeagleBone:~# cat /etc/dogtag
+   BeagleBoard.org Debian Trixie IOT Image 2026-02-12
 
 Main Connection Scenarios
 *************************
@@ -107,7 +68,7 @@ different ways, but we will discuss the two most common scenarios.
 .. _pocketbeagle-2-tethered-scenario:
 
 Tethered Connection
-====================
+===================
 
 In this scenario, the board is directly connected to a PC via USB-C port. This is the simplest way to get started with the board.
 Optionally you can connect rpi debug probe to 3-pin JST-SH connector to see boot log, board console access and for general debugging.
@@ -120,7 +81,7 @@ Optionally you can connect rpi debug probe to 3-pin JST-SH connector to see boot
    Tethered Connection
 
 USB connection
----------------
+--------------
 
 1. Connect the USB-C cable to the PocketBeagle 2 and the other end to the PC.
 2. The board will power up and boot from the microSD card.
@@ -274,7 +235,7 @@ UART serial debug connection
 .. _pocketbeagle-2-cape-scenario:
 
 Cape Connection
-================
+===============
 
 In this scenario, the board is connected to a cape like `TechLab Cape <https://www.beagleboard.org/boards/techlab>`_ 
 or `GamePup Cape <https://www.beagleboard.org/boards/pocketbeagle-gamepup-cape>`_. This is the most common way to 

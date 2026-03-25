@@ -23,32 +23,25 @@ Export designations
 .. _pocketbeagle-2-hardware-design:
 
 Hardware Design
-****************
+***************
 
 You can find all PocketBeagle 2 hardware files 
 `here <https://openbeagle.org/pocketbeagle/pocketbeagle-2>`_ under the `design` folder.
 
 Production board boot media
-****************************
+***************************
 
 .. todo:: Add production image link with board revision information.
 
-.. _pocketbeagle-2-software-updates:
+.. _pocketbeagle-2-rma-support:
 
-Software Updates
-******************
+RMA Support
+***********
 
-Follow instructions below to download the latest image for your PocketBeagle 2:
-
-1. Go to `BeagleBoard.org distro <https://www.beagleboard.org/distros>`_ page.
-2. On distros page, from dropdown select "PocketBeagle 2" and download the image.
-
-.. todo:: add distros page image selection for pocketbeagle-2
-
-.. tip::
-
-   You can follow the :ref:`flash-latest-image` guide for more information on 
-   flashing the downloaded image to your board.
+If you feel your board is defective or has issues, request an Return Merchandise Application (RMA) 
+by filling out the form at http://www.beagleboard.org/support/rma. You will need the serial number and 
+revision of the board. The serial numbers and revisions keep moving. Different boards can have different 
+locations depending on when they were made.
 
 To see what SW revision is loaded into the running software image, check `/etc/dogtag`.
 It should look something like as shown in example below,
@@ -58,24 +51,24 @@ It should look something like as shown in example below,
    root@BeagleBone:~# cat /etc/dogtag
    BeagleBoard.org Debian Image 2024-02-24
 
-.. _pocketbeagle-2-rma-support:
+Additionally, you can also collect information with:
 
-RMA Support
-*****************
+.. code-block:: shell
 
-If you feel your board is defective or has issues, request an Return Merchandise Application (RMA) 
-by filling out the form at http://beagleboard.org/support/rma . You will need the serial number and 
-revision of the board. The serial numbers and revisions keep moving. Different boards can have different 
-locations depending on when they were made. The following figures show the three locations of the serial 
-and revision number.
+   sudo beagle-version
+
+This information will in most cases expedite your query considerably.
 
 .. _pocketbeagle-2-getting-help:
 
 Getting Help
-**************
+************
 
 If you need some up to date troubleshooting techniques, you can post your 
 queries on link: `BeagleBoard.org forum <https://forum.beagleboard.org/tag/pocketbeagle-2>`_
+
+| If you don't get a reasonable response in 24 hours, you are welcome to provide a link to the forum post
+| in a meeting invite to me via https://calendly.com/jkridner (link also on https://www.beagleboard.org/about/jkridner).
 
 .. _pocketbeagle-2-mechanical:
 
@@ -85,7 +78,7 @@ Mechanical Details
 .. _pocketbeagle-2-dimensions-and-weight:
 
 Dimensions and Weight
-======================
+=====================
 
 .. table:: Dimensions & weight
 
