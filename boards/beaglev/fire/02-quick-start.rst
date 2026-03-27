@@ -47,7 +47,7 @@ To connect BeagleV-Fire board to PC via USB Type C receptacle you need a USB typ
 Flashing eMMC
 *************
 
-First we need to go get `Beagleboard Imager <https://github.com/beagleboard/bb-imager-rs/releases>`_.
+First we need to go get `Beagleboard Imager <https://beagleboard.github.io/bb-imager-rs>`_.
 
 Grab the version suitable for your operating system.
 
