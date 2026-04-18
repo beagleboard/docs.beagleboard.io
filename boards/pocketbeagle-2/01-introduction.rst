@@ -166,5 +166,5 @@ Revision Note
 *************
 PB2 revisions are as follows:
 
-- A1(Current/In-production) w/ AM6254 SOC.
-- A0(Out-of-production) w/ AM6232 SOC.
+- A1(Current/In-production) w/ AM6254 SoC.
+- A0(Out-of-production) w/ AM6232 SoC.
