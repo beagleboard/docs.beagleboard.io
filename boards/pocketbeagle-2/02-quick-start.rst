@@ -42,6 +42,11 @@ Follow instructions below to download the latest image for your PocketBeagle 2:
 3. Pop the sdcard into the card-slot on the back, with the pretty side facing out.
 4. Power on your Beagle and let it rip!
 
+.. important::
+   | If you *do* set a hostname, please make sure it's **not** the same as the PC you plan to tether it to.
+   |
+   | Your network connection will not work correctly if you do.
+
 .. tip::
 
    | If you connect to the debug port, you can select the ``copy microSD to eMMC`` option
@@ -86,10 +91,10 @@ USB connection
 1. Connect the USB-C cable to the PocketBeagle 2 and the other end to the PC.
 2. The board will power up and boot from the microSD card.
 3. The board will show up as a USB device on the PC.
-4. You can access the board via ``SSH`` or board ``serial`` connection or though ``Visial Studio Code Server`` web interface.
+4. You can access the board via ``SSH`` or board ``serial`` connection or though ``Visual Studio Code Server`` web interface.
 
 .. tab-set::
-   .. tab-item:: Visial Studio Code Server
+   .. tab-item:: Visual Studio Code Server
 
       After connecting the board to the PC, you can access the board via a web browser by entering the IP address of the board in the address bar.
 
@@ -136,45 +141,8 @@ USB connection
 
          Serial connection
 
-Once you have access to the console using any of the methods above, you might want to share interne connection with the board.
-You can do this by running ``pb2-internet.sh`` file on your PocketBeagle 2 board. and the follow OS specific steps to share internet connection.
-
-First you have to create ``pb2-internet.sh`` file on PocketBeagle 2 with the following content,
-
-.. code-block:: bash
-
-   #!/bin/sh -e
-   #
-
-   if ! id | grep -q root; then
-           echo "must be run as root"
-           exit
-   fi
-
-   if [ -f /etc/default/bb-boot ] ; then
-           . /etc/default/bb-boot
-   fi
-
-   if [ "x${USB_CONFIGURATION}" = "x" ] ; then
-           USB0_SUBNET=192.168.7
-           DNS_NAMESERVER=8.8.8.8
-   fi
-
-   /sbin/route add default gw ${USB0_SUBNET}.1 || true
-
-   ping -c1 ${DNS_NAMESERVER}
-   echo "nameserver ${DNS_NAMESERVER}" >> /etc/resolv.conf
-
-   #
-
-then execute following commands,
-
-.. code-block:: bash
-
-   chmod +x pb2-internet.sh
-   sudo ./pb2-internet.sh
-
-On PC you have to follow OS specific steps to share internet connection with the board.
+Once you have access to the console using any of the methods above, you might want to share internet connection with the board.
+Do this by following the OS specific steps below:
 
 .. tab-set::
 
@@ -212,11 +180,58 @@ On PC you have to follow OS specific steps to share internet connection with the
 
    .. tab-item:: Windows
 
-      .. todo:: Add steps to share internet connection on Windows
+      .. important::
+         | Windows 10 is EOL and the usbncm driver support is non-functional.
+         | You **will** need at least Windows 11 for this.
+
+      | First you need to plug in your Beagle and give it a few moments to start.
+      | You will be able to proceed when you see the following:
+
+      .. figure:: images/misc/windows-networking.webp
+        :align: center
+        :alt: Network setup
+
+      | Now, right-click on ``Ethernet 3``, choose Properties and select the ``Share`` tab.
+      | Activate the first checkbox and select the usbncm network, in this case ``Ethernet 6`` from the dropdown.
+      | The last checkbox is not important.
+
+      | After confirming that the state of ``Ethernet 3`` has changed to **shared**,
+      | you're ready to issue the following commands on the PB2 command-line:
+
+      .. code-block:: bash
+
+         sudo ip addr flush dev usb0
+         sudo dhclient usb0
+
+      After this, you can confirm that you can see the "outside world" by performing a ``ping``.
 
    .. tab-item:: MacOS
 
-      .. todo:: Add steps to share internet connection on MacOS
+      .. note::
+         | The following procedure was completed on Monterey (12.7.6),
+         | but the UI should still display something similar today.
+
+      | First you need to plug in your Beagle and give it a few moments to start.
+      | Open **System Preferences** >> **Sharing**
+      | You will be able to proceed when you see the following:
+
+      .. figure:: images/misc/macos-networking.webp
+        :align: center
+        :alt: Network setup
+
+      | First, make sure the network facing the Internet is selected in the dropdown.
+      | Then select ``PocketBeagle2`` in the **To** pane,
+      | and then lastly, click the **Internet Sharing** checkbox to enable the whole thing.
+
+      | After confirming that the little "green led" turned on,
+      | you're ready to issue the following commands on the PB2 command-line:
+
+      .. code-block:: bash
+
+         sudo ip addr flush dev usb0
+         sudo dhclient usb0
+
+      After this, you can confirm that you can see the "outside world" by performing a ``ping``.
 
 UART serial debug connection
 ----------------------------
